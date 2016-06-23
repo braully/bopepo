@@ -31,7 +31,7 @@
 	<scm>
 		<url>http://github.com/jrimum/bopepo</url>
 	</scm>
-	
+
 	<developers>
 		<developer>
 			<name>Gilmar P. S. L.</name>
@@ -53,7 +53,7 @@
 	</properties>
 
 	<build>
-	
+
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
@@ -62,7 +62,7 @@
 				</excludes>
 			</resource>
 		</resources>
-		
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -100,8 +100,8 @@
 				<configuration>
 					<descriptors>
 						<descriptor>src/main/assembly/jrimum-bopepo-with-dependencies.xml</descriptor>
-                        <descriptor>src/main/assembly/jrimum-bopepo-with-dependencies-src.xml</descriptor>
-                        <descriptor>src/main/assembly/jrimum-bopepo-examples.xml</descriptor>
+<!--                         <descriptor>src/main/assembly/jrimum-bopepo-with-dependencies-src.xml</descriptor> -->
+<!--                         <descriptor>src/main/assembly/jrimum-bopepo-examples.xml</descriptor> -->
                     </descriptors>
 				</configuration>
 				<executions>
@@ -169,7 +169,7 @@
 				<version>2.8.1</version>
 			</plugin>
 		</plugins>
-		
+
 	</build>
 
 	<dependencies>
@@ -261,5 +261,5 @@
 			<url>http://jrimum.org/maven/content/repositories/org.jrimum.releases/</url>
 		</repository>
 	</distributionManagement>
-	
+
 </project>

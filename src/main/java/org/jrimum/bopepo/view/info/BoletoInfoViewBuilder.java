@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright 2013 JRimum Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -9,23 +9,23 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
- * 
+ *
  * Created at: 17/12/2013 - 19:09:47
  *
  * ================================================================================
  *
  * Direitos autorais 2013 JRimum Project
  *
- * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode 
- * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma 
- * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que 
- * haja exigência legal ou acordo por escrito, a distribuição de software sob esta 
- * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam 
- * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões 
+ * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode
+ * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
+ * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
+ * haja exigência legal ou acordo por escrito, a distribuição de software sob esta
+ * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam
+ * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões
  * e limitações sob esta LICENÇA.
- * 
- * Criado em: 17/12/2013 - 19:09:47 
- * 
+ *
+ * Criado em: 17/12/2013 - 19:09:47
+ *
  */
 
 package org.jrimum.bopepo.view.info;
@@ -48,18 +48,18 @@ import org.jrimum.utilix.Exceptions;
 import org.jrimum.utilix.Objects;
 
 /**
- * Lê os dados do Boleto e monta-os para uso em {@linkplain #texts()} e {@linkplain #images()}. 
- * 
+ * Lê os dados do Boleto e monta-os para uso em {@linkplain #texts()} e {@linkplain #images()}.
+ *
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  *
  * @since 0.2
- * 
+ *
  * @version 0.2
  */
 public class BoletoInfoViewBuilder {
-	
+
 	private static Logger log = Logger.getLogger(BoletoInfoViewBuilder.class);
-	
+
 	private final Map<String,String> text;
 	private final Map<String,Image> image;
 
@@ -67,11 +67,11 @@ public class BoletoInfoViewBuilder {
 	private final Map<String,Image> boletoImagensExtra;
 
 	private final BoletoInfoCampoView boletoInfoCampo;
-	
-	
+
+
 	/**
 	 * Modo de instanciação não permitido.
-	 * 
+	 *
 	 * @throws IllegalStateException
 	 *             Caso haja alguma tentativa de utilização deste construtor.
 	 */
@@ -84,43 +84,44 @@ public class BoletoInfoViewBuilder {
 		boletoImagensExtra = null;
 		boletoInfoCampo = null;
 	}
-	
+
 	public BoletoInfoViewBuilder(ResourceBundle resourceBundle, Boleto boleto){
-		
+
 		Objects.checkNotNull(resourceBundle);
 		Objects.checkNotNull(boleto);
-		
+
 		text = new WeakHashMap<String, String>();
 		image = new WeakHashMap<String, Image>();
-		
+
 		this.boletoTextosExtra = boleto.getTextosExtras();
 		this.boletoImagensExtra = boleto.getImagensExtras();
 		this.boletoInfoCampo = BoletoInfoCampoViewFactory.create(resourceBundle, boleto);
 	}
-	
+
 	public Map<String,String> texts(){
-		
+
 		return new WeakHashMap<String, String>(text);
 	}
-	
+
 	public Map<String,Image> images(){
-		
+
 		return new WeakHashMap<String, Image>(image);
 	}
-	
+
 	/**
 	 * Preenche todos os campos com os dados do boleto contido na instância.
-	 * 
+	 *
 	 * @return Esta instância após operação
-	 * 
+	 *
 	 * @since 0.2
 	 */
 	public BoletoInfoViewBuilder build(){
-		
+
 		setLogotipoDoBanco();
 		setCodigoDoBanco();
 		setLinhaDigitavel();
 		setCedente();
+		setEnderecoCedente();
 		setAgenciaCodigoCedente();
 		setEspecie();
 		setNossoNumero();
@@ -146,16 +147,17 @@ public class BoletoInfoViewBuilder {
 		setCarteira();
 		setTodosOsCamposTexto();
 		setTodosOsCamposImagem();
-		
+
 		return this;
 	}
-	
+
 	private void setInstrucaoAoSacado(){
 		text.put(BoletoCampo.txtRsInstrucaoAoSacado.name(), boletoInfoCampo.getTextoRsInstrucaoAoSacado());
 	}
-	
+
 	private void setCprfCedente(){
 		text.put(BoletoCampo.txtRsCpfCnpj.name(), boletoInfoCampo.getTextoRsCpfCnpj());
+		text.put(BoletoCampo.txtFcCpfCnpj.name(), boletoInfoCampo.getTextoRsCpfCnpj());
 	}
 
 	private void setDataProcessamento(){
@@ -188,13 +190,13 @@ public class BoletoInfoViewBuilder {
 		text.put(BoletoCampo.txtFcSacadoL2.name(), boletoInfoCampo.getTextoFcSacadoL2());
 		text.put(BoletoCampo.txtFcSacadoL3.name(), boletoInfoCampo.getTextoFcSacadoL3());
 	}
-	
+
 	private void setSacadorAvalista(){
 		text.put(BoletoCampo.txtFcSacadorAvalistaL1.name(), boletoInfoCampo.getTextoFcSacadorAvalistaL1());
 		text.put(BoletoCampo.txtFcSacadorAvalistaL2.name(), boletoInfoCampo.getTextoFcSacadorAvalistaL2());
 		text.put(BoletoCampo.txtFcSacadorAvalistaL3.name(), boletoInfoCampo.getTextoFcSacadorAvalistaL3());
 	}
-	
+
 	private void setInstrucaoAoCaixa(){
 		text.put(BoletoCampo.txtFcInstrucaoAoCaixa1.name(), boletoInfoCampo.getTextoFcInstrucaoAoCaixa1());
 		text.put(BoletoCampo.txtFcInstrucaoAoCaixa2.name(), boletoInfoCampo.getTextoFcInstrucaoAoCaixa2());
@@ -210,7 +212,7 @@ public class BoletoInfoViewBuilder {
 		text.put(BoletoCampo.txtRsMoraMulta.name(), boletoInfoCampo.getTextoRsMoraMulta());
 		text.put(BoletoCampo.txtFcMoraMulta.name(), boletoInfoCampo.getTextoFcMoraMulta());
 	}
-	
+
 	private void setOutroAcrescimo(){
 		text.put(BoletoCampo.txtRsOutroAcrescimo.name(), boletoInfoCampo.getTextoRsOutroAcrescimo());
 		text.put(BoletoCampo.txtFcOutroAcrescimo.name(), boletoInfoCampo.getTextoFcOutroAcrescimo());
@@ -244,17 +246,21 @@ public class BoletoInfoViewBuilder {
 		text.put(BoletoCampo.txtRsNumeroDocumento.name(), boletoInfoCampo.getTextoRsNumeroDocumento());
 		text.put(BoletoCampo.txtFcNumeroDocumento.name(), boletoInfoCampo.getTextoFcNumeroDocumento());
 	}
-	
+
 	private void setCedente(){
 		text.put(BoletoCampo.txtRsCedente.name(), boletoInfoCampo.getTextoRsCedente());
 		text.put(BoletoCampo.txtFcCedente.name(), boletoInfoCampo.getTextoFcCedente());
 	}
-	
+
+	private void setEnderecoCedente(){
+		text.put(BoletoCampo.txtRsEnderecoCedente.name(), boletoInfoCampo.getTextoRsEnderecoCedente());
+	}
+
 	private void setEspecie(){
 		text.put(BoletoCampo.txtRsEspecie.name(), boletoInfoCampo.getTextoRsEspecie());
 		text.put(BoletoCampo.txtFcEspecie.name(), boletoInfoCampo.getTextoFcEspecie());
 	}
-	
+
 	private void setCodigoDoBanco(){
 		text.put(BoletoCampo.txtRsCodBanco.name(), boletoInfoCampo.getTextoRsCodigoBanco());
 		text.put(BoletoCampo.txtFcCodBanco.name(), boletoInfoCampo.getTextoFcCodigoBanco());
@@ -269,7 +275,7 @@ public class BoletoInfoViewBuilder {
 		text.put(BoletoCampo.txtRsNossoNumero.name(), boletoInfoCampo.getTextoRsNossoNumero());
 		text.put(BoletoCampo.txtFcNossoNumero.name(), boletoInfoCampo.getTextoFcNossoNumero());
 	}
-	
+
 	private void setLogotipoDoBanco(){
 		if (isNotNull(boletoInfoCampo.getImagemFcLogoBanco())) {
 			image.put(BoletoCampo.txtRsLogoBanco.name(),boletoInfoCampo.getImagemRsLogoBanco());
@@ -278,18 +284,18 @@ public class BoletoInfoViewBuilder {
 			log.warn("Banco sem imagem definida. O nome da instituição será usado como logo.");
 			text.put(BoletoCampo.txtRsLogoBanco.name(),boletoInfoCampo.getTextoRsLogoBanco());
 			text.put(BoletoCampo.txtFcLogoBanco.name(),boletoInfoCampo.getTextoFcLogoBanco());
-		}		
+		}
 	}
 
 	private void setLinhaDigitavel(){
 		text.put(BoletoCampo.txtRsLinhaDigitavel.name(), boletoInfoCampo.getTextoRsLinhaDigitavel());
 		text.put(BoletoCampo.txtFcLinhaDigitavel.name(), boletoInfoCampo.getTextoFcLinhaDigitavel());
 	}
-	
+
 	private void setCodigoDeBarras(){
 		image.put(BoletoCampo.txtFcCodigoBarra.name(), boletoInfoCampo.getImagemFcCodigoBarra());
 	}
-	
+
 	private void setTodosOsCamposTexto(){
 		if (Collections.hasElement(this.boletoTextosExtra)) {
 			for (Entry<String, String> entry : boletoTextosExtra.entrySet()) {
@@ -297,7 +303,7 @@ public class BoletoInfoViewBuilder {
 			}
 		}
 	}
-	
+
 	private void setTodosOsCamposImagem(){
 		if (Collections.hasElement(boletoImagensExtra)) {
 			for (Entry<String, Image> entry : boletoImagensExtra.entrySet()) {

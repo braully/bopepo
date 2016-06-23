@@ -8,7 +8,7 @@ import org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView;
 
 /**
  * View para o convênio SIGCB da CAIXA.
- * 
+ *
  * @author Rômulo Augusto
  */
 public class BoletoInfoViewCaixaSIGCB extends AbstractBoletoInfoCampoView {
@@ -18,22 +18,26 @@ public class BoletoInfoViewCaixaSIGCB extends AbstractBoletoInfoCampoView {
 	BoletoInfoViewCaixaSIGCB(ResourceBundle resourceBundle, Boleto boleto) {
 		super(resourceBundle, boleto);
 	}
-	
+
 	@Override
 	public String getTextoFcNossoNumero() {
-		return getBoleto().getTitulo().getContaBancaria().getCarteira().getCodigo() 
-				+ EMISSAO_BENEFICIARIO 
+		return getBoleto().getTitulo().getContaBancaria().getCarteira().getCodigo()
+				+ EMISSAO_BENEFICIARIO
 				+ super.getTextoFcNossoNumero();
 	}
-	
+
 	@Override
 	public String getTextoFcCarteira() {
 		return (getBoleto().getTitulo().getContaBancaria().getCarteira().isComRegistro()) ? "RG" : "SR";
 	}
-	
+
 	@Override
 	public String getTextoFcLocalPagamento() {
 		String textoFcLocalPagamento = super.getTextoFcLocalPagamento();
 		return isBlank(textoFcLocalPagamento) ? "PREFERENCIALMENTE NAS CASAS LOTÉRICAS ATÉ O VALOR LIMITE" : textoFcLocalPagamento;
+	}
+
+	public String getTextoRsEnderecoCedente() {
+		return getEnderecoBeneficiario();
 	}
 }

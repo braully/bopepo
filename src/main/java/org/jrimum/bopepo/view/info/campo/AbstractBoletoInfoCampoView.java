@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright 2014 JRimum Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -9,23 +9,23 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
- * 
+ *
  * Created at: 19/01/2014 - 22:11:18
  *
  * ================================================================================
  *
  * Direitos autorais 2014 JRimum Project
  *
- * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode 
- * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma 
- * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que 
- * haja exigência legal ou acordo por escrito, a distribuição de software sob esta 
- * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam 
- * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões 
+ * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode
+ * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
+ * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
+ * haja exigência legal ou acordo por escrito, a distribuição de software sob esta
+ * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam
+ * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões
  * e limitações sob esta LICENÇA.
- * 
- * Criado em: 19/01/2014 - 22:11:18 
- * 
+ *
+ * Criado em: 19/01/2014 - 22:11:18
+ *
  */
 
 package org.jrimum.bopepo.view.info.campo;
@@ -60,14 +60,14 @@ import org.jrimum.utilix.Objects;
  *
  */
 public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView{
-	
+
 	private final ResourceBundle resourceBundle;
-	
+
 	private final Boleto boleto;
-	
+
 	/**
 	 * Modo de instanciação não permitido.
-	 * 
+	 *
 	 * @throws IllegalStateException
 	 *             Caso haja alguma tentativa de utilização deste construtor.
 	 */
@@ -77,7 +77,7 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 		resourceBundle = null;
 		boleto = null;
 	}
-	
+
 	public AbstractBoletoInfoCampoView(ResourceBundle resourceBundle, Boleto boleto){
 		Objects.checkNotNull(resourceBundle);
 		Objects.checkNotNull(boleto);
@@ -92,35 +92,35 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	public String getTextoRsCpfCnpj() {
 		return boleto.getTitulo().getCedente().getCPRF().getCodigoFormatado();
 	}
-	
+
 	public String getTextoRsSacado(){
 		return getTextoFcSacadoL1();
 	}
-	
+
 	public String getTextoFcSacadoL1(){
 		return getTextoNomeCprfDaPessoa(boleto.getTitulo().getSacado());
 	}
-	
+
 	public String getTextoFcSacadoL2(){
 		return getTextoEnderecoLinha1(boleto.getTitulo().getSacado());
 	}
-	
+
 	public String getTextoFcSacadoL3(){
 		return getTextoEnderecoLinha2(boleto.getTitulo().getSacado());
 	}
-	
+
 	public String getTextoFcSacadorAvalistaL1(){
 		return getTextoNomeCprfDaPessoa(boleto.getTitulo().getSacadorAvalista());
 	}
-	
+
 	public String getTextoFcSacadorAvalistaL2(){
 		return getTextoEnderecoLinha1(boleto.getTitulo().getSacadorAvalista());
 	}
-	
+
 	public String getTextoFcSacadorAvalistaL3(){
 		return getTextoEnderecoLinha2(boleto.getTitulo().getSacadorAvalista());
 	}
-	
+
 	public String getTextoFcDataProcessamento(){
 		return getValue(boleto.getDataDeProcessamento());
 	}
@@ -140,39 +140,39 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	public String getTextoFcLocalPagamento(){
 		return getValue(boleto.getLocalPagamento());
 	}
-	
+
 	public String getTextoFcCarteira(){
 		return whenNull(boleto.getTitulo().getContaBancaria().getCarteira(), EMPTY, boleto.getTitulo().getContaBancaria().getCarteira().getCodigo().toString());
 	}
-	
+
 	public String getTextoFcInstrucaoAoCaixa1(){
 		return getValue(boleto.getInstrucao1());
 	}
-	
+
 	public String getTextoFcInstrucaoAoCaixa2(){
 		return getValue(boleto.getInstrucao2());
 	}
-	
+
 	public String getTextoFcInstrucaoAoCaixa3(){
 		return getValue(boleto.getInstrucao3());
 	}
-	
+
 	public String getTextoFcInstrucaoAoCaixa4(){
 		return getValue(boleto.getInstrucao4());
 	}
-	
+
 	public String getTextoFcInstrucaoAoCaixa5(){
 		return getValue(boleto.getInstrucao5());
 	}
-	
+
 	public String getTextoFcInstrucaoAoCaixa6(){
 		return getValue(boleto.getInstrucao6());
 	}
-	
+
 	public String getTextoFcInstrucaoAoCaixa7(){
 		return getValue(boleto.getInstrucao7());
 	}
-	
+
 	public String getTextoFcInstrucaoAoCaixa8(){
 		return getValue(boleto.getInstrucao8());
 	}
@@ -184,7 +184,7 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	public String getTextoFcMoraMulta(){
 		return getValue(boleto.getTitulo().getMora());
 	}
-	
+
 	public String getTextoRsOutroAcrescimo(){
 		return getTextoFcOutroAcrescimo();
 	}
@@ -204,11 +204,11 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	public String getTextoRsDescontoAbatimento(){
 		return getTextoFcDescontoAbatimento();
 	}
-	
+
 	public String getTextoFcDescontoAbatimento(){
 		return getValue(boleto.getTitulo().getDesconto());
 	}
-	
+
 	public String getTextoRsValorDocumento(){
 		return getTextoFcValorDocumento();
 	}
@@ -216,11 +216,11 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	public String getTextoFcValorDocumento(){
 		return getValue(boleto.getTitulo().getValor());
 	}
-	
+
 	public String getTextoRsValorCobrado(){
 		return getTextoFcValorCobrado();
 	}
-	
+
 	public String getTextoFcValorCobrado(){
 		return getValue(boleto.getTitulo().getValorCobrado());
 	}
@@ -236,19 +236,19 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	public String getTextoRsNumeroDocumento(){
 		return getTextoFcNumeroDocumento();
 	}
-	
+
 	public String getTextoFcNumeroDocumento(){
 		return getValue(boleto.getTitulo().getNumeroDoDocumento());
 	}
-	
+
 	public String getTextoRsCedente(){
 		return getTextoFcCedente();
 	}
-	
+
 	public String getTextoFcCedente(){
 		return getValue(boleto.getTitulo().getCedente().getNome());
 	}
-	
+
 	public String getTextoRsEspecie(){
 		return getTextoFcEspecie();
 	}
@@ -256,7 +256,7 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	public String getTextoFcEspecie(){
 		return getValue(boleto.getTitulo().getTipoDeMoeda());
 	}
-		
+
 	public String getTextoRsCodigoBanco(){
 		return getTextoFcCodigoBanco();
 	}
@@ -272,7 +272,7 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	public String getTextoFcAgenciaCodigoCedente(){
 		return getTextoAgenciaCodigoCedente(boleto.getTitulo().getContaBancaria());
 	}
-	
+
 	public String getTextoRsNossoNumero(){
 		return getTextoFcNossoNumero();
 	}
@@ -280,17 +280,21 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	public String getTextoFcNossoNumero(){
 		return getTextoNossoNumero(boleto.getTitulo());
 	}
-	
+
 	public Image getImagemRsLogoBanco(){
 		return getImagemFcLogoBanco();
 	}
-	
+
 	public Image getImagemFcLogoBanco(){
 		return getImagemBanco(resourceBundle, boleto.getTitulo().getContaBancaria());
 	}
 
 	public String getTextoRsLogoBanco(){
 		return getTextoFcLogoBanco();
+	}
+
+	public String getTextoRsEnderecoCedente(){
+		return getEnderecoBeneficiario();
 	}
 
 	public String getTextoFcLogoBanco(){
@@ -304,11 +308,11 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	public String getTextoFcLinhaDigitavel(){
 		return boleto.getLinhaDigitavel().write();
 	}
-	
+
 	public Image getImagemFcCodigoBarra(){
 		return CodigoDeBarras.valueOf(boleto.getCodigoDeBarras().write()).toImage();
 	}
-	
+
 	protected final Boleto getBoleto(){
 		return this.boleto;
 	}
@@ -339,5 +343,46 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 			return value.name();
 		}
 		return EMPTY;
+	}
+
+	public String getEnderecoBeneficiario()
+	{
+		StringBuilder enderecoBeneficiario = new StringBuilder("");
+
+		if (getBoleto().getTitulo().getCedente().getNextEndereco().getLogradouro() != null)
+			enderecoBeneficiario.append(getBoleto().getTitulo().getCedente().getNextEndereco().getLogradouro());
+
+		if (getBoleto().getTitulo().getCedente().getNextEndereco().getNumero() != null)
+			enderecoBeneficiario.append(", ").append(getBoleto().getTitulo().getCedente().getNextEndereco().getNumero());
+
+		if (getBoleto().getTitulo().getCedente().getNextEndereco().getBairro() != null) {
+
+			enderecoBeneficiario.append(", ");
+
+			if (getBoleto().getTitulo().getCedente().getNextEndereco().getBairro().length() > 30) {
+				enderecoBeneficiario.append(getBoleto().getTitulo().getCedente().getNextEndereco().getBairro().subSequence(0, 30));
+			}
+			else {
+				enderecoBeneficiario.append(getBoleto().getTitulo().getCedente().getNextEndereco().getBairro());
+			}
+		}
+
+		if (getBoleto().getTitulo().getCedente().getNextEndereco().getLocalidade() != null) {
+			enderecoBeneficiario.append(", ");
+
+			if (getBoleto().getTitulo().getCedente().getNextEndereco().getLocalidade().length() >= 30) {
+				enderecoBeneficiario.append(getBoleto().getTitulo().getCedente().getNextEndereco().getLocalidade().substring(0, 30));
+			} else {
+				enderecoBeneficiario.append(getBoleto().getTitulo().getCedente().getNextEndereco().getLocalidade());
+			}
+		}
+
+		if (getBoleto().getTitulo().getCedente().getNextEndereco().getUF() != null)
+			enderecoBeneficiario.append(" - ").append(getBoleto().getTitulo().getCedente().getNextEndereco().getUF().getSigla());
+
+		if (getBoleto().getTitulo().getCedente().getNextEndereco().getCEP() != null) {
+			enderecoBeneficiario.append(" - ").append(getBoleto().getTitulo().getCedente().getNextEndereco().getCEP().getCep());
+		}
+		return enderecoBeneficiario.toString();
 	}
 }

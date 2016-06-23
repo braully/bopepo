@@ -13,7 +13,7 @@ import org.jrimum.bopepo.view.info.campo.BoletoInfoCampoView;
  * @author Rômulo Augusto
  */
 public class AbstractBoletoInfoViewHSBC extends AbstractBoletoInfoCampoView {
-	
+
 	public static BoletoInfoCampoView create(ResourceBundle resourceBundle, Boleto boleto) {
 		if (boleto.getTitulo().getContaBancaria().getCarteira().isComRegistro()) {
 			return new BoletoInfoViewHSBCRegistrada(resourceBundle, boleto);
@@ -24,25 +24,29 @@ public class AbstractBoletoInfoViewHSBC extends AbstractBoletoInfoCampoView {
 	public AbstractBoletoInfoViewHSBC(ResourceBundle resourceBundle, Boleto boleto) {
 		super(resourceBundle, boleto);
 	}
-	
+
 	@Override
 	public String getTextoFcLocalPagamento() {
 		String textoFcLocalPagamento = super.getTextoFcLocalPagamento();
 		return isBlank(textoFcLocalPagamento) ? "PAGAR PREFERENCIALMENTE EM AGÊNCIA DO HSBC" : textoFcLocalPagamento;
 	}
-	
+
 	@Override
 	public String getTextoFcAgenciaCodigoCedente() {
 		return leftPad(getBoleto().getTitulo().getContaBancaria().getNumeroDaConta().getCodigoDaConta().toString(), 7, "0");
 	}
-	
+
 	@Override
 	public String getTextoFcNossoNumero() {
 		return getBoleto().getTitulo().getNossoNumero() + getBoleto().getTitulo().getDigitoDoNossoNumero();
 	}
-	
+
 	@Override
 	public String getTextoRsNossoNumero() {
 		return getTextoFcNossoNumero();
+	}
+
+	public String getTextoRsEnderecoCedente() {
+		return getEnderecoBeneficiario();
 	}
 }
