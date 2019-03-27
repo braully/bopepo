@@ -349,6 +349,9 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
 	{
 		StringBuilder enderecoBeneficiario = new StringBuilder("");
 
+		if (getBoleto().getTitulo().getCedente().getNextEndereco() == null)
+			return enderecoBeneficiario.toString();
+
 		if (getBoleto().getTitulo().getCedente().getNextEndereco().getLogradouro() != null)
 			enderecoBeneficiario.append(getBoleto().getTitulo().getCedente().getNextEndereco().getLogradouro());
 

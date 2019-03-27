@@ -1,6 +1,6 @@
 /*
  * Copyright 2013 JRimum Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by
@@ -8,13 +8,13 @@
  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
- * 
+ *
  * Created at: 24/08/2013 - 19:54:00
- * 
+ *
  * ================================================================================
- * 
+ *
  * Direitos autorais 2013 JRimum Project
- * 
+ *
  * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode usar
  * esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
  * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
@@ -22,9 +22,9 @@
  * esta LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
- * 
+ *
  * Criado em: 24/08/2013 - 19:54:00
- * 
+ *
  */
 
 package org.jrimum.bopepo.campolivre;
@@ -45,11 +45,11 @@ import org.junit.Test;
  * <p>
  * Teste unitário do campo livre do BRB - Banco de Brasília.
  * </p>
- * 
+ *
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * 
+ *
  * @since 0.2
- * 
+ *
  * @version 0.2
  */
 public class TestCLBancoDeBrasilia extends AbstractCampoLivreBaseTest<CLBancoDeBrasilia> {
@@ -61,31 +61,32 @@ public class TestCLBancoDeBrasilia extends AbstractCampoLivreBaseTest<CLBancoDeB
 
 		titulo.getContaBancaria().setBanco(
 				BancosSuportados.BANCO_DE_BRASILIA.create());
-		
+
 		titulo.getContaBancaria().setAgencia(new Agencia(58));
 		titulo.getContaBancaria().setNumeroDaConta(new NumeroDaConta(6002006));
 		titulo.getContaBancaria().setCarteira(new Carteira(1,TipoDeCobranca.SEM_REGISTRO));
 		titulo.setNossoNumero("000001");
 
 		createCampoLivreToTest();
-		
+
 		setCampoLivreEsperadoComoString("0000586002006100000107045");
-		assertEquals(4, titulo.getParametrosBancarios().getValor(CHAVE_ASBACE_DIGITO1));
-		assertEquals(5, titulo.getParametrosBancarios().getValor(CHAVE_ASBACE_DIGITO2));
+
+		assertEquals(4, titulo.getParametrosBancarios().getValor(CHAVE_ASBACE_DIGITO1).longValue());
+		assertEquals(5, titulo.getParametrosBancarios().getValor(CHAVE_ASBACE_DIGITO2).longValue());
 	}
-	
+
 	@Test
 	public void seGeraCorretoParaCarteiraComRegistro(){
-		
+
 		titulo.getContaBancaria().setCarteira(new Carteira(2,TipoDeCobranca.COM_REGISTRO));
-		
+
 		createCampoLivreToTest();
-		
+
 		setCampoLivreEsperadoComoString("0000586002006200000107031");
-		
+
 		seCampoLivreEscritoEstaCorreto();
-		assertEquals(3, titulo.getParametrosBancarios().getValor(CHAVE_ASBACE_DIGITO1));
-		assertEquals(1, titulo.getParametrosBancarios().getValor(CHAVE_ASBACE_DIGITO2));
+		assertEquals(3, titulo.getParametrosBancarios().getValor(CHAVE_ASBACE_DIGITO1).longValue());
+		assertEquals(1, titulo.getParametrosBancarios().getValor(CHAVE_ASBACE_DIGITO2).longValue());
 	}
 
 	@Test(expected = CampoLivreException.class)
@@ -111,7 +112,7 @@ public class TestCLBancoDeBrasilia extends AbstractCampoLivreBaseTest<CLBancoDeB
 
 		testeSeNaoPermiteNumeroDaAgenciaComDigitosAcimaDoLimite(1000);
 	}
-	
+
 	@Test(expected = CampoLivreException.class)
 	public void seNaoPermiteNumeroDaContaNulo() {
 
@@ -135,7 +136,7 @@ public class TestCLBancoDeBrasilia extends AbstractCampoLivreBaseTest<CLBancoDeB
 
 		testeSeNaoPermiteNumeroDaContaComCodigoAcimaDoLimite(12345678);
 	}
-	
+
 	@Test(expected = CampoLivreException.class)
 	public void seNaoPermiteNossoNumeroNulo() {
 
