@@ -75,14 +75,7 @@
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>animal-sniffer-maven-plugin</artifactId>
-				<version>1.6</version>
-				<configuration>
-					<signature>
-						<groupId>org.codehaus.mojo.signature</groupId>
-						<artifactId>java15</artifactId>
-						<version>1.0</version>
-					</signature>
-				</configuration>
+				<version>1.16</version>
 				<executions>
 					<execution>
 						<id>animal-sniffer</id>
@@ -240,7 +233,14 @@
 	<repositories>
 		<repository>
 			<id>jrimum.org</id>
-			<url>http://jrimum.org/maven/content/groups/public/</url>
+			<url>http://jfrog.devcoffee.com.br/artifactory/jrimum.org/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>public-jboss</id>
+			<url>http://jfrog.devcoffee.com.br/artifactory/public-jboss/</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
