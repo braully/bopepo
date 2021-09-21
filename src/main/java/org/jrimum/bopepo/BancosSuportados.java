@@ -196,6 +196,15 @@ public enum BancosSuportados{
 	 * @since 0.2
 	 */
 	DAYCOVAL("707", "62.232.889/0001-90", "BANCO DAYCOVAL", "Banco Daycoval S.A."),
+	
+	/**
+	 * Tipo enumerado que representa o UNIPRIME CENTRAL, <strong>UNIPRIME CENTRAL - CENTRAL INTERESTADUAL DE COOPERATIVAS DE CREDITO LTDA.</strong>,
+	 * código de compensação <strong><tt>099</tt></strong> <a href="https://www.uniprimebr.com.br/">
+	 * site</a>.
+	 *
+	 * @since 0.2
+	 */
+	UNIPRIME("099", "03.046.391/0001-73", "UNIPRIME CENTRAL - COOPERATIVA DE CRÉDITO", "UNIPRIME CENTRAL CCC LTDA"),
 
 	/**
 	 * Tipo enumerado que representa o Banco <strong>Caixa Econômica Federal</strong>,
@@ -203,7 +212,7 @@ public enum BancosSuportados{
 	 * href="http://www.caixa.gov.br">site</a>.
 	 *
 	 * @since 0.2
-	 */
+	S */
 	CAIXA_ECONOMICA_FEDERAL("104", "00360305000104", "CAIXA ECONOMICA FEDERAL", "Caixa Econômica Federal"),
 
 	/**
@@ -340,6 +349,7 @@ public enum BancosSuportados{
 		suportados.put(BANCO_DE_BRASILIA.codigoDeCompensacaoBACEN, BANCO_DE_BRASILIA);
 		suportados.put(CECRED.codigoDeCompensacaoBACEN, CECRED);
 		suportados.put(DAYCOVAL.codigoDeCompensacaoBACEN, DAYCOVAL);
+		suportados.put(UNIPRIME.codigoDeCompensacaoBACEN, UNIPRIME);
 	}
 
 	/**

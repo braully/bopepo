@@ -77,6 +77,7 @@ public class TestBancosSuportados{
 		assertEquals(BancosSuportados.BANCO_DE_BRASILIA.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "070");
 		assertEquals(BancosSuportados.CECRED.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "085");
 		assertEquals(BancosSuportados.DAYCOVAL.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "707");
+		assertEquals(BancosSuportados.UNIPRIME.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "099");
 
 	}
 }

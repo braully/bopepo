@@ -74,6 +74,7 @@ public class BoletoInfoCampoViewFactory {
 			// case BANCO_DE_BRASILIA: return new ..;
 			  case CECRED: return new BoletoInfoViewCecred(resourceBundle, boleto);
 			  case DAYCOVAL: return new BoletoInfoViewDaycoval(resourceBundle, boleto);
+			  case UNIPRIME: return new BoletoInfoViewUniprime(resourceBundle, boleto);
 			 }
 		}
 
