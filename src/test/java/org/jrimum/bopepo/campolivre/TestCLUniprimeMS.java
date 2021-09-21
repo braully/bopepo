@@ -48,14 +48,14 @@ import org.junit.Test;
  *
  * @version 0.2
  */
-public class TestCLUniprime extends AbstractCampoLivreBaseTest<CLUniprime> {
+public class TestCLUniprimeMS extends AbstractCampoLivreBaseTest<CLUniprime> {
 
 	private final int NOSSO_NUMERO_LENGTH = 11;
 
 	@Before
 	public void setUp(){
 
-		titulo.getContaBancaria().setBanco(BancosSuportados.UNIPRIME.create());
+		titulo.getContaBancaria().setBanco(BancosSuportados.UNIPRIMEMS.create());
 		titulo.getContaBancaria().setAgencia(new Agencia(0001, "1"));
 		titulo.getContaBancaria().setNumeroDaConta(new NumeroDaConta(9876));
 		titulo.getContaBancaria().setCarteira(new Carteira(9));
