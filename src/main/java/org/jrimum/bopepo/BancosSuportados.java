@@ -196,7 +196,7 @@ public enum BancosSuportados{
 	 * @since 0.2
 	 */
 	DAYCOVAL("707", "62.232.889/0001-90", "BANCO DAYCOVAL", "Banco Daycoval S.A."),
-	
+
 	/**
 	 * Tipo enumerado que representa o UNIPRIME PARANA, <strong>UNIPRIME NORTE DO PARANÁ - COOPERATIVA DE CRÉDITO LTDA.</strong>,
 	 * código de compensação <strong><tt>084</tt></strong> <a href="https://www.uniprimebr.com.br/">
@@ -214,6 +214,15 @@ public enum BancosSuportados{
 	 * @since 0.2
 	 */
 	UNIPRIMEMS("099", "03.046.391/0001-73", "UNIPRIME CENTRAL - COOPERATIVA DE CRÉDITO", "UNIPRIME CENTRAL CCC LTDA"),
+
+	/**
+	 * Tipo enumerado que representa o <strong>Banco B2S S.A.</strong>, código de
+	 * compensação <strong><tt>218</tt></strong> <a
+	 * href="https://www.bancobs2.com.br/">site</a>.
+	 *
+	 * @since 0.2
+	 */
+	BANCO_B2S("218", "71.027.866/0003-04", "BCO BS2 S.A.", "Banco BS2 S.A."),
 
 	/**
 	 * Tipo enumerado que representa o Banco <strong>Caixa Econômica Federal</strong>,
@@ -360,6 +369,7 @@ public enum BancosSuportados{
 		suportados.put(DAYCOVAL.codigoDeCompensacaoBACEN, DAYCOVAL);
 		suportados.put(UNIPRIMEPR.codigoDeCompensacaoBACEN, UNIPRIMEPR);
 		suportados.put(UNIPRIMEMS.codigoDeCompensacaoBACEN, UNIPRIMEMS);
+		suportados.put(BANCO_B2S.codigoDeCompensacaoBACEN, BANCO_B2S);
 	}
 
 	/**

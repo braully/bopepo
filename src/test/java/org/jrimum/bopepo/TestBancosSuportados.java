@@ -79,6 +79,7 @@ public class TestBancosSuportados{
 		assertEquals(BancosSuportados.DAYCOVAL.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "707");
 		assertEquals(BancosSuportados.UNIPRIMEPR.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "084");
 		assertEquals(BancosSuportados.UNIPRIMEMS.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "099");
+		assertEquals(BancosSuportados.BANCO_B2S.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "218");
 
 	}
 }
