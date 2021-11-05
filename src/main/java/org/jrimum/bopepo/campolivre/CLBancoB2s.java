@@ -33,11 +33,13 @@ import org.jrimum.domkee.financeiro.banco.febraban.Titulo;
 import org.jrimum.texgit.type.component.Fillers;
 import org.jrimum.texgit.type.component.FixedField;
 
+
 /**
+ *
  * <p>
  * O campo livre do Banco B2S deve seguir esta forma:
  * </p>
- *
+ * 
  * <table border="1" cellpadding="0" cellspacing="0" style="border-collapse: collapse" bordercolor="#111111" width="100%" id="campolivre">
  * <thead bgcolor="#DEDEDE">
  * <tr>
@@ -49,55 +51,35 @@ import org.jrimum.texgit.type.component.FixedField;
  * </tr>
  * </thead> <tbody style="text-align:center">
  * <tr>
- * <td >20-23</td>
- * <td >4</td>
- * <td >9(4)</td>
- * <td style="text-align:left;padding-left:10">Agência Cedente (Sem o digito verificador, completar com zeros a esquerda quando necessário)</td>
+ * <td >1-3</td>
+ * <td >3</td>
+ * <td ></td>
+ * <td style="text-align:left;padding-left:10">Agência</td>
  * <td style="text-align:left;padding-left:10">Código da Agência (sem dígito)</td>
  * </tr>
  * <tr>
- * <td >24-25</td>
- * <td >2</td>
- * <td >9(2)</td>
- * <td style="text-align:left;padding-left:10">Código da Carteira</td>
- * <td style="text-align:left;padding-left:10">Código da Carteira</td>
+ * <td >4-13</td>
+ * <td >10</td>
+ * <td ></td>
+ * <td style="text-align:left;padding-left:10">Conta corrente</td>
+ * <td style="text-align:left;padding-left:10">Código da Conta Corrente</td>
  * </tr>
  * <tr>
- * <td >26-36</td>
+ * <td >14-24</td>
  * <td >11</td>
- * <td >&nbsp;9(11)</td>
- * <td style="text-align:left;padding-left:10">Número do Nosso Número(Sem o digito verificador)</td>
- * <td style="text-align:left;padding-left:10">Nosso Número (sem dígito)</td>
+ * <td ></td>
+ * <td style="text-align:left;padding-left:10">Número do Nosso Número(Com digito verificador)</td>
+ * <td style="text-align:left;padding-left:10">Nosso Número (Com Digito)</td>
  * </tr>
  * <tr>
- * <td >37-43</td>
- * <td >7</td>
- * <td >&nbsp;9(7)</td>
- * <td style="text-align:left;padding-left:10">Conta do Cedente (Sem o digito verificador, completar com zeros a esquerda quando necessário)</td>
- * <td style="text-align:left;padding-left:10">Conta do Cedente (sem dígito)</td>
- * </tr>
- * <tr>
- * <td >44-44</td>
+ * <td >25</td>
  * <td >1</td>
- * <td >9</td>
- * <td style="text-align:left;padding-left:10">Constante "0"</td>
- * <td style="text-align:left;padding-left:10">Zero Fixo</td>
+ * <td ></td>
+ * <td style="text-align:left;padding-left:10">Constante "8"</td>
+ * <td style="text-align:left;padding-left:10">Numero 8 Fixo</td>
  * </tr>
  * </table>
  *
- *
- * @see org.jrimum.bopepo.campolivre.AbstractCampoLivre
- *
- *
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
- * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- * @author <a href="http://www.nordestefomento.com.br">Nordeste Fomento
- *         Mercantil</a>
- *
- * @since 0.2
- *
- * @version 0.2
  */
 class CLBancoB2s extends AbstractCLBancoB2s {
 
@@ -113,24 +95,25 @@ class CLBancoB2s extends AbstractCLBancoB2s {
 	private static final Integer FIELDS_LENGTH = Integer.valueOf(5);
 
 	/**
-	 * Tamanho do campo Agência = 4.
+	 * Tamanho do campo Agência = 3.
 	 */
-	private static final Integer AGENCIA_LENGTH = Integer.valueOf(4);
+	private static final Integer AGENCIA_LENGTH = Integer.valueOf(3);
 
 	/**
-	 * Tamanho do campo Carteira = 2.
+	 * Tamanho do campo Conta = 10.
 	 */
-	private static final Integer CARTEIRA_LENGTH = Integer.valueOf(2);
+	private static final Integer CONTA_LENGTH = Integer.valueOf(10);
 
 	/**
-	 * Tamanho do campo Nosso Número = 11.
+	 * Tamanho do campo Nosso Número = 10.
 	 */
-	private static final Integer NOSSO_NUMERO_LENGTH = Integer.valueOf(11);
+	private static final Integer NOSSO_NUMERO_LENGTH = Integer.valueOf(10);
 
 	/**
-	 * Tamanho do campo Conta = 7.
+	 * Tamanho do campo Diigito Nosso Número = 11.
 	 */
-	private static final Integer CONTA_LENGTH = Integer.valueOf(7);
+	private static final Integer DIGITO_NOSSO_NUMERO_LENGTH = Integer.valueOf(1);
+
 
 	/**
 	 * Tamanho do campo Constante = 1.
@@ -138,9 +121,9 @@ class CLBancoB2s extends AbstractCLBancoB2s {
 	private static final Integer CONSTANT_LENGTH = Integer.valueOf(1);
 
 	/**
-	 * Valor do campo Constante =  0.
+	 * Valor do campo Constante =  8.
 	 */
-	private static final Integer CONSTANT_VALUE = Integer.valueOf(0);
+	private static final Integer CONSTANT_VALUE = Integer.valueOf(8);
 
 	/**
 	 * Constante em forma de campo {@linkplain #CONSTANT_VALUE} e {@linkplain #CONSTANT_LENGTH}.
@@ -166,16 +149,15 @@ class CLBancoB2s extends AbstractCLBancoB2s {
 	protected void checkValues(Titulo titulo){
 
 		checkAgenciaNotNull(titulo);
-		checkCodigoDaAgencia(titulo);
-		checkCodigoDaAgenciaMenorOuIgualQue(titulo, 9999);
+		checkCodigoDaAgenciaMenorOuIgualQue(titulo, 999);
 		checkCarteiraNotNull(titulo);
 		checkCodigoDaCarteira(titulo);
 		checkCodigoDaCarteiraMenorOuIgualQue(titulo, 99);
 		checkNossoNumero(titulo);
-		checkTamanhoDoNossoNumero(titulo, NN11);
+		checkTamanhoDoNossoNumero(titulo, NN10);
+		checkDigitoDoNossoNumero(titulo);
 		checkNumeroDaContaNotNull(titulo);
 		checkCodigoDoNumeroDaConta(titulo);
-		checkCodigoDoNumeroDaContaMenorOuIgualQue(titulo, 9999999);
 	}
 
 	/**
@@ -187,9 +169,9 @@ class CLBancoB2s extends AbstractCLBancoB2s {
 	protected void addFields(Titulo titulo) {
 
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getAgencia().getCodigo(), AGENCIA_LENGTH, Fillers.ZERO_LEFT));
-		this.add(new FixedField<Integer>(titulo.getContaBancaria().getCarteira().getCodigo(), CARTEIRA_LENGTH, Fillers.ZERO_LEFT));
-		this.add(new FixedField<String>(titulo.getNossoNumero(), NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), CONTA_LENGTH, Fillers.ZERO_LEFT));
+		this.add(new FixedField<String>(titulo.getNossoNumero(), NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
+		this.add(new FixedField<String>(titulo.getDigitoDoNossoNumero(), DIGITO_NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
 		this.add(CONSTANT_FIELD);
 	}
 }

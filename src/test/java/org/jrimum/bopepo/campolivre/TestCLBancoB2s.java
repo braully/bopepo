@@ -48,22 +48,23 @@ import org.junit.Test;
  *
  * @version 0.2
  */
-public class TestCLBancoB2s extends AbstractCampoLivreBaseTest<CLUniprime> {
+public class TestCLBancoB2s extends AbstractCampoLivreBaseTest<CLBancoB2s> {
 
-	private final int NOSSO_NUMERO_LENGTH = 11;
+	private final int NOSSO_NUMERO_LENGTH = 10;
 
 	@Before
 	public void setUp(){
 
 		titulo.getContaBancaria().setBanco(BancosSuportados.BANCO_B2S.create());
-		titulo.getContaBancaria().setAgencia(new Agencia(0001, "1"));
-		titulo.getContaBancaria().setNumeroDaConta(new NumeroDaConta(9876));
-		titulo.getContaBancaria().setCarteira(new Carteira(9));
-		titulo.setNossoNumero("10001000001");
+		titulo.getContaBancaria().setAgencia(new Agencia(001, "0"));
+		titulo.getContaBancaria().setNumeroDaConta(new NumeroDaConta(111111));
+		titulo.getContaBancaria().setCarteira(new Carteira(21));
+		titulo.setNossoNumero("9000000001");
+		titulo.setDigitoDoNossoNumero("4");
 
 		createCampoLivreToTest();
 
-		setCampoLivreEsperadoComoString("0001091000100000100098760");
+		setCampoLivreEsperadoComoString("0010000111111900000000148");
 	}
 
 	@Test(expected = CampoLivreException.class)
@@ -78,11 +79,6 @@ public class TestCLBancoB2s extends AbstractCampoLivreBaseTest<CLUniprime> {
 		testeSeNaoPermiteAgenciaComCodigoNegativo();
 	}
 
-	@Test(expected = CampoLivreException.class)
-	public void seNaoPermiteAgenciaComCodigoZero() {
-
-		testeSeNaoPermiteAgenciaComCodigoZero();
-	}
 
 	@Test(expected = CampoLivreException.class)
 	public void seNaoPermiteNumeroDaAgenciaAcimaDe4Digitos() {
@@ -139,20 +135,9 @@ public class TestCLBancoB2s extends AbstractCampoLivreBaseTest<CLUniprime> {
 	}
 
 	@Test(expected = CampoLivreException.class)
-	public void seNaoPermiteNumeroDaContaComCodigoZero() {
-
-		testeSeNaoPermiteNumeroDaContaComCodigoZero();
-	}
-
-	@Test(expected = CampoLivreException.class)
 	public void seNaoPermiteNumeroDaContaComCodigoNegativo() {
 
 		testeSeNaoPermiteNumeroDaContaComCodigoNegativo();
 	}
 
-	@Test(expected = CampoLivreException.class)
-	public void seNaoPermiteNumeroDaContaComCodigoAcimaDe7Digitos() {
-
-		testeSeNaoPermiteNumeroDaContaComCodigoAcimaDoLimite(12345678);
-	}
 }

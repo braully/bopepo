@@ -28,10 +28,10 @@ public class BoletoInfoViewBancoB2s extends AbstractBoletoInfoCampoView{
 		Agencia agencia = getBoleto().getTitulo().getContaBancaria().getAgencia();
 		NumeroDaConta numeroDaConta = getBoleto().getTitulo().getContaBancaria().getNumeroDaConta();
 
-		return leftPad(agencia.getCodigo().toString(), 4, "0")
+		return leftPad(agencia.getCodigo().toString(), 3, "0")
 				+ "-" + agencia.getDigitoVerificador()
 				+ " / "
-				+ leftPad(numeroDaConta.getCodigoDaConta().toString(), 7, "0")
+				+ leftPad(numeroDaConta.getCodigoDaConta().toString(), 10, "0")
 				+ "-" + numeroDaConta.getDigitoDaConta();
 	}
 
