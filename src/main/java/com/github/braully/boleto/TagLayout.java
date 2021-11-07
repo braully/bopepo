@@ -131,7 +131,6 @@ public class TagLayout implements Serializable {
             return field("sacadoNome").truncate(true).padding(Fillers.WHITE_SPACE_RIGHT).length(30);
         }
 
-
         public static TagLayout fendereco() {
             return field("endereco").truncate(true).padding(Fillers.WHITE_SPACE_RIGHT).length(40);
         }
@@ -250,7 +249,6 @@ public class TagLayout implements Serializable {
             return field("favorecidoInscricao").padding(Fillers.ZERO_LEFT).length(14).apenasDigitos(true);
         }
 
-
         /**
          * Alias para facilidade, quase sempre o Favorecido é uma Pessoa
          * Juridica.
@@ -283,7 +281,6 @@ public class TagLayout implements Serializable {
             return fdata().nome("favorecidoConta").filler(Fillers.ZERO_LEFT).value(0).apenasDigitos(true);
         }
 
-
         public static TagLayout fquantidadeRegistros() {
             return field("quantidadeRegistros").type(Number.class).padding(Fillers.ZERO_LEFT);
         }
@@ -299,8 +296,6 @@ public class TagLayout implements Serializable {
         public static TagLayout fformaDeTransferencia() {
             return field("formaDeTransferencia").type(Number.class).padding(Fillers.ZERO_LEFT);
         }
-
-
 
         /**
          *
@@ -853,7 +848,7 @@ public class TagLayout implements Serializable {
          * @return
          */
         public static TagLayout fbranco() {
-            return field("").filler(Fillers.WHITE_SPACE_LEFT);
+            return field("branco").filler(Fillers.WHITE_SPACE_LEFT);
         }
 
         /**

@@ -40,26 +40,26 @@ import org.jrimum.utilix.Objects;
  * @author braully
  */
 public class RegistroArquivo extends Record {
-
+    
     protected TagLayout layoutRegistro;
     protected List<FixedField> extraIds;
-
+    
     public RegistroArquivo() {
     }
-
+    
     public RegistroArquivo(TagLayout layoutRegistro) {
         this.setName(layoutRegistro.nome);
         this.layoutRegistro = layoutRegistro;
         layoutRegistro.filhos.stream().forEach(l -> add(l));
     }
-
+    
     public void addExtraId(FixedField fixedField) {
         if (extraIds == null) {
             extraIds = new ArrayList<>();
         }
         extraIds.add(fixedField);
     }
-
+    
     public String render() {
 //            StringBuilder sb = new StringBuilder();
 //            return sb.toString();
@@ -71,113 +71,113 @@ public class RegistroArquivo extends Record {
         setValue(fsequencialRegistro().nome, seq);
         return this;
     }
-
+    
     public Integer sequencialRegistro() {
         return this.getValueAsInteger();
     }
-
+    
     public RegistroArquivo banco(String codigo, String nome) {
         setValue(fbancoCodigo().nome, codigo).setValue(fbancoNome().nome, nome.toUpperCase());
         return this;
     }
-
+    
     public Integer sequencialArquivo() {
         return getValueAsInteger(fsequencialArquivo().nome);
     }
-
+    
     public String bancoCodigo() {
         return getValue(fbancoCodigo().nome);
     }
-
+    
     public RegistroArquivo cedente(String nome, String cnpj) {
         setValue(fcedenteNome().nome, nome).setValue(fcedenteCnpj().nome, cnpj);
         return this;
     }
-
+    
     public String cedenteCnpj() {
         return getValue(fcedenteCnpj().nome);
     }
-
+    
     public RegistroArquivo convenio(String convenio, String agencia, String conta, String dac) {
-
+        
         this.convenio(convenio)
-        .agencia(agencia)
-        .conta(conta)
-        .dac(dac);
+                .agencia(agencia)
+                .conta(conta)
+                .dac(dac);
         return this;
     }
-
+    
     public RegistroArquivo convenio(String convenio, String carteira, String agencia, String conta, String dac) {
         this.convenio(convenio).carteira(carteira).agencia(agencia).conta(conta).dac(dac);
         return this;
     }
-
+    
     public RegistroArquivo endereco(String endereco) {
         return setValue(endereco);
     }
-
-    public RegistroArquivo endereco(String logradouro, String numero, String complemento,String nomeCidade, String cep, String uf) {
+    
+    public RegistroArquivo endereco(String logradouro, String numero, String complemento, String nomeCidade, String cep, String uf) {
         this.setValue(logradouro)
-        .setValue("numero",numero)
-		.setValue("complemento",complemento == null ? "" : complemento)
-		.setValue("cidade",nomeCidade)
-		.setValue("cep",cep)
-		.setValue("uf", uf);
+                .setValue("numero", numero)
+                .setValue("complemento", complemento == null ? "" : complemento)
+                .setValue("cidade", nomeCidade)
+                .setValue("cep", cep)
+                .setValue("uf", uf);
         return this;
     }
-
+    
     public RegistroArquivo convenio(String convenio) {
         return setValue(convenio);
     }
-
+    
     public RegistroArquivo carteira(String carteira) {
         return setValue(carteira);
     }
-
+    
     public RegistroArquivo variacao(String variacao) {
         return setValue(variacao);
     }
-
+    
     public RegistroArquivo modalidade(String modalidade) {
         return setValue(modalidade);
     }
-
+    
     public String convenio() {
         return getValue(fconvenio().nome);
     }
 
     //não pode ser marcado como String pois Strings são immmutable, o que faz com que se perca mudanças de sanitize
     public RegistroArquivo agencia(Object agencia) {
-
-     	if (agencia != null && ((String)agencia).length()== 4 ) {
-    		//caso o usuario não tenha informado o digito verificador, assumir que é 0
-    		agencia = agencia + "-0";
-    	}
-
+        
+        if (agencia != null && ((String) agencia).length() == 4) {
+            //caso o usuario não tenha informado o digito verificador, assumir que é 0
+            agencia = agencia + "-0";
+        }
+        
         return setValue(agencia);
     }
-
+    
     public String agencia() {
         return getValue(fagencia().nome);
     }
-
+    
     public RegistroArquivo conta(String conta) {
         return setValue(conta);
     }
-
+    
     public String conta() {
         return getValue(fconta().nome);
     }
-
+    
     public RegistroArquivo dac(String dac) {
         return setValue(dac);
     }
-
+    
     public RegistroArquivo setVal(String nomeAtributo, Object valor) {
         this.setValue(nomeAtributo, valor);
         return this;
     }
-
+    
     protected String getValue() {
         //TODO: Melhorar isso; perda de performance
         String nomeMetodoAnterior = Thread.currentThread().getStackTrace()[2].getMethodName();
@@ -189,14 +189,14 @@ public class RegistroArquivo extends Record {
         }
         return ret;
     }
-
+    
     protected String removeLeftZeros(String number) {
         if (number == null) {
             return null;
         }
         return number.replaceFirst("^0+(?!$)", "");
     }
-
+    
     protected String trimNumberValue(String str) {
         if (str != null) {
             str = str.replaceAll("\\D", "");
@@ -204,13 +204,13 @@ public class RegistroArquivo extends Record {
         }
         return str;
     }
-
+    
     public Integer getValueAsInteger() {
         //TODO: Melhorar isso; perda de performance
         String nomeMetodoAnterior = Thread.currentThread().getStackTrace()[2].getMethodName();
         return getValueAsInteger(nomeMetodoAnterior);
     }
-
+    
     public Integer getValueAsInteger(String nomefield) {
         /* Propriedade a ser setada é o nome do metodo que chamou */
         Object value = this.getValue(nomefield);
@@ -224,7 +224,7 @@ public class RegistroArquivo extends Record {
         }
         return ret;
     }
-
+    
     public Number getValueAsNumber() {
         //TODO: Melhorar isso; perda de performance
         String nomeMetodoAnterior = Thread.currentThread().getStackTrace()[2].getMethodName();
@@ -240,7 +240,7 @@ public class RegistroArquivo extends Record {
         }
         return ret;
     }
-
+    
     protected RegistroArquivo setValue(Object valor) {
         //TODO: Melhorar isso; perda de performance
         String nomeMetodoAnterior = Thread.currentThread().getStackTrace()[2].getMethodName();
@@ -249,7 +249,7 @@ public class RegistroArquivo extends Record {
         this.setValue(nomeMetodoAnterior, valor);
         return this;
     }
-
+    
     private void add(TagLayout l) {
         FixedField fixedField = new FixedField();
         if (isValid(l.nome)) {
@@ -282,12 +282,11 @@ public class RegistroArquivo extends Record {
         if (l.isAttr("truncate")) {
             fixedField.setTruncate(true);
         }
-
+        
         if (l.isAttr("apenasDigitos")) {
             fixedField.setApenasDigitos(true);
         }
-
-
+        
         if (l.isAttr("id")) {
             if (this.getIdType() == null) {
                 setIdType(fixedField);
@@ -299,9 +298,13 @@ public class RegistroArquivo extends Record {
         super.incLength(len);
         super.incSize();
     }
-
+    
     @Override
     public String toString() {
+        return toStringValorFields();
+    }
+    
+    public String toStringValorFields() {
         StringBuilder sb = new StringBuilder("Registro{value=");
         if (layoutRegistro != null) {
             sb.append(layoutRegistro.nome);
@@ -321,13 +324,40 @@ public class RegistroArquivo extends Record {
                     sb.append("\n");
                 }
             }
-
+            
         }
         sb.append("]");
         sb.append("}");
         return sb.toString();
     }
-
+    
+    public String toStringLayoutFields() {
+        StringBuilder sb = new StringBuilder("Registro{value=");
+        if (layoutRegistro != null) {
+            sb.append(layoutRegistro.nome);
+        }
+        
+        sb.append(",\nlen=").append(this.getFixedLength());
+        sb.append(",\n fields=[");
+        if (this.fields != null) {
+            sb.append("\n");
+            for (FixedField ff : this.fields) {
+                String name = ff.getName();
+                if (name != null && !name.trim().isEmpty()) {
+                    sb.append("\t");
+                    sb.append(name);
+                    sb.append(" [len: ");
+                    sb.append(ff.getFixedLength());
+                    sb.append("]\n");
+                }
+            }
+            
+        }
+        sb.append("]");
+        sb.append("}");
+        return sb.toString();
+    }
+    
     public String getDescricaoLayout() {
         StringBuilder sb = new StringBuilder("Registro{layout=");
         if (layoutRegistro != null) {
@@ -348,24 +378,24 @@ public class RegistroArquivo extends Record {
         sb.append("}");
         return sb.toString();
     }
-
+    
     @Override
     public RegistroArquivo clone() {
         RegistroArquivo clone = new RegistroArquivo(this.layoutRegistro);
         return clone;
     }
-
+    
     private boolean isValid(String nome) {
         return nome != null;
     }
-
+    
     public boolean checkIds(String linha) {
         FixedField<String> id = null;
         FixedField<String> idType = this.getIdType();
         try {
             id = this.getId(linha);
         } catch (Exception e) {
-
+            
         }
         boolean ret = idType != null && idType.equalsValue(id);
         if (ret) {
@@ -379,7 +409,7 @@ public class RegistroArquivo extends Record {
         }
         return ret;
     }
-
+    
     public String movimentoCodigo() {
         return getValue(fmovimentoCodigo().nome);
     }

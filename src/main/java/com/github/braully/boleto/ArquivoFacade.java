@@ -73,7 +73,11 @@ public class ArquivoFacade {
                 if (clone.checkIds(linha)) {
                     regLido = clone;
                     //System.out.println(reg.getDescricaoLayout());
-                    regLido.read(linha);
+                    try {
+                        regLido.read(linha);
+                    } catch (RuntimeException e) {
+                        throw new RuntimeException("Fail on read line: " + linha + " for reg: " + reg.toStringLayoutFields(), e);
+                    }
                 }
             }
             if (regLido != null) {

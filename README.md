@@ -1,4 +1,8 @@
-# JRimum: BOPEPO -- Fork por Braully Rocha
+# Bopepo Cobrança
+
+Este projeto é um fork feito por Braully Rocha da Silva,
+do projeto JRimum Bopepo: http://www.jrimum.org
+com os seguintes objetivos:
 
 
 ## Objetivos desse fork
@@ -25,7 +29,7 @@
 - Banco do Brasil Cnab  240 - 2019 (https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
 - Bradesco Cnab 400 - versão 15 por @EdsonIsaac (https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf)
 - Caixa Cnag 240 - por @EdsonIsaac http://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_240.pdf
-- Itaiu - Febraban Cnab 240 (necessário fazer personalizações especificas do banco)
+- Itaú - Febraban Cnab 240 (necessário fazer personalizações especificas do banco)
 - Santander - Febraban Cnab 240 (necessário fazer personalizações especificas do banco)
 - Sicredi - Febraban Cnab 240 (necessário fazer personalizações especificas do banco)
 

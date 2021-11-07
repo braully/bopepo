@@ -69,7 +69,8 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
 
     /**
      * <p>
-     * Quando definido, todos os caracteres não numericos são desprezados/removidos
+     * Quando definido, todos os caracteres não numericos são
+     * desprezados/removidos
      * </p>
      */
     private boolean apenasDigitos;
@@ -154,10 +155,9 @@ public class BlockOfFields extends AbstractStringOfFields<FixedField<?>> impleme
         str = super.write();
 
         if (this.apenasDigitos) {
-        	str = StringUtil.eliminateSymbols(str);
+            str = StringUtil.eliminateSymbols(str);
         }
         instantLength = str.length();
-
 
         if (isTruncate() && instantLength > getFixedLength()) {
             str = str.substring(0, getFixedLength());
