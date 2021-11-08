@@ -26,8 +26,17 @@
     </issueManagement>
 
     <scm>
-        <url>http://github.com/braully/bopepo</url>
+        <connection>scm:git:git://github.com/braully/bopepo.git</connection>
+        <developerConnection>scm:git:ssh://github.com:braully/bopepo.git</developerConnection>
+        <url>http://github.com/braully/bopepo/tree/master</url>
     </scm>
+    
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 	
     <developers>
         <developer>
@@ -35,7 +44,7 @@
             <email>braully@gmail.com</email>
         </developer>
         <!--Original developers from project: JRimum Bopepo --> 
-        <developer>
+        <!--        <developer>
             <name>Gilmar P. S. L.</name>
             <email>gilmatryx@gmail.com</email>
         </developer>
@@ -46,7 +55,7 @@
         <developer>
             <name>Rômulo Augusto</name>
             <email>romulomail@gmail.com</email>
-        </developer>
+        </developer>-->
     </developers>
 
     <properties>
@@ -92,6 +101,18 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <version>2.8.1</version>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
             </plugin>
         </plugins>
     </build>
