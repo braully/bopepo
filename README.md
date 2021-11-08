@@ -82,6 +82,27 @@ $ cd bopepo
 
 $ ./sh/compile.sh
 
+## Repositório do Maven Central
+        <dependency>
+            <groupId>io.github.braully</groupId>
+            <artifactId>bpp-cobranca</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+Ainda em SNAPSHOT, release estavel em breve.
+
+        <repository>
+            <id>snapshots-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+
 ## Exemplos
 
 
