@@ -4,10 +4,12 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.github.braully</groupId>
-    <artifactId>bopepo-cobranca</artifactId>
+    <artifactId>bpp-cobranca</artifactId>
     <packaging>jar</packaging>
     <version>1.0.0-SNAPSHOT</version>
-    <description>This is a fork from Jrimum-Bopepo http://www.jrimum.org </description>
+    <description>This is a fork from Jrimum-Bopepo http://www.jrimum.org . 
+        For Brazillian Boleto Payment Method.
+    </description>
     <url>http://github.com/braully/bopepo</url>
 
     <licenses>
@@ -73,24 +75,6 @@
                 </configuration>
             </plugin>
             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <descriptors>
-                        <descriptor>src/main/assembly/jrimum-bopepo-with-dependencies.xml</descriptor>
-                    </descriptors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
                 <version>2.2.1</version>
@@ -110,7 +94,6 @@
                 <version>2.8.1</version>
             </plugin>
         </plugins>
-		
     </build>
 
     <dependencies>
