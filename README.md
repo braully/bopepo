@@ -114,17 +114,17 @@ import org.jrimum.bopepo.view.BoletoViewer;
 public class ExemploBoletoSimples {
 
     public static void main(String... args) {
-        BoletoCobranca BoletoCobranca = new BoletoCobranca();
-        BoletoCobranca.sacado("Sacado da Silva Sauro").sacadoCpf("1");
-        BoletoCobranca.banco("1").agencia("1").conta("1");
-        BoletoCobranca.cedente("Cedente da Silva Sauro").cedenteCnpj("1");
-        BoletoCobranca.carteira("1");
-        BoletoCobranca.numeroDocumento("1")
+        BoletoCobranca boleto = new BoletoCobranca();
+        boleto.sacado("Sacado da Silva Sauro").sacadoCpf("1");
+        boleto.banco("1").agencia("1").conta("1");
+        boleto.cedente("Cedente da Silva Sauro").cedenteCnpj("1");
+        boleto.carteira("1");
+        boleto.numeroDocumento("1")
                 .nossoNumero("1234567890")
                 .valor(100.23).dataVencimento("01/01/2019");
 
-        BoletoCobranca.gerarLinhaDigitavel();
-        BoletoViewer create = BoletoViewer.create(BoletoCobranca);
+        boleto.gerarLinhaDigitavel();
+        BoletoViewer create = BoletoViewer.create(boleto);
         create.getPdfAsFile("./target/teste.pdf");
     }
 }
