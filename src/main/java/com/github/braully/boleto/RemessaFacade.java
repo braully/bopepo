@@ -23,10 +23,26 @@ import org.apache.log4j.Logger;
  */
 public class RemessaFacade extends ArquivoFacade {
 
-    public static Logger logger = Logger.getLogger(ArquivoFacade.class);
 
-    public RemessaFacade(TagLayout template) {
+	public static Logger logger = Logger.getLogger(ArquivoFacade.class);
+
+    private boolean permiteQtdeMoeda = true;
+
+    public boolean isPermiteQtdeMoeda() {
+		return permiteQtdeMoeda;
+	}
+
+	public void setPermiteQtdeMoeda(boolean permiteQtdeMoeda) {
+		this.permiteQtdeMoeda = permiteQtdeMoeda;
+	}
+
+	public RemessaFacade(TagLayout template) {
         this.template = template;
+
+        if (template.equals(LayoutsSuportados.LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA)) {
+        	this.setPermiteQtdeMoeda(false);
+        }
+
     }
 
     public CabecalhoArquivo addNovoCabecalho() {

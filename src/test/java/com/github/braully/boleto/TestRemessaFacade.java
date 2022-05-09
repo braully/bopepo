@@ -409,6 +409,7 @@ public class TestRemessaFacade {
 		.sequencialRegistro(sequencialRegistro);
 
 		sequencialRegistro++;
+
 		remessa.addNovoDetalheSegmentoB()
 		.numeroDocumento(1)
 		.favorecidoTipoInscricao("1")
@@ -419,15 +420,19 @@ public class TestRemessaFacade {
 		.setValue("data",new Date())
 		.setValue("lote",1);
 
+		RodapeArquivo rodapeLote = remessa.addNovoRodapeLote();
 
 
-		remessa.addNovoRodapeLote()
+		rodapeLote
 		.quantidadeRegistros(24)
 		.valorTotalRegistros(valorPagamento.toString())
 		.cedente(razaoSocial, cnpj)
 		.convenio(numeroConvenio, agenciaComDigito, contaComDigito, DAC)
-		.setValue("lote",1)
-		;
+		.setValue("lote",1);
+
+		if (remessa.isPermiteQtdeMoeda()) {
+			rodapeLote.setValue("qtdeMoeda", valorPagamento.multiply(new BigDecimal(100000)).setScale(0).toString());
+		}
 
 		remessa.addNovoRodape()
 		.quantidadeRegistros(18)
