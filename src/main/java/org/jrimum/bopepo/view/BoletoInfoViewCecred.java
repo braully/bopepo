@@ -51,7 +51,7 @@ public class BoletoInfoViewCecred extends AbstractBoletoInfoCampoView {
 
     /**
      * @see
-     * org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoRsAgenciaCodigoCedente()
+     * org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoRsAgenciaCodigoCedente()
      */
     @Override
     public String getTextoRsAgenciaCodigoCedente() {
@@ -60,7 +60,7 @@ public class BoletoInfoViewCecred extends AbstractBoletoInfoCampoView {
 
     /**
      * @see
-     * org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcAgenciaCodigoCedente()
+     * org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoFcAgenciaCodigoCedente()
      */
     @Override
     public String getTextoFcAgenciaCodigoCedente() {

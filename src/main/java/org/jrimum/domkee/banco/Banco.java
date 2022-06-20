@@ -149,14 +149,12 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * <p>
 	 * Verifica se o código passado está ok em relação as regras:
 	 * <ol>
 	 * <li>Não nulo</li>
 	 * <li>Numérico</li>
 	 * <li>Com 3 digitos</li>
 	 * </ol>
-	 * </p>
 	 * 
 	 * @param codigo - Código de compensação BACEN do banco
 	 * 
@@ -234,7 +232,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#addEndereco(org.jrimum.domkee.comum.pessoa.endereco.Endereco)
+	 * @see org.jrimum.domkee.pessoa.Pessoa#addEndereco(org.jrimum.domkee.comum.pessoa.endereco.Endereco)
 	 */
 	
 	public void addEndereco(Endereco endereco) {
@@ -243,7 +241,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#addTelefone(org.jrimum.domkee.comum.pessoa.contato.NumeroDeTelefone)
+	 * @see org.jrimum.domkee.pessoa.Pessoa#addTelefone(org.jrimum.domkee.comum.pessoa.contato.NumeroDeTelefone)
 	 */
 	
 	public void addTelefone(NumeroDeTelefone telefone) {
@@ -252,7 +250,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#getCPRF()
+	 * @see org.jrimum.domkee.pessoa.Pessoa#getCPRF()
 	 */
 	
 	public CPRF getCPRF() {
@@ -261,7 +259,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#getEnderecos()
+	 * @see org.jrimum.domkee.pessoa.Pessoa#getEnderecos()
 	 */
 	public Collection<Endereco> getEnderecos() {
 		
@@ -269,7 +267,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#getNome()
+	 * @see org.jrimum.domkee.pessoa.Pessoa#getNome()
 	 */
 	
 	public String getNome() {
@@ -278,7 +276,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#getTelefones()
+	 * @see org.jrimum.domkee.pessoa.Pessoa#getTelefones()
 	 */
 	
 	public Collection<NumeroDeTelefone> getTelefones() {
@@ -287,7 +285,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#isFisica()
+	 * @see org.jrimum.domkee.pessoa.Pessoa#isFisica()
 	 */
 	
 	public boolean isFisica() {
@@ -296,7 +294,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#isJuridica()
+	 * @see org.jrimum.domkee.pessoa.Pessoa#isJuridica()
 	 */
 	
 	public boolean isJuridica() {
@@ -305,7 +303,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#setCPRF(org.jrimum.domkee.comum.pessoa.id.cprf.CPRF)
+	 * @see org.jrimum.domkee.pessoa.Pessoa#setCPRF(org.jrimum.domkee.comum.pessoa.id.cprf.CPRF)
 	 */
 	
 	public void setCPRF(CPRF cprf) {
@@ -315,7 +313,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#setEnderecos(java.util.Collection)
+	 * @see org.jrimum.domkee.pessoa.Pessoa#setEnderecos(java.util.Collection)
 	 */
 	public void setEnderecos(Collection<Endereco> enderecos) {
 		
@@ -323,7 +321,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#setNome(java.lang.String)
+	 * @see org.jrimum.domkee.pessoa.Pessoa#setNome(java.lang.String)
 	 */
 	
 	public void setNome(String nome) {
@@ -332,7 +330,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#setTelefones(java.util.Collection)
+	 * @see org.jrimum.domkee.pessoa.Pessoa#setTelefones(java.util.Collection)
 	 */
 	
 	public void setTelefones(Collection<NumeroDeTelefone> telefones) {
@@ -341,7 +339,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.PessoaJuridica#getInscricaoEstadual()
+	 * @see org.jrimum.domkee.pessoa.PessoaJuridica#getInscricaoEstadual()
 	 */
 	
 	public Long getInscricaoEstadual() {
@@ -350,7 +348,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.PessoaJuridica#getInscricaoMunicipal()
+	 * @see org.jrimum.domkee.pessoa.PessoaJuridica#getInscricaoMunicipal()
 	 */
 	
 	public Long getInscricaoMunicipal() {
@@ -359,7 +357,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.PessoaJuridica#getNomeFantasia()
+	 * @see org.jrimum.domkee.pessoa.PessoaJuridica#getNomeFantasia()
 	 */
 	
 	public String getNomeFantasia() {
@@ -368,7 +366,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.PessoaJuridica#setInscricaoEstadual(java.lang.Long)
+	 * @see org.jrimum.domkee.pessoa.PessoaJuridica#setInscricaoEstadual(java.lang.Long)
 	 */
 	
 	public void setInscricaoEstadual(Long inscricaoEstadual) {
@@ -377,7 +375,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.PessoaJuridica#setInscricaoMunicipal(java.lang.Long)
+	 * @see org.jrimum.domkee.pessoa.PessoaJuridica#setInscricaoMunicipal(java.lang.Long)
 	 */
 	
 	public void setInscricaoMunicipal(Long inscricaoMunicipal) {
@@ -386,7 +384,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 	}
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.PessoaJuridica#setNomeFantasia(java.lang.String)
+	 * @see org.jrimum.domkee.pessoa.PessoaJuridica#setNomeFantasia(java.lang.String)
 	 */
 	
 	public void setNomeFantasia(String nomeFantasia) {
@@ -422,7 +420,7 @@ public class Banco implements org.jrimum.domkee.banco.IBanco {
 
 
 	/**
-	 * @see org.jrimum.domkee.comum.pessoa.Pessoa#setContasBancarias(java.util.Collection)
+	 * @see org.jrimum.domkee.pessoa.Pessoa#setContasBancarias(java.util.Collection)
 	 */
 	
 	public void setContasBancarias(Collection<ContaBancaria> contasBancarias) {

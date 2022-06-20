@@ -624,16 +624,16 @@ public class BoletoViewer {
     /**
      * <p>
      * Gera o arquivo PDF para cada boleto contido na lista. O nome do arquivo
-     * segue a forma:<br />
-     * <br />
-     * <tt>diretorio + (/ ou \\) + (indice do arquivo na lista + 1) +
-     * ".pdf"</tt>
+     * segue a forma:
+     * 
+     * diretorio + (/ ou \\) + (indice do arquivo na lista + 1) +
+     * ".pdf"
      * </p>
      *
      * <p>
      * Exemplo, uma lista com 3 boletos: {@code onePerPDF(boletos, file);}
-     * <br />
-     * <br />
+     * 
+     * 
      * Arquivos gerados:
      * <ul>
      * <li><strong>1.pdf</strong></li>
@@ -661,16 +661,16 @@ public class BoletoViewer {
     /**
      * <p>
      * Gera o arquivo PDF para cada boleto contido na lista. O nome do arquivo
-     * segue a forma:<br />
-     * <br />
-     * <tt>diretorio + (/ ou \\) + (indice do arquivo na lista + 1) +
-     * ".pdf"</tt>
+     * segue a forma:
+     * 
+     * diretorio + (/ ou \\) + (indice do arquivo na lista + 1) +
+     * ".pdf"
      * </p>
      *
      * <p>
      * Exemplo, uma lista com 3 boletos: {@code onePerPDF(boletos, file);}
-     * <br />
-     * <br />
+     * 
+     * 
      * Arquivos gerados:
      * <ul>
      * <li><strong>1.pdf</strong></li>
@@ -698,16 +698,16 @@ public class BoletoViewer {
     /**
      * <p>
      * Gera o arquivo PDF para cada boleto contido na lista. O nome do arquivo
-     * segue a forma:<br />
-     * <br />
-     * <tt>diretorio + (/ ou \\) prefixo + (indice do arquivo na lista + 1) +
-     * ".pdf"</tt>
+     * segue a forma:
+     * 
+     * diretorio + (/ ou \\) prefixo + (indice do arquivo na lista + 1) +
+     * ".pdf"
      * </p>
      *
      * <p>
      * Exemplo, uma lista com 3 boletos: {@code onePerPDF(boletos, file,
-     * "BoletoPrefixo");} <br />
-     * <br />
+     * "BoletoPrefixo");} 
+     * 
      * Arquivos gerados:
      * <ul>
      * <li><strong>BoletoPrefixo1.pdf</strong></li>
@@ -736,16 +736,16 @@ public class BoletoViewer {
     /**
      * <p>
      * Gera o arquivo PDF para cada boleto contido na lista. O nome do arquivo
-     * segue a forma:<br />
-     * <br />
-     * <tt>diretorio + (/ ou \\) prefixo + (indice do arquivo na lista + 1) +
-     * ".pdf"</tt>
+     * segue a forma:
+     * 
+     * diretorio + (/ ou \\) prefixo + (indice do arquivo na lista + 1) +
+     * ".pdf"
      * </p>
      *
      * <p>
      * Exemplo, uma lista com 3 boletos: {@code onePerPDF(boletos, file,
-     * "BoletoPrefixo");} <br />
-     * <br />
+     * "BoletoPrefixo");} 
+     * 
      * Arquivos gerados:
      * <ul>
      * <li><strong>BoletoPrefixo1.pdf</strong></li>
@@ -774,16 +774,16 @@ public class BoletoViewer {
     /**
      * <p>
      * Gera o arquivo PDF para cada boleto contido na lista. O nome do arquivo
-     * segue a forma:<br />
-     * <br />
-     * <tt>diretorio + (/ ou \\) prefixo + (indice do arquivo na lista + 1) +
-     * sufixo + ".pdf"</tt>
+     * segue a forma:
+     * 
+     * diretorio + (/ ou \\) prefixo + (indice do arquivo na lista + 1) +
+     * sufixo + ".pdf"
      * </p>
      *
      * <p>
      * Exemplo, uma lista com 3 boletos: {@code onePerPDF(boletos, file,
-     * "BoletoPrefixo", "exSufixo");} <br />
-     * <br />
+     * "BoletoPrefixo", "exSufixo");} 
+     * 
      * Arquivos gerados:
      * <ul>
      * <li><strong>BoletoPrefixo1exSufixo.pdf</strong></li>
@@ -812,16 +812,16 @@ public class BoletoViewer {
     /**
      * <p>
      * Gera o arquivo PDF para cada boleto contido na lista. O nome do arquivo
-     * segue a forma:<br />
-     * <br />
-     * <tt>diretorio + (/ ou \\) prefixo + (indice do arquivo na lista + 1) +
-     * sufixo + ".pdf"</tt>
+     * segue a forma:
+     * 
+     * diretorio + (/ ou \\) prefixo + (indice do arquivo na lista + 1) +
+     * sufixo + ".pdf"
      * </p>
      *
      * <p>
      * Exemplo, uma lista com 3 boletos: {@code onePerPDF(boletos, file,
-     * "BoletoPrefixo", "exSufixo");} <br />
-     * <br />
+     * "BoletoPrefixo", "exSufixo");} 
+     * 
      * Arquivos gerados:
      * <ul>
      * <li><strong>BoletoPrefixo1exSufixo.pdf</strong></li>

@@ -58,31 +58,31 @@ public class TestCLUnibancoCobrancaRegistrada extends AbstractCampoLivreBaseTest
 
 	/**
 	 * <p>
-	 * Cobrança com registro<br />
-	 * <br />
+	 * Cobrança com registro
+	 * 
 	 * Situação: precisamos emitir um título para um sacado com essas
 	 * características:
 	 * </p>
 	 * <p>
-	 * Banco: UNIBANCO – identificação 409<br />
-	 * Agência: 0001-9<br />
-	 * Moeda: Real – R$ - identificação 9<br />
-	 * Vencimento: 31 de dezembro de 2001<br />
-	 * Valor: R$1000,00<br />
-	 * Código para transação CVT: 04 (cobrança com registro – 5539-5)<br />
-	 * “Nosso Número”: 11223344554<br />
+	 * Banco: UNIBANCO – identificação 409
+	 * Agência: 0001-9
+	 * Moeda: Real – R$ - identificação 9
+	 * Vencimento: 31 de dezembro de 2001
+	 * Valor: R$1000,00
+	 * Código para transação CVT: 04 (cobrança com registro – 5539-5)
+	 * “Nosso Número”: 11223344554
 	 * </p>
 	 * 
 	 * <p>
-	 * NÚMERO DE ORIGEM DO CÓDIGO DE BARRAS:<br />
-	 * <br />
+	 * NÚMERO DE ORIGEM DO CÓDIGO DE BARRAS:
+	 * 
 	 * 
 	 * <pre>
 	 * 409 9  1  1546  0000100000  04  011231  0001  9  11223344554  0
 	 * </pre>
 	 * 
-	 * <br />
-	 * LINHA DIGITÁVEL: <br />
+	 * 
+	 * LINHA DIGITÁVEL: 
 	 * 
 	 * <pre>
 	 * 40990.40117  20100.019110  22334.455403  1  15460000100000

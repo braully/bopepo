@@ -53,7 +53,7 @@ import org.junit.Test;
 
 /**
  * 
- * Teste Unitário para: <br />
+ * Teste Unitário para: 
  * {@link org.jrimum.bopepo.CodigoDeBarras#getFatorDeVencimento()}
  * 
  * 

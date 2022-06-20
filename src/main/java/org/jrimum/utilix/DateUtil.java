@@ -81,7 +81,7 @@ public class DateUtil {
 	/**
 	 * Representa uma data inexistente. Usada em casos que não se pode usar
 	 * <code>null</code>.
-	 * <br/>
+	 * <br>
 	 * É obtida da seguinte forma: <code>new GregorianCalendar(1, 0, 1).getTime()</code>
 	 */
 	public static final Date DATE_NULL;

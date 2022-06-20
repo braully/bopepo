@@ -65,8 +65,6 @@ public class Contribuinte extends IEntidadeDeCobranca {
 	}
 
 	/**
-	 * @param abstractCPRF
-	 * @see # setCPF(CPF cpf)
 	 */
 	public void setCPF(CPF cpf) {
 		pessoa.setCPRF(cpf);

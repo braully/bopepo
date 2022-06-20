@@ -46,7 +46,7 @@ public abstract class IEntidadeDeCobranca implements Serializable {
     /**
      * @param nome
      * @see
-     * br.com.nordestefomento.jrimum.domkee.financeiro.banco.Pessoa#setNome(java.lang.String)
+     * org.jrimum.domkee.pessoa.Pessoa#setNome(java.lang.String)
      */
     public void setNome(String nome) {
         pessoa.setNome(nome);

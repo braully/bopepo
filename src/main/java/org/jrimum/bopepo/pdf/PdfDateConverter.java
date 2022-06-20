@@ -45,7 +45,7 @@ import org.jrimum.utilix.Objects;
  * PDF defines standard date format, which closely follows that of the
  * international standard ASN.1 (Abstract Syntax Notation One), defined in
  * ISO/IEC 8824. A date is a string of the form (<b>D:YYYYMMDDHHmmSSOHH'mm'</b>)
- * where: <br />
+ * where: 
  * <ul>
  * <li><b>YYYY</b> is the year</li>
  * <li><b>MM</b> is the month</li>

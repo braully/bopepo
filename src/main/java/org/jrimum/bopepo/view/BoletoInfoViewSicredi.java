@@ -46,7 +46,7 @@ public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 	}
 
 	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoRsCodigoBanco()
+	 * @see org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoRsCodigoBanco()
 	 */
 	@Override
 	public String getTextoRsCodigoBanco() {
@@ -54,7 +54,7 @@ public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 	}
 
 	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcCodigoBanco()
+	 * @see org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoFcCodigoBanco()
 	 */
 	@Override
 	public String getTextoFcCodigoBanco() {
@@ -62,7 +62,7 @@ public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 	}
 	
 	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcLocalPagamento()
+	 * @see org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoFcLocalPagamento()
 	 */
 	@Override
 	public String getTextoFcLocalPagamento() {
@@ -70,7 +70,7 @@ public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 	}	
 
 	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoRsAgenciaCodigoCedente()
+	 * @see org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoRsAgenciaCodigoCedente()
 	 */
 	@Override
 	public String getTextoRsAgenciaCodigoCedente() {
@@ -78,7 +78,7 @@ public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 	}
 
 	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcAgenciaCodigoCedente()
+	 * @see org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoFcAgenciaCodigoCedente()
 	 */
 	@Override
 	public String getTextoFcAgenciaCodigoCedente() {
@@ -86,7 +86,7 @@ public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 	}
 
 	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoRsNossoNumero()
+	 * @see org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoRsNossoNumero()
 	 */
 	@Override
 	public String getTextoRsNossoNumero() {
@@ -94,7 +94,7 @@ public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 	}
 
 	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcNossoNumero()
+	 * @see org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoFcNossoNumero()
 	 */
 	@Override
 	public String getTextoFcNossoNumero() {
@@ -102,7 +102,7 @@ public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 	}
 	
 	/**
-	 * @see org.jrimum.bopepo.view.info.campo.AbstractBoletoInfoCampoView#getTextoFcAceite()
+	 * @see org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoFcAceite()
 	 */
 	@Override
 	public String getTextoFcAceite() {

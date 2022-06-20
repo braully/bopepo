@@ -31,12 +31,12 @@ package org.jrimum;
 /**
  * <p>
  * Classe que representa um problema ocorrido dentro de qualquer parte (pacote)
- * do projeto <tt>JRimum</tt>
+ * do projeto JRimum
  * </p>
  *
  *
  * <p>
- * Qualquer exceção que ocorra dentro do componente <tt>JRimum</tt> é sempre
+ * Qualquer exceção que ocorra dentro do componente JRimum é sempre
  * <em>wrapped</em> por uma instância de uma <code>JRimumException</code>.
  * </p>
  *

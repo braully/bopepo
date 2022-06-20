@@ -34,9 +34,9 @@ import org.jrimum.utilix.Objects;
  * Nosso Número no padrão de uma das
  * três cobranças (simples, rápida ou sem registro)
  * 
- * <p>Exemplos:<br/>
- * Cobrança Simples - Nosso número inicia com 3. Ex: Carteira 11<br/>
- * Cobrança Rápida - Nosso número inicia com 9. Ex: Carteira 12 <br/>
+ * <p>Exemplos:<br>
+ * Cobrança Simples - Nosso número inicia com 3. Ex: Carteira 11<br>
+ * Cobrança Rápida - Nosso número inicia com 9. Ex: Carteira 12 <br>
  * Cobrança Sem Registro - Nosso número inicia com 80, 81 ou 82. Ex: Carteira 14.
  * </p>
  * 

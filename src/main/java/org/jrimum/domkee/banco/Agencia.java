@@ -37,7 +37,7 @@ import org.jrimum.utilix.Objects;
 /**
  * <p>
  * Esta classe segue o padrão especificado pela FEBRABAN:
- * <br/>
+ * <br>
  * Invariantes:
  * <ul>
  * <li>Código: deve ser um inteiro natural (incluindo zero) entre 1 e 5

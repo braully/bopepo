@@ -46,9 +46,9 @@ import org.jrimum.texgit.Filler;
  * <h3>Exemplo para um número hipotético 222.333.666-XX:</h3>
  * <p>
  * Primeiramente obtém-se um número R, calculado através da rotina de módulo 11,
- * a partir dos nove primeiros números do CPF, nesse caso 222333666. <br />
- * Para obter o primeiro dígito verificador deve-se seguir a seguinte lógica: <br />
- * <br />
+ * a partir dos nove primeiros números do CPF, nesse caso 222333666. 
+ * Para obter o primeiro dígito verificador deve-se seguir a seguinte lógica: 
+ * 
  * Se o número R for menor que 2, o dígito terá valor 0 (zero); senão, será a
  * subtração do valor do módulo (11) menos o valor do número R, ou seja,
  * <code>DV = 11 - R</code>.
@@ -93,7 +93,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 	/**
 	 * <p>
 	 * Expressão regular para validação dos nove primeiros números do CPF sem
-	 * formatação: <tt>"#########"</tt>.
+	 * formatação: "#########".
 	 * </p>
 	 */
 	private static final String REGEX_CPF_DV = "\\d{9}";
@@ -101,7 +101,7 @@ public class CPFDV extends AbstractDigitoVerificador {
 	/**
 	 * <p>
 	 * Expressão regular para validação dos nove primeiros números do CPF
-	 * formatado: <tt>"###.###.###"</tt>.
+	 * formatado: "###.###.###".
 	 * </p>
 	 */
 	private static final String REGEX_CPF_DV_FORMATTED = "\\d{3}\\.\\d{3}\\.\\d{3}";

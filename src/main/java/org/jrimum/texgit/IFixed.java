@@ -35,7 +35,7 @@ package org.jrimum.texgit;
 public interface IFixed {
 
 	/**
-	 * Informa a validade para a fixação de uma ou mais medidas. Exemplo: <br />
+	 * Informa a validade para a fixação de uma ou mais medidas. Exemplo: 
 	 * 
 	 * <pre>
 	 * {

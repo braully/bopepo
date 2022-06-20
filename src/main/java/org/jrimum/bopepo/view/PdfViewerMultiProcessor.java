@@ -150,14 +150,14 @@ class PdfViewerMultiProcessor {
 
 	/**
 	 * Gera um arquivo PDF para cada boleto contido na lista. O nome do arquivo
-	 * segue a forma:<br />
-	 * <br />
-	 * <tt>diretorio + (/ ou \\) prefixo + (indice do arquivo na lista + 1) + sufixo + ".pdf"</tt>
+	 * segue a forma:
+	 * 
+	 * diretorio + (/ ou \\) prefixo + (indice do arquivo na lista + 1) + sufixo + ".pdf"
 	 * 
 	 * <p>
 	 * Exemplo, uma lista com 3 boletos: {@code onePerPDF(boletos, file,
-	 * "BoletoPrefixo", "exSufixo");} <br />
-	 * <br />
+	 * "BoletoPrefixo", "exSufixo");} 
+	 * 
 	 * Arquivos gerados:
 	 * <ul>
 	 * <li><strong>BoletoPrefixo1exSufixo.pdf</strong></li>

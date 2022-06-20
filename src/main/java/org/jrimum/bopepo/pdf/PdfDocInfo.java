@@ -40,9 +40,9 @@ import org.jrimum.utilix.Exceptions;
 import org.jrimum.utilix.Objects;
 
 /**
- * Pricipais informações de um documento PDF: <tt>Título, Autor, Assunto,
+ * Pricipais informações de um documento PDF: Título, Autor, Assunto,
  * Palavras-chave, Aplicativo criador, Data de criação e Data de
- * modificação</tt>
+ * modificação
  * .
  *
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>

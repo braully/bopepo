@@ -140,7 +140,7 @@ public class Modulo {
      * Se por um acaso a instância <code>enum</code> for nula uma
      * <code>NullPointerException</code> será lançada. Caso a <code>enum</code>
      * contenha um módulo não implementado por essa classe o retorno será
-     * <tt>-1</tt>
+     * -1
      * </p>
      *
      * @return valor da instância do módulo.
@@ -203,7 +203,7 @@ public class Modulo {
      * contagem.
      * </p>
      * <p>
-     * Exemplo para o número <tt>654321</tt>:
+     * Exemplo para o número 654321:
      *
      * <pre>
      * +---+---+---+---+---+---+
@@ -324,7 +324,7 @@ public class Modulo {
      * contagem.
      * </p>
      * <p>
-     * Exemplo para o número <tt>123456</tt>:
+     * Exemplo para o número 123456:
      *
      * <pre>
      * +---+---+---+---+---+---+
@@ -444,11 +444,11 @@ public class Modulo {
      * </p>
      *
      * <p>
-     * Valores padrões: <br />
-     * <br />
-     * <code>MODULO10</code>: (limiteMinimo = 1 e limiteMaximo = 2)<br />
+     * Valores padrões: 
+     * 
+     * <code>MODULO10</code>: (limiteMinimo = 1 e limiteMaximo = 2)
      *
-     * <code>MODULO11</code>: (limiteMinimo = 2 e limiteMaximo = 9)<br />
+     * <code>MODULO11</code>: (limiteMinimo = 2 e limiteMaximo = 9)
      * </p>
      *
      * @since 0.2

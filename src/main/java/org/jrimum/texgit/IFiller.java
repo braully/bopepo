@@ -11,7 +11,7 @@ public interface IFiller extends Serializable{
 	 * 
 	 * <p>
 	 * Exemplo:
-	 * <br/>
+	 * <br>
 	 * Se <code>sideToFill == SideToFill.LEFT</code>, o caracter especificado será adicionado à String
 	 * no lado esquerdo até que o campo fique com o tamanho que foi definido.
 	 * </p>

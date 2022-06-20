@@ -49,7 +49,7 @@ public enum DecimalFormat implements Format<Number, java.text.DecimalFormat>{
 	/**
 	 * <p>
 	 * Formatador de decimais pt-BR para <code>Float,Double,BigDecimal</code> no padrão
-	 * <tt>"#,##0.0"</tt>. Exemplo: <tt>"1.500,9"</tt>.
+	 * "#,##0.0". Exemplo: "1.500,9".
 	 * </p>
 	 */
 	NUMBER_D_BR("#,##0.0", DecimalFormatSymbols.BRASIL.copy()),
@@ -57,7 +57,7 @@ public enum DecimalFormat implements Format<Number, java.text.DecimalFormat>{
 	/**
 	 * <p>
 	 * Formatador de decimais pt-BR para <code>Float,Double,BigDecimal</code> no padrão
-	 * <tt>"#,##0.00"</tt>. Exemplo: <tt>"1.500,99"</tt>.
+	 * "#,##0.00". Exemplo: "1.500,99".
 	 * </p>
 	 */
 	NUMBER_DD_BR("#,##0.00", DecimalFormatSymbols.BRASIL.copy()),
@@ -65,7 +65,7 @@ public enum DecimalFormat implements Format<Number, java.text.DecimalFormat>{
 	/**
 	 * <p>
 	 * Formatador de decimais <code>Float,Double,BigDecimal</code> no padrão de
-	 * moeda (Real pt-BR): <tt>"R$ #,##0.0"</tt>. Usado para formatar valores
+	 * moeda (Real pt-BR): "R$ #,##0.0". Usado para formatar valores
 	 * monetários em real com o prefixo R$, exemplo: R$ 10,0.
 	 * </p>
 	 */
@@ -74,7 +74,7 @@ public enum DecimalFormat implements Format<Number, java.text.DecimalFormat>{
 	/**
 	 * <p>
 	 * Formatador de decimais <code>Float,Double,BigDecimal</code> no padrão de
-	 * moeda (Real pt-BR): <tt>"R$ #,##0.00"</tt>. Usado para formatar valores
+	 * moeda (Real pt-BR): "R$ #,##0.00". Usado para formatar valores
 	 * monetários em real com o prefixo R$, exemplo: R$ 10,00.
 	 * </p>
 	 */

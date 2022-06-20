@@ -89,7 +89,7 @@ public class BancoUtil {
 	 * 		forem capturados pela rede bancária, os sistemas possam realizar
 	 * 		operação inversa, ou seja, adicionar à data base o fator de
 	 * 		vencimento capturado, obtendo, dessa forma, a data do
-	 * 		vencimento do bloqueto.<br/>
+	 * 		vencimento do bloqueto.<br>
 	 * 		
 	 * 		Exemplos: 03/07/2000(Fator = 1000), 05/07/2000(Fator = 1002), 
 	 * 		01/05/2002 (Fator = 1667), 05/07/2000(Fator = 1002)

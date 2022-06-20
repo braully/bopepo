@@ -85,8 +85,7 @@ public class GuiaViewer {
 
     /**
      * @param guia
-     * @throws DocumentException
-     * @throws IOException
+     * @throws RuntimeException
      */
     public GuiaViewer(Guia guia) throws RuntimeException {
         initViewerPDF(null, null, guia);

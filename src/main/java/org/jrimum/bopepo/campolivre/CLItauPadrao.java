@@ -169,7 +169,7 @@ class CLItauPadrao extends AbstractCLItau {
 	 * </p>
 	 * <p>
 	 * Exemplo do cálculo:
-	 * <br />
+	 * 
 	 * <pre>
 	 * AG / CONTA = 0057 / 12345-7 CART / NNº = 110 / 12345678-?
 	 * 
@@ -245,7 +245,7 @@ class CLItauPadrao extends AbstractCLItau {
 	 * do código da conta.
 	 * </p>
 	 * <p>
-	 * O cálculo é feito da seguinte forma: <br />
+	 * O cálculo é feito da seguinte forma: 
 	 * <ol>
 	 * <li>
 	 * Multiplica-se cada algarismo do campo pela sequência de multiplicadores 
@@ -259,7 +259,7 @@ class CLItauPadrao extends AbstractCLItau {
 	 * </li>
 	 * <li>
 	 * Encontre o DAC através da seguinte expressão: DAC = 10 – Mod 10 (N)
-	 * <br />
+	 * 
 	 * OBS.: Se o resultado da etapa d for 10, considere o DAC = 0.
 	 * </li>
 	 * </ol>

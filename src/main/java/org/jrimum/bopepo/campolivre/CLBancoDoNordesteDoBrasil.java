@@ -100,7 +100,7 @@ import org.jrimum.texgit.FixedField;
  * <td style="text-align:left;padding-left:10">Campo zerado</td>
  * </tr>
  * </table>
- * <br/>
+ * <br>
  * 
  * @see org.jrimum.bopepo.campolivre.AbstractCampoLivre
  * 

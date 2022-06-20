@@ -48,15 +48,15 @@ import org.jrimum.texgit.Filler;
  * </p>
  * <p>
  * Obs1.: Todos os campos listados podem vir com um ponto (.) de separação
- * exatamente após o dígito da 5ª posição. <br />
- * Exemplo de linha digitável:<br />
+ * exatamente após o dígito da 5ª posição. 
+ * Exemplo de linha digitável:
  * <code>99997.77213 30530.150082 18975.000003 1 10010000035000</code>
  * </p>
  * <p>
  * O cálculo do dígito verificador é descrito através da expressão
- * <code>DV = 11 - R</code>, onde R é o resultado do cálculo do módulo.<br />
+ * <code>DV = 11 - R</code>, onde R é o resultado do cálculo do módulo.
  * Obs1.: O dígito verificador será 0 (zero) se o resto (resultado do módulo)
- * for 0 (zero). <br />
+ * for 0 (zero). 
  * Obs2.: A rotina de módulo utilizada é a módulo 10.
  * </p>
  *
@@ -87,16 +87,16 @@ public class BoletoLinhaDigitavelDV extends AbstractDigitoVerificador {
      * Expressão regular para validação do campo da linha digitável, aceita os
      * seguintes formatos:
      * </p>
-     * <ul type="circle"> <li><tt>#########</tt></li>
-     * <li><tt>#####.####</tt></li>
-     * <li><tt>##########</tt></li> <li><tt>#####.#####</tt></li> </ul>
+     * <ul type="circle"> <li>#########</li>
+     * <li>#####.####</li>
+     * <li>##########</li> <li>#####.#####</li> </ul>
      *
      */
     private static final String REGEX_CAMPO = "(\\d{9})|(\\d{10})|(\\d{5})\\.(\\d{4})|(\\d{5})\\.(\\d{5})";
 
     /**
      * <p>
-     * Construtor vaizo, o mesmo que <tt>super()</tt>.
+     * Construtor vaizo, o mesmo que super().
      * </p>
      *
      * @since 0.2

@@ -47,7 +47,7 @@ public class GuiaLinhaDigitavelDV extends AbstractDigitoVerificador implements S
 
 	/**
 	 *<p>
-	 * Construtor vaizo, o mesmo que <tt>super()</tt>.
+	 * Construtor vaizo, o mesmo que super().
 	 * </p>
 	 * 
 	 * @since 0.3

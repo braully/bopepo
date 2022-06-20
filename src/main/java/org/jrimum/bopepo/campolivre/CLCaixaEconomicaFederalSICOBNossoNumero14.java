@@ -201,8 +201,8 @@ class CLCaixaEconomicaFederalSICOBNossoNumero14 extends AbstractCLCaixaEconomica
 	 * IllegalArgumentException}.
 	 * 
 	 * <p>
-	 * Motivo extraído do manual do banco: <br />
-	 * <br />
+	 * Motivo extraído do manual do banco: 
+	 * 
 	 * <i>Carteira Sem Registro Eletrônica com Nosso Número de 16 posições,
 	 * sendo que 14 destas posições são para livre uso pelo Cedente. Apenas
 	 * Clientes Cedentes com Código do Cedente na operação 870 podem operar com

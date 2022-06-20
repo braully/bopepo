@@ -59,16 +59,16 @@ import org.jrimum.domkee.banco.CodigoDeCompensacaoBACEN;
  * <h5>EXEMPLOS:</h5>
  *
  * <p>
- * Para uma nova instância do Banco do Brasil faça: <br />
- * <br />
+ * Para uma nova instância do Banco do Brasil faça: 
+ * 
  * <code>
  *   IBanco bancoDoBrasil = EnumBancos.BANCO_DO_BRASIL.newInstance();
  * </code>
  * </p>
  *
  * <p>
- * Para utilizar somento o código de compensação: <br />
- * <br />
+ * Para utilizar somento o código de compensação: 
+ * 
  * <code>
  *   EnumBancos.BANCO_DO_BRASIL.getCodigoDeCompensacao();
  * </code>
@@ -76,8 +76,8 @@ import org.jrimum.domkee.banco.CodigoDeCompensacaoBACEN;
  *
  * <p>
  * Para saber se um banco é suportado pelo componete, veja a lista antes
- * (LinkParaLista) ou faça: <br />
- * <br />
+ * (LinkParaLista) ou faça: 
+ * 
  * <code>
  *   EnumBancos.isSuportado(banco.getCodigoDeCompensacao)
  * </code>
@@ -116,7 +116,7 @@ public enum BancosSuportados {
      */
     /**
      * Tipo enumerado que representa o <strong>Banco do Brasil</strong>, código
-     * de compensação <strong><tt>001</tt></strong> <a
+     * de compensação <strong>001</strong> <a
      * href="http://www.bb.com.br">site</a>.
      *
      * @since 0.2
@@ -124,7 +124,7 @@ public enum BancosSuportados {
     BANCO_DO_BRASIL("001", "00000000000191", "BANCO DO BRASIL S.A.", "Banco do Brasil - Banco Múltiplo"),
     /**
      * Tipo enumerado que representa o <strong>Banco do Nordeste do
-     * Brasil</strong>, código de compensação <strong><tt>004</tt></strong>
+     * Brasil</strong>, código de compensação <strong>004</strong>
      * (<a href="http://www.bnb.gov.br">site</a>).
      *
      * @since 0.2-Helio
@@ -133,7 +133,7 @@ public enum BancosSuportados {
     /**
      * Tipo enumerado que representa o Banestes, <strong>Banco do Estado do
      * Espírito Santo</strong>, código de compensação
-     * <strong><tt>021</tt></strong>
+     * <strong>021</strong>
      * <a href="http://www.banestes.com.br">
      * site</a>.
      *
@@ -142,7 +142,7 @@ public enum BancosSuportados {
     BANCO_DO_ESTADO_DO_ESPIRITO_SANTO("021", "28127603000178", "BANCO DO ESTADO DO ESPIRITO SANTO S.A.", "Banco Múltiplo"),
     /**
      * Tipo enumerado que representa o Santander <strong>Banco Santander
-     * (Brasil) S. A.</strong>, código de compensação <strong><tt>033</tt>
+     * (Brasil) S. A.</strong>, código de compensação <strong>033
      * </strong> <a href="http://www.santander.com.br"> site</a>.
      *
      * @since 0.2
@@ -151,7 +151,7 @@ public enum BancosSuportados {
     /**
      * Tipo enumerado que representa o Banrisul, Banco <strong>do Estado do Rio
      * Grande do Sul</strong>, código de compensação
-     * <strong><tt>041</tt></strong> <a href="http://www.banrisul.com.br/">
+     * <strong>041</strong> <a href="http://www.banrisul.com.br/">
      * site</a>.
      *
      * @since 0.2
@@ -159,7 +159,7 @@ public enum BancosSuportados {
     BANCO_DO_ESTADO_DO_RIO_GRANDE_DO_SUL("041", "92702067000196", "BANCO DO ESTADO DO RIO GRANDE DO SUL S.A.", "Banco Múltiplo"),
     /**
      * Tipo enumerado que representa o Banco <strong>BRB - Banco de
-     * Brasília</strong>, código de compensação <strong><tt>070</tt></strong> <a
+     * Brasília</strong>, código de compensação <strong>070</strong> <a
      * href="http://www.brb.com.br">site</a>.
      *
      * @since 0.2
@@ -168,7 +168,7 @@ public enum BancosSuportados {
     /**
      * Tipo enumerado que representa o BANISA, Banco
      * <strong>Intermedium</strong>, código de compensação
-     * <strong><tt>077</tt></strong>
+     * <strong>077</strong>
      * <a href="http://www.bancointermedium.com.br/">
      * site</a>.
      *
@@ -178,7 +178,7 @@ public enum BancosSuportados {
     /**
      * Tipo enumerado que representa o CECRED, <strong>Cooperativa Central de
      * Crédito Urbano</strong>, código de compensação
-     * <strong><tt>085</tt></strong> <a href="http://www.cecred.coop.br/">
+     * <strong>085</strong> <a href="http://www.cecred.coop.br/">
      * site</a>.
      *
      * @since 0.2
@@ -186,7 +186,7 @@ public enum BancosSuportados {
     CECRED("085", "05.463.212/0001-29", "COOPERATIVA CENTRAL DE CRÉDITO URBANO - CECRED", "Cooperativa de Crédito"),
     /**
      * Tipo enumerado que representa o Banco <strong>Caixa Econômica
-     * Federal</strong>, código de compensação <strong><tt>104</tt></strong> <a
+     * Federal</strong>, código de compensação <strong>104</strong> <a
      * href="http://www.caixa.gov.br">site</a>.
      *
      * @since 0.2
@@ -194,16 +194,16 @@ public enum BancosSuportados {
     CAIXA_ECONOMICA_FEDERAL("104", "00360305000104", "CAIXA ECONOMICA FEDERAL", "Caixa Econômica Federal"),
     /**
      * Tipo enumerado que representa o Banco <strong>Bradesco</strong>, código
-     * de compensação <strong><tt>237</tt></strong> <a
-     * href="http://www.bradesco.com.br">site</a>.
+     * de compensação <strong>237</strong> 
+     * <a href="http://www.bradesco.com.br">site</a>.
      *
      * @since 0.2
      */
     BANCO_BRADESCO("237", "60746948000112", "BANCO BRADESCO S.A.", "Banco Múltiplo"),
     /**
      * Tipo enumerado que representa o <strong>Banco Itaú</strong>, código de
-     * compensação <strong><tt>341</tt></strong> <a
-     * href="http://www.	.com.br">site</a>.
+     * compensação <strong>341</strong> 
+     * <a href="http://www.bradesco.com.br">site</a>.
      *
      * @since 0.2
      */
@@ -211,7 +211,7 @@ public enum BancosSuportados {
     /**
      * Tipo enumerado que representa o <strong>Banco ABN AMRO Real</strong>
      * (<a href="http://www.bancoreal.com.br">http://www.bancoreal.com.br</a>),
-     * código de compensação <strong><tt>356</tt></strong>. <br/>
+     * código de compensação <strong>356</strong>. <br>
      * <p>
      * Obs: Os bancos <strong>Sudameris</strong> e <strong>Bandepe</strong>
      * foram incorporados ao Banco Real, portanto para gerar boletos bancários
@@ -225,14 +225,14 @@ public enum BancosSuportados {
      * Tipo enumerado que representa o <strong>Banco Mercantil do
      * Brasil</strong>
      * (<a href="http://www.mercantildobrasil.com.br">http://www.mercantildobrasil.com.br</a>),
-     * código de compensação <strong><tt>389</tt></strong>.
+     * código de compensação <strong>389</strong>.
      *
      * @since 0.2
      */
     MERCANTIL_DO_BRASIL("389", "17184037000110", "BANCO MERCANTIL DO BRASIL S.A.", "Banco Múltiplo"),
     /**
      * Tipo enumerado que representa o <strong>HSBC</strong>, código de
-     * compensação <strong><tt>399</tt></strong> <a
+     * compensação <strong>399</strong> <a
      * href="http://www.hsbc.com.br">site</a>.
      *
      * @since 0.2
@@ -240,7 +240,7 @@ public enum BancosSuportados {
     HSBC("399", "01701201000189", "HSBC BANK BRASIL S.A.", "Banco Múltiplo"),
     /**
      * Tipo enumerado que representa o <strong>Unibanco</strong>, código de
-     * compensação <strong><tt>409</tt></strong> <a
+     * compensação <strong>409</strong> <a
      * href="http://www.unibanco.com.br">site</a>.
      *
      * @since 0.2
@@ -248,7 +248,7 @@ public enum BancosSuportados {
     UNIBANCO("409", "33700394000140", "UNIBANCO-UNIAO DE BANCOS BRASILEIROS S.A.", "Banco Múltiplo"),
     /**
      * Tipo enumerado que representa o <strong>Unibanco</strong>, código de
-     * compensação <strong><tt>422</tt></strong> <a
+     * compensação <strong>422</strong> <a
      * href="http://www.safra.com.br/">site</a>.
      *
      * @since 0.2
@@ -256,7 +256,7 @@ public enum BancosSuportados {
     BANCO_SAFRA("422", "58160789000128", "BANCO SAFRA S.A.", "Banco Múltiplo"),
     /**
      * Tipo enumerado que representa o <strong>Citibank</strong>, código de
-     * compensação <strong><tt>756</tt></strong> <a
+     * compensação <strong>756</strong> <a
      * href="http://www.citibank.com.br/">site</a>.
      *
      * @since 0.2
@@ -264,7 +264,7 @@ public enum BancosSuportados {
     CITIBANK("745", "33479023000180", "BANCO CITIBANK S.A.", "Banco Múltiplo"),
     /**
      * Tipo enumerado que representa o <strong>Banco Sicredi</strong>, código de
-     * compensação <strong><tt>748</tt></strong> <a
+     * compensação <strong>748</strong> <a
      * href="http://www.sicredi.com.br/">site</a>.
      *
      * @since 0.2
@@ -272,7 +272,7 @@ public enum BancosSuportados {
     BANCO_SICREDI("748", "01181521000155", "BANCO COOPERATIVO SICREDI S.A.", "Banco Mútiplo Cooperativo"),
     /**
      * Tipo enumerado que representa o <strong>Banco Rural</strong>, código de
-     * compensação <strong><tt>453</tt></strong> <a
+     * compensação <strong>453</strong> <a
      * href="http://www.rural.com.br/">site</a>.
      *
      * @since 0.2
@@ -280,7 +280,7 @@ public enum BancosSuportados {
     BANCO_RURAL("453", "58160789000128", "BANCO RURAL S.A.", "Banco Múltiplo"),
     /**
      * Tipo enumerado que representa o <strong>Bancoob</strong>, código de
-     * compensação <strong><tt>756</tt></strong> <a
+     * compensação <strong>756</strong> <a
      * href="http://www.bancoob.com.br/">site</a>.
      *
      * @since 0.2
@@ -402,10 +402,10 @@ public enum BancosSuportados {
      * <p>
      * Cada instância retornada por este método contém:
      * <ul>
-     * <li><tt>Código de componsação</tt></li>
-     * <li><tt>Nome da instituição</tt></li>
-     * <li><tt>CNPJ da instituição</tt></li>
-     * <li><tt>Segmento da instituição bancária</tt></li>
+     * <li>Código de componsação</li>
+     * <li>Nome da instituição</li>
+     * <li>CNPJ da instituição</li>
+     * <li>Segmento da instituição bancária</li>
      * </ul>
      * </p>
      *

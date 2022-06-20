@@ -384,8 +384,8 @@ public final class BoletoUtil {
 	 * FEBRABAN.
 	 * </p>
 	 * <p>
-	 * "<strong>dddddddddddddddddddddddddddddddddddddddddddd</strong>" <br />
-	 * <b>&rArr;</b> <br />
+	 * "<strong>dddddddddddddddddddddddddddddddddddddddddddd</strong>" 
+	 * <b>&rArr;</b> 
 	 * "<strong>ddddd.ddddd ddddd.dddddd ddddd.dddddd d dddddddddddddd</strong>"
 	 * </p>
 	 * 
@@ -411,8 +411,8 @@ public final class BoletoUtil {
 	 * Transforma um código de barras em uma linha digitável numérica.
 	 * </p>
 	 * <p>
-	 * "<strong>dddddddddddddddddddddddddddddddddddddddddddd</strong>" <br />
-	 * <b>&rArr;</b> <br />
+	 * "<strong>dddddddddddddddddddddddddddddddddddddddddddd</strong>" 
+	 * <b>&rArr;</b> 
 	 * "<strong>ddddddddddddddddddddddddddddddddddddddddddddddd</strong>"
 	 * </p>
 	 * 
@@ -471,8 +471,8 @@ public final class BoletoUtil {
 	 * </p>
 	 * <p>
 	 * "<strong>ddddd.ddddd ddddd.dddddd ddddd.dddddd d dddddddddddddd</strong>"
-	 * <br />
-	 * <b>&rArr;</b> <br />
+	 * 
+	 * <b>&rArr;</b> 
 	 * "<strong>dddddddddddddddddddddddddddddddddddddddddddd</strong>"
 	 * </p>
 	 * 
@@ -499,8 +499,8 @@ public final class BoletoUtil {
 	 * Transforma uma linha digitável não formatada em um código de barras.
 	 * </p>
 	 * <p>
-	 * "<strong>ddddddddddddddddddddddddddddddddddddddddddddddd</strong>" <br />
-	 * <b>&rArr;</b> <br />
+	 * "<strong>ddddddddddddddddddddddddddddddddddddddddddddddd</strong>" 
+	 * <b>&rArr;</b> 
 	 * "<strong>dddddddddddddddddddddddddddddddddddddddddddd</strong>"
 	 * </p>
 	 * 
@@ -545,8 +545,8 @@ public final class BoletoUtil {
 	 * </p>
 	 * <p>
 	 * "<strong>ddddd.ddddd ddddd.dddddd ddddd.dddddd d dddddddddddddd</strong>"
-	 * <br />
-	 * <b>&rArr;</b> <br />
+	 * 
+	 * <b>&rArr;</b> 
 	 * "<strong>ddddddddddddddddddddddddddddddddddddddddddddddd</strong>"
 	 * </p>
 	 * 
@@ -576,8 +576,8 @@ public final class BoletoUtil {
 	 * Transforma linha digitável númerica em FEBRABAN:
 	 * </p>
 	 * <p>
-	 * "<strong>ddddddddddddddddddddddddddddddddddddddddddddddd</strong>" <br />
-	 * <b>&rArr;</b> <br />
+	 * "<strong>ddddddddddddddddddddddddddddddddddddddddddddddd</strong>" 
+	 * <b>&rArr;</b> 
 	 * "<strong>ddddd.ddddd ddddd.dddddd ddddd.dddddd d dddddddddddddd</strong>"
 	 * </p>
 	 * 

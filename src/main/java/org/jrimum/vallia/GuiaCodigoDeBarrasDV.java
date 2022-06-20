@@ -42,7 +42,7 @@ public class GuiaCodigoDeBarrasDV extends AbstractDigitoVerificador {
 
 	/**
 	 * <p>
-	 * Construtor vaizo, o mesmo que <tt>super()</tt>.
+	 * Construtor vaizo, o mesmo que super().
 	 * </p>
 	 * 
 	 * @since 0.2

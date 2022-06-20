@@ -122,12 +122,12 @@ class CLBancoReal extends AbstractCLBancoReal {
 	
 	/**
 	 * <p>
-	 * Calcula o Dígito da posição <tt>31</tt> deste campo livre (<code>CLBancoReal</code>).
+	 * Calcula o Dígito da posição 31 deste campo livre (<code>CLBancoReal</code>).
 	 * </p>
 	 * 
 	 * <p>
 	 * No cálculo do dígito da posição 31 são considerados, para a obtenção do
-	 * dígito, os dados <em><tt>{[NOSSO NÚMERO],[AGÊNCIA],[CONTA]}</tt></em> calculado pelos
+	 * dígito, os dados <em>{[NOSSO NÚMERO],[AGÊNCIA],[CONTA]}</em> calculado pelos
 	 * critérios do Módulo 10.
 	 * </p>
 	 * <h5>Exemplo:</h5>

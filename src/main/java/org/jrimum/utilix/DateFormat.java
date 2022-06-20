@@ -60,140 +60,140 @@ public enum DateFormat implements Format<Date, SimpleDateFormat>{
 
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"ddMMyy"</tt>.
+	 * Formatador de datas no padrão "ddMMyy".
 	 * </p>
 	 */
 	DDMMYY("ddMMyy"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"dd/MM/yy"</tt>.
+	 * Formatador de datas no padrão "dd/MM/yy".
 	 * </p>
 	 */
 	DDMMYY_B("dd/MM/yy"), 
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"dd-MM-yy"</tt>.
+	 * Formatador de datas no padrão "dd-MM-yy".
 	 * </p>
 	 */
 	DDMMYY_H("dd-MM-yy"), 
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"dd_MM_yy"</tt>.
+	 * Formatador de datas no padrão "dd_MM_yy".
 	 * </p>
 	 */
 	DDMMYY_U("dd_MM_yy"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"ddMMyyyy"</tt>.
+	 * Formatador de datas no padrão "ddMMyyyy".
 	 * </p>
 	 */
 	DDMMYYYY("ddMMyyyy"), 
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"dd/MM/yyyy"</tt>.
+	 * Formatador de datas no padrão "dd/MM/yyyy".
 	 * </p>
 	 */
 	DDMMYYYY_B("dd/MM/yyyy"), 
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"dd-MM-yyyy"</tt>.
+	 * Formatador de datas no padrão "dd-MM-yyyy".
 	 * </p>
 	 */
 	DDMMYYYY_H("dd-MM-yyyy"), 
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"dd_MM_yyyy"</tt>.
+	 * Formatador de datas no padrão "dd_MM_yyyy".
 	 * </p>
 	 */
 	DDMMYYYY_U("dd_MM_yyyy"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"yyMMdd"</tt>.
+	 * Formatador de datas no padrão "yyMMdd".
 	 * </p>
 	 */
 	YYMMDD("yyMMdd"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"yy/MM/dd"</tt>.
+	 * Formatador de datas no padrão "yy/MM/dd".
 	 * </p>
 	 */
 	YYMMDD_B("yy/MM/dd"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"yy/MM/dd"</tt>.
+	 * Formatador de datas no padrão "yy/MM/dd".
 	 * </p>
 	 */
 	YYMMDD_H("yy-MM-dd"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"yy_MM_dd"</tt>.
+	 * Formatador de datas no padrão "yy_MM_dd".
 	 * </p>
 	 */
 	YYMMDD_U("yy_MM_dd"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"yyyyMMdd"</tt>.
+	 * Formatador de datas no padrão "yyyyMMdd".
 	 * </p>
 	 */
 	YYYYMMDD("yyyyMMdd"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"yyyy/MM/dd"</tt>.
+	 * Formatador de datas no padrão "yyyy/MM/dd".
 	 * </p>
 	 */
 	YYYYMMDD_B("yyyy/MM/dd"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"yyyy-MM-dd"</tt>.
+	 * Formatador de datas no padrão "yyyy-MM-dd".
 	 * </p>
 	 */
 	YYYYMMDD_H("yyyy-MM-dd"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"yyyy_MM_dd"</tt>.
+	 * Formatador de datas no padrão "yyyy_MM_dd".
 	 * </p>
 	 */
 	YYYYMMDD_U("yyyy_MM_dd"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"hhmmss"</tt>.
+	 * Formatador de datas no padrão "hhmmss".
 	 * </p>
 	 */
 	HHMMSS("hhmmss"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"HHmmss"</tt>.
+	 * Formatador de datas no padrão "HHmmss".
 	 * </p>
 	 */
 	HHMMSS_24("HHmmss"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"hh:mm:ss"</tt>.
+	 * Formatador de datas no padrão "hh:mm:ss".
 	 * </p>
 	 */
 	HHMMSS_C("hh:mm:ss"),
 	
 	/**
 	 * <p>
-	 * Formatador de datas no padrão <tt>"HH:mm:ss"</tt>.
+	 * Formatador de datas no padrão "HH:mm:ss".
 	 * </p>
 	 */
 	HHMMSS_24C("HH:mm:ss"),

@@ -129,8 +129,8 @@ public final class Strings {
 	 * Remove os zeros iniciais de uma <code>String</code>, seja ela numérica ou
 	 * não.
 	 * <p>
-	 * <code>removeStartWithZeros("00000") => 0</code><br />
-	 * <code>removeStartWithZeros("00023") => 23</code><br />
+	 * <code>removeStartWithZeros("00000") => 0</code>
+	 * <code>removeStartWithZeros("00023") => 23</code>
 	 * <code>removeStartWithZeros("02003") => 2003</code>
 	 * <p>
 	 * 

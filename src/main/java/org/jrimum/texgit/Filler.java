@@ -50,7 +50,7 @@ import org.jrimum.utilix.Objects;
  * É utilizado o método <code>toString()</code> do objeto preenchedor.
  * </p>
  * <p>
- * Exemplo:<br/>
+ * Exemplo:<br>
  * <pre>
  * Filler<Integer> filler = new Filler(new Integer(10), LEFT);
  * String outPut = filler.fill("TESTE", 8);
@@ -180,7 +180,7 @@ public class Filler<G> implements org.jrimum.texgit.IFiller {
      * </p>
      * <p>
      * Exemplo:
-     * <br/>
+     * <br>
      * Se <code>sideToFill == LEFT</code>, o caracter especificado será
      * adicionado à String no lado esquerdo até que o campo fique com o tamanho
      * que foi definido.
@@ -340,7 +340,7 @@ public class Filler<G> implements org.jrimum.texgit.IFiller {
      * <p>
      * Executa o método <code>fill(String, int)</code> passando o parâmetro
      * <code>toFill</code> como <code>toFill.toString()</code>.
-     * <br/>
+     * <br>
      * </p>
      * <p>
      * Caso <code>toFill</code> seja <code>null</code>, o método
@@ -370,7 +370,7 @@ public class Filler<G> implements org.jrimum.texgit.IFiller {
      * <p>
      * Executa o método <code>fill(String, int)</code> passando o parâmetro
      * <code>toFill</code> como <code>toFill.write()</code>.
-     * <br/>
+     * <br>
      * </p>
      * <p>
      * Caso <code>toFill</code> seja <code>null</code>, o método

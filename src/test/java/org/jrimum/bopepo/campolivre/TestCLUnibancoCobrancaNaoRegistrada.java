@@ -31,13 +31,13 @@ public class TestCLUnibancoCobrancaNaoRegistrada extends AbstractCampoLivreBaseT
 	 * características:
 	 * </p>
 	 * <p>
-	 * Banco: UNIBANCO – identificação 409<br />
-	 * Moeda: Real – R$ - identificação 9<br />
-	 * Vencimento: 31 de dezembro de 2001<br />
-	 * Valor: R$1000,00<br />
-	 * Código para transação CVT: 5 (cobrança sem registro – 7744-5)<br />
-	 * Número de referência do cliente(NossoNúmero) : 112233445566777<br />
-	 * Número de referência do cliente (Código Conta): 1234561<br />
+	 * Banco: UNIBANCO – identificação 409
+	 * Moeda: Real – R$ - identificação 9
+	 * Vencimento: 31 de dezembro de 2001
+	 * Valor: R$1000,00
+	 * Código para transação CVT: 5 (cobrança sem registro – 7744-5)
+	 * Número de referência do cliente(NossoNúmero) : 112233445566777
+	 * Número de referência do cliente (Código Conta): 1234561
 	 * </p>
 	 * <p>
 	 * NÚMERO DE ORIGEM DO CÓDIGO DE BARRAS:

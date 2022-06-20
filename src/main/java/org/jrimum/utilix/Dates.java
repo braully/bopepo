@@ -84,7 +84,7 @@ public final class Dates {
 
     /**
      * <p>
-     * Formatador de datas no padrão <tt>yyyyMMdd</tt>.
+     * Formatador de datas no padrão yyyyMMdd.
      * </p>
      */
     public static final DateFormat FORMAT_YYYYMMDD = new SimpleDateFormat(

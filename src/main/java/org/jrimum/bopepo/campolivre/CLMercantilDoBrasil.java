@@ -42,7 +42,7 @@ import org.jrimum.utilix.Exceptions;
  *
  * <p>
  * Campo Livre para o Banco Mercantil do Brasil. Segue o seguinte formato:
- * <br/>
+ * <br>
  * <table border="1" cellpadding="0" cellspacing="0" style="border-collapse:
  * collapse" bordercolor="#111111" width="60%" id="campolivre">
  * <tr> <thead>
@@ -73,7 +73,7 @@ import org.jrimum.utilix.Exceptions;
  * <td >44-44</td>
  * <td >1</td>
  * <td >9</td>
- * <td >Indicador de desconto:<br/>=2 sem desconto<br/>=0 com desconto</td>
+ * <td >Indicador de desconto:<br>=2 sem desconto<br>=0 com desconto</td>
  * </tr>
  * </table>
  * </p>

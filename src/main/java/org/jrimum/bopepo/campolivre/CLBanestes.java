@@ -49,7 +49,7 @@ import org.jrimum.vallia.TipoDeModulo;
  * </p>
  * 
  * <p>
- * Layout:<br />
+ * Layout:
  * <div align="center">
  * <p align="center">
  * <font face="Arial">Cobrança Normal - CAMPO LIVRE - Chave ASBACE</font>

@@ -321,7 +321,7 @@ public abstract class AbstractCPRFValidator {
 
     /**
      * <p>
-     * Recupera o cadastro de pessoa a ser validado. <br />
+     * Recupera o cadastro de pessoa a ser validado. 
      * Obs.: A String retornada não possui formatação, ou seja, possui apenas os
      * dígitos.
      * </p>

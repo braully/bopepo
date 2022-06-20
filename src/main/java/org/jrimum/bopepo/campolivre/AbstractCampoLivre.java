@@ -632,7 +632,7 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
      * <p>
      * Verifica se o nosso número do título tem o tamanho determinado, caso
      * contrário lança uma {@code IllegalArgumentException} com a mensagem
-     * <tt>"Tamanho do nosso número [%s] diferente do esperado [%s]!"</tt>.
+     * "Tamanho do nosso número [%s] diferente do esperado [%s]!".
      * </p>
      *
      * @param titulo
@@ -687,8 +687,8 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
      * <p>
      * Verifica se o dígito do nosso número do título tem o tamanho determinado,
      * caso contrário lança uma {@code IllegalArgumentException} com a mensagem
-     * <tt>"Tamanho [%s] do dígito do nosso número [\"%s\"] diferente do
-     * esperado [%s]!"</tt>.
+     * "Tamanho [%s] do dígito do nosso número [\"%s\"] diferente do
+     * esperado [%s]!".
      * </p>
      *
      * @param titulo

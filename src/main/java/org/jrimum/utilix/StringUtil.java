@@ -116,8 +116,8 @@ public class StringUtil {
      * não.
      * </p>
      * <p>
-     * <code>removeStartWithZeros("00000") => 0</code><br />
-     * <code>removeStartWithZeros("00023") => 23</code><br />
+     * <code>removeStartWithZeros("00000") => 0</code>
+     * <code>removeStartWithZeros("00023") => 23</code>
      * <code>removeStartWithZeros("02003") => 2003</code>
      * <p>
      * @param str
@@ -163,7 +163,7 @@ public class StringUtil {
      * </ul>
      *
      * e o Cedilha (ç).
-     * <br />
+     * 
      * Os acentos são removidos tanto para letras minúsculas como para letras
      * maiúsculas.
      *

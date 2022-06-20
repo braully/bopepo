@@ -44,10 +44,10 @@ import org.jrimum.texgit.Filler;
  * <h3>Exemplo para um número hipotético 11.222.333/0001-XX:</h3>
  * <p>
  * Primeiramente obtém-se um número R, calculado através da rotina de módulo 11,
- * a partir dos doze primeiros números do CNPJ, nesse caso 112223330001. <br />
+ * a partir dos doze primeiros números do CNPJ, nesse caso 112223330001. 
  * Para obter o primeiro dígito verificador deve-se seguir a seguinte lógica:
- * <br />
- * <br />
+ * 
+ * 
  * Se o número R for menor que 2, o dígito terá valor 0 (zero); senão, será a
  * subtração do valor do módulo (11) menos o valor do número R, ou seja,
  * <code>DV = 11 - R</code>.
@@ -97,7 +97,7 @@ public class CNPJDV extends AbstractDigitoVerificador {
     /**
      * <p>
      * Expressão regular para validação dos doze primeiros números do CNPJ sem
-     * formatação: <tt>"############"</tt>.
+     * formatação: "############".
      * </p>
      */
     private static final String REGEX_CNPJ_DV = "\\d{12}";
@@ -105,7 +105,7 @@ public class CNPJDV extends AbstractDigitoVerificador {
     /**
      * <p>
      * Expressão regular para validação dos doze primeiros números do CNPJ
-     * formatado: <tt>"##.###.###/####"</tt>.
+     * formatado: "##.###.###/####".
      * </p>
      */
     private static final String REGEX_CNPJ_DV_FORMATTED = "\\d{2}\\.\\d{3}\\.\\d{3}\\/\\d{4}";

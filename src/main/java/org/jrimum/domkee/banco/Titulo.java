@@ -42,7 +42,7 @@ import org.jrimum.utilix.Objects;
 /**
  * Representa um título em cobrança, tais como:
  *
- * <br />
+ * 
  *
  * <ul>
  * <li>Cheque</li>

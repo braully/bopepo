@@ -36,7 +36,7 @@ package org.jrimum.domkee.banco;
 /**
  * 
  * <p>
- * Representação dos tipos básicos de cobrança:<br />
+ * Representação dos tipos básicos de cobrança:
  * <ul>
  * <li>Registrada (ou com registro)</li>
  * <li>Não Registrada (ou sem registro)</li>

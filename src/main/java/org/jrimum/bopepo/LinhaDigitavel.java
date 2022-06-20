@@ -43,10 +43,10 @@ import org.jrimum.vallia.BoletoLinhaDigitavelDV;
  * 
  * Representa a linha digitável do boleto, embora a linha digitável contenha a
  * mesma informação do código de barras, essa informação é disposta de uma forma
- * diferente e são acrescentados 3 dígitos verificadores. <br />
- * <br />
- * Modelo: <br />
- * <br />
+ * diferente e são acrescentados 3 dígitos verificadores. 
+ * 
+ * Modelo: 
+ * 
  * 
  * <table border="1" cellpadding="0" cellspacing="0" style="border-collapse:
  * collapse" bordercolor="#111111" width="90%" id="linhaDigitável"> <thead>
@@ -116,12 +116,12 @@ import org.jrimum.vallia.BoletoLinhaDigitavelDV;
  * </tr>
  * </table>
  * 
- * <br />
- * <br />
+ * 
+ * 
  * 
  * Observações:
  * 
- * <br />
+ * 
  * <ul>
  * 
  * <li>Em cada um dos três primeiros campos, após a 5a posição, deve ser
@@ -129,7 +129,7 @@ import org.jrimum.vallia.BoletoLinhaDigitavelDV;
  * quando necessário;</li>
  * <li>Quinto campo:
  * <ul>
- * <br />
+ * 
  * <li>preenchimento com zeros entre o fator de vencimento e o valor até
  * completar 14 posições;
  * <li>a existência de “0000” no campo “fator de vencimento” da linha digitável
@@ -141,7 +141,7 @@ import org.jrimum.vallia.BoletoLinhaDigitavelDV;
  * barras, a representação deverá ser com zeros;</li>
  * <li>não deverá conter separação por pontos, vírgulas ou espaços;</li>
  * </ul>
- * <br />
+ * 
  * </li>
  * <li>Os dígitos verificadores referentes aos 1º, 2º e 3º campos não são
  * representados no código de barras;</li>
@@ -315,7 +315,7 @@ public class LinhaDigitavel extends BlockOfFields {
 		/**
 		 * <p>
 		 * 
-		 * Aplicação do seguinte requisito da FEBRABAN: <br />
+		 * Aplicação do seguinte requisito da FEBRABAN: 
 		 * Em cada um dos três primeiros campos, após a quinta (5) posição, deve ser
 		 * inserido um ponto “.”, a fim de facilitar a visualização, para a
 		 * digitação, quando necessário.
@@ -342,7 +342,7 @@ public class LinhaDigitavel extends BlockOfFields {
 	}
 	
 	/**
-	 * Componhe o campo 1 da linha digitável com os seguintes dados: <br />
+	 * Componhe o campo 1 da linha digitável com os seguintes dados: 
 	 * <ul>
 	 * <li>Identificação do banco</li>
 	 * <li>Código de moeda (9 – Real)</li>
@@ -394,7 +394,7 @@ public class LinhaDigitavel extends BlockOfFields {
 	}
 	
 	/**
-	 * Componhe o campo 2 da linha digitável com os seguintes dados: <br />
+	 * Componhe o campo 2 da linha digitável com os seguintes dados: 
 	 * <ul>
 	 * <li>6ª a 15ª posições do campo livre (posições 25 a 34 do código de
 	 * barras)</li>
@@ -441,7 +441,7 @@ public class LinhaDigitavel extends BlockOfFields {
 	}
 	
 	/**
-	 * Componhe o campo 3 da linha digitável com os seguintes dados: <br />
+	 * Componhe o campo 3 da linha digitável com os seguintes dados: 
 	 * <ul>
 	 * <li>16ª a 25ª posições do campo livre (posições 35 a 44 do código de
 	 * barras)</li>
@@ -488,7 +488,7 @@ public class LinhaDigitavel extends BlockOfFields {
 	}
 	
 	/**
-	 * Componhe o campo 5 da linha digitável com os seguintes dados: <br />
+	 * Componhe o campo 5 da linha digitável com os seguintes dados: 
 	 * <ul>
 	 * <li>Posições 34 a 37 – fator de vencimento (posições 6 a 9 do código de
 	 * barras)</li>

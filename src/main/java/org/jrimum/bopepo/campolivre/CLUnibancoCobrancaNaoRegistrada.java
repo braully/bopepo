@@ -17,7 +17,7 @@ import org.jrimum.utilix.Strings;
  * </p>
  * 
  * <p>
- * Layout:<br />
+ * Layout:
  * <div align="center">
  * <p align="center">
  * <font face="Arial">Cobrança Especial (sem registro)</font>

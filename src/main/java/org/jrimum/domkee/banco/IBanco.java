@@ -80,7 +80,7 @@ public interface IBanco extends IPessoaJuridica {
     /**
      * <p>
      * Código de compensação <a href="http://www.bcb.gov.br/">BACEN</a>
-     * </p>>
+     * </p>
      *
      * @param codigoDeCompensacaoBACEN
      *
@@ -101,7 +101,7 @@ public interface IBanco extends IPessoaJuridica {
      * <li>Banco Comercial</li>
      * <li>Banco Múltiplo Cooperativo</li>
      * </ul>
-     * </p>>
+     * </p>
      *
      * @param segmento
      *
@@ -112,7 +112,7 @@ public interface IBanco extends IPessoaJuridica {
     /**
      * <p>
      * Imagem da logo-marca do banco.
-     * </p>>
+     * </p>
      *
      * @param imgLogo
      *

@@ -90,7 +90,6 @@ public class OrgaoRecebedor extends IEntidadeDeCobranca {
 
     /**
      * @param abstractCNPJ
-     * @see # setCNPJ(CNPJ cnpj)
      */
     public void setCNPJ(CNPJ cnpj) {
         pessoa.setCPRF(cnpj);
