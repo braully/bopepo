@@ -74,34 +74,21 @@ Concentrar todas as classes nos pacotes
 - org.jrimum.utilix
 - org.jrimum.valia
 
-## Instalação
+## Instalação e compilação
 
 $ git clone https://github.com/braully/bopepo.git
 
 $ cd bopepo
 
-$ ./sh/compile.sh
+$ ./sh/compile.sh 
 
-## Repositório do Maven Central
+## Artefato do Maven Central
+
         <dependency>
             <groupId>io.github.braully</groupId>
             <artifactId>bpp-cobranca</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.0</version>
         </dependency>
-
-Ainda em SNAPSHOT, release estavel em breve.
-
-        <repository>
-            <id>snapshots-repo</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-
 
 ## Exemplos
 
