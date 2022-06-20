@@ -67,7 +67,7 @@ public enum Fillers implements IFiller {
      * @param toFill
      * @param length
      * @return String preenchida
-     * @see org.jrimum.texgit.type.component.Filler#fill(java.lang.String, int)
+     * @see org.jrimum.texgit.Filler#fill(java.lang.String, int)
      */
     public String fill(String toFill, int length) {
         return filler.fill(toFill, length);
@@ -77,7 +77,7 @@ public enum Fillers implements IFiller {
      * @param tofill
      * @param length
      * @return String preenchida
-     * @see org.jrimum.texgit.type.component.Filler#fill(long, int)
+     * @see org.jrimum.texgit.Filler#fill(long, int)
      */
     public String fill(long tofill, int length) {
         return filler.fill(tofill, length);
@@ -87,7 +87,7 @@ public enum Fillers implements IFiller {
      * @param tofill
      * @param length
      * @return String preenchida
-     * @see org.jrimum.texgit.type.component.Filler#fill(int, int)
+     * @see org.jrimum.texgit.Filler#fill(int, int)
      */
     public String fill(int tofill, int length) {
         return filler.fill(tofill, length);
@@ -97,7 +97,7 @@ public enum Fillers implements IFiller {
      * @param tofill
      * @param length
      * @return String preenchida
-     * @see org.jrimum.texgit.type.component.Filler#fill(short, int)
+     * @see org.jrimum.texgit.Filler#fill(short, int)
      */
     public String fill(short tofill, int length) {
         return filler.fill(tofill, length);
@@ -107,7 +107,7 @@ public enum Fillers implements IFiller {
      * @param tofill
      * @param length
      * @return String preenchida
-     * @see org.jrimum.texgit.type.component.Filler#fill(byte, int)
+     * @see org.jrimum.texgit.Filler#fill(byte, int)
      */
     public String fill(byte tofill, int length) {
         return filler.fill(tofill, length);
@@ -117,7 +117,7 @@ public enum Fillers implements IFiller {
      * @param tofill
      * @param length
      * @return String preenchida
-     * @see org.jrimum.texgit.type.component.Filler#fill(char, int)
+     * @see org.jrimum.texgit.Filler#fill(char, int)
      */
     public String fill(char tofill, int length) {
         return filler.fill(tofill, length);
@@ -127,7 +127,7 @@ public enum Fillers implements IFiller {
      * @param tofill
      * @param length
      * @return String preenchida
-     * @see org.jrimum.texgit.type.component.Filler#fill(double, int)
+     * @see org.jrimum.texgit.Filler#fill(double, int)
      */
     public String fill(double tofill, int length) {
         return filler.fill(tofill, length);
@@ -137,7 +137,7 @@ public enum Fillers implements IFiller {
      * @param tofill
      * @param length
      * @return String preenchida
-     * @see org.jrimum.texgit.type.component.Filler#fill(float, int)
+     * @see org.jrimum.texgit.Filler#fill(float, int)
      */
     public String fill(float tofill, int length) {
         return filler.fill(tofill, length);
@@ -147,7 +147,7 @@ public enum Fillers implements IFiller {
      * @param tofill
      * @param length
      * @return String preenchida
-     * @see org.jrimum.texgit.type.component.Filler#fill(java.lang.Object, int)
+     * @see org.jrimum.texgit.Filler#fill(java.lang.Object, int)
      */
     public String fill(Object tofill, int length) {
         return filler.fill(tofill, length);
@@ -158,7 +158,7 @@ public enum Fillers implements IFiller {
      * @param length
      * @return String preenchida
      * @see
-     * org.jrimum.texgit.type.component.Filler#fill(org.jrimum.texgit.TextStream,
+     * org.jrimum.texgit.Filler#fill(org.jrimum.texgit.TextStream,
      * int)
      */
     public String fill(TextStream tofill, int length) {
