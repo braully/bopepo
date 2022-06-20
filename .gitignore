@@ -9,3 +9,4 @@
 /src/test/java/com/github/braully/boleto/TestRemessaExemplos.java
 /src/test/java/com/github/braully/boleto/TestBoletoFacadeExemplos.java
 /.idea/
+/sh/settings-private.xml
