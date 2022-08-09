@@ -336,6 +336,16 @@ public enum BancosSuportados{
 	BANCOOB("756", "02038232000164", "BANCO COOPERATIVO DO BRASIL S.A. - BANCOOB", "Banco Comercial Cooperativo");
 
 	/**
+	 * Tipo enumerado que representa o <strong>UNICRED</strong>, código de
+	 * compensação <strong><tt>136</tt></strong> <a
+	 * href="https://www.unicred.com.br/">site</a>.
+	 *
+	 * @since 0.2
+	 */
+	UNICRED("136", "00315557000111", "UNICRED COOPERATIVA", "Unicred do Brasil");
+	/**
+
+	/**
 	 * Singleton <code>Map</code> para pesquisa por bancos suportados no
 	 * componente.
 	 *
@@ -370,6 +380,7 @@ public enum BancosSuportados{
 		suportados.put(UNIPRIMEPR.codigoDeCompensacaoBACEN, UNIPRIMEPR);
 		suportados.put(UNIPRIMEMS.codigoDeCompensacaoBACEN, UNIPRIMEMS);
 		suportados.put(BANCO_B2S.codigoDeCompensacaoBACEN, BANCO_B2S);
+		suportados.put(UNICRED.codigoDeCompensacaoBACEN, UNICRED);
 	}
 
 	/**
