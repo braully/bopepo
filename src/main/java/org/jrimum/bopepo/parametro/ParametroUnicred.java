@@ -33,7 +33,7 @@ import org.jrimum.domkee.financeiro.banco.ParametroBancario;
 /**
  * Parâmetros bancários específicos para o {@link BancosSuportados#UNICRED}.
  *
- * @author muriloht
+ * @author marcos.favaretto
  *
  * @version 0.2.3
  *
