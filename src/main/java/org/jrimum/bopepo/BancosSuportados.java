@@ -333,7 +333,7 @@ public enum BancosSuportados{
 	 *
 	 * @since 0.2
 	 */
-	BANCOOB("756", "02038232000164", "BANCO COOPERATIVO DO BRASIL S.A. - BANCOOB", "Banco Comercial Cooperativo");
+	BANCOOB("756", "02038232000164", "BANCO COOPERATIVO DO BRASIL S.A. - BANCOOB", "Banco Comercial Cooperativo"),
 
 	/**
 	 * Tipo enumerado que representa o <strong>UNICRED</strong>, código de
