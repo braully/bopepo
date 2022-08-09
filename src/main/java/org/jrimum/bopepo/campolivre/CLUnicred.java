@@ -119,19 +119,15 @@ class CLUnicred extends AbstractCLUnicred {
 	private static final Integer AGENCIA_LENGTH = Integer.valueOf(4);
 
 	/**
-	 * Tamanho do campo Carteira = 3.
+	 * Tamanho do campo Conta Bancária = 10.
 	 */
-	private static final Integer CARTEIRA_LENGTH = Integer.valueOf(3);
+	private static final Integer CONTA_LENGTH = Integer.valueOf(10);
 
 	/**
 	 * Tamanho do campo Nosso Número = 11.
 	 */
 	private static final Integer NOSSO_NUMERO_LENGTH = Integer.valueOf(11);
 
-	/**
-	 * Tamanho do campo Operação = 7.
-	 */
-	private static final Integer OPERACAO_LENGHT = Integer.valueOf(7);
 
 	/**
 	 * Cria um campo livre instanciando o número de fields ({@code FIELDS_LENGTH}) deste campo.
@@ -157,8 +153,6 @@ class CLUnicred extends AbstractCLUnicred {
 		checkCarteiraNotNull(titulo);
 		checkCodigoDaCarteira(titulo);
 		checkCodigoDaCarteiraMenorOuIgualQue(titulo, 999);
-		checkParametroBancario(titulo, ParametroUnicred.OPERACAO);
-		checkParametroBancarioMenorOuIgualQue(titulo, ParametroUnicred.OPERACAO, 9999999);
 		checkNossoNumero(titulo);
 		checkTamanhoDoNossoNumero(titulo, NN10);
 	}
@@ -172,8 +166,7 @@ class CLUnicred extends AbstractCLUnicred {
 	protected void addFields(Titulo titulo) {
 
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getAgencia().getCodigo(), AGENCIA_LENGTH, Fillers.ZERO_LEFT));
-		this.add(new FixedField<Integer>(titulo.getContaBancaria().getCarteira().getCodigo(), CARTEIRA_LENGTH, Fillers.ZERO_LEFT));
-		this.add(new FixedField<Integer>(titulo.getParametrosBancarios().<Integer>getValor(ParametroUnicred.OPERACAO), OPERACAO_LENGHT, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Integer>(titulo.getContaBancaria().getContaBancaria().getCodigo(), CONTA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(titulo.getNossoNumero() + titulo.getDigitoDoNossoNumero(), NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
 	}
 }
