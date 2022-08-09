@@ -111,7 +111,7 @@ class CLUnicred extends AbstractCLUnicred {
 	/**
 	 * Número de campos = 4.
 	 */
-	private static final Integer FIELDS_LENGTH = Integer.valueOf(4);
+	private static final Integer FIELDS_LENGTH = Integer.valueOf(3);
 
 	/**
 	 * Tamanho do campo Agência = 4.
