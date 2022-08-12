@@ -165,8 +165,10 @@ class CLUnicred extends AbstractCLUnicred {
 	@Override
 	protected void addFields(Titulo titulo) {
 
+		String contaBacariaComVerificador = String.valueOf(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta()) + titulo.getContaBancaria().getNumeroDaConta().getDigitoDaConta();
+
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getAgencia().getCodigo(), AGENCIA_LENGTH, Fillers.ZERO_LEFT));
-		this.add(new FixedField<Integer>(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta(), CONTA_LENGTH, Fillers.ZERO_LEFT));
+		this.add(new FixedField<Integer>(Integer.valueOf(contaBacariaComVerificador), CONTA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(titulo.getNossoNumero() + titulo.getDigitoDoNossoNumero(), NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
 	}
 }
