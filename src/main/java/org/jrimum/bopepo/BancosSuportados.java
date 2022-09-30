@@ -342,7 +342,16 @@ public enum BancosSuportados{
 	 *
 	 * @since 0.2
 	 */
-	UNICRED("136", "00315557000111", "UNICRED COOPERATIVA", "Unicred do Brasil");
+	UNICRED("136", "00315557000111", "UNICRED COOPERATIVA", "Unicred do Brasil"),
+
+	/**
+     * Tipo enumerado que representa o <strong>ABC Brasil</strong>, código de
+     * compensação <strong><tt>246</tt></strong> <a
+     * href="https://www.abcbrasil.com.br/">site</a>.
+     *
+     * @since 0.2
+     */
+    ABCBRASIL("246", "28195667000106", "ABC Brasil", "ABC Brasil");
 	/**
 
 	/**
@@ -381,6 +390,7 @@ public enum BancosSuportados{
 		suportados.put(UNIPRIMEMS.codigoDeCompensacaoBACEN, UNIPRIMEMS);
 		suportados.put(BANCO_B2S.codigoDeCompensacaoBACEN, BANCO_B2S);
 		suportados.put(UNICRED.codigoDeCompensacaoBACEN, UNICRED);
+		suportados.put(ABCBRASIL.codigoDeCompensacaoBACEN, ABCBRASIL);
 	}
 
 	/**
