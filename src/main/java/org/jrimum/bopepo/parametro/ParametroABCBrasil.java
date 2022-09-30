@@ -31,7 +31,7 @@ package org.jrimum.bopepo.parametro;
 import org.jrimum.bopepo.BancosSuportados;
 import org.jrimum.domkee.financeiro.banco.ParametroBancario;
 /**
- * Parâmetros bancários específicos para o {@link BancosSuportados#UNICRED}.
+ * Parâmetros bancários específicos para o {@link BancosSuportados#ABCBRASIL}.
  *
  * @author marcos.favaretto
  *
@@ -39,6 +39,6 @@ import org.jrimum.domkee.financeiro.banco.ParametroBancario;
  *
  * @since 0.2
  */
-public enum ParametroUnicred implements ParametroBancario<ParametroUnicred> {
+public enum ParametroABCBrasil implements ParametroBancario<ParametroABCBrasil> {
 	OPERACAO;
 }
