@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -32,7 +32,7 @@
     <scm>
         <url>http://github.com/jrimum/bopepo</url>
     </scm>
-	
+
     <developers>
         <developer>
             <name>Gilmar P. S. L.</name>
@@ -54,7 +54,7 @@
     </properties>
 
     <build>
-	
+
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -63,7 +63,7 @@
                 </excludes>
             </resource>
         </resources>
-		
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -136,15 +136,20 @@
                 <version>2.8.1</version>
             </plugin>
         </plugins>
-		
+
     </build>
 
     <dependencies>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
+       <dependency>
+	    	<groupId>org.apache.logging.log4j</groupId>
+	   		<artifactId>log4j-api</artifactId>
+	    	<version>2.17.2</version>
+  		</dependency>
+		<dependency>
+		  <groupId>org.apache.logging.log4j</groupId>
+		  <artifactId>log4j-core</artifactId>
+		  <version>2.17.2</version>
+		</dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -244,5 +249,5 @@
             <url>http://jrimum.org/maven/content/repositories/org.jrimum.releases/</url>
         </repository>
     </distributionManagement>
-	
+
 </project>

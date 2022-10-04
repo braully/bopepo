@@ -953,7 +953,7 @@ public class LayoutsSuportados {
 
 		// Cabeçalho
 		TagLayout cabecalho = _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(cabecalho());
-		cabecalho.get(campoBancoNome).value("Banco Bradesco S.A.");
+		cabecalho.get(campoBancoNome).value("BANCO ITAU SA");
 		cabecalho.get(campoBancoCodigo).value(codigoBanco);
 
 		cabecalho.get("versaoLayoutArquivo").value("080");
@@ -961,7 +961,7 @@ public class LayoutsSuportados {
 		// cabecalhoLote
 		TagLayout cabecalhoLote = _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(cabecalhoLote());
 		cabecalhoLote.get(campoBancoCodigo).value(codigoBanco);
-		cabecalhoLote.get("versaoLayoutLote").value("031");
+		cabecalhoLote.get("versaoLayoutLote").value("040");
 
 		// SegmentoA
 		TagLayout segmentoA = _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoA());
