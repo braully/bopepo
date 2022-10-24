@@ -168,11 +168,9 @@ class CLABCBrasil extends AbstractCLABCBrasil {
 	@Override
 	protected void addFields(Titulo titulo) {
 
-		String contaBacariaComVerificador = String.valueOf(titulo.getContaBancaria().getNumeroDaConta().getCodigoDaConta()) + titulo.getContaBancaria().getNumeroDaConta().getDigitoDaConta();
-
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getAgencia().getCodigo(), AGENCIA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getCarteira().getCodigo(), NUMERO_CARTEIRA_TITULO_LENGHT, Fillers.ZERO_LEFT));
-        this.add(new FixedField<Integer>(titulo.getParametrosBancarios().<Integer>getValor(ParametroABCBrasil.OPERACAO), NUMERO_OPERACAO_LENGHT, Fillers.ZERO_LEFT));
+        this.add(new FixedField<Long>(titulo.getParametrosBancarios().<Long>getValor(ParametroABCBrasil.OPERACAO), NUMERO_OPERACAO_LENGHT, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(titulo.getNossoNumero() + titulo.getDigitoDoNossoNumero(), NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
 	}
 }
