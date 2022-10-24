@@ -122,9 +122,9 @@ class CLABCBrasil extends AbstractCLABCBrasil {
 	private static final Integer NUMERO_CARTEIRA_TITULO_LENGHT = Integer.valueOf(3);
 
 	/**
-	 * Tamanho do campo Número da Operação = 7.
+	 * Tamanho do campo Número da Operação = 20.
 	 */
-	private static final Integer NUMERO_OPERACAO_LENGHT = Integer.valueOf(7);
+	private static final Integer NUMERO_OPERACAO_LENGHT = Integer.valueOf(20);
 
 	/**
 	 * Tamanho do campo Nosso Número = 11.
