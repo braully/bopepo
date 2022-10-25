@@ -122,9 +122,9 @@ class CLABCBrasil extends AbstractCLABCBrasil {
 	private static final Integer NUMERO_CARTEIRA_TITULO_LENGHT = Integer.valueOf(3);
 
 	/**
-	 * Tamanho do campo Número da Operação = 20.
+	 * Tamanho do campo Número da Operação = 7.
 	 */
-	private static final Integer NUMERO_OPERACAO_LENGHT = Integer.valueOf(20);
+	private static final Integer NUMERO_OPERACAO_LENGHT = Integer.valueOf(7);
 
 	/**
 	 * Tamanho do campo Nosso Número = 11.
@@ -170,7 +170,7 @@ class CLABCBrasil extends AbstractCLABCBrasil {
 
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getAgencia().getCodigo(), AGENCIA_LENGTH, Fillers.ZERO_LEFT));
 		this.add(new FixedField<Integer>(titulo.getContaBancaria().getCarteira().getCodigo(), NUMERO_CARTEIRA_TITULO_LENGHT, Fillers.ZERO_LEFT));
-        this.add(new FixedField<Long>(titulo.getParametrosBancarios().<Long>getValor(ParametroABCBrasil.OPERACAO), NUMERO_OPERACAO_LENGHT, Fillers.ZERO_LEFT));
+        this.add(new FixedField<Integer>(titulo.getParametrosBancarios().<Integer>getValor(ParametroABCBrasil.OPERACAO), NUMERO_OPERACAO_LENGHT, Fillers.ZERO_LEFT));
 		this.add(new FixedField<String>(titulo.getNossoNumero() + titulo.getDigitoDoNossoNumero(), NOSSO_NUMERO_LENGTH, Fillers.ZERO_LEFT));
 	}
 }
