@@ -878,7 +878,8 @@ public class LayoutsSuportados {
 					field("outrasInfos").length(40).filler(Fillers.WHITE_SPACE_RIGHT),
 					field("complTipoServico").length(2).value("01"), // crédito em conta
 					field("codigoFinalidadeDaTED").length(5).value("00010"), // crédito em conta
-					fbranco().length(5),
+					field("finalidadePagamento").length(2).value("  "), // finalidade pagamento alguns casos CC
+					fbranco().length(3),
 					field("avisoAoFavorecido").length(1).value("0"), // crédito em conta
 					// Códigos das Ocorrências p/ Retorno
 					field("codigoDasOcorrenciasParaRetorno").length(10).filler(Fillers.WHITE_SPACE_RIGHT)
@@ -997,23 +998,40 @@ public class LayoutsSuportados {
 		layout.get("banco").value(codigoBanco);
 		layout.get("url").withValue(
 				"https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0339-mp-operacionais-troca-arquivos-240-posicoes.pdf");
-		layout.get("versao").value("80");
+		layout.get("versao").value("89");
 
 		// Cabeçalho
 		TagLayout cabecalho = _LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA.get(cabecalho());
 		cabecalho.get(campoBancoNome).value("Banco Bradesco S.A.");
 		cabecalho.get(campoBancoCodigo).value(codigoBanco);
 
-		cabecalho.get("versaoLayoutArquivo").value("080");
-
+		cabecalho.get("versaoLayoutArquivo").value("089");
+		/*
+		 * o bradesco utiliza apenas 6 charas para o codigo do convenio.. preencher à esquerda e deixar espaco em branco a direita 
+		 */
+		//cabecalho.get("convenio").filler(Fillers.WHITE_SPACE_RIGHT).length(20);
+		
 		// cabecalhoLote
 		TagLayout cabecalhoLote = _LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA.get(cabecalhoLote());
 		cabecalhoLote.get(campoBancoCodigo).value(codigoBanco);
-		cabecalhoLote.get("versaoLayoutLote").value("031");
+		cabecalhoLote.get("versaoLayoutLote").value("045");
+		//cabecalhoLote.get("convenio").filler(Fillers.WHITE_SPACE_RIGHT).length(20);
+
+		TagLayout cabecalhoLoteUF = cabecalhoLote.get("uf");
+
+		//REMOVENDO A POSICAO ATUAL E MUDANDO PARA 01
+		cabecalhoLote.filhos.remove(22);
+
+		cabecalhoLote.insertAfter(cabecalhoLoteUF, field("formaPagamento").value("01").length(2), fbranco().length(16));
 
 		// SegmentoA
 		TagLayout segmentoA = _LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoA());
 		segmentoA.get(campoBancoCodigo).value(codigoBanco);
+
+		segmentoA.get("complTipoServico").value("  ");
+		segmentoA.get("finalidadePagamento").value("CC");
+
+	
 
 		// SegmentoB
 		TagLayout segmentoB = _LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoB());

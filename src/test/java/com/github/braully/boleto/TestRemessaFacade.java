@@ -379,6 +379,86 @@ public class TestRemessaFacade {
 	}
 
 	@Test
+	public void testRemessaPagamentoBradesco240() {
+		RemessaFacade remessa = new RemessaFacade(LayoutsSuportados.getLayoutCNAB240PagamentoRemessa("237"));
+
+		Assert.assertEquals(true, remessa.isPermiteQtdeMoeda());
+
+
+		String razaoSocial = "EMPRESA TESTE XYZ";
+		String cnpj = "11.222.333/0001-44";
+
+		String numeroConvenio = "555555";
+		
+                //testando preenchimento automatico do digito veriricador como 0
+		String agenciaComDigito = "01110";
+		String contaComDigito = "0011111-1";
+		String DAC = " ";
+		int sequencialRegistro = 1;
+
+		remessa.addNovoCabecalho()
+		.dataGeracao(new Date())
+		.horaGeracao(new Date())
+		.sequencialArquivo(22)
+		.cedente(razaoSocial, cnpj)
+		.convenio(numeroConvenio, agenciaComDigito, contaComDigito, DAC);
+
+		remessa.addNovoCabecalhoLote()
+				.forma(1)// 1 = Crédito em Conta Corrente mesmo banco 3 = doc/ted outro banco
+				.convenio(numeroConvenio, agenciaComDigito, contaComDigito, DAC)
+				.cedente(razaoSocial, cnpj)
+				.endereco("AV TESTE","111","","São Paulo","01104010", "SP");
+
+
+		BigDecimal valorPagamento = new BigDecimal(5.82).multiply(new BigDecimal(100)).setScale(0,BigDecimal.ROUND_HALF_UP);
+
+		remessa.addNovoDetalheSegmentoA()
+		.numeroDocumento("1")
+		.formaDeTransferencia("000")
+		.favorecidoCodigoBanco("033")
+		.favorecidoAgencia("1234-5")
+		.favorecidoConta("1234-5")
+		 //testando sanitize remover acentos e transformar em maiusculo
+		.favorecidoNome("José da Silva")
+		.dataPagamento(new Date())
+		.valor(valorPagamento)
+		.sequencialRegistro(sequencialRegistro);
+
+		remessa.addNovoDetalheSegmentoB()
+		.numeroDocumento(1)
+		.favorecidoTipoInscricao("1")
+		 //testando sanitize apenasNumeros
+		.favorecidoCPFCNPJ("111.222.33/4-----55")
+		.valor(valorPagamento.toString())
+		.sequencialRegistro(sequencialRegistro)
+		.setValue("data",new Date())
+		.setValue("lote",1);
+
+
+		RodapeArquivo rodapeLote = remessa.addNovoRodapeLote();
+
+		rodapeLote
+		.quantidadeRegistros(24)
+		.valorTotalRegistros(valorPagamento.toString())
+		.cedente(razaoSocial, cnpj)
+		.convenio(numeroConvenio, agenciaComDigito, contaComDigito, DAC)
+		.setValue("lote",1);
+
+		if (remessa.isPermiteQtdeMoeda()) {
+			rodapeLote.setValue("qtdeMoeda", valorPagamento.multiply(new BigDecimal(100000)).setScale(0).toString());
+		}
+
+
+		remessa.addNovoRodape()
+		.quantidadeRegistros(14)
+		.quantidadeLotes(1);
+
+		String remessaStr = remessa.render();
+		System.out.println(remessaStr);
+	}
+
+
+	@Test
 	public void testRemessaPagamentoBB240() {
 		RemessaFacade remessa = new RemessaFacade(LayoutsSuportados.getLayoutCNAB240PagamentoRemessa("001"));
 
