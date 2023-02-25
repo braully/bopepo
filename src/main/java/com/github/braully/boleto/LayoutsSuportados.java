@@ -1002,26 +1002,29 @@ public class LayoutsSuportados {
 
 		// Cabeçalho
 		TagLayout cabecalho = _LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA.get(cabecalho());
-		cabecalho.get(campoBancoNome).value("Banco Bradesco S.A.");
-		cabecalho.get(campoBancoCodigo).value(codigoBanco);
-
+		cabecalho.get(campoBancoNome).value("Bradesco");
+		cabecalho.get(campoBancoCodigo).value(codigoBanco);		
 		cabecalho.get("versaoLayoutArquivo").value("089");
-		/*
-		 * o bradesco utiliza apenas 6 charas para o codigo do convenio.. preencher à esquerda e deixar espaco em branco a direita 
-		 */
-		//cabecalho.get("convenio").filler(Fillers.WHITE_SPACE_RIGHT).length(20);
 		
+		/*
+		* o bradesco utiliza apenas 6 charas para o codigo do convenio.. preencher à esquerda e deixar espaco em branco a direita 
+		*/
+		cabecalho.get("convenio").padding(Fillers.WHITE_SPACE_RIGHT);
+
+		//REMOVENDO A densidade do arquivo atual (filho indice 18) E incluindo com valor 01600
+		cabecalho.filhos.remove(18);
+		cabecalho.insertAfter(cabecalho.get("versaoLayoutArquivo"), field("densidadeArquivo").value("01600").length(5));
+
 		// cabecalhoLote
 		TagLayout cabecalhoLote = _LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA.get(cabecalhoLote());
 		cabecalhoLote.get(campoBancoCodigo).value(codigoBanco);
 		cabecalhoLote.get("versaoLayoutLote").value("045");
-		//cabecalhoLote.get("convenio").filler(Fillers.WHITE_SPACE_RIGHT).length(20);
-
+		cabecalhoLote.get("convenio").padding(Fillers.WHITE_SPACE_RIGHT);
+	
+		
+		//REMOVENDO A forma de pagamento atual (filho indice 22) E incluindo com valor 01
+		cabecalhoLote.filhos.remove(22);		
 		TagLayout cabecalhoLoteUF = cabecalhoLote.get("uf");
-
-		//REMOVENDO A POSICAO ATUAL E MUDANDO PARA 01
-		cabecalhoLote.filhos.remove(22);
-
 		cabecalhoLote.insertAfter(cabecalhoLoteUF, field("formaPagamento").value("01").length(2), fbranco().length(16));
 
 		// SegmentoA
