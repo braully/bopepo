@@ -866,8 +866,9 @@ public class LayoutsSuportados {
 					fbranco().length(1),
 					ffavorecidoNome().length(30).filler(Fillers.WHITE_SPACE_RIGHT),
 
-					// Número de Documento Cliente que identifica o pagto. ex: nota fiscal
-					fbranco().length(20),
+					// Número de Documento Cliente que identifica o pagto. ex: nota fiscal incrementar de 1 em 1
+					field("numeroDocumento").length(6).filler(Fillers.WHITE_SPACE_LEFT),
+					field("").length(14).filler(Fillers.WHITE_SPACE_RIGHT),
 					fdataPagamento().length(8),
 					field("moeda").length(3).value("BRL"),
 					field("qtdeMoeda").length(15).value("000000000000000"),
@@ -1011,7 +1012,7 @@ public class LayoutsSuportados {
 		*/
 		cabecalho.get("convenio").padding(Fillers.WHITE_SPACE_RIGHT);
 
-		//REMOVENDO A densidade do arquivo atual (filho indice 18) E incluindo com valor 01600
+		//REMOVENDO - A densidade do arquivo atual (filho indice 18) E incluindo com valor 01600
 		cabecalho.filhos.remove(18);
 		cabecalho.insertAfter(cabecalho.get("versaoLayoutArquivo"), field("densidadeArquivo").value("01600").length(5));
 
@@ -1022,7 +1023,7 @@ public class LayoutsSuportados {
 		cabecalhoLote.get("convenio").padding(Fillers.WHITE_SPACE_RIGHT);
 	
 		
-		//REMOVENDO A forma de pagamento atual (filho indice 22) E incluindo com valor 01
+		//REMOVENDO - A forma de pagamento atual (filho indice 22) E incluindo com valor 01
 		cabecalhoLote.filhos.remove(22);		
 		TagLayout cabecalhoLoteUF = cabecalhoLote.get("uf");
 		cabecalhoLote.insertAfter(cabecalhoLoteUF, field("formaPagamento").value("01").length(2), fbranco().length(16));
@@ -1033,8 +1034,7 @@ public class LayoutsSuportados {
 
 		segmentoA.get("complTipoServico").value("  ");
 		segmentoA.get("finalidadePagamento").value("CC");
-
-	
+		
 
 		// SegmentoB
 		TagLayout segmentoB = _LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoB());

@@ -396,6 +396,9 @@ public class TestRemessaFacade {
 		String DAC = " ";
 		int sequencialRegistro = 1;
 
+                String numeroDocumento = "";
+
+
 		remessa.addNovoCabecalho()
 		.dataGeracao(new Date())
 		.horaGeracao(new Date())
@@ -412,8 +415,12 @@ public class TestRemessaFacade {
 
 		BigDecimal valorPagamento = new BigDecimal(5.82).multiply(new BigDecimal(100)).setScale(0,BigDecimal.ROUND_HALF_UP);
 
+                if (remessa.isExigeNumeroDocumento()) {
+                        numeroDocumento = "1";
+		}
+
 		remessa.addNovoDetalheSegmentoA()
-		.numeroDocumento("1")
+		.numeroDocumento(numeroDocumento)
 		.formaDeTransferencia("000")
 		.favorecidoCodigoBanco("033")
 		.favorecidoAgencia("1234-5")
@@ -464,7 +471,6 @@ public class TestRemessaFacade {
 
 		Assert.assertEquals(false, remessa.isPermiteQtdeMoeda());
 
-
 		String razaoSocial = "ACME S.A LTDA.";
 		String cnpj = "111.222.33.0001/44";
 
@@ -473,6 +479,7 @@ public class TestRemessaFacade {
 		String contaComDigito = "0000123-X";
 		String DAC = " ";
 		int sequencialRegistro = 1;
+                String numeroDocumento = "";
 
 		remessa.addNovoCabecalho()
 		.dataGeracao(new Date())
@@ -487,8 +494,11 @@ public class TestRemessaFacade {
 		.cedente(razaoSocial, cnpj)
 		.endereco("Rua XYZ","123","","São Paulo","12345-123", "SP");
 
-
 		BigDecimal valorPagamento = new BigDecimal(5.82).multiply(new BigDecimal(100)).setScale(0,BigDecimal.ROUND_HALF_UP);
+
+                if (remessa.isExigeNumeroDocumento()) {
+                        numeroDocumento = "1";
+		}
 
 		remessa.addNovoDetalheSegmentoA()
 		.numeroDocumento("1")
@@ -496,6 +506,7 @@ public class TestRemessaFacade {
 		.favorecidoCodigoBanco("033")
 		.favorecidoAgencia("1234-5")
 		.favorecidoConta("1234-5")
+                .numeroDocumento(numeroDocumento)
 		 //testando sanitize remover acentos e transformar em maiusculo
 		.favorecidoNome("José da Silva")
 		.dataPagamento(new Date())
@@ -551,6 +562,7 @@ public class TestRemessaFacade {
 		String contaComDigito = "0000123-1";
 		String DAC = " ";
 		int sequencialRegistro = 1;
+                String numeroDocumento = "";
 
 		remessa.addNovoCabecalho()
 		.dataGeracao(new Date())
@@ -568,8 +580,12 @@ public class TestRemessaFacade {
 
 		BigDecimal valorPagamento = new BigDecimal(5.82).multiply(new BigDecimal(100)).setScale(0,BigDecimal.ROUND_HALF_UP);
 
+                if (remessa.isExigeNumeroDocumento()) {
+                        numeroDocumento = "123456";
+		}
+
 		remessa.addNovoDetalheSegmentoA()
-		.numeroDocumento("1")
+		.numeroDocumento(numeroDocumento)
 		.formaDeTransferencia("000")
 		.favorecidoCodigoBanco("341")
 		.favorecidoAgencia("1234-5")

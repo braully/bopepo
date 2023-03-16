@@ -67,6 +67,37 @@ public class TagLayout implements Serializable {
 
 	}
 
+
+	public boolean isExigeNumeroDocumento() {
+
+		// hcosta: unica maneira que encontrei... tenho certeza que tem um jeito mais
+		// inteligente de fazer isso
+
+		try {
+			TagLayout tagLayout = null;
+
+			if (this.getNome().equals("layout")) {
+				tagLayout = this;
+			} else {
+				tagLayout = this.get("layout");
+			}
+
+			if (tagLayout != null) {
+				TagLayout tagUrl = tagLayout.get("url");
+
+				if (tagUrl != null && ((String) tagUrl.value).contains("bradesco")) {
+					return true;
+				}
+			}
+		} catch (Exception e) {
+			return false;
+		}
+
+		return false;
+
+	}
+
+
 	boolean isAttr(String id) {
 		return is(this.atributos.get(id));
 	}

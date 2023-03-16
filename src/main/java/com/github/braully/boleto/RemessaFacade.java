@@ -24,13 +24,14 @@ import org.apache.logging.log4j.Logger;
  */
 public class RemessaFacade extends ArquivoFacade {
 
-
 	public static Logger logger = LogManager.getLogger(ArquivoFacade.class);
-
-
 
     public boolean isPermiteQtdeMoeda() {
 		return this.template.isPermiteQtdeMoeda();
+	}
+
+    public boolean isExigeNumeroDocumento() {
+		return this.template.isExigeNumeroDocumento();
 	}
 
 	public RemessaFacade(TagLayout template) {
