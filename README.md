@@ -12,7 +12,7 @@ com os seguintes objetivos:
 - Refatorar pacotes reduzindo a quantidade em unidades maiores e coesas (concluído)
 - Biblioteca pra gerar boletos, arquivos de remessa e retorno  (concluído)
 - Façade para facilitar o uso da biblioteca (concluído)
-- Disponiblizar uma versão estável no repositorio maven central (futuro)
+- Disponiblizar uma versão estável no repositorio maven central (concluído)
 
 #### Suporte a boletos com registro dos principais bancos
 
