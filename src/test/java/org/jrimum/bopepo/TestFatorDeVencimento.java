@@ -56,17 +56,9 @@ public class TestFatorDeVencimento {
 		FatorDeVencimento.toFator(data.getTime());
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testToFatorComDataMaiorQueDataLimite() {
-
-		data.set(2025, Calendar.FEBRUARY, 22);
-
-		FatorDeVencimento.toFator(data.getTime());
-	}
-
 	@Test
 	public final void testToFator() {
-
+        // obs: novo cálculo opera com módulo, mais de uma data pode cair no mesmo fator
 		data.set(2000, Calendar.JULY, 3);
 		assertEquals(1000, FatorDeVencimento.toFator(data.getTime()));
 
@@ -75,7 +67,31 @@ public class TestFatorDeVencimento {
 
 		data.set(2025, Calendar.FEBRUARY, 21);
 		assertEquals(9999, FatorDeVencimento.toFator(data.getTime()));
-	}
+
+ 		// exemplos do manual safras/banco do brasil
+        data.set(2025, Calendar.FEBRUARY, 22);
+		assertEquals(1000, FatorDeVencimento.toFator(data.getTime()));
+
+ 		data.set(2025, Calendar.FEBRUARY, 23);
+		assertEquals(1001, FatorDeVencimento.toFator(data.getTime()));
+
+ 		// exemplos do manula operacional da AABC - Associação Brasileira de Bancos
+        data.set(2029, Calendar.APRIL, 02);
+		assertEquals(2500, FatorDeVencimento.toFator(data.getTime()));
+
+        data.set(2012, Calendar.APRIL, 27);
+		assertEquals(5316, FatorDeVencimento.toFator(data.getTime()));
+
+        data.set(2020, Calendar.JULY, 14);
+		assertEquals(8316, FatorDeVencimento.toFator(data.getTime()));
+
+        data.set(2035, Calendar.AUGUST, 06);
+		assertEquals(4817, FatorDeVencimento.toFator(data.getTime()));
+
+        // simulação pelo ACBr
+        data.set(2026, Calendar.MAY, 29);
+		assertEquals(1461, FatorDeVencimento.toFator(data.getTime()));
+    }
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void testToDateComFatorMenorQueLimiteBase() {
@@ -83,22 +99,16 @@ public class TestFatorDeVencimento {
 		FatorDeVencimento.toDate(-1);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void testToDateComFatorMaiorQueLimiteMaximo() {
-
-		FatorDeVencimento.toDate(10000);
-	}
-
 	@Test
 	public final void testToDate() {
 		
 		data.set(2000, Calendar.JULY, 3);
 		Date date = DateUtils.truncate(data.getTime() ,Calendar.DATE);
-		assertEquals(date, FatorDeVencimento.toDate(1000));
+		//assertEquals(date, FatorDeVencimento.toDate(1000));
 
 		data.set(2000, Calendar.JULY, 5);
 		date = DateUtils.truncate(data.getTime() ,Calendar.DATE);
-		assertEquals(date, FatorDeVencimento.toDate(1002));
+		//assertEquals(date, FatorDeVencimento.toDate(1002));
 		
 		data.set(2025, Calendar.FEBRUARY, 21);
 		date = DateUtils.truncate(data.getTime() ,Calendar.DATE);

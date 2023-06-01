@@ -65,7 +65,7 @@ public class FatorDeVencimento{
 	 * FEBRABAN.
 	 * </p>
 	 */
-	private static final Calendar BASE_DO_FATOR_DE_VENCIMENTO = new GregorianCalendar(1997, Calendar.OCTOBER, 7);
+	private static final Calendar BASE_DO_FATOR_DE_VENCIMENTO = new GregorianCalendar(2000, Calendar.JULY, 3);
 	
 	/**
 	 * <p>
@@ -74,14 +74,14 @@ public class FatorDeVencimento{
 	 * </p>
 	 */
 	private static final Date DATA_BASE_DO_FATOR_DE_VENCIMENTO = BASE_DO_FATOR_DE_VENCIMENTO.getTime();
-
+	
 	/**
-	 *<p>
-	 * Data máxima alcançada pelo fator de vencimento com base fixada em
-	 * 07/10/1997.
-	 * </p>
-	 */
-	private static final Date DATA_LIMITE_DO_FATOR_DE_VENCIMENTO = new GregorianCalendar(2025, Calendar.FEBRUARY, 21).getTime();
+     * <p>
+     * Data máxima alcançada pelo fator de vencimento com base fixada em
+     * 21/02/2200. Anteriormente era 21/02/2025.
+     * </p>
+     */
+	private static final Date DATA_LIMITE_DO_FATOR_DE_VENCIMENTO = new GregorianCalendar(2200, Calendar.FEBRUARY, 21).getTime();
 
 	/**
 	 * <p>
@@ -111,8 +111,8 @@ public class FatorDeVencimento{
 	 * base (Teoricamente fator negativo), uma exceção do tipo
 	 * IllegalArgumentException será lançada.</li> <li>A data limite para o
 	 * cálculo do fator de vencimento é 21/02/2025 (Fator de vencimento = 9999).
-	 * Caso a data de vencimento seja posterior a data limite, uma exceção do
-	 * tipo IllegalArgumentException será lançada.</li> </ul>
+	 * Caso a data de vencimento seja posterior a data limite, o cálculo passa a
+	 * contar de 1000 a partir de 22/02/2025.</li> </ul>
 	 * 
 	 * <p>
 	 * <strong>ATENÇÃO</strong>, esse cálculo se refere a títulos em cobrança,
@@ -144,7 +144,7 @@ public class FatorDeVencimento{
 			
 			checkIntervalo(dataTruncada);
 				
-			return (int) Dates.calculeDiferencaEmDias(DATA_BASE_DO_FATOR_DE_VENCIMENTO, dataTruncada);
+			return (int) Dates.calculeDiferencaEmDias(DATA_BASE_DO_FATOR_DE_VENCIMENTO, dataTruncada) % 9000 + 1000;
 		}
 	}
 	
@@ -166,7 +166,7 @@ public class FatorDeVencimento{
 		
 		Calendar date = (Calendar) BASE_DO_FATOR_DE_VENCIMENTO.clone();
 		
-		date.add(Calendar.DAY_OF_YEAR, fator);
+		date.add(Calendar.DAY_OF_YEAR, fator >= 1000 ? fator - 1000 : fator); // não há uso desse método no bopepo, exceto no teste (TestFatorDeVencimento)
 		
 		return  DateUtils.truncate(date.getTime(), Calendar.DATE);
 	}
