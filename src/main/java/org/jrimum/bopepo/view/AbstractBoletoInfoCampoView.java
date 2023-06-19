@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright 2014 JRimum Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -9,23 +9,23 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
- * 
+ *
  * Created at: 19/01/2014 - 22:11:18
  *
  * ================================================================================
  *
  * Direitos autorais 2014 JRimum Project
  *
- * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode 
- * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma 
- * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que 
- * haja exigência legal ou acordo por escrito, a distribuição de software sob esta 
- * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam 
- * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões 
+ * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode
+ * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
+ * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
+ * haja exigência legal ou acordo por escrito, a distribuição de software sob esta
+ * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam
+ * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões
  * e limitações sob esta LICENÇA.
- * 
- * Criado em: 19/01/2014 - 22:11:18 
- * 
+ *
+ * Criado em: 19/01/2014 - 22:11:18
+ *
  */
 package org.jrimum.bopepo.view;
 
@@ -38,15 +38,14 @@ import static org.jrimum.bopepo.view.BoletoInfoCampoEndereco.getTextoEnderecoLin
 import static org.jrimum.bopepo.view.BoletoInfoCampoLogoBanco.getImagemBanco;
 import static org.jrimum.bopepo.view.BoletoInfoCampoNossoNumero.getTextoNossoNumero;
 import static org.jrimum.bopepo.view.BoletoInfoCampoPessoa.getTextoNomeCprfDaPessoa;
-import static org.jrimum.utilix.Objects.isNotNull;
-import static org.jrimum.utilix.Objects.whenNull;
 import static org.jrimum.utilix.DateFormat.DDMMYYYY_B;
 import static org.jrimum.utilix.DecimalFormat.MONEY_DD_BR;
+import static org.jrimum.utilix.Objects.isNotNull;
+import static org.jrimum.utilix.Objects.whenNull;
 
 import java.awt.Image;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.Optional;
 
 import org.jrimum.bopepo.Boleto;
 import org.jrimum.bopepo.LinhaDigitavel;

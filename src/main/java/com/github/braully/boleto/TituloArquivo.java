@@ -15,31 +15,7 @@
  */
 package com.github.braully.boleto;
 
-import static com.github.braully.boleto.TagLayout.TagCreator.fbairro;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcep;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcidade;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoBarras;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdataDesconto;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdataOcorrencia;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdataPagamento;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdataAcrescimo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fendereco;
-import static com.github.braully.boleto.TagLayout.TagCreator.fmovimentoCodigo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fnossoNumero;
-import static com.github.braully.boleto.TagLayout.TagCreator.fnumeroDocumento;
-import static com.github.braully.boleto.TagLayout.TagCreator.focorrencias;
-import static com.github.braully.boleto.TagLayout.TagCreator.frejeicoes;
-import static com.github.braully.boleto.TagLayout.TagCreator.fsacadoCpf;
-import static com.github.braully.boleto.TagLayout.TagCreator.fsacadoNome;
-import static com.github.braully.boleto.TagLayout.TagCreator.fsegmento;
-import static com.github.braully.boleto.TagLayout.TagCreator.fuf;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalor;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorAcrescimo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorDesconto;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorLiquido;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorOcorrencia;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorPagamento;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorTarifaCustas;
+import static com.github.braully.boleto.TagLayout.TagCreator.*;
 
 import java.util.ArrayList;
 

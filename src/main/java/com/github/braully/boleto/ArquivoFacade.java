@@ -17,7 +17,9 @@ package com.github.braully.boleto;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jrimum.utilix.FileUtil;
 
 /**
@@ -26,9 +28,9 @@ import org.jrimum.utilix.FileUtil;
  */
 public class ArquivoFacade {
 
-    public static Logger logger = Logger.getLogger(ArquivoFacade.class);
+    public static Logger logger = LogManager.getLogger(ArquivoFacade.class);
     /*
-    
+
      */
     TagLayout template;
 
@@ -101,8 +103,8 @@ public class ArquivoFacade {
 
     }
 
-    /* 
-    
+    /*
+
      */
     List<RegistroArquivo> registros = new ArrayList<>();
     List<String> linhas = new ArrayList<>();
@@ -117,7 +119,7 @@ public class ArquivoFacade {
     }
 
     public RegistroArquivo get(TagLayout tiporegistro) {
-        //Melhorar isso, indexar via Map
+        // Melhorar isso, indexar via Map
         for (RegistroArquivo reg : registros) {
             if (reg.layoutRegistro == tiporegistro) {
                 return reg;
@@ -132,7 +134,7 @@ public class ArquivoFacade {
 
     public List<RegistroArquivo> gets(TagLayout tiporegistro) {
         List<RegistroArquivo> regs = new ArrayList<>();
-        //Melhorar isso, indexar via Map
+        // Melhorar isso, indexar via Map
         for (RegistroArquivo reg : registros) {
             if (reg.getName().equalsIgnoreCase(tiporegistro.nome)) {
                 regs.add(reg);

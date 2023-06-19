@@ -1,6 +1,6 @@
 /*
  * Copyright 2008 JRimum Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by
@@ -8,13 +8,13 @@
  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
- * 
+ *
  * Created at: 30/03/2008 - 18:04:37
- * 
+ *
  * ================================================================================
- * 
+ *
  * Direitos autorais 2008 JRimum Project
- * 
+ *
  * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode usar
  * esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
  * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
@@ -22,16 +22,17 @@
  * esta LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
- * 
+ *
  * Criado em: 30/03/2008 - 18:04:37
- * 
+ *
  */
 
 
 package org.jrimum.bopepo;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jrimum.texgit.BlockOfFields;
 import org.jrimum.texgit.FixedField;
 import org.jrimum.utilix.Objects;
@@ -40,14 +41,14 @@ import org.jrimum.vallia.BoletoLinhaDigitavelDV;
 
 
 /**
- * 
+ *
  * Representa a linha digitável do boleto, embora a linha digitável contenha a
  * mesma informação do código de barras, essa informação é disposta de uma forma
- * diferente e são acrescentados 3 dígitos verificadores. 
- * 
- * Modelo: 
- * 
- * 
+ * diferente e são acrescentados 3 dígitos verificadores. <br />
+ * <br />
+ * Modelo: <br />
+ * <br />
+ *
  * <table border="1" cellpadding="0" cellspacing="0" style="border-collapse:
  * collapse" bordercolor="#111111" width="90%" id="linhaDigitável"> <thead>
  * <tr>
@@ -115,15 +116,15 @@ import org.jrimum.vallia.BoletoLinhaDigitavelDV;
  * <td>Posições 38 a 47 – valor nominal do título(posições 10 a 19 do código de barras) </td>
  * </tr>
  * </table>
- * 
- * 
- * 
- * 
+ *
+ * <br />
+ * <br />
+ *
  * Observações:
- * 
- * 
+ *
+ * <br />
  * <ul>
- * 
+ *
  * <li>Em cada um dos três primeiros campos, após a 5a posição, deve ser
  * inserido um ponto “.”, a fim de facilitar a visualização, para a digitação,
  * quando necessário;</li>
@@ -147,35 +148,35 @@ import org.jrimum.vallia.BoletoLinhaDigitavelDV;
  * representados no código de barras;</li>
  * <li>Os dados da linha digitável não se apresentam na mesma ordem do código
  * de barras.</li>
- * 
+ *
  * </ul>
- * 
- * 
+ *
+ *
  * @see org.jrimum.bopepo.CodigoDeBarras
- * 
+ *
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a> 
+ * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
  * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
  * @author <a href="http://www.nordestefomento.com.br">Nordeste Fomento Mercantil</a>
- * 
+ *
  * @since 0.2
- * 
+ *
  * @version 0.2
  */
 public class LinhaDigitavel extends BlockOfFields {
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = -6089634012523938802L;
-	
-	private static Logger log = Logger.getLogger(LinhaDigitavel.class);
-	
+
+	private static Logger log = LogManager.getLogger(LinhaDigitavel.class);
+
 	/**
-	 * 
+	 *
 	 */
 	private static final Integer FIELDS_LENGTH = 5;
-	
+
 	/**
 	 * <p>
 	 * Tamanho dos campos mais os espaços entre eles.
@@ -184,29 +185,29 @@ public class LinhaDigitavel extends BlockOfFields {
 	private static final Integer STRING_LENGTH = 54;
 
 	/**
-	 * 
+	 *
 	 */
 	private FixedField<InnerCampo1> innerCampo1;
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private FixedField<InnerCampo2> innerCampo2;
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private FixedField<InnerCampo3> innerCampo3;
-	
+
 	/**
 	 * <p>
 	 * Digito verificador geral.
 	 * </p>
 	 */
 	private FixedField<Integer> campo4;
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private FixedField<InnerCampo5> innerCampo5;
 
@@ -215,59 +216,59 @@ public class LinhaDigitavel extends BlockOfFields {
 	 * <p>
 	 * Cria uma linha digitável a partir do código de barras passado.
 	 * </p>
-	 * 
+	 *
 	 * @param codigoDeBarras
-	 * 
+	 *
 	 * @see CodigoDeBarras
-	 * 
+	 *
 	 * @since 0.2
 	 */
 	LinhaDigitavel(CodigoDeBarras codigoDeBarras) {
 		super();
 		setLength(STRING_LENGTH);
 		setSize(FIELDS_LENGTH);
-		
+
 		if(log.isTraceEnabled())
 			log.trace("Instanciando Linha Digitável");
-		
+
 		if(log.isDebugEnabled())
 			log.debug("codigoDeBarra instance : "+codigoDeBarras);
-		
+
 		innerCampo1 = new FixedField<InnerCampo1>(new InnerCampo1(4,11),11);
 		innerCampo2 = new FixedField<InnerCampo2>(new InnerCampo2(2,12),12);
 		innerCampo3 = new FixedField<InnerCampo3>(new InnerCampo3(2,12),12);
 		campo4 = new FixedField<Integer>(new Integer(0),1);
 		innerCampo5 = new FixedField<InnerCampo5>(new InnerCampo5(2,14),14);
-		
+
 		add(innerCampo1);
 		add(innerCampo2);
 		add(innerCampo3);
 		add(campo4);
 		add(innerCampo5);
-		
+
 		this.innerCampo1.getValue().load(codigoDeBarras);
 		this.innerCampo2.getValue().load(codigoDeBarras);
 		this.innerCampo3.getValue().load(codigoDeBarras);
-		
+
 		this.campo4.setValue(codigoDeBarras.getDigitoVerificadorGeral().getValue());
-		
+
 		if(log.isDebugEnabled())
 			log.debug("InnerCampo 4 da Linha Digitável : "+this.campo4.getValue());
-		
+
 		this.innerCampo5.getValue().load(codigoDeBarras);
-		
+
 		if(log.isDebugEnabled() || log.isTraceEnabled())
 			log.debug("linhaDigitavel instanciada : "+this.write());
 	}
 
 	/**
 	 * Escreve a linha digitável foramatada (com espaço entre os campos).
-	 * 
+	 *
 	 * @see org.jrimum.texgit.type.component.BlockOfFields#write()
 	 */
 	@Override
 	public String write(){
-		
+
 		return new StringBuilder(innerCampo1.write()).
 		append(Strings.WHITE_SPACE).
 		append(innerCampo2.write()).
@@ -281,66 +282,66 @@ public class LinhaDigitavel extends BlockOfFields {
 	}
 
 	private abstract class InnerCampo extends BlockOfFields {
-		
+
 		/**
-		 * 
+		 *
 		 */
 		private static final long serialVersionUID = 6746400538765124943L;
 		/**
-		 * 
+		 *
 		 */
 		protected final BoletoLinhaDigitavelDV calculadorDV = new BoletoLinhaDigitavelDV();
-		
-		
+
+
 		protected InnerCampo(Integer fieldsLength, Integer stringLength) {
 			super();
 			setLength(stringLength);
 			setSize(fieldsLength);
 		}
-		
+
 	}
-	
+
 	private abstract class InnerCampoFormatado extends InnerCampo {
-		
-		
+
+
 		/**
-		 * 
+		 *
 		 */
 		private static final long serialVersionUID = 3650450185403697045L;
 
 		protected InnerCampoFormatado(final Integer fieldsLength, final Integer stringLength) {
 			super(fieldsLength, stringLength);
 		}
-		
+
 		/**
 		 * <p>
-		 * 
-		 * Aplicação do seguinte requisito da FEBRABAN: 
+		 *
+		 * Aplicação do seguinte requisito da FEBRABAN: <br />
 		 * Em cada um dos três primeiros campos, após a quinta (5) posição, deve ser
 		 * inserido um ponto “.”, a fim de facilitar a visualização, para a
 		 * digitação, quando necessário.
-		 * 
+		 *
 		 * </p>
-		 * 
-		 * 
+		 *
+		 *
 		 * @see org.jrimum.texgit.type.component.BlockOfFields#write()
 		 */
 		@Override
 		public String write(){
-			
+
 			StringBuilder lineOfFields = new StringBuilder(StringUtils.EMPTY);
-			
+
 			for(FixedField<?> field : this){
 				lineOfFields.append(field.write());
 			}
-			
+
 			lineOfFields.insert(5, ".");
-			
+
 			return lineOfFields.toString();
 		}
-		
+
 	}
-	
+
 	/**
 	 * Componhe o campo 1 da linha digitável com os seguintes dados: 
 	 * <ul>
@@ -350,15 +351,15 @@ public class LinhaDigitavel extends BlockOfFields {
 	 * de barras)</li>
 	 * <li>Dígito verificador do primeiro campo</li>
 	 * </ul>
-	 * 
+	 *
 	 * @param titulo
 	 * @param codigoDeBarra
 	 * @param calculadorDV
 	 */
 	private class InnerCampo1 extends InnerCampoFormatado{
-		
+
 		/**
-		 * 
+		 *
 		 */
 		private static final long serialVersionUID = 2948116051922000890L;
 
@@ -369,12 +370,12 @@ public class LinhaDigitavel extends BlockOfFields {
 		private InnerCampo1(Integer fieldsLength, Integer stringLength) {
 			super(fieldsLength, stringLength);
 		}
-		
+
 		/**
 		 * @param codigoDeBarras
 		 */
 		private void load(CodigoDeBarras codigoDeBarras){
-				
+
 				if(log.isTraceEnabled())
 					log.trace("Compondo campo 1 da Linha Digitável");
 
@@ -382,17 +383,17 @@ public class LinhaDigitavel extends BlockOfFields {
 				add(new FixedField<String>(codigoDeBarras.write().substring(3, 4),1));
 				add(new FixedField<String>(codigoDeBarras.write().substring(19, 24),5));
 				add(new FixedField<Integer>(calculadorDV.calcule(get(0).write() + get(1).write() + get(2).write()),1));
-				
+
 				if(log.isDebugEnabled())
 					log.debug("Digito verificador do Field 1 da Linha Digitável : "+get(3).getValue());
 
-				
+
 				if(log.isDebugEnabled() || log.isTraceEnabled())
 					log.debug("Field 1 da Linha Digitável composto : "+write());
 		}
-		
+
 	}
-	
+
 	/**
 	 * Componhe o campo 2 da linha digitável com os seguintes dados: 
 	 * <ul>
@@ -400,14 +401,14 @@ public class LinhaDigitavel extends BlockOfFields {
 	 * barras)</li>
 	 * <li>Dígito verificador do segundo campo</li>
 	 * </ul>
-	 * 
+	 *
 	 * @param codigoDeBarra
 	 * @param calculadorDV
 	 */
 	private class InnerCampo2 extends InnerCampoFormatado{
 
 		/**
-		 * 
+		 *
 		 */
 		private static final long serialVersionUID = -2201847536243988819L;
 
@@ -418,28 +419,28 @@ public class LinhaDigitavel extends BlockOfFields {
 		private InnerCampo2(Integer fieldsLength, Integer stringLength) {
 			super(fieldsLength, stringLength);
 		}
-		
-		
+
+
 		/**
 		 * @param codigoDeBarras
 		 */
 		private void load(CodigoDeBarras codigoDeBarras){
-			
+
 			if(log.isTraceEnabled())
 				log.trace("Compondo campo 2 da Linha Digitável");
-			
-			add(new FixedField<String>(codigoDeBarras.write().substring(24, 34),10));				
+
+			add(new FixedField<String>(codigoDeBarras.write().substring(24, 34),10));
 			add(new FixedField<Integer>(calculadorDV.calcule(get(0).write()),1));
-			
+
 			if(log.isDebugEnabled())
 				log.debug("Digito verificador do campo 2 da Linha Digitável : "+get(1).getValue());
-			
+
 			if(log.isDebugEnabled() || log.isTraceEnabled())
 				log.debug("InnerCampo 2 da Linha Digitável composto : "+write());
 		}
-		
+
 	}
-	
+
 	/**
 	 * Componhe o campo 3 da linha digitável com os seguintes dados: 
 	 * <ul>
@@ -447,14 +448,14 @@ public class LinhaDigitavel extends BlockOfFields {
 	 * barras)</li>
 	 * <li>Dígito verificador do terceiro campo</li>
 	 * </ul>
-	 * 
+	 *
 	 * @param codigoDeBarra
 	 * @param calculadorDV
 	 */
 	private class InnerCampo3 extends InnerCampoFormatado{
-		
+
 		/**
-		 * 
+		 *
 		 */
 		private static final long serialVersionUID = -4248472044788156665L;
 
@@ -465,28 +466,28 @@ public class LinhaDigitavel extends BlockOfFields {
 		private InnerCampo3(Integer fieldsLength, Integer stringLength) {
 			super(fieldsLength, stringLength);
 		}
-		
+
 		/**
 		 * @param codigoDeBarras
 		 */
 		private void load(CodigoDeBarras codigoDeBarras){
-			
+
 			if(log.isTraceEnabled())
 				log.trace("Compondo campo 3 da Linha Digitável");
-			
-			add(new FixedField<String>(codigoDeBarras.write().substring(34, 44),10));				
+
+			add(new FixedField<String>(codigoDeBarras.write().substring(34, 44),10));
 			add(new FixedField<Integer>(calculadorDV.calcule(get(0).write()),1));
-			
+
 			if(log.isDebugEnabled())
 				log.debug("Digito verificador do campo 3 da Linha Digitável : "+get(1).getValue());
-			
+
 			if(log.isDebugEnabled() || log.isTraceEnabled())
 				log.debug("InnerCampo 3 da Linha Digitável composto : "+write());
-			
+
 		}
-		
+
 	}
-	
+
 	/**
 	 * Componhe o campo 5 da linha digitável com os seguintes dados: 
 	 * <ul>
@@ -495,13 +496,13 @@ public class LinhaDigitavel extends BlockOfFields {
 	 * <li>Posições 38 a 47 – valor nominal do título(posições 10 a 19 do
 	 * código de barras)</li>
 	 * </ul>
-	 * 
+	 *
 	 * @param codigoDeBarra
 	 */
 	private class InnerCampo5 extends InnerCampo{
 
 		/**
-		 * 
+		 *
 		 */
 		private static final long serialVersionUID = -8040082112684009827L;
 
@@ -512,23 +513,23 @@ public class LinhaDigitavel extends BlockOfFields {
 		private InnerCampo5(Integer fieldsLength, Integer stringLength) {
 			super(fieldsLength, stringLength);
 		}
-		
+
 		/**
 		 * @param codigoDeBarras
 		 */
 		private void load(CodigoDeBarras codigoDeBarras){
-			
+
 			if(log.isTraceEnabled())
 				log.trace("Compondo campo 5 da Linha Digitável");
-			
+
 			add(new FixedField<String>(codigoDeBarras.write().substring(5, 9),4));
 			add(new FixedField<String>(codigoDeBarras.write().substring(9, 19),10));
-			
+
 			if(log.isDebugEnabled() || log.isTraceEnabled())
 				log.debug("InnerCampo 5 da Linha Digitável composto : "+write());
-			
+
 		}
-		
+
 	}
 
 	@Override
