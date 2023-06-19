@@ -1,6 +1,6 @@
 /*
  * Copyright 2008 JRimum Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by
@@ -8,13 +8,13 @@
  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
- * 
+ *
  * Created at: 30/03/2008 - 18:17:54
- * 
+ *
  * ================================================================================
- * 
+ *
  * Direitos autorais 2008 JRimum Project
- * 
+ *
  * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode usar
  * esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
  * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
@@ -22,9 +22,9 @@
  * esta LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
- * 
+ *
  * Criado em: 30/03/2008 - 18:17:54
- * 
+ *
  */
 package org.jrimum.utilix;
 
@@ -45,7 +45,8 @@ import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -56,7 +57,7 @@ import org.apache.log4j.Logger;
  * @author Misael Barreto
  * @author Rômulo Augusto
  * @author <a href="http://www.nordeste-fomento.com.br">Nordeste Fomento
- * Mercantil</a>
+ *         Mercantil</a>
  *
  * @since 0.2
  *
@@ -64,506 +65,491 @@ import org.apache.log4j.Logger;
  */
 public class FileUtil {
 
-    //TODO Criar Metodo que recebe um arquivo e coisas para verificar nele, como: (isVazio,Numero de linhas, etc)
-    protected static final Logger LOG = Logger.getLogger(FileUtil.class);
+	// TODO Criar Metodo que recebe um arquivo e coisas para verificar nele, como:
+	// (isVazio,Numero de linhas, etc)
+	protected static final Logger LOG = LogManager.getLogger(FileUtil.class);
 
-    /**
-     *
-     */
-    private static final long serialVersionUID = 1227314921804015225L;
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1227314921804015225L;
 
-    public static final int EOF = -1;
-
-    public static final int CARRIAGE_RETURN = 1;
+	public static final int EOF = -1;
 
-    public static final int NEXT_LINE = 2;
+	public static final int CARRIAGE_RETURN = 1;
 
-    public static final String NEW_LINE = "\r\n";
+	public static final int NEXT_LINE = 2;
 
-    /**
-     * Retorna o conteúdo de um arquivo em um array de bytes.
-     *
-     * @param file
-     * @return Array de bytes com o conteúdo de um File
-     * @throws IOException
-     */
-    public static byte[] bytesFromFile(File file) throws IOException {
+	public static final String NEW_LINE = "\r\n";
 
-        byte[] bytes = null;
+	/**
+	 * Retorna o conteúdo de um arquivo em um array de bytes.
+	 *
+	 * @param file
+	 * @return Array de bytes com o conteúdo de um File
+	 * @throws IOException
+	 */
+	public static byte[] bytesFromFile(File file) throws IOException {
 
-        if (isNotNull(file)) {
+		byte[] bytes = null;
 
-            // medida do arquivo
-            long length = file.length();
+		if (isNotNull(file)) {
 
-            // Nao se pode criar um array usando o tipo long.
-            // Tem que ser int.
-            // Antes de converter para o tipo int cheque
-            // para assegurar que file.lenth não é maior que Integer.MAX_VALUE.
-            if (length <= Integer.MAX_VALUE) {
+			// medida do arquivo
+			long length = file.length();
 
-                InputStream is = new FileInputStream(file);
+			// Nao se pode criar um array usando o tipo long.
+			// Tem que ser int.
+			// Antes de converter para o tipo int cheque
+			// para assegurar que file.lenth não é maior que Integer.MAX_VALUE.
+			if (length <= Integer.MAX_VALUE) {
 
-                // para os dados
-                bytes = new byte[(int) length];
+				InputStream is = new FileInputStream(file);
 
-                // leitura dos bytes
-                int offset = 0;
-                int numRead = 0;
+				// para os dados
+				bytes = new byte[(int) length];
 
-                while ((offset < bytes.length)
-                        && ((numRead = is.read(bytes, offset, bytes.length - offset)) >= 0)) {
-                    offset += numRead;
-                }
+				// leitura dos bytes
+				int offset = 0;
+				int numRead = 0;
 
-                // Assegurando que todos os dados foram lidos
-                if (offset < bytes.length) {
-                    throw new IOException("Não foi possível ler completamente o arquivo. ["
-                            + file.getName() + "]");
-                }
+				while ((offset < bytes.length) && ((numRead = is.read(bytes, offset, bytes.length - offset)) >= 0)) {
+					offset += numRead;
+				}
 
-                // Feche o input stream
-                is.close();
+				// Assegurando que todos os dados foram lidos
+				if (offset < bytes.length) {
+					throw new IOException("Não foi possível ler completamente o arquivo. [" + file.getName() + "]");
+				}
 
-            } else {
-                throw new IOException("O arquivo é muito grande para esta transformação.");
-            }
+				// Feche o input stream
+				is.close();
 
-        }
+			} else {
+				throw new IOException("O arquivo é muito grande para esta transformação.");
+			}
 
-        return bytes;
-    }
+		}
 
-    /**
-     * Transforma um array de bytes em um arquivo.
-     *
-     * @param pathName
-     * @param bytes
-     * @return Objeto File com o conteúdo sendo o dos bytes
-     * @throws FileNotFoundException
-     * @throws IOException
-     */
-    public static File bytes2File(String pathName, byte[] bytes) throws FileNotFoundException, IOException {
+		return bytes;
+	}
 
-        File f = null;
+	/**
+	 * Transforma um array de bytes em um arquivo.
+	 *
+	 * @param pathName
+	 * @param bytes
+	 * @return Objeto File com o conteúdo sendo o dos bytes
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
+	public static File bytes2File(String pathName, byte[] bytes) throws FileNotFoundException, IOException {
 
-        if (isNotNull(pathName, "pathName") && isNotNull(bytes, "bytes")) {
+		File f = null;
 
-            f = new File(pathName);
+		if (isNotNull(pathName, "pathName") && isNotNull(bytes, "bytes")) {
 
-            OutputStream out = new FileOutputStream(f);
+			f = new File(pathName);
 
-            out.write(bytes);
-            out.flush();
-            out.close();
-        }
+			OutputStream out = new FileOutputStream(f);
 
-        return f;
-    }
+			out.write(bytes);
+			out.flush();
+			out.close();
+		}
 
-    /**
-     * <p>
-     * Transforma um array de bytes em um <code>ByteArrayOutputStream</code>.
-     * </p>
-     *
-     * @param bytes
-     * @return ByteArrayOutputStream ou null
-     * @throws IOException
-     *
-     * @since
-     */
-    public static ByteArrayOutputStream bytes2Stream(byte[] bytes) throws IOException {
+		return f;
+	}
 
-        ByteArrayOutputStream byteOut = null;
+	/**
+	 * <p>
+	 * Transforma um array de bytes em um <code>ByteArrayOutputStream</code>.
+	 * </p>
+	 *
+	 * @param bytes
+	 * @return ByteArrayOutputStream ou null
+	 * @throws IOException
+	 *
+	 * @since
+	 */
+	public static ByteArrayOutputStream bytes2Stream(byte[] bytes) throws IOException {
 
-        if (isNotNull(bytes, "bytes")) {
+		ByteArrayOutputStream byteOut = null;
 
-            byteOut = new ByteArrayOutputStream();
+		if (isNotNull(bytes, "bytes")) {
 
-            byteOut.write(bytes);
-        }
+			byteOut = new ByteArrayOutputStream();
 
-        return byteOut;
-    }
+			byteOut.write(bytes);
+		}
 
-    public static String readLine(File file, int lengthOfBlock,
-            int lineOrdinalNumber) {
+		return byteOut;
+	}
 
-        long position = 0;
+	public static String readLine(File file, int lengthOfBlock, int lineOrdinalNumber) {
 
-        FileChannel fc = null;
-        ByteBuffer bybff = null;
+		long position = 0;
 
-        String line = null;
+		FileChannel fc = null;
+		ByteBuffer bybff = null;
 
-        if (lengthOfBlock > 0) {
-            if (lineOrdinalNumber > 0) {
+		String line = null;
 
-                fc = getReadFileChannel(file);
+		if (lengthOfBlock > 0) {
+			if (lineOrdinalNumber > 0) {
 
-                try {
+				fc = getReadFileChannel(file);
 
-                    if (fc.size() > 0) {
+				try {
 
-                        lengthOfBlock += NEXT_LINE;
+					if (fc.size() > 0) {
 
-                        bybff = ByteBuffer.allocate(lengthOfBlock
-                                - CARRIAGE_RETURN);
+						lengthOfBlock += NEXT_LINE;
 
-                        position = ((lineOrdinalNumber - 1) * lengthOfBlock);
+						bybff = ByteBuffer.allocate(lengthOfBlock - CARRIAGE_RETURN);
 
-                        fc.position(position);
+						position = ((lineOrdinalNumber - 1) * lengthOfBlock);
 
-                        fc.read(bybff);
+						fc.position(position);
 
-                        line = new String(bybff.array());
+						fc.read(bybff);
 
-                        fc.close();
+						line = new String(bybff.array());
 
-                    } else {
-                        throw new IllegalArgumentException("file : [" + file
-                                + "] is empty!");
-                    }
+						fc.close();
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                throw new IllegalArgumentException("lineOrdinalNumber : ["
-                        + lineOrdinalNumber + "] deve ser > 0!");
-            }
-        } else {
-            throw new IllegalArgumentException("lengthOfBlock : ["
-                    + lengthOfBlock + "] deve ser > 0!");
-        }
+					} else {
+						throw new IllegalArgumentException("file : [" + file + "] is empty!");
+					}
 
-        return line;
-    }
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else {
+				throw new IllegalArgumentException("lineOrdinalNumber : [" + lineOrdinalNumber + "] deve ser > 0!");
+			}
+		} else {
+			throw new IllegalArgumentException("lengthOfBlock : [" + lengthOfBlock + "] deve ser > 0!");
+		}
 
-    public static List<String> readLines(File file, int lengthOfBlock) {
+		return line;
+	}
 
-        FileChannel fc = null;
-        ByteBuffer bybff = null;
+	public static List<String> readLines(File file, int lengthOfBlock) {
 
-        List<String> blocks = null;
+		FileChannel fc = null;
+		ByteBuffer bybff = null;
 
-        if (lengthOfBlock > 0) {
+		List<String> blocks = null;
 
-            fc = getReadFileChannel(file);
+		if (lengthOfBlock > 0) {
 
-            try {
+			fc = getReadFileChannel(file);
 
-                if (fc.size() > 0) {
+			try {
 
-                    lengthOfBlock += CARRIAGE_RETURN;
+				if (fc.size() > 0) {
 
-                    bybff = ByteBuffer
-                            .allocate(lengthOfBlock - CARRIAGE_RETURN);
+					lengthOfBlock += CARRIAGE_RETURN;
 
-                    blocks = new ArrayList<String>(getNumberOfLines(fc,
-                            lengthOfBlock));
+					bybff = ByteBuffer.allocate(lengthOfBlock - CARRIAGE_RETURN);
 
-                    while (fc.read(bybff) != EOF) {
+					blocks = new ArrayList<String>(getNumberOfLines(fc, lengthOfBlock));
 
-                        blocks.add(new String(bybff.array()));
+					while (fc.read(bybff) != EOF) {
 
-                        fc.position(fc.position() + NEXT_LINE);
+						blocks.add(new String(bybff.array()));
 
-                        bybff.clear();
-                    }
+						fc.position(fc.position() + NEXT_LINE);
 
-                    fc.close();
+						bybff.clear();
+					}
 
-                } else {
-                    throw new IllegalArgumentException("file : [" + file
-                            + "] está vazio!");
-                }
+					fc.close();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            throw new IllegalArgumentException("lengthOfBlock : ["
-                    + lengthOfBlock + "] deve ser > 0!");
-        }
+				} else {
+					throw new IllegalArgumentException("file : [" + file + "] está vazio!");
+				}
 
-        return blocks;
-    }
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			throw new IllegalArgumentException("lengthOfBlock : [" + lengthOfBlock + "] deve ser > 0!");
+		}
 
-    public static void writeLines(File file, List<String> lines) {
-        FileChannel fc = null;
-        ByteBuffer bybff = null;
-        ByteBuffer[] bybffArray = null;
-        String line = null;
-        if (isNotNull(lines) && !lines.isEmpty()) {
-            bybffArray = new ByteBuffer[lines.size()];
-            for (int i = 0; i < lines.size(); i++) {
-                line = lines.get(i);
-                bybff = ByteBuffer.allocate(line.length() + NEXT_LINE);
-                line += NEW_LINE;
-                bybff.put(line.getBytes());
-                bybff.rewind();
-                bybffArray[i] = bybff;
-            }
-            fc = getWriteFileChannel(file);
-            try {
-                fc.write(bybffArray);
-                fc.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+		return blocks;
+	}
 
-    public static boolean isEmpty(File file) {
+	public static void writeLines(File file, List<String> lines) {
+		FileChannel fc = null;
+		ByteBuffer bybff = null;
+		ByteBuffer[] bybffArray = null;
+		String line = null;
+		if (isNotNull(lines) && !lines.isEmpty()) {
+			bybffArray = new ByteBuffer[lines.size()];
+			for (int i = 0; i < lines.size(); i++) {
+				line = lines.get(i);
+				bybff = ByteBuffer.allocate(line.length() + NEXT_LINE);
+				line += NEW_LINE;
+				bybff.put(line.getBytes());
+				bybff.rewind();
+				bybffArray[i] = bybff;
+			}
+			fc = getWriteFileChannel(file);
+			try {
+				fc.write(bybffArray);
+				fc.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-        boolean is = true;
+	public static boolean isEmpty(File file) {
 
-        if (isNotNull(file)) {
-            is = (file.length() > 0);
-        } else {
-            throw new IllegalArgumentException("file : [" + file + "]!");
-        }
+		boolean is = true;
 
-        return is;
-    }
+		if (isNotNull(file)) {
+			is = (file.length() > 0);
+		} else {
+			throw new IllegalArgumentException("file : [" + file + "]!");
+		}
 
-    public static int getNumberOfLines(File file, int lengthOfBlock) {
+		return is;
+	}
 
-        int size = 0;
+	public static int getNumberOfLines(File file, int lengthOfBlock) {
 
-        if (lengthOfBlock > 0) {
+		int size = 0;
 
-            size = getNumberOfLines(getReadFileChannel(file), lengthOfBlock);
+		if (lengthOfBlock > 0) {
 
-        } else {
-            throw new IllegalArgumentException("lengthOfBlock : ["
-                    + lengthOfBlock + "] deve ser > 0!");
-        }
+			size = getNumberOfLines(getReadFileChannel(file), lengthOfBlock);
 
-        return size;
-    }
+		} else {
+			throw new IllegalArgumentException("lengthOfBlock : [" + lengthOfBlock + "] deve ser > 0!");
+		}
 
-    public static int getNumberOfLines(FileChannel fileChannel, int lengthOfBlock) {
+		return size;
+	}
 
-        int size = 0;
+	public static int getNumberOfLines(FileChannel fileChannel, int lengthOfBlock) {
 
-        if (isNotNull(fileChannel)) {
-            if (lengthOfBlock > 0) {
+		int size = 0;
 
-                try {
+		if (isNotNull(fileChannel)) {
+			if (lengthOfBlock > 0) {
 
-                    if (fileChannel.size() > 0) {
+				try {
 
-                        lengthOfBlock += CARRIAGE_RETURN;
+					if (fileChannel.size() > 0) {
 
-                        size = (int) (fileChannel.size() / lengthOfBlock);
-                    }
+						lengthOfBlock += CARRIAGE_RETURN;
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                throw new IllegalArgumentException("lengthOfBlock : ["
-                        + lengthOfBlock + "] deve ser > 0!");
-            }
-        } else {
-            throw new IllegalArgumentException("fileChannel : [" + fileChannel
-                    + "]!");
-        }
+						size = (int) (fileChannel.size() / lengthOfBlock);
+					}
 
-        return size;
-    }
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			} else {
+				throw new IllegalArgumentException("lengthOfBlock : [" + lengthOfBlock + "] deve ser > 0!");
+			}
+		} else {
+			throw new IllegalArgumentException("fileChannel : [" + fileChannel + "]!");
+		}
 
-    public static void copyTo(File fileIn, File fileOut) {
+		return size;
+	}
 
-        FileChannel fcin = getReadFileChannel(fileIn);
+	public static void copyTo(File fileIn, File fileOut) {
 
-        FileChannel fcout = getWriteFileChannel(fileOut);
+		FileChannel fcin = getReadFileChannel(fileIn);
 
-        try {
+		FileChannel fcout = getWriteFileChannel(fileOut);
 
-            fcin.transferTo(0, fcin.size(), fcout);
+		try {
 
-            fcin.close();
-            fcout.close();
+			fcin.transferTo(0, fcin.size(), fcout);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+			fcin.close();
+			fcout.close();
 
-    public static FileChannel getReadFileChannel(File file) {
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-        FileInputStream fis = null;
-        FileChannel fc = null;
+	public static FileChannel getReadFileChannel(File file) {
 
-        if (!isEmpty(file)) {
+		FileInputStream fis = null;
+		FileChannel fc = null;
 
-            try {
+		if (!isEmpty(file)) {
 
-                fis = new FileInputStream(file);
+			try {
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+				fis = new FileInputStream(file);
 
-            fc = fis.getChannel();
-        }
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 
-        return fc;
-    }
+			fc = fis.getChannel();
+		}
 
-    public static FileChannel getWriteFileChannel(File file) {
+		return fc;
+	}
 
-        FileOutputStream fos = null;
-        FileChannel fc = null;
+	public static FileChannel getWriteFileChannel(File file) {
 
-        if (!isEmpty(file)) {
+		FileOutputStream fos = null;
+		FileChannel fc = null;
 
-            try {
+		if (!isEmpty(file)) {
 
-                fos = new FileOutputStream(file);
+			try {
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+				fos = new FileOutputStream(file);
 
-            fc = fos.getChannel();
-        }
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 
-        return fc;
-    }
+			fc = fos.getChannel();
+		}
 
-    public static List<String> readFile(String pathName) {
+		return fc;
+	}
 
-        if (isNotNull(pathName)) {
+	public static List<String> readFile(String pathName) {
 
-            List<String> lines = new ArrayList<String>();
+		if (isNotNull(pathName)) {
 
-            try {
-                File arq = new File(pathName);
+			List<String> lines = new ArrayList<String>();
 
-                BufferedReader reader = new BufferedReader(new FileReader(arq));
+			try {
+				File arq = new File(pathName);
 
-                String s;
+				BufferedReader reader = new BufferedReader(new FileReader(arq));
 
-                do {
-                    s = reader.readLine();
-                    if (isNotNull(s)) {
-                        lines.add(s);
-                    }
-                } while (isNotNull(s));
+				String s;
 
-                reader.close();
+				do {
+					s = reader.readLine();
+					if (isNotNull(s)) {
+						lines.add(s);
+					}
+				} while (isNotNull(s));
 
-                return lines;
+				reader.close();
 
-            } catch (FileNotFoundException e) {
-                LOG.error(" RECEBER PROCESSAMENTO "
-                        + "String pathNomeArquivo: " + pathName, e);
-            } catch (IOException e) {
-                LOG.error(" RECEBER PROCESSAMENTO "
-                        + "String pathNomeArquivo: " + pathName, e);
-            }
-        }
+				return lines;
 
-        return null;
-    }
+			} catch (FileNotFoundException e) {
+				LOG.error(" RECEBER PROCESSAMENTO " + "String pathNomeArquivo: " + pathName, e);
+			} catch (IOException e) {
+				LOG.error(" RECEBER PROCESSAMENTO " + "String pathNomeArquivo: " + pathName, e);
+			}
+		}
 
-    public static List<String> readFile(File file) {
+		return null;
+	}
 
-        List<String> lines = null;
+	public static List<String> readFile(File file) {
 
-        if (!isEmpty(file)) {
+		List<String> lines = null;
 
-            try {
+		if (!isEmpty(file)) {
 
-                lines = new ArrayList<String>();
+			try {
 
-                BufferedReader reader = new BufferedReader(new FileReader(file));
+				lines = new ArrayList<String>();
 
-                String s;
+				BufferedReader reader = new BufferedReader(new FileReader(file));
 
-                do {
-                    s = reader.readLine();
-                    if (isNotNull(s)) {
-                        lines.add(s);
-                    }
-                } while (isNotNull(s));
+				String s;
 
-                reader.close();
+				do {
+					s = reader.readLine();
+					if (isNotNull(s)) {
+						lines.add(s);
+					}
+				} while (isNotNull(s));
 
-                return lines;
+				reader.close();
 
-            } catch (FileNotFoundException e) {
-                LOG.error(" RECEBER PROCESSAMENTO ", e);
-            } catch (IOException e) {
-                LOG.error(" RECEBER PROCESSAMENTO ", e);
-            }
-        }
+				return lines;
 
-        return lines;
-    }
+			} catch (FileNotFoundException e) {
+				LOG.error(" RECEBER PROCESSAMENTO ", e);
+			} catch (IOException e) {
+				LOG.error(" RECEBER PROCESSAMENTO ", e);
+			}
+		}
 
-    public static void markAs(String pathName, String tag) {
+		return lines;
+	}
 
-        if (isNotNull(pathName) & isNotNull(tag)) {
+	public static void markAs(String pathName, String tag) {
 
-            File file = new File(pathName);
-            File newFile = new File(pathName + tag);
+		if (isNotNull(pathName) & isNotNull(tag)) {
 
-            file.renameTo(newFile);
+			File file = new File(pathName);
+			File newFile = new File(pathName + tag);
 
-        }
-    }
+			file.renameTo(newFile);
 
-    public static boolean renameTo(String path, String name, String newName) {
+		}
+	}
 
-        if (isNotNull(path) & isNotNull(name) & isNotNull(newName)) {
+	public static boolean renameTo(String path, String name, String newName) {
 
-            File file = new File(path + "/" + name);
-            File newFile = new File(path + "/" + newName);
+		if (isNotNull(path) & isNotNull(name) & isNotNull(newName)) {
 
-            file.renameTo(newFile);
-            return true;
-        }
+			File file = new File(path + "/" + name);
+			File newFile = new File(path + "/" + newName);
 
-        return false;
-    }
+			file.renameTo(newFile);
+			return true;
+		}
 
-    public static void createTextFile(String pathName, String content) {
+		return false;
+	}
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("Creating file...");
-        }
+	public static void createTextFile(String pathName, String content) {
 
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("pathName: " + pathName);
-            LOG.debug("content: " + content);
-        }
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("Creating file...");
+		}
 
-        List<String> line = new ArrayList<String>(1);
-        line.add(content);
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("pathName: " + pathName);
+			LOG.debug("content: " + content);
+		}
 
-        writeLines(new File(pathName), line);
-    }
+		List<String> line = new ArrayList<String>(1);
+		line.add(content);
 
-    public static void createTextFile(String pathName, List<String> content) {
+		writeLines(new File(pathName), line);
+	}
 
-        if (LOG.isTraceEnabled()) {
-            LOG.trace("Creating file...");
-        }
+	public static void createTextFile(String pathName, List<String> content) {
 
-        if (LOG.isDebugEnabled()) {
-            LOG.debug("pathName: " + pathName);
-            LOG.debug("content: " + content);
-        }
+		if (LOG.isTraceEnabled()) {
+			LOG.trace("Creating file...");
+		}
 
-        writeLines(new File(pathName), content);
-    }
+		if (LOG.isDebugEnabled()) {
+			LOG.debug("pathName: " + pathName);
+			LOG.debug("content: " + content);
+		}
 
-    public static InputStream streamFromClasspath(String classpath) {
-        return Thread.currentThread().getContextClassLoader().getResourceAsStream(classpath);
-    }
+		writeLines(new File(pathName), content);
+	}
+
+	public static InputStream streamFromClasspath(String classpath) {
+		return Thread.currentThread().getContextClassLoader().getResourceAsStream(classpath);
+	}
 }

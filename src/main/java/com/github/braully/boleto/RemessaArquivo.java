@@ -15,7 +15,8 @@
  */
 package com.github.braully.boleto;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  *
@@ -23,7 +24,15 @@ import org.apache.log4j.Logger;
  */
 public class RemessaArquivo extends ArquivoFacade {
 
-    public static Logger logger = Logger.getLogger(ArquivoFacade.class);
+    public static Logger logger = LogManager.getLogger(ArquivoFacade.class);
+
+    public boolean isPermiteQtdeMoeda() {
+        return this.template.isPermiteQtdeMoeda();
+    }
+
+    public boolean isExigeNumeroDocumento() {
+        return this.template.isExigeNumeroDocumento();
+    }
 
     public RemessaArquivo(TagLayout template) {
         this.template = template;

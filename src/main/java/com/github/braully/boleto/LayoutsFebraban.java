@@ -16,89 +16,7 @@
 package com.github.braully.boleto;
 
 import static com.github.braully.boleto.CNAB.CNAB_240;
-import static com.github.braully.boleto.TagLayout.TagCreator.banco;
-import static com.github.braully.boleto.TagLayout.TagCreator.cabecalho;
-import static com.github.braully.boleto.TagLayout.TagCreator.cabecalhoLote;
-import static com.github.braully.boleto.TagLayout.TagCreator.cnab;
-import static com.github.braully.boleto.TagLayout.TagCreator.detalheSegmentoJ;
-import static com.github.braully.boleto.TagLayout.TagCreator.detalheSegmentoJ52;
-import static com.github.braully.boleto.TagLayout.TagCreator.detalheSegmentoP;
-import static com.github.braully.boleto.TagLayout.TagCreator.detalheSegmentoQ;
-import static com.github.braully.boleto.TagLayout.TagCreator.detalheSegmentoR;
-import static com.github.braully.boleto.TagLayout.TagCreator.detalheSegmentoT;
-import static com.github.braully.boleto.TagLayout.TagCreator.detalheSegmentoU;
-import static com.github.braully.boleto.TagLayout.TagCreator.faceite;
-import static com.github.braully.boleto.TagLayout.TagCreator.fagencia;
-import static com.github.braully.boleto.TagLayout.TagCreator.fbairro;
-import static com.github.braully.boleto.TagLayout.TagCreator.fbancoCodigo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fbancoNome;
-import static com.github.braully.boleto.TagLayout.TagCreator.fbranco;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcedenteCnpj;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcedenteNome;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcep;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcidade;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoAcrescimo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoArquivo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoBaixa;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoBarras;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoCarteira;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoDesconto;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoMoeda;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoOcorrencia;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoProtesto;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoRegistro;
-import static com.github.braully.boleto.TagLayout.TagCreator.fconta;
-import static com.github.braully.boleto.TagLayout.TagCreator.fconvenio;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdac;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdata;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdataAcrescimo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdataDesconto;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdataGeracao;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdataOcorrencia;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdataPagamento;
-import static com.github.braully.boleto.TagLayout.TagCreator.fdataVencimento;
-import static com.github.braully.boleto.TagLayout.TagCreator.fendereco;
-import static com.github.braully.boleto.TagLayout.TagCreator.fespecieTitulo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fidOpcional;
-import static com.github.braully.boleto.TagLayout.TagCreator.field;
-import static com.github.braully.boleto.TagLayout.TagCreator.flatfile;
-import static com.github.braully.boleto.TagLayout.TagCreator.flote;
-import static com.github.braully.boleto.TagLayout.TagCreator.fmovimentoCodigo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fmovimentoTipo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fnossoNumero;
-import static com.github.braully.boleto.TagLayout.TagCreator.fnumeroDocumento;
-import static com.github.braully.boleto.TagLayout.TagCreator.fnumeroRemessa;
-import static com.github.braully.boleto.TagLayout.TagCreator.focorrencias;
-import static com.github.braully.boleto.TagLayout.TagCreator.foperacao;
-import static com.github.braully.boleto.TagLayout.TagCreator.fquantidadeRegistros;
-import static com.github.braully.boleto.TagLayout.TagCreator.frejeicoes;
-import static com.github.braully.boleto.TagLayout.TagCreator.fsacadoCpf;
-import static com.github.braully.boleto.TagLayout.TagCreator.fsacadoNome;
-import static com.github.braully.boleto.TagLayout.TagCreator.fsegmento;
-import static com.github.braully.boleto.TagLayout.TagCreator.fsequencialArquivo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fsequencialRegistro;
-import static com.github.braully.boleto.TagLayout.TagCreator.fservico;
-import static com.github.braully.boleto.TagLayout.TagCreator.ftipoDocumento;
-import static com.github.braully.boleto.TagLayout.TagCreator.ftipoEmissaoBoleto;
-import static com.github.braully.boleto.TagLayout.TagCreator.ftipoInscricao;
-import static com.github.braully.boleto.TagLayout.TagCreator.fuf;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalor;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorAbatimento;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorAcrescimo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorDesconto;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorIOF;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorLiquido;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorOutrasDespesas;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorOutrasReceitas;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorPagamento;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorTarifaCustas;
-import static com.github.braully.boleto.TagLayout.TagCreator.fvalorTotalRegistros;
-import static com.github.braully.boleto.TagLayout.TagCreator.layout;
-import static com.github.braully.boleto.TagLayout.TagCreator.nome;
-import static com.github.braully.boleto.TagLayout.TagCreator.rodape;
-import static com.github.braully.boleto.TagLayout.TagCreator.rodapeLote;
-import static com.github.braully.boleto.TagLayout.TagCreator.tag;
-import static com.github.braully.boleto.TagLayout.TagCreator.versao;
+import static com.github.braully.boleto.TagLayout.TagCreator.*;
 import java.text.SimpleDateFormat;
 import org.jrimum.texgit.Fillers;
 
@@ -106,11 +24,13 @@ import org.jrimum.texgit.Fillers;
  *
  * @author Braully Rocha da Silva
  */
-public class LayoutFebraban {
-      static final TagLayout _LAYOUT_FEBRABAN_CNAB240 = flatfile(
+public class LayoutsFebraban {
+
+    static final TagLayout _LAYOUT_FEBRABAN_CNAB240 = flatfile(
             layout(nome("Layout Padrão Febraban CNAB240"),
                     cnab(CNAB_240),
                     banco("000"),
+                    servico(null),
                     tag("url").value("https://portal.febraban.org.br/pagina/3053/33/pt-br/layout-240"),
                     versao("05")
             ),
@@ -503,7 +423,8 @@ public class LayoutFebraban {
                     fcodigoMoeda(),
                     field("numeroContrato").length(10)
                             .filler(Fillers.WHITE_SPACE_LEFT)
-                            .type(Number.class).value(0),
+                            .type(Number.class
+                            ).value(0),
                     fbranco().length(1)
             ),
             //Registro Detalhe -Segmento Q (Obrigatório -Remessa)
@@ -652,4 +573,175 @@ public class LayoutFebraban {
                     fbranco().length(205)
             )
     );
+
+    // Esqueleto padrão de layout
+    public static TagLayout getLAYOUT_FEBRABAN_CNAB240() {
+        return _LAYOUT_FEBRABAN_CNAB240.clone();
+    }
+
+    // Layout do serviço de remessa de cobrança
+    private static final TagLayout _LAYOUT_FEBRABAN_CNAB240_COBRANCA_REMESSA
+            = _LAYOUT_FEBRABAN_CNAB240.clone();
+
+    static {
+        _LAYOUT_FEBRABAN_CNAB240_COBRANCA_REMESSA.get(cabecalho())
+                .get(fcodigoArquivo()).value('1');
+        _LAYOUT_FEBRABAN_CNAB240_COBRANCA_REMESSA
+                .get(layout()).get(fservico()).value(CNABServico.COBRANCA_REMESSA);;
+    }
+
+    public static TagLayout getLAYOUT_FEBRABAN_CNAB240_COBRANCA_REMESSA() {
+        return _LAYOUT_FEBRABAN_CNAB240_COBRANCA_REMESSA.clone();
+    }
+
+    static final TagLayout _LAYOUT_FEBRABAN_CNAB240_COBRANCA_RETORNO
+            = _LAYOUT_FEBRABAN_CNAB240.clone();
+
+    static {
+        _LAYOUT_FEBRABAN_CNAB240_COBRANCA_RETORNO.get(cabecalho())
+                .get(fcodigoArquivo()).value('2');
+        _LAYOUT_FEBRABAN_CNAB240_COBRANCA_RETORNO.get(layout())
+                .get(fservico()).value(CNABServico.COBRANCA_RETORNO);
+    }
+
+    public static TagLayout getLAYOUT_FEBRABAN_CNAB240_COBRANCA_RETORNO() {
+        return _LAYOUT_FEBRABAN_CNAB240_COBRANCA_RETORNO.clone();
+    }
+
+    public static final TagLayout LAYOUT_FEBRABAN_CNAB240_COBRANCA_RETORNO
+            = _LAYOUT_FEBRABAN_CNAB240_COBRANCA_RETORNO.cloneReadonly();
+
+    static final TagLayout _LAYOUT_FEBRABAN_CNAB240_PAGAMENTO_REMESSA = flatfile(
+            layout(nome("Layout Padrão Febraban CNAB240 Remessa"), cnab(CNAB_240), banco("###"),
+                    tag("url").value("http"), versao("##"),
+                    servico(CNABServico.PAGAMENTO_FORNECEDOR_REMESSA)),
+            cabecalho(fbancoCodigo().length(3).value("###"),
+                    flote().length(4).value("0000"),
+                    fcodigoRegistro().length(1).value("0"),
+                    fbranco().length(9),
+                    ftipoInscricao().length(1).value("2"),
+                    fcedenteCnpj().length(14).filler(Fillers.ZERO_LEFT), fconvenio().length(20),
+                    fagencia().length(6), // agenca com DV
+                    fconta().length(13), // Conta com DV
+                    fdac(), fcedenteNome().length(30),
+                    fbancoNome().length(30),
+                    fbranco().length(10),
+                    fcodigoArquivo().value(1),
+                    fdataGeracao(),
+                    field("horaGeracao").length(6).format(new SimpleDateFormat("hhmmss")),
+                    fsequencialArquivo().length(6),
+                    field("versaoLayoutArquivo").valLen("###"),
+                    field("densidadeArquivo").value(0).length(5).filler(Fillers.ZERO_LEFT),
+                    fbranco().length(20),
+                    fbranco().length(20),
+                    fbranco().length(29)),
+            cabecalhoLote(fbancoCodigo().length(3).value("###"),
+                    flote().value("0000"),
+                    fcodigoRegistro().length(1).value("1"),
+                    // Crédito em Conta  Corrente
+                    foperacao().length(1).value("C"),
+                    // Pagamento a fornecedores
+                    fservico().length(2).value(20),
+                    // 01 = credito em conta 03 = Transferência para outros bancos (DOC/TED)
+                    fforma().length(2),
+                    field("versaoLayoutLote").length(3).value("###"),
+                    fbranco().length(1),
+                    ftipoInscricao().length(1).value("2"),
+                    fcedenteCnpj().length(14).filler(Fillers.ZERO_LEFT),
+                    fconvenio().length(20).filler(Fillers.ZERO_LEFT),
+                    fagencia().length(6), // agenca com DV
+                    fconta().length(13), // Conta com DV
+                    fbranco().length(1), fcedenteNome().length(30),
+                    fbranco().length(40),
+                    fendereco().length(30).filler(Fillers.WHITE_SPACE_RIGHT).value(""),
+                    fnumero().length(5).filler(Fillers.WHITE_SPACE_RIGHT).value(""),
+                    fcomplemento().length(15).filler(Fillers.WHITE_SPACE_RIGHT).value(""),
+                    fcidade().length(20).filler(Fillers.WHITE_SPACE_RIGHT).value(""),
+                    fcep().length(8).filler(Fillers.WHITE_SPACE_RIGHT).value(""),
+                    fuf().length(2).filler(Fillers.WHITE_SPACE_RIGHT).value(""),
+                    fbranco().length(18)),
+            detalheSegmentoA(
+                    fbancoCodigo().length(3).value("###"),
+                    flote().value("0000"),
+                    fcodigoRegistro().length(1).value("3"),
+                    fsequencialRegistro().length(5).value("#####"),
+                    fsegmento().id(true).value("A"),
+                    fzero().length(3).filler(Fillers.ZERO_LEFT),
+                    /* Código Câmara Compensação 000 = CC | 018 = TED | 700 = DOC */
+                    fformaDeTransferencia().length(3).filler(Fillers.ZERO_LEFT),
+                    ffavorecidoCodigoBanco().length(3).value("###"),
+                    ffavorecidoAgencia().length(6).filler(Fillers.ZERO_LEFT),
+                    ffavorecidoConta().length(13).filler(Fillers.ZERO_LEFT),
+                    fbranco().length(1),
+                    ffavorecidoNome().length(30).filler(Fillers.WHITE_SPACE_RIGHT),
+                    // Número de Documento Cliente que identifica o pagto. ex: nota fiscal incrementar de 1 em 1
+                    field("numeroDocumento").length(6).filler(Fillers.WHITE_SPACE_LEFT),
+                    field("").length(14).filler(Fillers.WHITE_SPACE_RIGHT),
+                    fdataPagamento().length(8),
+                    field("moeda").length(3).value("BRL"),
+                    field("qtdeMoeda").length(15).value("000000000000000"),
+                    fvalor().length(15),
+                    field("nossoNumero").length(20).filler(Fillers.WHITE_SPACE_RIGHT),
+                    field("dataRealEfetivacaoPagto").length(8).filler(Fillers.WHITE_SPACE_RIGHT),
+                    field("valorRealEfetivacaoPagto").length(15).filler(Fillers.WHITE_SPACE_RIGHT),
+                    field("outrasInfos").length(40).filler(Fillers.WHITE_SPACE_RIGHT),
+                    field("complTipoServico").length(2).value("01"), // crédito em conta
+                    field("codigoFinalidadeDaTED").length(5).value("00010"), // crédito em conta
+                    field("finalidadePagamento").length(2).value("  "), // finalidade pagamento alguns casos CC
+                    fbranco().length(3),
+                    field("avisoAoFavorecido").length(1).value("0"), // crédito em conta
+                    // Códigos das Ocorrências p/ Retorno
+                    field("codigoDasOcorrenciasParaRetorno").length(10).filler(Fillers.WHITE_SPACE_RIGHT)
+            ),
+            detalheSegmentoB(fbancoCodigo().length(3).value("###"), flote().value("#"),
+                    fcodigoRegistro().length(1).value("3"), fsequencialRegistro().length(5).value("#####"),
+                    fsegmento().id(true).value("B"), fbranco().length(3),
+                    // Tipo Inscrição Favorecido | CPF = 1, CNPJ = 2
+                    favorecidoTipoInscricao().length(1).value("#"),
+                    // Endereço do Favorecido - opcional
+                    ffavorecidoCPFCNPJ().length(14).filler(Fillers.ZERO_LEFT),
+                    fbranco().length(95),
+                    fdata(), // Data do Vencimento
+                    fvalor().length(15), // Valor do Documento
+                    fzero().length(15).filler(Fillers.ZERO_LEFT), // Valor do Abatimento
+                    fzero().length(15).filler(Fillers.ZERO_LEFT), // Valor do Desconto
+                    fzero().length(15).filler(Fillers.ZERO_LEFT), // Valor da Mora
+                    fzero().length(15).filler(Fillers.ZERO_LEFT), // Valor da Multa
+                    fbranco().length(15), // Código/Documento do Favorecido - Número interno sem tratamento para o banco
+                    fbranco().length(15)// Exclusivo FEBRABAN / CNAB
+
+            ), rodapeLote(fbancoCodigo().length(3).value("###"),
+                    flote().value("#"), // contador sequencial do lote
+                    field("tipoRegistro").length(1).value("5"), // 5 = trailer de lote
+                    fbranco().length(9), // filler
+                    // quantidade de registros no lote (Registros Tipo 1, 3, 5)
+                    fquantidadeRegistros().length(6).filler(Fillers.ZERO_LEFT),
+                    fvalorTotalRegistros().length(18), // somatoria
+
+                    // Somatória Quantidade Moeda (Registro Tipo 3)
+                    field("qtdeMoeda").length(18).value("##################").filler(Fillers.ZERO_LEFT),
+                    // filler Número Aviso de Débito
+                    field("numeroAvisoDeDebito").length(6).value("      ").filler(Fillers.WHITE_SPACE_LEFT),
+                    fbranco().length(175) // filler
+
+            ),
+            rodape(
+                    fbancoCodigo().length(3).value("###"),
+                    //valor fixo do banco
+                    field("loteDeServico").length(4).value("9999"),
+                    // 5 = trailer de arquivo
+                    field("tipoRegistro").length(1).value("9"),
+                    fbranco().length(9), // filler em branco
+                    // Registros do Tipo 1
+                    fquantidadeLotes().length(6).value("######").filler(Fillers.ZERO_LEFT),
+                    // quantidade de Registros dos Tipos 0, 1,3, 5 e 9
+                    fquantidadeRegistros().length(6).value("######").filler(Fillers.ZERO_LEFT),
+                    field("qtdContasParaConciliacao").length(6).filler(Fillers.ZERO_LEFT).value("000000"),
+                    fbranco().length(205) // filler
+
+            ));
+
+    public static TagLayout getLAYOUT_FEBRABAN_CNAB240_PAGAMENTO_REMESSA() {
+        return _LAYOUT_FEBRABAN_CNAB240_PAGAMENTO_REMESSA.clone();
+    }
 }

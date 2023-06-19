@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright 2008 JRimum Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -9,29 +9,28 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
- * 
+ *
  * Created at: 08/05/2008 - 00:10:01
  *
  * ================================================================================
  *
  * Direitos autorais 2008 JRimum Project
  *
- * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode 
- * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma 
- * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que 
- * haja exigência legal ou acordo por escrito, a distribuição de software sob esta 
- * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam 
- * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões 
+ * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode
+ * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
+ * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
+ * haja exigência legal ou acordo por escrito, a distribuição de software sob esta
+ * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam
+ * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões
  * e limitações sob esta LICENÇA.
- * 
+ *
  * Criado em: 08/05/2008 - 00:10:01
- * 
+ *
  */
 package org.jrimum.bopepo.view;
 
-import com.itextpdf.text.DocumentException;
-import org.jrimum.bopepo.Guia;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
+import static org.jrimum.utilix.Objects.isNotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -40,9 +39,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.jrimum.bopepo.Guia;
 
-import static org.jrimum.utilix.Objects.isNotNull;
+import com.itextpdf.text.DocumentException;
 
 /**
  *
@@ -75,7 +76,7 @@ public class GuiaViewer {
      */
     private static final long serialVersionUID = 1L;
 
-    private static Logger log = Logger.getLogger(GuiaViewer.class);
+    private static Logger log = LogManager.getLogger(GuiaViewer.class);
 
     /**
      * <p>
@@ -402,7 +403,7 @@ public class GuiaViewer {
         }
 
         /*
-		 * O arquivo tem prioridade 
+		 * O arquivo tem prioridade
          */
         if (isNotBlank(templatePathName) && isNotNull(template)) {
             setTemplate(template);

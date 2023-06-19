@@ -37,6 +37,62 @@ import org.jrimum.texgit.IFiller;
  */
 public class TagLayout implements Serializable {
 
+    public boolean isPermiteQtdeMoeda() {
+
+        // hcosta: unica maneira que encontrei... tenho certeza que tem um jeito mais
+        // inteligente de fazer isso
+        try {
+            TagLayout tagLayout = null;
+
+            if (this.getNome().equals("layout")) {
+                tagLayout = this;
+            } else {
+                tagLayout = this.get("layout");
+            }
+
+            if (tagLayout != null) {
+                TagLayout tagUrl = tagLayout.get("url");
+
+                if (tagUrl != null && ((String) tagUrl.value).contains("www.bb.com.br")) {
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            return true;
+        }
+
+        return true;
+
+    }
+
+    public boolean isExigeNumeroDocumento() {
+
+        // hcosta: unica maneira que encontrei... tenho certeza que tem um jeito mais
+        // inteligente de fazer isso
+        try {
+            TagLayout tagLayout = null;
+
+            if (this.getNome().equals("layout")) {
+                tagLayout = this;
+            } else {
+                tagLayout = this.get("layout");
+            }
+
+            if (tagLayout != null) {
+                TagLayout tagUrl = tagLayout.get("url");
+
+                if (tagUrl != null && ((String) tagUrl.value).contains("bradesco")) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            return false;
+        }
+
+        return false;
+
+    }
+
     boolean isAttr(String id) {
         return is(this.atributos.get(id));
     }
@@ -848,7 +904,7 @@ public class TagLayout implements Serializable {
          * @return
          */
         public static TagLayout fbranco() {
-            return field("branco").filler(Fillers.WHITE_SPACE_LEFT);
+            return field("").filler(Fillers.WHITE_SPACE_LEFT);
         }
 
         /**
@@ -1108,16 +1164,20 @@ public class TagLayout implements Serializable {
     List<TagLayout> filhos;
     Map<String, Object> atributos;
 
+    public Map<String, Object> getAtributos() {
+        return atributos;
+    }
+
     public TagLayout nome(String texto) {
         this.nome = texto;
         return this;
     }
 
-    TagLayout get(TagLayout tag) {
+    public TagLayout get(TagLayout tag) {
         return get(tag.nome);
     }
 
-    TagLayout get(String strfilho) {
+    public TagLayout get(String strfilho) {
         TagLayout fi = null;
         for (TagLayout filho : filhos) {
             if (filho.nome.equalsIgnoreCase(strfilho)) {
@@ -1128,7 +1188,7 @@ public class TagLayout implements Serializable {
         return fi;
     }
 
-    String getAtr(String stratt) {
+    public String getAtr(String stratt) {
         String ret = null;
         Object att = atributos.get(stratt);
         if (att != null) {
@@ -1137,7 +1197,7 @@ public class TagLayout implements Serializable {
         return ret;
     }
 
-    Integer getInt(String stratt) {
+    public Integer getInt(String stratt) {
         Integer ret = null;
         Object obj = atributos.get(stratt);
         if (obj == null) {
