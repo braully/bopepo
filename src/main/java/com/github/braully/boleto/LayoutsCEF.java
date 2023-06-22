@@ -34,6 +34,7 @@ public class LayoutsCEF {
             layout(nome("Layout Padrão Caixa Econômica Federal CNAB240 Remessa"),
                     cnab(CNAB_240),
                     banco("104"),
+                    servico(CNABServico.COBRANCA_REMESSA),
                     tag("url").value("http://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_240.pdf"),
                     versao("17")
             ),
@@ -186,6 +187,7 @@ public class LayoutsCEF {
             layout(nome("Layout Padrão Caixa Econômica Federal CNAB240 Retorno"),
                     cnab(CNAB_240),
                     banco("104"),
+                    servico(CNABServico.COBRANCA_RETORNO),
                     tag("url").value("http://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_240.pdf"),
                     versao("17")
             ),

@@ -17,12 +17,9 @@ package com.github.braully.boleto;
 
 import static com.github.braully.boleto.CNAB.*;
 import static com.github.braully.boleto.TagLayout.TagCreator.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import org.jrimum.texgit.Fillers;
 
 /**
  *
@@ -101,6 +98,7 @@ public class LayoutsSuportados {
         layoutsSuportadosTmp.add(LayoutsBB.LAYOUT_BB_CNAB240);
         layoutsSuportadosTmp.add(LayoutsBB.LAYOUT_BB_CNAB240_COBRANCA_REMESSA);
         layoutsSuportadosTmp.add(LayoutsBB.LAYOUT_BB_CNAB240_COBRANCA_RETORNO);
+        layoutsSuportadosTmp.add(LayoutsBB.LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA);
         layoutsSuportadosTmp.add(LayoutsSantander.LAYOUT_SANTANDER_CNAB240);
         layoutsSuportadosTmp.add(LayoutsSantander.LAYOUT_SANTANDER_CNAB240_COBRANCA_REMESSA);
         layoutsSuportadosTmp.add(LayoutsSantander.LAYOUT_SANTANDER_CNAB240_COBRANCA_RETORNO);
@@ -113,15 +111,40 @@ public class LayoutsSuportados {
         layoutsSuportadosTmp.add(LayoutsCEF.LAYOUT_CAIXA_CNAB240_COBRANCA_RETORNO);
         layoutsSuportadosTmp.add(LayoutsBradesco.LAYOUT_BRADESCO_CNAB400_COBRANCA_REMESSA);
         layoutsSuportadosTmp.add(LayoutsBradesco.LAYOUT_BRADESCO_CNAB400_COBRANCA_RETORNO);
+        layoutsSuportadosTmp.add(LayoutsBradesco.LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA);
 
         /* */
         layoutsSuportados = Collections.unmodifiableList(layoutsSuportadosTmp);
     }
 
+    public static List<TagLayout> getLayoutsCNAB240PagamentoRemessa() {
+        return getLayouts(CNAB_240, CNABServico.PAGAMENTO_FORNECEDOR_REMESSA);
+    }
+
+    public static List<TagLayout> getLayouts(CNAB cnab, CNABServico servico) {
+        List<TagLayout> layouts = new ArrayList<>();
+        for (TagLayout layout : layoutsSuportados) {
+            TagLayout descritor = layout.get("layout");
+            if (descritor != null
+                    && eq(descritor.getValue("servico"), servico)
+                    && eq(descritor.getValue("cnab"), cnab)) {
+                layouts.add(layout);
+            }
+        }
+        return layouts;
+    }
+
     public static TagLayout getLayoutCNAB240PagamentoRemessa(String banco) {
-        return getLayoutArquivoBancario(CNABServico.PAGAMENTO_FORNECEDOR_REMESSA,
-                CNAB_240,
-                banco);
+        TagLayout layoutBanco = null;
+        List<TagLayout> layoutsCNAB240PagamentoRemessa = getLayoutsCNAB240PagamentoRemessa();
+        for (TagLayout layout : layoutsCNAB240PagamentoRemessa) {
+            TagLayout descritor = layout.get("layout");
+            if (descritor != null
+                    && eq(descritor.getValue("banco"), banco)) {
+                layoutBanco = layout;
+            }
+        }
+        return layoutBanco;
     }
 
     public static TagLayout getLayoutArquivoBancarioRemessaCobranca(String codBanco, String numConvenio,

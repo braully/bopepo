@@ -840,6 +840,13 @@ public class TagLayout implements Serializable {
         }
 
         /**
+         *
+         */
+        public static TagLayout fqtdeMoeda() {
+            return field("qtdeMoeda").length(15).filler(Fillers.ZERO_LEFT);
+        }
+
+        /**
          * Código adotado pela FEBRABAN para identificar a moeda referenciada no
          * Título. Domínio: '01' = Reservado para Uso Futuro '02' = Dólar
          * Americano Comercial (Venda) '03' = Dólar Americano Turismo (Venda)
@@ -1398,6 +1405,9 @@ public class TagLayout implements Serializable {
 
     @Override
     public String toString() {
-        return "Tag{" + nome + "=" + value + " filhos=" + filhos + '}';
+        if (filhos != null && !filhos.isEmpty()) {
+            return "T{" + nome + "=" + value + " filhos=" + filhos + '}';
+        }
+        return "T{" + nome + "=" + value + '}';
     }
 }

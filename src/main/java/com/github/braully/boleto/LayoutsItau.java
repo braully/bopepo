@@ -15,16 +15,7 @@
  */
 package com.github.braully.boleto;
 
-import com.github.braully.boleto.TagLayout;
-import static com.github.braully.boleto.TagLayout.TagCreator.cabecalho;
-import static com.github.braully.boleto.TagLayout.TagCreator.cabecalhoLote;
-import static com.github.braully.boleto.TagLayout.TagCreator.detalheSegmentoA;
-import static com.github.braully.boleto.TagLayout.TagCreator.detalheSegmentoB;
-import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoArquivo;
-import static com.github.braully.boleto.TagLayout.TagCreator.fservico;
-import static com.github.braully.boleto.TagLayout.TagCreator.layout;
-import static com.github.braully.boleto.TagLayout.TagCreator.rodape;
-import static com.github.braully.boleto.TagLayout.TagCreator.rodapeLote;
+import static com.github.braully.boleto.TagLayout.TagCreator.*;
 
 /**
  *
@@ -32,34 +23,8 @@ import static com.github.braully.boleto.TagLayout.TagCreator.rodapeLote;
  */
 public class LayoutsItau {
 
-    public static final TagLayout _LAYOUT_ITAU_CNAB240 = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240();
-
-    public static final TagLayout LAYOUT_ITAU_CNAB240
-            = _LAYOUT_ITAU_CNAB240.cloneReadonly();
-
-    static final TagLayout _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA
-            = _LAYOUT_ITAU_CNAB240.clone();
-
-    public static final TagLayout LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA
-            = _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.cloneReadonly();
-
-    static final TagLayout _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO
-            = _LAYOUT_ITAU_CNAB240.clone();
-
-    public static final TagLayout LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO
-            = _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.cloneReadonly();
-
-    static {
-        _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.get(layout())
-                .get(fservico()).value(CNABServico.COBRANCA_RETORNO);
-        _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.get(cabecalho()).get(fcodigoArquivo()).value('2');
-
-        _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(layout())
-                .get(fservico()).value(CNABServico.COBRANCA_REMESSA);
-        _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(cabecalho()).get(fcodigoArquivo()).value('1');
-    }
-
-    private static final TagLayout _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240_PAGAMENTO_REMESSA();
+    private static final TagLayout _LAYOUT_ITAU_CNAB240 = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240();
+    private static final TagLayout _LAYOUT_ITAU_PAGAMENTO = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240_PAGAMENTO_REMESSA();
 
     static {
         // personalizações Itau
@@ -69,42 +34,89 @@ public class LayoutsItau {
         String campoBancoCodigo = "bancoCodigo";
 
         // Layout
-        TagLayout layout = _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(layout());
-        layout.get("nome").value("Layout Padrão Itau CNAB240 Pagamento Remessa");
+        TagLayout layout = _LAYOUT_ITAU_CNAB240.get(layout());
+        layout.get("nome").value("Layout Padrão Itau CNAB240");
         layout.get("banco").value(codigoBanco);
-        layout.get("url").withValue("https://download.itau.com.br/bankline/SISPAG_CNAB.pdf");
-        layout.get("versao").value("80");
 
         // Cabeçalho
-        TagLayout cabecalho = _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(cabecalho());
+        TagLayout cabecalho = _LAYOUT_ITAU_CNAB240.get(cabecalho());
         cabecalho.get(campoBancoNome).value("BANCO ITAU SA");
         cabecalho.get(campoBancoCodigo).value(codigoBanco);
 
         cabecalho.get("versaoLayoutArquivo").value("080");
 
         // cabecalhoLote
-        TagLayout cabecalhoLote = _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(cabecalhoLote());
+        TagLayout cabecalhoLote = _LAYOUT_ITAU_CNAB240.get(cabecalhoLote());
         cabecalhoLote.get(campoBancoCodigo).value(codigoBanco);
         cabecalhoLote.get("versaoLayoutLote").value("040");
 
-        // SegmentoA
-        TagLayout segmentoA = _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoA());
-        segmentoA.get(campoBancoCodigo).value(codigoBanco);
-
-        // SegmentoB
-        TagLayout segmentoB = _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoB());
-        segmentoB.get(campoBancoCodigo).value(codigoBanco);
-
         // RodapeLote
-        TagLayout rodapeLote = _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(rodapeLote());
+        TagLayout rodapeLote = _LAYOUT_ITAU_CNAB240.get(rodapeLote());
         rodapeLote.get(campoBancoCodigo).value(codigoBanco);
 
         // RodapeArquivo
-        TagLayout rodapeArquivo = _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(rodape());
+        TagLayout rodapeArquivo = _LAYOUT_ITAU_CNAB240.get(rodape());
         rodapeArquivo.get(campoBancoCodigo).value(codigoBanco);
+
+        layout = _LAYOUT_ITAU_PAGAMENTO.get(layout());
+        layout.get("banco").value(codigoBanco);
+        layout.get("versao").value("80");
+        layout.get("url").value("https://download.itau.com.br/bankline/SISPAG_CNAB.pdf");
+
+        // cabecalhoLote
+        cabecalhoLote = _LAYOUT_ITAU_PAGAMENTO.get(cabecalhoLote());
+        cabecalhoLote.get(campoBancoCodigo).value(codigoBanco);
+        cabecalhoLote.get("versaoLayoutLote").value("040");
+
+        // RodapeLote
+        rodapeLote = _LAYOUT_ITAU_PAGAMENTO.get(rodapeLote());
+        rodapeLote.get(campoBancoCodigo).value(codigoBanco);
+
+        // RodapeArquivo
+        rodapeArquivo = _LAYOUT_ITAU_PAGAMENTO.get(rodape());
+        rodapeArquivo.get(campoBancoCodigo).value(codigoBanco);
+
+        // SegmentoA
+        TagLayout segmentoA = _LAYOUT_ITAU_PAGAMENTO.get(detalheSegmentoA());
+        segmentoA.get(campoBancoCodigo).value(codigoBanco);
+
+        // SegmentoB
+        TagLayout segmentoB = _LAYOUT_ITAU_PAGAMENTO.get(detalheSegmentoB());
+        segmentoB.get(campoBancoCodigo).value(codigoBanco);
+    }
+    static final TagLayout _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA
+            = _LAYOUT_ITAU_CNAB240.clone();
+
+    static final TagLayout _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO
+            = _LAYOUT_ITAU_CNAB240.clone();
+
+    static final TagLayout _LAYOUT_ITAU_CNAB240_PAGAMENTO
+            = _LAYOUT_ITAU_PAGAMENTO;
+
+    static {
+        _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.get(layout())
+                .get(fservico()).value(CNABServico.COBRANCA_RETORNO);
+        _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.get(cabecalho()).get(fcodigoArquivo()).value('2');
+
+        _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(layout())
+                .get(fservico()).value(CNABServico.COBRANCA_REMESSA);
+        _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(cabecalho()).get(fcodigoArquivo()).value('1');
+
+        _LAYOUT_ITAU_PAGAMENTO.get(layout()).get(fservico()).value(CNABServico.PAGAMENTO_FORNECEDOR_REMESSA);
+        _LAYOUT_ITAU_PAGAMENTO.get(cabecalho()).get(fcodigoArquivo()).value('1');
 
     }
 
-    public static final TagLayout LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA = _LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.cloneReadonly();
+    public static final TagLayout LAYOUT_ITAU_CNAB240
+            = _LAYOUT_ITAU_CNAB240.cloneReadonly();
+
+    public static final TagLayout LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA
+            = _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.cloneReadonly();
+
+    public static final TagLayout LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO
+            = _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.cloneReadonly();
+
+    public static final TagLayout LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA
+            = _LAYOUT_ITAU_CNAB240_PAGAMENTO.cloneReadonly();
 
 }

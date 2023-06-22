@@ -39,7 +39,7 @@ public class LayoutsBB {
      * Particularidades BB CNAB 240 2019
      * https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf
      */
-    static final TagLayout _LAYOUT_BB_CNAB240 = LayoutsFebraban._LAYOUT_FEBRABAN_CNAB240.clone();
+    static final TagLayout _LAYOUT_BB_CNAB240 = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240();
 
     static {
 
@@ -104,6 +104,9 @@ public class LayoutsBB {
     static final TagLayout _LAYOUT_BB_CNAB240_COBRANCA_RETORNO
             = _LAYOUT_BB_CNAB240.clone();
 
+    static final TagLayout _LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA
+            = _LAYOUT_BB_CNAB240.clone();
+
     static {
 //        Alterar o cabeçalho e o tipo de serviço no layout
         _LAYOUT_BB_CNAB240_COBRANCA_REMESSA.get(cabecalho()).get(fcodigoArquivo()).value('1');
@@ -113,11 +116,20 @@ public class LayoutsBB {
                 .get(fcodigoArquivo()).value('2');
         _LAYOUT_BB_CNAB240_COBRANCA_RETORNO.get(layout())
                 .get(fservico()).value(CNABServico.COBRANCA_RETORNO);
+
+        _LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA.get(cabecalho()).get(fcodigoArquivo()).value('1');
+        _LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA.get(layout())
+                .get(fservico()).value(CNABServico.PAGAMENTO_FORNECEDOR_REMESSA);
     }
+    public static final TagLayout LAYOUT_BB_CNAB240 = _LAYOUT_BB_CNAB240.cloneReadonly();
+
     public static final TagLayout LAYOUT_BB_CNAB240_COBRANCA_REMESSA
             = _LAYOUT_BB_CNAB240_COBRANCA_REMESSA.cloneReadonly();
 
-    public static final TagLayout LAYOUT_BB_CNAB240 = _LAYOUT_BB_CNAB240.cloneReadonly();
     public static final TagLayout LAYOUT_BB_CNAB240_COBRANCA_RETORNO
             = _LAYOUT_BB_CNAB240_COBRANCA_RETORNO.cloneReadonly();
+
+    public static final TagLayout LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA
+            = _LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA.cloneReadonly();
+
 }

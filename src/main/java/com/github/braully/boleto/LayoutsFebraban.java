@@ -217,7 +217,7 @@ public class LayoutsFebraban {
                     fvalorAcrescimo().value(0).length(15),
                     fdataPagamento(), fvalorPagamento().length(15),
                     //Número de unidades do tipo de moeda identificada para cálculo do valor do documento. G041
-                    field("qtdeMoeda").filler(Fillers.ZERO_LEFT).value(1).length(15),
+                    fqtdeMoeda().value(1),
                     //Referência Pagador Nº do Docto Atribuído pela Empresa 183 202 20 - Alfa G064
                     fnumeroDocumento().length(20),
                     //Nosso Número Nº do Docto Atribuído pelo Banco 203 222 20 - Alfa *G043
@@ -612,9 +612,12 @@ public class LayoutsFebraban {
             = _LAYOUT_FEBRABAN_CNAB240_COBRANCA_RETORNO.cloneReadonly();
 
     static final TagLayout _LAYOUT_FEBRABAN_CNAB240_PAGAMENTO_REMESSA = flatfile(
-            layout(nome("Layout Padrão Febraban CNAB240 Remessa"), cnab(CNAB_240), banco("###"),
-                    tag("url").value("http"), versao("##"),
-                    servico(CNABServico.PAGAMENTO_FORNECEDOR_REMESSA)),
+            layout(nome("Layout Padrão Febraban CNAB240 Remessa"), 
+                    cnab(CNAB_240), 
+                    servico(CNABServico.PAGAMENTO_FORNECEDOR_REMESSA),
+                    banco("###"),
+                    tag("url").value("http"), versao("##")
+            ),
             cabecalho(fbancoCodigo().length(3).value("###"),
                     flote().length(4).value("0000"),
                     fcodigoRegistro().length(1).value("0"),
@@ -679,7 +682,7 @@ public class LayoutsFebraban {
                     field("").length(14).filler(Fillers.WHITE_SPACE_RIGHT),
                     fdataPagamento().length(8),
                     field("moeda").length(3).value("BRL"),
-                    field("qtdeMoeda").length(15).value("000000000000000"),
+                    fqtdeMoeda().value("000000000000000"),
                     fvalor().length(15),
                     field("nossoNumero").length(20).filler(Fillers.WHITE_SPACE_RIGHT),
                     field("dataRealEfetivacaoPagto").length(8).filler(Fillers.WHITE_SPACE_RIGHT),
@@ -719,7 +722,7 @@ public class LayoutsFebraban {
                     fvalorTotalRegistros().length(18), // somatoria
 
                     // Somatória Quantidade Moeda (Registro Tipo 3)
-                    field("qtdeMoeda").length(18).value("##################").filler(Fillers.ZERO_LEFT),
+                    fqtdeMoeda().length(18).value("##################").filler(Fillers.ZERO_LEFT),
                     // filler Número Aviso de Débito
                     field("numeroAvisoDeDebito").length(6).value("      ").filler(Fillers.WHITE_SPACE_LEFT),
                     fbranco().length(175) // filler

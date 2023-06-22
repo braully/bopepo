@@ -30,6 +30,7 @@ public class LayoutsBradesco {
     static final TagLayout _LAYOUT_BRADESCO_CNAB400_REMESSA = flatfile(
             layout(nome("Layout Padrão Bradesco CNAB400 Remessa"),
                     cnab(CNAB_400),
+                    servico(CNABServico.COBRANCA_REMESSA),
                     banco("237"),
                     tag("url").value("https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf"),
                     versao("15")
@@ -110,6 +111,7 @@ public class LayoutsBradesco {
     static final TagLayout _LAYOUT_BRADESCO_CNAB400_RETORNO = flatfile(
             layout(nome("Layout Padrão Bradesco CNAB400 Retorno"),
                     cnab(CNAB_400),
+                    servico(CNABServico.COBRANCA_RETORNO),
                     banco("237"),
                     tag("url").value("https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf"),
                     versao("15")
@@ -301,5 +303,8 @@ public class LayoutsBradesco {
         TagLayout rodapeArquivo = _LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA.get(rodape());
         rodapeArquivo.get(campoBancoCodigo).value(codigoBanco);
     }
+
+    public static final TagLayout LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA
+            = _LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA.cloneReadonly();
 
 }
