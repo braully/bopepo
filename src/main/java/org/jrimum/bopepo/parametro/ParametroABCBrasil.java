@@ -10,7 +10,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  *
- * Created at: 19/01/2014 - 22:19:19
+ * Created at: 21/01/2014 - 13:57:10
  *
  * ================================================================================
  *
@@ -24,25 +24,21 @@
  * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões
  * e limitações sob esta LICENÇA.
  *
- * Criado em: 19/01/2014 - 22:19:19
+ * Criado em: 21/01/2014 - 13:57:10
  *
  */
-package org.jrimum.bopepo.view;
-
-import org.jrimum.bopepo.Boleto;
-import org.jrimum.bopepo.view.ResourceBundle;
-
+package org.jrimum.bopepo.parametro;
+import org.jrimum.bopepo.BancosSuportados;
+import org.jrimum.domkee.banco.ParametroBancario;
 /**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
+ * Parâmetros bancários específicos para o {@link BancosSuportados#ABCBRASIL}.
  *
+ * @author marcos.favaretto
+ *
+ * @version 0.2.3
+ *
+ * @since 0.2
  */
-public class BoletoInfoViewDefault extends AbstractBoletoInfoCampoView {
-
-    BoletoInfoViewDefault(ResourceBundle resourceBundle, Boleto boleto) {
-        super(resourceBundle, boleto);
-    }
-
-	public String getTextoRsEnderecoCedente() {
-		return getEnderecoBeneficiario();
-	}
+public enum ParametroABCBrasil implements ParametroBancario<ParametroABCBrasil> {
+	OPERACAO;
 }

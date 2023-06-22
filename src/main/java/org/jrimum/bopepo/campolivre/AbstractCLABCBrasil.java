@@ -10,7 +10,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  *
- * Created at: 19/01/2014 - 22:19:19
+ * Created at: 21/01/2014 - 13:31:39
  *
  * ================================================================================
  *
@@ -24,25 +24,26 @@
  * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões
  * e limitações sob esta LICENÇA.
  *
- * Criado em: 19/01/2014 - 22:19:19
+ * Criado em: 21/01/2014 - 13:31:39
  *
  */
-package org.jrimum.bopepo.view;
-
-import org.jrimum.bopepo.Boleto;
-import org.jrimum.bopepo.view.ResourceBundle;
-
+package org.jrimum.bopepo.campolivre;
+import org.jrimum.domkee.banco.Titulo;
 /**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- *
+ * <p>
+ * Interface comum para todos os campos livres do ABC Brasil que 
+ * venham a existir.
+ * </p>
  */
-public class BoletoInfoViewDefault extends AbstractBoletoInfoCampoView {
-
-    BoletoInfoViewDefault(ResourceBundle resourceBundle, Boleto boleto) {
-        super(resourceBundle, boleto);
-    }
-
-	public String getTextoRsEnderecoCedente() {
-		return getEnderecoBeneficiario();
+public abstract class AbstractCLABCBrasil extends AbstractCampoLivre {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -5579081722726761569L;
+	protected AbstractCLABCBrasil(Integer fieldsLength) {
+		super(fieldsLength);
+	}
+	protected static CampoLivre create(Titulo titulo){
+		return new CLABCBrasil().build(titulo);
 	}
 }

@@ -56,7 +56,7 @@ public interface BoletoInfoCampoView {
     public String getTextoRsNossoNumero();
 
     public String getTextoRsCedente();
-
+	public String getTextoRsEnderecoCedente();
     public String getTextoRsAgenciaCodigoCedente();
 
     public String getTextoRsInstrucaoAoSacado();

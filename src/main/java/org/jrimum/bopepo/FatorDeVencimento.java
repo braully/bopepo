@@ -66,7 +66,7 @@ public class FatorDeVencimento {
      * FEBRABAN.
      * </p>
      */
-    private static final Calendar BASE_DO_FATOR_DE_VENCIMENTO = new GregorianCalendar(1997, Calendar.OCTOBER, 7);
+	private static final Calendar BASE_DO_FATOR_DE_VENCIMENTO = new GregorianCalendar(2000, Calendar.JULY, 3);
 
     /**
      * <p>
@@ -100,7 +100,7 @@ public class FatorDeVencimento {
      */
     private static final int NUMERO_LIMITE_MAXIMO_DO_FATOR_DE_VENCIMENTO = 9999;
 
-   
+
     /**
      * <p>
      * Calcula o fator de vencimento a partir da subtração entre a DATA DE
@@ -129,8 +129,8 @@ public class FatorDeVencimento {
      * base (Teoricamente fator negativo), uma exceção do tipo
      * IllegalArgumentException será lançada.</li> <li>A data limite para o
      * cálculo do fator de vencimento é 21/02/2025 (Fator de vencimento = 9999).
-     * Caso a data de vencimento seja posterior a data limite, uma exceção do
-     * tipo IllegalArgumentException será lançada.</li> </ul>
+	 * Caso a data de vencimento seja posterior a data limite, o cálculo passa a
+	 * contar de 1000 a partir de 22/02/2025.</li> </ul>
      *
      * <p>
      * <strong>ATENÇÃO</strong>, esse cálculo se refere a títulos em cobrança,
@@ -162,7 +162,7 @@ public class FatorDeVencimento {
 
             checkIntervalo(dataTruncada);
             // retorno comentado para ajuste do fator de vencimento após 21/02/2025
-            //return (int) Dates.calculeDiferencaEmDias(DATA_BASE_DO_FATOR_DE_VENCIMENTO, dataTruncada);
+            //return (int) Dates.calculeDiferencaEmDias(DATA_BASE_DO_FATOR_DE_VENCIMENTO, dataTruncada) % 9000 + 1000;
             return getFatorDeVencimentoTranformado(data);
         }
     }
@@ -181,15 +181,16 @@ public class FatorDeVencimento {
     public static Date toDate(int fator) throws IllegalArgumentException {
         checkIntervalo(fator);
         Calendar date = (Calendar) BASE_DO_FATOR_DE_VENCIMENTO.clone();
-        date.add(Calendar.DAY_OF_YEAR, fator);
+        date.add(Calendar.DAY_OF_YEAR, fator>= 1000 ? fator - 1000 : fator); // não há uso desse método no bopepo, exceto no teste (TestFatorDeVencimento)
+		
         return DateUtils.truncate(date.getTime(), Calendar.DATE);
     }
 
     /**
      * <p>
      * Transforma um fator de vencimento em uma lista datas da forma inversa
-     * descrita em {@linkplain #toFator(Date)}. O motivo de retornar uma lista é 
-     * porque talvez o fator possa ser um número acima de 9999. Dessa forma, poderá 
+     * descrita em {@linkplain #toFator(Date)}. O motivo de retornar uma lista é
+     * porque talvez o fator possa ser um número acima de 9999. Dessa forma, poderá
      * existir mais de uma data associada ao mesmo fator.
      * </p>
      *
@@ -200,20 +201,20 @@ public class FatorDeVencimento {
      */
     public static List<Date> toDateList(int fator) throws IllegalArgumentException {
         checkIntervalo(fator);
-        
+
         List<Date> listaDeDatas = new ArrayList<>();
         List<Integer> listaDeFatores = getListaDeFatores(fator);
-        
+
         // Versão do Java menor que a 8
         /*
         for (Integer fatorDaLista : listaDeFatores) {
             listaDeDatas.add(toDate(fatorDaLista));
         }
         */
-        
+
         // para Java 8 ou superior
         listaDeFatores.forEach(f -> listaDeDatas.add(toDate(f)));
-                
+
         return listaDeDatas;
     }
 
@@ -265,12 +266,12 @@ public class FatorDeVencimento {
     }
 
     /*
-     * Os métodos abaixo são utilitários criados para sobrecarga dentro dos 
+     * Os métodos abaixo são utilitários criados para sobrecarga dentro dos
      * métodos originais da classe.
      */
-    
+
     /**
-     * Método que calcula o fator de vencimento real (possíveis valores acima de 9999) 
+     * Método que calcula o fator de vencimento real (possíveis valores acima de 9999)
      * com base na data passada sem limite estabelecido.
      * @param data
      * @return fator de vencimento que poderá ter mais de 4 dígitos.
@@ -281,8 +282,8 @@ public class FatorDeVencimento {
     }
 
     /**
-     * Médoto que calcula o fator de vencimento com base no padrão XXXX, ou seja, 
-     * o valor máximo aceitável é 9999. Acima desse valor será retornado um valor 
+     * Médoto que calcula o fator de vencimento com base no padrão XXXX, ou seja,
+     * o valor máximo aceitável é 9999. Acima desse valor será retornado um valor
      * reiniciando a contagem em 1000.
      * @param data
      * @return fator de vencimento com 4 dígitos obrigatórios.
@@ -296,7 +297,7 @@ public class FatorDeVencimento {
     }
 
     /**
-     * Método que recebe um fator de vencimento sem limite máximo 
+     * Método que recebe um fator de vencimento sem limite máximo
      * e retorna o mesmo reconfigurado para o padrão XXXX.
      * @param valor
      * @return fator de vencimento com 4 dígitos obrigatórios.
@@ -310,8 +311,8 @@ public class FatorDeVencimento {
     }
 
     /**
-     * Médoto que pode ser utilizado para fatores acima do valor 9999. 
-     * Para esses casos, poderão existir N fatores de vencimento possíveis, 
+     * Médoto que pode ser utilizado para fatores acima do valor 9999.
+     * Para esses casos, poderão existir N fatores de vencimento possíveis,
      * uma vez que o mesmo possou pelo processo de transformação.
      * @param valor
      * @return Lista de possíveis datas para o fator de vencimento fornecido.

@@ -10,7 +10,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  *
- * Created at: 19/01/2014 - 22:19:19
+ * Created at: 21/01/2014 - 13:31:39
  *
  * ================================================================================
  *
@@ -24,25 +24,39 @@
  * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões
  * e limitações sob esta LICENÇA.
  *
- * Criado em: 19/01/2014 - 22:19:19
+ * Criado em: 21/01/2014 - 13:31:39
  *
  */
-package org.jrimum.bopepo.view;
 
-import org.jrimum.bopepo.Boleto;
-import org.jrimum.bopepo.view.ResourceBundle;
+package org.jrimum.bopepo.campolivre;
+
+import org.jrimum.domkee.banco.Titulo;
 
 /**
- * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
+ * <p>
+ * Interface comum para todos os campos livres do DAYCOVAL - Banco Daycoval S.A.
+ * venham a existir.
+ * </p>
  *
+ * @author muriloht
+ *
+ * @since 0.2
+ *
+ * @version 0.2
  */
-public class BoletoInfoViewDefault extends AbstractBoletoInfoCampoView {
+public abstract class AbstractCLDaycoval extends AbstractCampoLivre {
 
-    BoletoInfoViewDefault(ResourceBundle resourceBundle, Boleto boleto) {
-        super(resourceBundle, boleto);
-    }
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -5579081722726761569L;
 
-	public String getTextoRsEnderecoCedente() {
-		return getEnderecoBeneficiario();
+	protected AbstractCLDaycoval(Integer fieldsLength) {
+		super(fieldsLength);
 	}
+
+	protected static CampoLivre create(Titulo titulo){
+		return new CLDaycoval().build(titulo);
+	}
+
 }

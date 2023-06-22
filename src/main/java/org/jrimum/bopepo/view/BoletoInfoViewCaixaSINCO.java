@@ -27,4 +27,8 @@ public class BoletoInfoViewCaixaSINCO extends AbstractBoletoInfoCampoView {
     public String getTextoFcCarteira() {
         return CARTEIRA_SINCO;
     }
+
+	public String getTextoRsEnderecoCedente() {
+		return getEnderecoBeneficiario();
+}
 }

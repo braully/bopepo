@@ -1,6 +1,6 @@
 /*
  * Copyright 2008 JRimum Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by
@@ -8,13 +8,13 @@
  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
- * 
+ *
  * Created at: 30/03/2008 - 19:08:39
- * 
+ *
  * ================================================================================
- * 
+ *
  * Direitos autorais 2008 JRimum Project
- * 
+ *
  * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode usar
  * esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
  * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
@@ -22,9 +22,9 @@
  * esta LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
- * 
+ *
  * Criado em: 30/03/2008 - 19:08:39
- * 
+ *
  */
 package org.jrimum.bopepo;
 
@@ -59,16 +59,16 @@ import org.jrimum.domkee.banco.CodigoDeCompensacaoBACEN;
  * <h5>EXEMPLOS:</h5>
  *
  * <p>
- * Para uma nova instância do Banco do Brasil faça: 
- * 
+ * Para uma nova instância do Banco do Brasil faça:
+ *
  * <code>
  *   IBanco bancoDoBrasil = EnumBancos.BANCO_DO_BRASIL.newInstance();
  * </code>
  * </p>
  *
  * <p>
- * Para utilizar somento o código de compensação: 
- * 
+ * Para utilizar somento o código de compensação:
+ *
  * <code>
  *   EnumBancos.BANCO_DO_BRASIL.getCodigoDeCompensacao();
  * </code>
@@ -76,8 +76,8 @@ import org.jrimum.domkee.banco.CodigoDeCompensacaoBACEN;
  *
  * <p>
  * Para saber se um banco é suportado pelo componete, veja a lista antes
- * (LinkParaLista) ou faça: 
- * 
+ * (LinkParaLista) ou faça:
+ *
  * <code>
  *   EnumBancos.isSuportado(banco.getCodigoDeCompensacao)
  * </code>
@@ -184,17 +184,54 @@ public enum BancosSuportados {
      * @since 0.2
      */
     CECRED("085", "05.463.212/0001-29", "COOPERATIVA CENTRAL DE CRÉDITO URBANO - CECRED", "Cooperativa de Crédito"),
+
+	/**
+	 * Tipo enumerado que representa o Daycoval, <strong>Banco Daycoval S. A.</strong>,
+	 * código de compensação <strong><tt>707</tt></strong> <a href="https://www.daycoval.com.br//">
+	 * site</a>.
+	 *
+	 * @since 0.2
+	 */
+	DAYCOVAL("707", "62.232.889/0001-90", "BANCO DAYCOVAL", "Banco Daycoval S.A."),
+
+	/**
+	 * Tipo enumerado que representa o UNIPRIME PARANA, <strong>UNIPRIME NORTE DO PARANÁ - COOPERATIVA DE CRÉDITO LTDA.</strong>,
+	 * código de compensação <strong><tt>084</tt></strong> <a href="https://www.uniprimebr.com.br/">
+	 * site</a>.
+	 *
+	 * @since 0.2
+	 */
+	UNIPRIMEPR("084", "03.046.391/0001-73", "UNIPRIME NORTE DO PARANÁ - CC", "UNIPRIME NORTE DO PARANÁ - COOPERATIVA DE CRÉDITO LTDA"),
+
+	/**
+	 * Tipo enumerado que representa o UNIPRIME CENTRAL, <strong>UNIPRIME CENTRAL - CENTRAL INTERESTADUAL DE COOPERATIVAS DE CREDITO LTDA.</strong>,
+	 * código de compensação <strong><tt>099</tt></strong> <a href="https://www.uniprimebr.com.br/">
+	 * site</a>.
+	 *
+	 * @since 0.2
+	 */
+	UNIPRIMEMS("099", "03.046.391/0001-73", "UNIPRIME CENTRAL - COOPERATIVA DE CRÉDITO", "UNIPRIME CENTRAL CCC LTDA"),
+
+	/**
+	 * Tipo enumerado que representa o <strong>Banco B2S S.A.</strong>, código de
+	 * compensação <strong><tt>218</tt></strong> <a
+	 * href="https://www.bancobs2.com.br/">site</a>.
+	 *
+	 * @since 0.2
+	 */
+	BANCO_B2S("218", "71.027.866/0003-04", "BCO BS2 S.A.", "Banco BS2 S.A."),
+
     /**
      * Tipo enumerado que representa o Banco <strong>Caixa Econômica
      * Federal</strong>, código de compensação <strong>104</strong> <a
      * href="http://www.caixa.gov.br">site</a>.
      *
      * @since 0.2
-     */
+	S */
     CAIXA_ECONOMICA_FEDERAL("104", "00360305000104", "CAIXA ECONOMICA FEDERAL", "Caixa Econômica Federal"),
     /**
      * Tipo enumerado que representa o Banco <strong>Bradesco</strong>, código
-     * de compensação <strong>237</strong> 
+     * de compensação <strong>237</strong>
      * <a href="http://www.bradesco.com.br">site</a>.
      *
      * @since 0.2
@@ -202,7 +239,7 @@ public enum BancosSuportados {
     BANCO_BRADESCO("237", "60746948000112", "BANCO BRADESCO S.A.", "Banco Múltiplo"),
     /**
      * Tipo enumerado que representa o <strong>Banco Itaú</strong>, código de
-     * compensação <strong>341</strong> 
+     * compensação <strong>341</strong>
      * <a href="http://www.bradesco.com.br">site</a>.
      *
      * @since 0.2
@@ -285,7 +322,26 @@ public enum BancosSuportados {
      *
      * @since 0.2
      */
-    BANCOOB("756", "02038232000164", "BANCO COOPERATIVO DO BRASIL S.A. - BANCOOB", "Banco Comercial Cooperativo");
+	BANCOOB("756", "02038232000164", "BANCO COOPERATIVO DO BRASIL S.A. - BANCOOB", "Banco Comercial Cooperativo"),
+
+	/**
+	 * Tipo enumerado que representa o <strong>UNICRED</strong>, código de
+	 * compensação <strong><tt>136</tt></strong> <a
+	 * href="https://www.unicred.com.br/">site</a>.
+	 *
+	 * @since 0.2
+	 */
+	UNICRED("136", "00315557000111", "UNICRED COOPERATIVA", "Unicred do Brasil"),
+
+	/**
+     * Tipo enumerado que representa o <strong>ABC Brasil</strong>, código de
+     * compensação <strong><tt>246</tt></strong> <a
+     * href="https://www.abcbrasil.com.br/">site</a>.
+     *
+     * @since 0.2
+     */
+    ABCBRASIL("246", "28195667000106", "ABC Brasil", "ABC Brasil");
+	/**
 
     /**
      * Singleton <code>Map</code> para pesquisa por bancos suportados no
@@ -318,6 +374,12 @@ public enum BancosSuportados {
         suportados.put(CITIBANK.codigoDeCompensacaoBACEN, CITIBANK);
         suportados.put(BANCO_DE_BRASILIA.codigoDeCompensacaoBACEN, BANCO_DE_BRASILIA);
         suportados.put(CECRED.codigoDeCompensacaoBACEN, CECRED);
+		suportados.put(DAYCOVAL.codigoDeCompensacaoBACEN, DAYCOVAL);
+		suportados.put(UNIPRIMEPR.codigoDeCompensacaoBACEN, UNIPRIMEPR);
+		suportados.put(UNIPRIMEMS.codigoDeCompensacaoBACEN, UNIPRIMEMS);
+		suportados.put(BANCO_B2S.codigoDeCompensacaoBACEN, BANCO_B2S);
+		suportados.put(UNICRED.codigoDeCompensacaoBACEN, UNICRED);
+		suportados.put(ABCBRASIL.codigoDeCompensacaoBACEN, ABCBRASIL);
     }
 
     /**

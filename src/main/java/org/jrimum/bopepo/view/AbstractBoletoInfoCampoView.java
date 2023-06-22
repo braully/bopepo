@@ -350,4 +350,50 @@ public abstract class AbstractBoletoInfoCampoView implements BoletoInfoCampoView
         }
         return EMPTY;
     }
+
+    public String getEnderecoBeneficiario() {
+        StringBuilder enderecoBeneficiario = new StringBuilder("");
+
+        if (getBoleto().getTitulo().getCedente().getNextEndereco() == null) {
+            return enderecoBeneficiario.toString();
+        }
+
+        if (getBoleto().getTitulo().getCedente().getNextEndereco().getLogradouro() != null) {
+            enderecoBeneficiario.append(getBoleto().getTitulo().getCedente().getNextEndereco().getLogradouro());
+        }
+
+        if (getBoleto().getTitulo().getCedente().getNextEndereco().getNumero() != null) {
+            enderecoBeneficiario.append(", ").append(getBoleto().getTitulo().getCedente().getNextEndereco().getNumero());
+        }
+
+        if (getBoleto().getTitulo().getCedente().getNextEndereco().getBairro() != null) {
+
+            enderecoBeneficiario.append(", ");
+
+            if (getBoleto().getTitulo().getCedente().getNextEndereco().getBairro().length() > 30) {
+                enderecoBeneficiario.append(getBoleto().getTitulo().getCedente().getNextEndereco().getBairro().subSequence(0, 30));
+            } else {
+                enderecoBeneficiario.append(getBoleto().getTitulo().getCedente().getNextEndereco().getBairro());
+            }
+        }
+
+        if (getBoleto().getTitulo().getCedente().getNextEndereco().getLocalidade() != null) {
+            enderecoBeneficiario.append(", ");
+
+            if (getBoleto().getTitulo().getCedente().getNextEndereco().getLocalidade().length() >= 30) {
+                enderecoBeneficiario.append(getBoleto().getTitulo().getCedente().getNextEndereco().getLocalidade().substring(0, 30));
+            } else {
+                enderecoBeneficiario.append(getBoleto().getTitulo().getCedente().getNextEndereco().getLocalidade());
+            }
+        }
+
+        if (getBoleto().getTitulo().getCedente().getNextEndereco().getUF() != null) {
+            enderecoBeneficiario.append(" - ").append(getBoleto().getTitulo().getCedente().getNextEndereco().getUF().getSigla());
+        }
+
+        if (getBoleto().getTitulo().getCedente().getNextEndereco().getCEP() != null) {
+            enderecoBeneficiario.append(" - ").append(getBoleto().getTitulo().getCedente().getNextEndereco().getCEP().getCep());
+        }
+        return enderecoBeneficiario.toString();
+    }
 }

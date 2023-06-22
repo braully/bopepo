@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright 2014 JRimum Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -9,23 +9,23 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
- * 
+ *
  * Created at: 31/01/2014 - 00:11:24
  *
  * ================================================================================
  *
  * Direitos autorais 2014 JRimum Project
  *
- * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode 
- * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma 
- * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que 
- * haja exigência legal ou acordo por escrito, a distribuição de software sob esta 
- * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam 
- * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões 
+ * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode
+ * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
+ * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
+ * haja exigência legal ou acordo por escrito, a distribuição de software sob esta
+ * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam
+ * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões
  * e limitações sob esta LICENÇA.
- * 
- * Criado em: 31/01/2014 - 00:11:24 
- * 
+ *
+ * Criado em: 31/01/2014 - 00:11:24
+ *
  */
 
 package org.jrimum.bopepo.view;
@@ -60,14 +60,14 @@ public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 	public String getTextoFcCodigoBanco() {
 		return getTextoCodigoDoBanco();
 	}
-	
+
 	/**
 	 * @see org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoFcLocalPagamento()
 	 */
 	@Override
 	public String getTextoFcLocalPagamento() {
 		return "Preferencialmente nas cooperativas de crédito do SICREDI";
-	}	
+	}
 
 	/**
 	 * @see org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoRsAgenciaCodigoCedente()
@@ -98,9 +98,9 @@ public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 	 */
 	@Override
 	public String getTextoFcNossoNumero() {
-		return getTextoNossoNumero(); 
+		return getTextoNossoNumero();
 	}
-	
+
 	/**
 	 * @see org.jrimum.bopepo.view.AbstractBoletoInfoCampoView#getTextoFcAceite()
 	 */
@@ -117,17 +117,21 @@ public class BoletoInfoViewSicredi extends AbstractBoletoInfoCampoView{
 		Integer agencia = super.getBoleto().getTitulo().getContaBancaria().getAgencia().getCodigo();
 		Integer posto = super.getBoleto().getTitulo().getParametrosBancarios().getValor(ParametroBancoSicredi.POSTO_DA_AGENCIA);
 		Integer codigoCedente = super.getBoleto().getTitulo().getContaBancaria().getNumeroDaConta().getCodigoDaConta();
-		
+
 		return String.format("%04d.%02d.%05d", agencia, posto, codigoCedente);
 	}
-	
+
 	private String getTextoNossoNumero() {
 		String nn = super.getTextoFcNossoNumero();
 		return nn.substring(0,2)+"/"+nn.substring(2);
 	}
-	
+
 	private String getTextoCodigoDoBanco(){
 		return super.getTextoFcCodigoBanco().replace("-0", "-X");
+	}
+
+	public String getTextoRsEnderecoCedente() {
+		return getEnderecoBeneficiario();
 	}
 
 }

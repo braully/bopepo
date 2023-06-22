@@ -235,6 +235,12 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
                         return AbstractCLBancoDeBrasilia.create(titulo);
                     case CECRED:
                         return AbstractCLCecred.create(titulo);
+					case DAYCOVAL: return AbstractCLDaycoval.create(titulo);
+					case UNIPRIMEPR: return AbstractCLUniprime.create(titulo);
+					case UNIPRIMEMS: return AbstractCLUniprime.create(titulo);
+					case BANCO_B2S: return AbstractCLBancoB2s.create(titulo);
+					case UNICRED: return AbstractCLUnicred.create(titulo);
+					case ABCBRASIL: return AbstractCLABCBrasil.create(titulo);
 
                     default:
                         /*
