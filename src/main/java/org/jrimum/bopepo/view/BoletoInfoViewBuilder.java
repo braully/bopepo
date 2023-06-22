@@ -116,6 +116,7 @@ public class BoletoInfoViewBuilder {
         setCodigoDoBanco();
         setLinhaDigitavel();
         setCedente();
+		setEnderecoCedente();
         setAgenciaCodigoCedente();
         setEspecie();
         setNossoNumero();
@@ -244,6 +245,10 @@ public class BoletoInfoViewBuilder {
         text.put(BoletoCampo.txtRsCedente.name(), boletoInfoCampo.getTextoRsCedente());
         text.put(BoletoCampo.txtFcCedente.name(), boletoInfoCampo.getTextoFcCedente());
     }
+
+	private void setEnderecoCedente(){
+		text.put(BoletoCampo.txtRsEnderecoCedente.name(), boletoInfoCampo.getTextoRsEnderecoCedente());
+	}
 
     private void setEspecie() {
         text.put(BoletoCampo.txtRsEspecie.name(), boletoInfoCampo.getTextoRsEspecie());

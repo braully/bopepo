@@ -12,15 +12,15 @@ import org.jrimum.domkee.banco.TipoDeCobranca;
 
 /**
  * View para o convênio SICOB, Nosso número com 10 dígitos, da CAIXA.
- * 
+ *
  * @author Rômulo Augusto
  */
 public class BoletoInfoViewCaixaSICOB10 extends AbstractBoletoInfoCampoView {
-	
+
 	public BoletoInfoViewCaixaSICOB10(ResourceBundle resourceBundle, Boleto boleto) {
 		super(resourceBundle, boleto);
 	}
-	
+
 	@Override
 	public String getTextoFcCarteira() {
 		String textoCarteira = EMPTY;
@@ -30,14 +30,18 @@ public class BoletoInfoViewCaixaSICOB10 extends AbstractBoletoInfoCampoView {
 		}
 		return textoCarteira;
 	}
-	
+
 	@Override
 	public String getTextoFcAgenciaCodigoCedente() {
 		Integer agencia = getBoleto().getTitulo().getContaBancaria().getAgencia().getCodigo();
 		Integer codigoOperacao = getBoleto().getTitulo().getParametrosBancarios().getValor(ParametroCaixaEconomicaFederal.CODIGO_OPERACAO);
 		Integer codigoBeneficiario = getBoleto().getTitulo().getContaBancaria().getNumeroDaConta().getCodigoDaConta();
 		String digitoDaConta = getBoleto().getTitulo().getContaBancaria().getNumeroDaConta().getDigitoDaConta();
-		
+
 		return String.format("%04d.%03d.%08d-%s", agencia, codigoOperacao, codigoBeneficiario, digitoDaConta);
+	}
+
+	public String getTextoRsEnderecoCedente() {
+		return getEnderecoBeneficiario();
 	}
 }

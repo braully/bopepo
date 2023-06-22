@@ -1,6 +1,6 @@
-/* 
+/*
  * Copyright 2014 JRimum Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at http://www.apache.org/licenses/LICENSE-2.0
@@ -9,23 +9,23 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
- * 
+ *
  * Created at: 19/01/2014 - 22:42:27
  *
  * ================================================================================
  *
  * Direitos autorais 2014 JRimum Project
  *
- * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode 
- * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma 
- * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que 
- * haja exigência legal ou acordo por escrito, a distribuição de software sob esta 
- * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam 
- * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões 
+ * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode
+ * usar esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
+ * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
+ * haja exigência legal ou acordo por escrito, a distribuição de software sob esta
+ * LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, sejam
+ * expressas ou tácitas. Veja a LICENÇA para a redação específica a reger permissões
  * e limitações sob esta LICENÇA.
- * 
- * Criado em: 19/01/2014 - 22:42:27 
- * 
+ *
+ * Criado em: 19/01/2014 - 22:42:27
+ *
  */
 
 package org.jrimum.bopepo.view;
@@ -38,7 +38,7 @@ import org.jrimum.bopepo.view.ResourceBundle;
 
 /**
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
- * 
+ *
  */
 public class BoletoInfoCampoViewFactory {
 
@@ -71,6 +71,11 @@ public class BoletoInfoCampoViewFactory {
 			// case CITIBANK: return new ..;
 			// case BANCO_DE_BRASILIA: return new ..;
 			  case CECRED: return new BoletoInfoViewCecred(resourceBundle, boleto);
+			  case DAYCOVAL: return new BoletoInfoViewDaycoval(resourceBundle, boleto);
+			  case UNIPRIMEPR: return new BoletoInfoViewUniprime(resourceBundle, boleto);
+			  case UNIPRIMEMS: return new BoletoInfoViewUniprime(resourceBundle, boleto);
+			  case BANCO_B2S: return new BoletoInfoViewBancoB2s(resourceBundle, boleto);
+			  case ABCBRASIL: return new BoletoInfoViewABCBrasil(resourceBundle, boleto);
 			 }
 		}
 

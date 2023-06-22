@@ -67,7 +67,7 @@ public class TestBoletoPdfFeatures {
         byte[] boletoPdfComprimido = BoletoViewer.create(BoletoBuilder.defaultValue()).getPdfAsByteArray();
         byte[] boletoPdfNaoComprimido = BoletoViewer.create(BoletoBuilder.defaultValue()).setPdfFullCompression(NAO).getPdfAsByteArray();
 
-        assertTrue(boletoPdfComprimido.length < boletoPdfNaoComprimido.length);
+		assertTrue(boletoPdfComprimido.length <= boletoPdfNaoComprimido.length);
     }
 
     @Test

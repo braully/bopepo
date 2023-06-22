@@ -83,4 +83,8 @@ public class BoletoInfoViewBradesco extends AbstractBoletoInfoCampoView {
     public String getTextoRsNossoNumero() {
         return getTextoFcNossoNumero();
     }
+
+	public String getTextoRsEnderecoCedente() {
+		return getEnderecoBeneficiario();
+}
 }
