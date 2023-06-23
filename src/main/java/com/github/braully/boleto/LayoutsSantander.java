@@ -63,18 +63,18 @@ public class LayoutsSantander {
         _LAYOUT_SANTANDER_CNAB240_COBRANCA_REMESSA.get(cabecalho())
                 .get(fcodigoArquivo()).value('1');
         _LAYOUT_SANTANDER_CNAB240_COBRANCA_REMESSA.get(layout())
-                .get(fservico()).value(CNABServico.COBRANCA_REMESSA);
+                .get(fservico()).withValue(CNABServico.COBRANCA_REMESSA);
         TagLayout layout = _LAYOUT_SANTANDER_CNAB240_COBRANCA_REMESSA.get(layout());
-        layout.get(fservico()).value(CNABServico.COBRANCA_REMESSA);
+        layout.get(fservico()).withValue(CNABServico.COBRANCA_REMESSA);
 
         TagLayout cabecalho = _LAYOUT_SANTANDER_CNAB240_COBRANCA_RETORNO.get(cabecalho());
         cabecalho.get(fcodigoArquivo()).value('2');
         layout = _LAYOUT_SANTANDER_CNAB240_COBRANCA_RETORNO.get(layout());
-        layout.get(fservico()).value(CNABServico.COBRANCA_RETORNO);
+        layout.get(fservico()).withValue(CNABServico.COBRANCA_RETORNO);
 
         _LAYOUT_SANTANDER_CNAB240_PAGAMENTO.get(cabecalho()).get(fcodigoArquivo()).value('1');
         layout = _LAYOUT_SANTANDER_CNAB240_PAGAMENTO.get(layout());
-        layout.get(fservico()).value(CNABServico.PAGAMENTO_FORNECEDOR_REMESSA);
+        layout.get(fservico()).withValue(CNABServico.PAGAMENTO_FORNECEDOR_REMESSA);
 
     }
     public static final TagLayout LAYOUT_SANTANDER_CNAB240_COBRANCA_RETORNO

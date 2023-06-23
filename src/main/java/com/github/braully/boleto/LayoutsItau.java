@@ -95,15 +95,15 @@ public class LayoutsItau {
 
     static {
         _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.get(layout())
-                .get(fservico()).value(CNABServico.COBRANCA_RETORNO);
-        _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.get(cabecalho()).get(fcodigoArquivo()).value('2');
+                .get(fservico()).withValue(CNABServico.COBRANCA_RETORNO);
+        _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.get(cabecalho()).get(fcodigoArquivo()).withValue('2');
 
         _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(layout())
-                .get(fservico()).value(CNABServico.COBRANCA_REMESSA);
-        _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(cabecalho()).get(fcodigoArquivo()).value('1');
+                .get(fservico()).withValue(CNABServico.COBRANCA_REMESSA);
+        _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(cabecalho()).get(fcodigoArquivo()).withValue('1');
 
-        _LAYOUT_ITAU_PAGAMENTO.get(layout()).get(fservico()).value(CNABServico.PAGAMENTO_FORNECEDOR_REMESSA);
-        _LAYOUT_ITAU_PAGAMENTO.get(cabecalho()).get(fcodigoArquivo()).value('1');
+        _LAYOUT_ITAU_PAGAMENTO.get(layout()).get(fservico()).withValue(CNABServico.PAGAMENTO_FORNECEDOR_REMESSA);
+        _LAYOUT_ITAU_PAGAMENTO.get(cabecalho()).get(fcodigoArquivo()).withValue('1');
 
     }
 

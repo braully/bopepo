@@ -32,7 +32,7 @@ public class LayoutsBradesco {
                     cnab(CNAB_400),
                     servico(CNABServico.COBRANCA_REMESSA),
                     banco("237"),
-                    tag("url").value("https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf"),
+                    tag("url").withValue("https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf"),
                     versao("15")
             ),
             cabecalho(
@@ -223,14 +223,14 @@ public class LayoutsBradesco {
 
     static {
         _LAYOUT_BRADESCO_CNAB400_COBRANCA_REMESSA.get(cabecalho())
-                .get(fcodigoArquivo()).value('1');
+                .get(fcodigoArquivo()).withValue('1');
         _LAYOUT_BRADESCO_CNAB400_COBRANCA_REMESSA.get(layout())
-                .get(fservico()).value(CNABServico.COBRANCA_REMESSA);
+                .get(fservico()).withValue(CNABServico.COBRANCA_REMESSA);
 
         _LAYOUT_BRADESCO_CNAB400_COBRANCA_RETORNO.get(cabecalho())
-                .get(fcodigoArquivo()).value('2');
+                .get(fcodigoArquivo()).withValue('2');
         _LAYOUT_BRADESCO_CNAB400_RETORNO.get(layout())
-                .get(fservico()).value(CNABServico.COBRANCA_RETORNO);
+                .get(fservico()).withValue(CNABServico.COBRANCA_RETORNO);
 
     }
 

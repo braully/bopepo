@@ -350,14 +350,14 @@ public class LayoutsCEF {
             = _LAYOUT_CAIXA_CNAB240_RETORNO.clone();
 
     static {
-        _LAYOUT_CAIXA_CNAB240_COBRANCA_REMESSA.get(cabecalho()).get(fcodigoArquivo()).value('1');
+        _LAYOUT_CAIXA_CNAB240_COBRANCA_REMESSA.get(cabecalho()).get(fcodigoArquivo()).withValue('1');
         _LAYOUT_CAIXA_CNAB240_REMESSA.get(layout())
-                .get(fservico()).value(CNABServico.COBRANCA_REMESSA);
+                .get(fservico()).withValue(CNABServico.COBRANCA_REMESSA);
 
         _LAYOUT_CAIXA_CNAB240_COBRANCA_RETORNO.get(cabecalho())
-                .get(fcodigoArquivo()).value('2');
+                .get(fcodigoArquivo()).withValue('2');
         _LAYOUT_CAIXA_CNAB240_COBRANCA_RETORNO.get(layout())
-                .get(fservico()).value(CNABServico.COBRANCA_RETORNO);
+                .get(fservico()).withValue(CNABServico.COBRANCA_RETORNO);
     }
 
     /**

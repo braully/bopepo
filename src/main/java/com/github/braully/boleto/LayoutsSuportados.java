@@ -20,6 +20,7 @@ import static com.github.braully.boleto.TagLayout.TagCreator.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.jrimum.bopepo.BancosSuportados;
 
 /**
  *
@@ -121,6 +122,27 @@ public class LayoutsSuportados {
         return getLayouts(CNAB_240, CNABServico.PAGAMENTO_FORNECEDOR_REMESSA);
     }
 
+    public static TagLayout getLayoutArquivoBancarioCNAB240RemessaCobranca(BancosSuportados banco) {
+        return getLayoutArquivoBancarioCNAB240Servico(banco.getCodigoDeCompensacao(), CNABServico.COBRANCA_REMESSA);
+    }
+
+    public static TagLayout getLayoutArquivoBancarioCNAB240RetornoCobranca(BancosSuportados banco) {
+        return getLayoutArquivoBancarioCNAB240Servico(banco.getCodigoDeCompensacao(), CNABServico.COBRANCA_RETORNO);
+    }
+
+    public static TagLayout getLayoutArquivoBancarioCNAB240Servico(String strbanco, CNABServico servico) {
+        TagLayout t = null;
+        List<TagLayout> layouts = getLayouts(CNAB_240, servico);
+        for (TagLayout l : layouts) {
+            TagLayout descritor = l.get(layout());
+            if (eq(descritor.getValue("banco"), strbanco)) {
+                t = l;
+                break;
+            }
+        }
+        return t;
+    }
+
     public static List<TagLayout> getLayouts(CNAB cnab, CNABServico servico) {
         List<TagLayout> layouts = new ArrayList<>();
         for (TagLayout layout : layoutsSuportados) {
@@ -142,6 +164,7 @@ public class LayoutsSuportados {
             if (descritor != null
                     && eq(descritor.getValue("banco"), banco)) {
                 layoutBanco = layout;
+                break;
             }
         }
         return layoutBanco;
