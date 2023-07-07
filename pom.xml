@@ -6,7 +6,7 @@
     <groupId>io.github.braully</groupId>
     <artifactId>bpp-cobranca</artifactId>
     <packaging>jar</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>BPP-Cobrança</name>
     <description>This is a fork and merge from JRimum ( http://www.jrimum.org ),
         - Bopepo:  https://github.com/jrimum/bopepo
