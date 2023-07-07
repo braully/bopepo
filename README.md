@@ -87,7 +87,7 @@ $ ./sh/compile.sh
         <dependency>
             <groupId>io.github.braully</groupId>
             <artifactId>bpp-cobranca</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
 
 ## Exemplos
