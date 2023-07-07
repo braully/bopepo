@@ -5,7 +5,7 @@ do projeto JRimum Bopepo: http://www.jrimum.org
 com os seguintes objetivos:
 
 
-## Objetivos desse fork
+# Objetivos desse fork
 
 - Unificado das bibliotecas do projeto JRimum (concluído)
 - Atualizar dependências: Java 11 e itextpdf5 (concluído)
@@ -14,8 +14,9 @@ com os seguintes objetivos:
 - Façade para facilitar o uso da biblioteca (concluído)
 - Disponiblizar uma versão estável no repositorio maven central (concluído)
 
-#### Suporte a boletos com registro dos principais bancos
+## Suporte:
 
+Boleto Registrado:
 - Banco do Brasil
 - Bradesco
 - Caixa
@@ -23,17 +24,18 @@ com os seguintes objetivos:
 - Santander
 - Sicredi
 
-### Suporte para remessa de boletos CNAB 240
+Remessa de boleto Layout CNAB 240:
 
 - Febraban Cnab 240 - versão 5.0 (https://portal.febraban.org.br/pagina/3053/33/pt-br/layout-240)
 - Banco do Brasil Cnab  240 - 2019 (https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
 - Bradesco Cnab 400 - versão 15 por @EdsonIsaac (https://banco.bradesco/assets/pessoajuridica/pdf/4008-524-0121-layout-cobranca-versao-portugues.pdf)
 - Caixa Cnag 240 - por @EdsonIsaac http://www.caixa.gov.br/Downloads/cobranca-caixa/Manual_de_Leiaute_de_Arquivo_Eletronico_CNAB_240.pdf
+
 - Itaú - Febraban Cnab 240 (necessário fazer personalizações especificas do banco)
 - Santander - Febraban Cnab 240 (necessário fazer personalizações especificas do banco)
 - Sicredi - Febraban Cnab 240 (necessário fazer personalizações especificas do banco)
 
-###  Suporte para retorno de boletos CNAB 240
+Retorno de boletos CNAB 240:
 
 - Febraban Cnab 240 - versão 5.0 (https://portal.febraban.org.br/pagina/3053/33/pt-br/layout-240)
 - Banco do Brasil Cnab  240 - 2019 (https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf)
@@ -43,58 +45,38 @@ com os seguintes objetivos:
 - Santander - Febraban Cnab 240 (necessário fazer personalizações especificas do banco)
 - Sicredi - Febraban Cnab 240 (necessário fazer personalizações especificas do banco)
 
-### Fusão das branches 
-
-- 'master'
-- 'helio'
-- 'litio' 
-
-### Fusão dos projetos:
-
-- 'bopepo' 
-- 'domkee' 
-- 'utilix' 
-- 'vallia' 
-- 'texgit'
-- 'texgit-febraban'
-
-### Refatoração dos pacotes e classes
-Concentrar todas as classes nos pacotes
-
-- com.github.braully.boleto
-- org.jrimum
-- org.jrimum.bopepo
-- org.jrimum.bopepo.campolivre
-- org.jrimum.bopepo.parametro
-- org.jrimum.bopepo.pdf
-- org.jrimum.bopepo.view
-- org.jrimum.bopepo.banco
-- org.jrimum.domkee.pessoa
-- org.jrimum.domkee.banco
-- org.jrimum.utilix
-- org.jrimum.valia
 
 ## Instalação e compilação
 
+Baixa e compilar a biblioteca:
+```
 $ git clone https://github.com/braully/bopepo.git
 
 $ cd bopepo
 
 $ ./sh/compile.sh 
+```
 
 ## Artefato do Maven Central
 
-        <dependency>
-            <groupId>io.github.braully</groupId>
-            <artifactId>bpp-cobranca</artifactId>
-            <version>1.0.1</version>
-        </dependency>
-
-## Exemplos
-
-
-### Criar um boleto simples:
+O artefato do maven central pode ser encontrado em:
+```xml
+<dependency>
+        <groupId>io.github.braully</groupId>
+        <artifactId>bpp-cobranca</artifactId>
+        <version>1.0.1</version>
+</dependency>
 ```
+
+# Exemplos
+
+Vejamos a seguir alguns exemplos de uso da biblioteca.
+
+## Boleto simples
+
+Como criar um boleto simples:
+
+```java
 import com.github.braully.boleto.BoletoCobranca;
 import org.jrimum.bopepo.view.BoletoViewer;
 
@@ -117,24 +99,36 @@ public class ExemploBoletoSimples {
 }
 ```
 
+Um boleto de teste seria criado dentro da pasta target com o nome teste.pdf. Esse boleto contem dados fictícios e não pode ser pago.
 
-### Criar um arquivo de remessa de boleto CNAB 240:
-```
+
+![](doc/imgs/exemplo-boleto-bb.png)  
+
+
+
+### Remessa de boleto CNAB 240
+
+Um arquivo de remessa de boletos de cobrança contem um ou mais lotes de boletos. Cada lote pode conter um ou mais boletos.
+
+Nesse exemplo simples iremos criar um arquivo de remessa com apenas um lote de boletos e dois boletos fictício.
+
+```java
 import com.github.braully.boleto.LayoutsSuportados;
 import com.github.braully.boleto.RemessaArquivo;
 import java.util.Date;
+import org.jrimum.utilix.DateFormat;
+
 
 public class ExemploRemessaSimles {
-
-    public static void main(String... args) {
         RemessaArquivo remessa = new RemessaArquivo(LayoutsSuportados.LAYOUT_BB_CNAB240_COBRANCA_REMESSA);
+        //Cabeçalho do arquivo de remessa: obrigatório
         remessa.addNovoCabecalho()
                 .sequencialArquivo(1)
                 .dataGeracao(new Date()).setVal("horaGeracao", new Date())
                 .banco("0", "Banco").cedente("ACME S.A LTDA.", "1")
                 .convenio("1", "1", "1", "1")
                 .carteira("00");
-
+        //Cabeçalho do lote: obrigatório
         remessa.addNovoCabecalhoLote()
                 .operacao("R")//Operação de remessa
                 .servico(1)//Cobrança
@@ -144,35 +138,72 @@ public class ExemploRemessaSimles {
                 .convenio("1", "1", "1", "1")
                 .carteira("00");;
 
+        int contadorRegistroLote = 1;
+        //Detalhes do boleto #1  
+        // Boleto emitido pela empresa ACME S.A. ltada
+        // Para o cliente: Fulano de Tal cpf: 000.000.000-00
+        // Valor R$ 0,01 com vencimento na data de 13/12/2024
         remessa.addNovoDetalheSegmentoP()
+                //Dados da cobrança
                 .valor(1)
                 .valorDesconto(0).valorAcrescimo(0)//opcionais
                 .dataGeracao(new Date())
-                .dataVencimento(new Date())
-                .numeroDocumento(1)
-                .nossoNumero(1)
+                //.dataVencimento(new Date())
+                .dataVencimento(DateFormat.DDMMYYYY_B.parse("13/12/2024"))
+                .numeroDocumento(1).nossoNumero(1)
+                //Dados da Empresa ACM S.A. LTDA
                 .banco("0", "Banco")
                 .cedente("ACME S.A LTDA.", "1")
                 .convenio("1", "1", "1", "1")
-                .sequencialRegistro(1)
+                //.sequencialRegistro(1)
+                .sequencialRegistro(contadorRegistroLote++)
                 .carteira("00");
 
         remessa.addNovoDetalheSegmentoQ()
-                .sacado("Fulano de Tal", "0")
+                //Dados do cliente
+                .sacado("Fulano de Tal", "00000000000")
                 .banco("0", "Banco")
                 .cedente("ACME S.A LTDA.", "1")
                 .convenio("1", "1", "1", "1")
-                .sequencialRegistro(2)
-                .carteira("00");;
+                //.sequencialRegistro(2)
+                .sequencialRegistro(contadorRegistroLote++)
+                .carteira("00");
 
+        //Detalhes do boleto #2 Boleto emitido pela empresa ACME S.A. ltada
+        // Para o cliente: Ciclano de Tal cpf: 11111111111
+        // Valor R$ 2,50 com vencimento na data de hoje
+        remessa.addNovoDetalheSegmentoP()
+                .valor(2.50)
+                .valorDesconto(0).valorAcrescimo(0)//opcionais
+                .dataGeracao(new Date())
+                .dataVencimento(new Date())
+                .numeroDocumento(2).nossoNumero(2)
+                .banco("0", "Banco")
+                .cedente("ACME S.A LTDA.", "1")
+                .convenio("1", "1", "1", "1")
+                //.sequencialRegistro(3)
+                .sequencialRegistro(contadorRegistroLote++)
+                .carteira("00");
+        //Detalhes do boleto #2
+        remessa.addNovoDetalheSegmentoQ()
+                .sacado("Ciclano de Tal", "11111111111")
+                .banco("0", "Banco")
+                .cedente("ACME S.A LTDA.", "1")
+                .convenio("1", "1", "1", "1")
+                //.sequencialRegistro(4)
+                .sequencialRegistro(contadorRegistroLote++)
+                .carteira("00");
+
+        //Rodapé do lote: obrigatório
         remessa.addNovoRodapeLote()
                 .quantidadeRegistros(2)
                 .valorTotalRegistros(1)
                 .banco("0", "Banco")
                 .cedente("ACME S.A LTDA.", "1")
                 .convenio("1", "1", "1", "1")
-                .carteira("00");;
+                .carteira("00");
 
+        //Rodapé do arquivo de remessa: obrigatório
         remessa.addNovoRodape()
                 .quantidadeRegistros(1)
                 .valorTotalRegistros(1)
@@ -187,53 +218,86 @@ public class ExemploRemessaSimles {
 }
 ```
 
-Saída:
+Abaixo a saída esperada para essa remessa criada.
 
-```
-00000000         200000000000001000000001001400000  00000100000000000011ACME S.A LTDA.                BANCO                                   10505202111574500000110300000                                                                     
+
+```txt
+00000000         200000000000001000000001001400000  00000100000000000011ACME S.A LTDA.                BANCO                                   10707202302055600000110300000                                                                     
 00000011R01  060 2000000000000001000000001001400000  00000100000000000011ACME S.A LTDA.                                                                                                0000000000000000                                         
-0000001300001P 01000001000000000000111                   111220000000000000010505202100000000000000100000002N050520213000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000300000009           
+0000001300001P 01000001000000000000111                   111220000000000000011312202400000000000000100000002N070720233000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000300000009           
 0000001300002Q 011000000000000000FULANO DE TAL                                                                                  00000000                 0000000000000000                                        00000000000000000000000        
+0000001300003P 01000001000000000000112                   11122000000000000002070720230000000000002.500000002N070720233000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000300000009           
+0000001300004Q 011000011111111111CICLANO DE TAL                                                                                 00000000                 0000000000000000                                        00000000000000000000000        
 00000015         000002000000000000000001000000000000000000000000                                                                                                                                                                               
-00099999         000001000001000000                                                                                                           
+00099999         000001000001000000                                                                                                                                                                                                             
+                                                   
 ```
 
 ### Ler um arquivo de retorno de boleto CNAB 240:
-```
 
-    RetornoArquivo retorno = new RetornoArquivo(LayoutsSuportados.LAYOUT_FEBRABAN_CNAB240);
+O código abaixo mostra como ler um arquivo de retorno de boleto CNAB 240. Normalmente compatível com todos os bancos, porém existem personalizações possíveis para cada banco. Favor conferir a documentação do banco para maiores detalhes. A versão do layout também podem apresentar diferenças, porém o código abaixo é compatível com a versão 5.0 do layout.
 
-    String[] arrLinhas = BB_EXEMPLO_RETORNO.split("\n");
+```java
+import com.github.braully.boleto.LayoutsSuportados;
+import com.github.braully.boleto.RetornoArquivo;
+import com.github.braully.boleto.TituloArquivo;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-    List<String> linhas = Arrays.asList(arrLinhas);
-    retorno.parse(linhas);
+public class ExemploProcessamentoArquivoRetorno {
 
-    System.out.println("Detalhes as Titulos: ");
+    public static void main(String... args) throws FileNotFoundException, IOException {
 
-    List<TituloArquivo> titulos = retorno.detalhesAsTitulos();
-    for (TituloArquivo titulo : titulos) {
-        String segmento = titulo.segmento();
-        String numeroDocumento = titulo.numeroDocumento();
-        String nossoNumero = titulo.nossoNumero();
-        String valorPagamento = titulo.valorPagamento();
-        String valorLiquido = titulo.valorLiquido();
-        String dataOcorrencia = titulo.dataOcorrencia();
-        String movimentoCodigo = titulo.movimentoCodigo();
-        String rejeicoes = titulo.rejeicoes();
-        String valorTarifaCustas = titulo.valorTarifaCustas();
+        BufferedReader leitorArquivo = new 
+        //Arquivo de retorno fornecido pelo banco
+        BufferedReader(new FileReader("RETORNO001.txt"));
 
-        System.out.println("Campos: {segmento=" + segmento + " numeroDocumento=" + numeroDocumento);
-        System.out.println("\tnossoNumero=" + nossoNumero + " valorPagamento=" + valorPagamento);
-        System.out.println("\tvalorLiquido=" + valorLiquido + " dataOcorrencia=" + dataOcorrencia);
-        System.out.println("\tmovimentoCodigo=" + movimentoCodigo + " rejeicoes=" + rejeicoes);
-        System.out.println("\tvalorTarifaCustas=" + valorTarifaCustas + " rejeicoes=" + valorTarifaCustas + "}");
+        List<String> linhasLidas = new ArrayList<>();
+        String linha = null;
+        while (null != (linha = leitorArquivo.readLine())) {
+            linhasLidas.add(linha);
+        }
+
+        // Layout de arquivo de retorno
+        RetornoArquivo retorno = new RetornoArquivo(LayoutsSuportados.LAYOUT_FEBRABAN_CNAB240);
+        // Parse do arquivo lido no layout LAYOUT_FEBRABAN_CNAB240
+        retorno.parse(linhasLidas);
+
+        System.out.println("Detalhes as Titulos: ");
+
+        List<TituloArquivo> titulos = retorno.detalhesAsTitulos();
+        //Titulos encontrados no arquivo de retorno
+        // E principais dados disponiveis
+        for (TituloArquivo titulo : titulos) {
+            String segmento = titulo.segmento();
+            String numeroDocumento = titulo.numeroDocumento();
+            String nossoNumero = titulo.nossoNumero();
+            String valorPagamento = titulo.valorPagamento();
+            String valorLiquido = titulo.valorLiquido();
+            String dataOcorrencia = titulo.dataOcorrencia();
+            String movimentoCodigo = titulo.movimentoCodigo();
+            String rejeicoes = titulo.rejeicoes();
+            String valorTarifaCustas = titulo.valorTarifaCustas();
+
+            // Print dos dados
+            System.out.println("Campos: {segmento=" + segmento + " numeroDocumento=" + numeroDocumento);
+            System.out.println("\tnossoNumero=" + nossoNumero + " valorPagamento=" + valorPagamento);
+            System.out.println("\tvalorLiquido=" + valorLiquido + " dataOcorrencia=" + dataOcorrencia);
+            System.out.println("\tmovimentoCodigo=" + movimentoCodigo + " rejeicoes=" + rejeicoes);
+            System.out.println("\tvalorTarifaCustas=" + valorTarifaCustas + " rejeicoes=" + valorTarifaCustas + "}");
+        }
     }
+}
 ```
 
 
 ### Criar um novo layout de remessa ou de retorno
 
-```
+```java
 import com.github.braully.boleto.TagLayout;
 import static com.github.braully.boleto.TagLayout.TagCreator.*;
 import java.text.SimpleDateFormat;
@@ -273,3 +337,43 @@ public class ExemploLayoutSimples {
     }
 }
 ```
+
+
+# Principais alterações desse fork
+
+O Projeto Original Jrimum bobepo possui três branches de desenvolvimento e alguns projetos relacionados.
+Acredito que é a biblioteca java livre mais completa disponivel, porém a muito os desenvolvedores originais não atualizam o projeto.
+
+Com a grande demanda surgida com a obrigatoriedade de boletos registrados e alguns projetos legados. Decidi fazer um fork e atualizar o projeto. Primeiramente foi unificado as branches e feito um merge no master, tornando novamente a linha principal de desenvolvimento. Após isso unificar os projetos e os pacotes envolvidos tentando dar mais clareza e organização ao projeto.
+
+Ainda é um trabalho em andamento, mas já é possível utilizar o projeto para gerar boletos registrados, ler arquivos de retorno e remessas de boleto. E com o tempo irei atualizar a documentação e os exemplos.
+Foi adicionado uma versão no maven central, pra facilitar a utilização do projeto.
+
+Qualquer contribuição é bem vinda, favor fazer um fork, alterar, criar o teste e enviar um pull request.
+
+
+Merge das branches e projetos:
+
+- 'helio'
+- 'litio' 
+- 'bopepo' 
+- 'domkee' 
+- 'utilix' 
+- 'vallia' 
+- 'texgit'
+- 'texgit-febraban'
+
+Concentrar todas as classes nos pacotes:
+
+- com.github.braully.boleto
+- org.jrimum
+- org.jrimum.bopepo
+- org.jrimum.bopepo.campolivre
+- org.jrimum.bopepo.parametro
+- org.jrimum.bopepo.pdf
+- org.jrimum.bopepo.view
+- org.jrimum.bopepo.banco
+- org.jrimum.domkee.pessoa
+- org.jrimum.domkee.banco
+- org.jrimum.utilix
+- org.jrimum.valia
