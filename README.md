@@ -339,6 +339,12 @@ public class ExemploLayoutSimples {
 ```
 
 
+# Referências
+
+- Curso online de boleto com bopepo: https://t2ti.com/curso/video/java/bopepo/
+- Grupo de discussão: https://groups.google.com/g/jrimum-community
+- Documentação original: http://web.archive.org/web/20210731153836/http://jrimum.org/bopepo/
+
 # Principais alterações desse fork
 
 O Projeto Original Jrimum bobepo possui três branches de desenvolvimento e alguns projetos relacionados.
