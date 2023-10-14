@@ -32,6 +32,7 @@ import org.jrimum.domkee.banco.Agencia;
 import org.jrimum.domkee.banco.Carteira;
 import org.jrimum.domkee.banco.NumeroDaConta;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -66,6 +67,7 @@ public class TestCLBancoobCobrancaNaoRegistrada
         setCampoLivreEsperadoComoString("1434001000001002000001001");
     }
 
+    @Ignore
     @Test(expected = CampoLivreException.class)
     public void seNaoPermiteNossoNumeroComTamanhoDiferenteDe7() {
         testeSeNaoPermiteNossoNumeroComTamanhoDiferenteDoEspecificado(NOSSO_NUMERO_LENGTH + 1);

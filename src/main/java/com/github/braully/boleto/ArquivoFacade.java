@@ -44,6 +44,8 @@ public class ArquivoFacade {
     public List<String> renderLinhas() {
         List<String> linhas = new ArrayList<>();
         for (RegistroArquivo r : this.registros) {
+            System.out.println("Renderizando linha: ");
+            System.out.println(r);
             String render = r.render();
             linhas.add(render);
         }

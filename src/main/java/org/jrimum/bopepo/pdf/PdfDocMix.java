@@ -499,26 +499,26 @@ public class PdfDocMix {
 		return this;
 	}
 
-	/**
-	 * Habilita/Desabilita o modo full compression do PDF veja
-	 * {@link com.lowagie.text.pdf.PdfStamper#setFullCompression()}.
-	 *
-	 * <p>
-	 * Itext doc: <i>Sets the document's compression to the new 1.5 mode with object
-	 * streams and xref streams.</i>
-	 * </p>
-	 *
-	 * @param option Escolha de compressão
-	 *
-	 * @return Esta instância após a operação
-	 *
-	 * @since 0.2
-	 *
-	 */
-	public PdfDocMix withFullCompression(boolean option) {
-		this.fullCompression = option;
-		return this;
-	}
+    /**
+     * Habilita/Desabilita o modo full compression do PDF veja
+     * {@link com.itextpdf.text.pdf.PdfStamper#setFullCompression()}.
+     *
+     * <p>
+     * Itext doc: <i>Sets the document's compression to the new 1.5 mode with
+     * object streams and xref streams.</i>
+     * </p>
+     *
+     * @param option Escolha de compressão
+     *
+     * @return Esta instância após a operação
+     *
+     * @since 0.2
+     *
+     */
+    public PdfDocMix withFullCompression(boolean option) {
+        this.fullCompression = option;
+        return this;
+    }
 
 	/**
 	 * Habilita/Desabilita a remoção dos campos do PDF.

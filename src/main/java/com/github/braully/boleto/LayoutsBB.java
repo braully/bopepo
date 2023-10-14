@@ -22,11 +22,14 @@ import static com.github.braully.boleto.TagLayout.TagCreator.cabecalhoLote;
 import static com.github.braully.boleto.TagLayout.TagCreator.detalheSegmentoP;
 import static com.github.braully.boleto.TagLayout.TagCreator.fbranco;
 import static com.github.braully.boleto.TagLayout.TagCreator.fcodigoArquivo;
+import static com.github.braully.boleto.TagLayout.TagCreator.fbancoCodigo;
+import static com.github.braully.boleto.TagLayout.TagCreator.fbancoNome;
 import static com.github.braully.boleto.TagLayout.TagCreator.fservico;
 import static com.github.braully.boleto.TagLayout.TagCreator.fconvenio;
 import static com.github.braully.boleto.TagLayout.TagCreator.field;
 import static com.github.braully.boleto.TagLayout.TagCreator.fnossoNumero;
 import static com.github.braully.boleto.TagLayout.TagCreator.layout;
+import java.util.List;
 import org.jrimum.texgit.Fillers;
 
 /**
@@ -39,9 +42,23 @@ public class LayoutsBB {
      * Particularidades BB CNAB 240 2019
      * https://www.bb.com.br/docs/pub/emp/empl/dwn/CNAB240SegPQRSTY.pdf
      */
-    static final TagLayout _LAYOUT_BB_CNAB240 = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240();
+    static final TagLayout _LAYOUT_BB_CNAB240 = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240_V05();
 
     static {
+
+        List<TagLayout> alld = _LAYOUT_BB_CNAB240.getAllDescendents(fbancoCodigo());
+
+        //TODO: Migrar para uma constante
+        for (TagLayout chd : alld) {
+            chd.val("001");
+        }
+
+        alld = _LAYOUT_BB_CNAB240.getAllDescendents(fbancoNome());
+
+        //TODO: Migrar para uma constante
+        for (TagLayout chd : alld) {
+            chd.val("BANCO DO BRASIL S.A.");
+        }
 
         //Layout
         TagLayout layout = _LAYOUT_BB_CNAB240.get(layout());

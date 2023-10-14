@@ -124,6 +124,16 @@ public class BoletoCobranca extends Boleto {
         return this;
     }
 
+//    TODO: Implementar
+//    public Boleto sacadoEndereco(String endereco) {
+//        this.getSacado().addEndereco(endereco);
+//        return this;
+//    }
+//
+//    public BoletoCobranca cedenteEndereco(String endereco) {
+//        this.getCedente().addEndereco(endereco);
+//        return this;
+//    }
     public BoletoCobranca cedente(String nomeSacado) {
         this.getCedente().setNome(nomeSacado);
         return this;
@@ -149,6 +159,10 @@ public class BoletoCobranca extends Boleto {
         return this;
     }
 
+    public BoletoCobranca valor(String vr) {
+        return this.valor(Long.parseLong(vr.replaceAll("\\D+", "")), 2);
+    }
+
     public BoletoCobranca valor(BigDecimal big) {
         this.getTitulo().setValor(big);
         return this;
@@ -156,6 +170,11 @@ public class BoletoCobranca extends Boleto {
 
     public BoletoCobranca valor(Double valor) {
         this.getTitulo().setValor(BigDecimal.valueOf(valor));
+        return this;
+    }
+
+    public BoletoCobranca valor(long val, int scale) {
+        this.getTitulo().setValor(BigDecimal.valueOf(val, scale));
         return this;
     }
 
@@ -189,7 +208,7 @@ public class BoletoCobranca extends Boleto {
         return this;
     }
 
-    //Alias
+    // Alias
     public BoletoCobranca cobrancaRegistrada(Boolean registrado) {
         return carteiraCobrancaRegistrada(registrado);
     }
@@ -242,7 +261,7 @@ public class BoletoCobranca extends Boleto {
         if (carteira == null) {
             carteira = new Carteira();
             this.getContaBancaria().setCarteira(carteira);
-            //Tipo de cobrança padrão é registrado
+            // Tipo de cobrança padrão é registrado
             carteira.setTipoCobranca(TipoDeCobranca.COM_REGISTRO);
         }
         return carteira;
@@ -280,7 +299,7 @@ public class BoletoCobranca extends Boleto {
         if (strNumero == null) {
             throw new IllegalArgumentException("Numero esta null");
         }
-        //TODO: Melhorar isso, ir pelo formato de agencia de cada banco.
+        // TODO: Melhorar isso, ir pelo formato de agencia de cada banco.
         if (strNumero.contains(SEPARADOR_DIGITO_VERIFICADOR)) {
             String[] split = strNumero.split(SEPARADOR_DIGITO_VERIFICADOR);
             numero = split[0];
@@ -297,7 +316,7 @@ public class BoletoCobranca extends Boleto {
         if (strNumero == null) {
             throw new IllegalArgumentException("Numero esta null");
         }
-        //TODO: Melhorar isso, ir pelo formato de agencia de cada banco.
+        // TODO: Melhorar isso, ir pelo formato de agencia de cada banco.
         if (strNumero.contains(SEPARADOR_DIGITO_VERIFICADOR)) {
             String[] split = strNumero.split(SEPARADOR_DIGITO_VERIFICADOR);
             numero = parseInt(split[0]);

@@ -1184,6 +1184,17 @@ public class TagLayout implements Serializable {
         return get(tag.nome);
     }
 
+    public List<TagLayout> getAllDescendents(TagLayout matcher) {
+        List<TagLayout> ret = new ArrayList<>();
+        for (TagLayout filho : filhos) {
+            if (filho.nome.equalsIgnoreCase(matcher.nome)) {
+                ret.add(filho);
+            }
+            ret.addAll(filho.getAllDescendents(matcher));
+        }
+        return ret;
+    }
+
     public TagLayout get(String strfilho) {
         TagLayout fi = null;
         for (TagLayout filho : filhos) {

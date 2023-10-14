@@ -38,7 +38,7 @@ public class LayoutsSantander {
 
         // Layout
         TagLayout layout = _LAYOUT_SANTANDER_CNAB240.get(layout());
-        layout.get("nome").value("Layout Padrão Santander CNAB240 Pagamento Remessa");
+        layout.get("nome").value("Layout Padrão Santander CNAB240");
         layout.get("banco").value(codigoSantander);
         layout.get("url").withValue(
                 "https://cms.santander.com.br/sites/WPS/documentos/arq-layout-de-arquivos-1/17-10-26_171722_258-37-pagamento+a+fornecedores+layout+cnab+240+-+v10.pdf");

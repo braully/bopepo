@@ -262,23 +262,23 @@ class PdfViewer {
 		}
 	}
 
-	/**
-	 * Habilita o modo full compression do PDF veja
-	 * {@link com.lowagie.text.pdf.PdfStamper#setFullCompression()}.
-	 *
-	 * <p>
-	 * Itext doc: <i>Sets the document's compression to the new 1.5 mode with object
-	 * streams and xref streams.</i>
-	 * </p>
-	 *
-	 * @param option Escolha de compressão.
-	 *
-	 * @since 0.2
-	 *
-	 */
-	protected void setFullCompression(boolean option) {
-		doc.withFullCompression(option);
-	}
+    /**
+     * Habilita o modo full compression do PDF veja
+     * {@link com.itextpdf.text.pdf.PdfStamper#setFullCompression()}.
+     *
+     * <p>
+     * Itext doc: <i>Sets the document's compression to the new 1.5 mode with
+     * object streams and xref streams.</i>
+     * </p>
+     *
+     * @param option Escolha de compressão.
+     *
+     * @since 0.2
+     *
+     */
+    protected void setFullCompression(boolean option) {
+        doc.withFullCompression(option);
+    }
 
 	/**
 	 * Define o título do documento PDF gerado.

@@ -23,7 +23,7 @@ import static com.github.braully.boleto.TagLayout.TagCreator.*;
  */
 public class LayoutsItau {
 
-    private static final TagLayout _LAYOUT_ITAU_CNAB240 = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240();
+    private static final TagLayout _LAYOUT_ITAU_CNAB240 = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240_V05();
     private static final TagLayout _LAYOUT_ITAU_PAGAMENTO = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240_PAGAMENTO_REMESSA();
 
     static {

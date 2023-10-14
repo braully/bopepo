@@ -29,9 +29,9 @@ import org.jrimum.bopepo.BancosSuportados;
 //TODO: Revisar layout de terceiros que vieram via pull request
 public class LayoutsSuportados {
 
-    static TagLayout _LAYOUT_FEBRABAN_CNAB240 = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240();
+    static TagLayout _LAYOUT_FEBRABAN_CNAB240 = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240_V05();
 
-    public static final TagLayout LAYOUT_FEBRABAN_CNAB240 = _LAYOUT_FEBRABAN_CNAB240.cloneReadonly();
+    static final TagLayout LAYOUT_FEBRABAN_CNAB240 = _LAYOUT_FEBRABAN_CNAB240.cloneReadonly();
 
     static final TagLayout _LAYOUT_SICREDI_CNAB240 = _LAYOUT_FEBRABAN_CNAB240.clone();
 
@@ -110,9 +110,10 @@ public class LayoutsSuportados {
         layoutsSuportadosTmp.add(LayoutsItau.LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA);
         layoutsSuportadosTmp.add(LayoutsCEF.LAYOUT_CAIXA_CNAB240_COBRANCA_REMESSA);
         layoutsSuportadosTmp.add(LayoutsCEF.LAYOUT_CAIXA_CNAB240_COBRANCA_RETORNO);
-        layoutsSuportadosTmp.add(LayoutsBradesco.LAYOUT_BRADESCO_CNAB400_COBRANCA_REMESSA);
-        layoutsSuportadosTmp.add(LayoutsBradesco.LAYOUT_BRADESCO_CNAB400_COBRANCA_RETORNO);
-        layoutsSuportadosTmp.add(LayoutsBradesco.LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA);
+        //FIXME: Falha ao carregar bb
+//        layoutsSuportadosTmp.add(LayoutsBradesco.LAYOUT_BRADESCO_CNAB400_COBRANCA_REMESSA);
+//        layoutsSuportadosTmp.add(LayoutsBradesco.LAYOUT_BRADESCO_CNAB400_COBRANCA_RETORNO);
+//        layoutsSuportadosTmp.add(LayoutsBradesco.LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA);
 
         /* */
         layoutsSuportados = Collections.unmodifiableList(layoutsSuportadosTmp);
