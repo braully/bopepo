@@ -53,6 +53,7 @@ public class CLIRemessa implements Runnable {
     public void run() {
 
         if (in == null) {
+            in = "/dados/workspace/NORLI_HOMOLOGACAO/djangosige/media/remessa/4.json";
         }
         JSONObject remjson = null;
         try {
@@ -107,82 +108,83 @@ public class CLIRemessa implements Runnable {
 
             int cont = 1;
             int total = 0;
-            if (!remjson.isNull("boletos")) {
-                JSONArray boletosjson = remjson.getJSONArray("boletos");
+//            if (!remjson.isNull("boletos")) {
+            JSONArray boletosjson = remjson.getJSONArray("boletos");
 
-                if (false && boletosjson != null) {
-                    for (int i = 0; i < boletosjson.length(); i++) {
-                        JSONObject boletojson = boletosjson.getJSONObject(i);
-                        JSONObject sacadojson = boletojson.getJSONObject("sacado");
-                        remessa.addNovoDetalheSegmentoP()
-                                .valor(boletojson.get("valor"))
-                                //                                .valorDesconto(0).valorAcrescimo(0)//opcionais
-                                .dataGeracao(new Date())
-                                .dataVencimento(new Date())
-                                .numeroDocumento(boletojson.get("numero_documento"))
-                                .nossoNumero(boletojson.get("nosso_numero"))
-                                .cedente(cedentejson.getString("nome_razao_social"),
-                                        cedentejson.getString("cpf_cnpj"))
-                                .convenio(conveniojson.getString("codigo_convenio"),
-                                        contaconjson.getString("agencia"),
-                                        contaconjson.getString("conta"),
-                                        contaconjson.getString("dac"))
-                                .sequencialRegistro(cont++)
-                                .carteira(conveniojson.getString("carteira"));
+            if (boletosjson != null) {
+                for (int i = 0; i < boletosjson.length(); i++) {
+                    JSONObject boletojson = boletosjson.getJSONObject(i);
+                    JSONObject sacadojson = boletojson.getJSONObject("sacado");
+                    remessa.addNovoDetalheSegmentoP()
+                            .valor(boletojson.get("valor"))
+                            //                                .valorDesconto(0).valorAcrescimo(0)//opcionais
+                            .dataGeracao(new Date())
+                            .dataVencimento(new Date())
+                            .numeroDocumento(boletojson.get("numero_documento"))
+                            .nossoNumero(boletojson.get("nosso_numero"))
+                            .cedente(cedentejson.getString("nome_razao_social"),
+                                    cedentejson.getString("cpf_cnpj"))
+                            .convenio(conveniojson.getString("codigo_convenio"),
+                                    contaconjson.getString("agencia"),
+                                    contaconjson.getString("conta"),
+                                    contaconjson.getString("dac"))
+                            .sequencialRegistro(cont++)
+                            .carteira(conveniojson.getString("carteira"));
 
-                        remessa.addNovoDetalheSegmentoQ()
-                                .sacado(sacadojson.getString("nome_razao_social"),
-                                        sacadojson.getString("cpf_cnpj"))
-                                .cedente(cedentejson.getString("nome_razao_social"),
-                                        cedentejson.getString("cpf_cnpj"))
-                                .convenio(conveniojson.getString("codigo_convenio"),
-                                        contaconjson.getString("agencia"),
-                                        contaconjson.getString("conta"),
-                                        contaconjson.getString("dac"))
-                                .sequencialRegistro(cont++)
-                                .carteira(conveniojson.getString("carteira"));
+                    remessa.addNovoDetalheSegmentoQ()
+                            .sacado(sacadojson.getString("nome_razao_social"),
+                                    sacadojson.getString("cpf_cnpj"))
+                            .cedente(cedentejson.getString("nome_razao_social"),
+                                    cedentejson.getString("cpf_cnpj"))
+                            .convenio(conveniojson.getString("codigo_convenio"),
+                                    contaconjson.getString("agencia"),
+                                    contaconjson.getString("conta"),
+                                    contaconjson.getString("dac"))
+                            .sequencialRegistro(cont++)
+                            .carteira(conveniojson.getString("carteira"));
 
-                        cont++;
+                    cont++;
 //                    total += totalboleto;
-                    }
                 }
             }
+//            }
 
-            if (!remjson.isNull("transferencias")) {
-                JSONArray transferenciasjson = remjson.getJSONArray("transferencias");
-                if (false && transferenciasjson != null) {
-                    for (int i = 0; i < transferenciasjson.length(); i++) {
-                        JSONObject transjson = transferenciasjson.getJSONObject(i);
-                        JSONObject fornecedorjson = transjson.getJSONObject("fornecedor");
+//            if (!remjson.isNull("transferencias")) {
+            JSONArray transferenciasjson = remjson.getJSONArray("transferencias");
+            if (transferenciasjson != null) {
+                for (int i = 0; i < transferenciasjson.length(); i++) {
+                    JSONObject transjson = transferenciasjson.getJSONObject(i);
+                    JSONObject fornecedorjson = transjson.getJSONObject("fornecedor");
 
-                        TituloArquivo detalheSegmentoA = remessa.addNovoDetalheSegmentoA();
-                        JSONObject jsonObject = fornecedorjson.getJSONObject("conta");
-                        detalheSegmentoA.numeroDocumento(jsonObject.getString("id"))
-                                .formaDeTransferencia("000")
-                                .favorecidoCodigoBanco(jsonObject.getString("banco"))
-                                .favorecidoAgencia(jsonObject.getString("agencia"))
-                                .favorecidoConta(jsonObject.getString("conta"))
-                                .numeroDocumento(transjson.get("numero_documento"))
-                                //testando sanitize remover acentos e transformar em maiusculo
-                                .favorecidoNome(fornecedorjson.get("nome_razao_social"))
-                                .dataPagamento(new Date())
-                                .valor(transjson.get("valor_total"))
-                                .sequencialRegistro(cont);
+                    TituloArquivo detalheSegmentoA = remessa.addNovoDetalheSegmentoA();
+                    JSONObject jsonObject = fornecedorjson.getJSONObject("conta");
+//                    detalheSegmentoA.numeroDocumento(transjson.getString("id"))
+                    detalheSegmentoA.numeroDocumento("0")
+                            .formaDeTransferencia("000")
+                            .favorecidoCodigoBanco(jsonObject.getString("banco"))
+                            .favorecidoAgencia(jsonObject.getString("agencia"))
+                            .favorecidoConta(jsonObject.getString("conta"))
+//                            .numeroDocumento(transjson.get("numero_documento"))
+                            //testando sanitize remover acentos e transformar em maiusculo
+                            .favorecidoNome(fornecedorjson.get("nome_razao_social"))
+                            .dataPagamento(new Date())
+                            .valor(transjson.get("valor_total"))
+                            .sequencialRegistro(cont);
 
-                        cont++;
+                    cont++;
 
-                        remessa.addNovoDetalheSegmentoB()
-                                .numeroDocumento(1)
-                                .favorecidoTipoInscricao("1")
-                                //testando sanitize apenasNumeros
-                                .favorecidoCPFCNPJ(fornecedorjson.get("cpf_cnpj"))
-                                .valor(transjson.get("valor_total"))
-                                .sequencialRegistro(cont)
-                                .setValue("data", new Date())
-                                .setValue("lote", 1);
-                    }
+                    remessa.addNovoDetalheSegmentoB()
+                            .numeroDocumento(1)
+                            .favorecidoTipoInscricao("1")
+                            //testando sanitize apenasNumeros
+                            .favorecidoCPFCNPJ(fornecedorjson.get("cpf_cnpj"))
+                            .valor(transjson.get("valor_total"))
+                            .sequencialRegistro(cont)
+                            .setValue("data", new Date())
+                            .setValue("lote", 1);
                 }
             }
+//            }
 
             remessa.addNovoRodapeLote()
                     .quantidadeRegistros(2)
