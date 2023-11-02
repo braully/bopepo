@@ -1311,6 +1311,10 @@ public class TagLayout implements Serializable {
         return setAttr(len);
     }
 
+    public Integer length() {
+        return getInt("length");
+    }
+
     public TagLayout position(int len) {
         return setAttr(len);
     }
@@ -1420,5 +1424,36 @@ public class TagLayout implements Serializable {
             return "T{" + nome + "=" + value + " filhos=" + filhos + '}';
         }
         return "T{" + nome + "=" + value + '}';
+    }
+
+    public String toStringDetalhado(int offset) {
+        int cont = offset;
+        StringBuilder sb = new StringBuilder();
+        sb.append(nome);
+        if (value != null) {
+            sb.append(": ").append(value);
+        }
+        Integer length = length();
+        if (length != null) {
+            sb.append("[").append(cont).append("-").append(cont + length - 1).append("]");
+            cont = cont + length;
+        }
+        sb.append("[").append(length).append("]");
+
+        if (filhos != null && !filhos.isEmpty()) {
+            sb.append("filhos: {");
+            for (TagLayout filho : filhos) {
+                sb.append(filho.toStringDetalhado(cont));
+                sb.append("   ");
+                cont = cont + filho.length();
+
+            }
+            sb.append("}");
+        }
+        return sb.toString();
+    }
+
+    public String toStringDetalhado() {
+        return toStringDetalhado(1);
     }
 }

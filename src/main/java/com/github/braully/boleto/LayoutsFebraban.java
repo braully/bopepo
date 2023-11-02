@@ -38,7 +38,7 @@ public class LayoutsFebraban {
                     //Controle: Banco, lote e registro
                     //Banco: Código do Banco na Compensação133-NumG001
                     fbancoCodigo(),
-                    flote().value("0000"),
+                    flote().valLen("0000"),
                     fcodigoRegistro().value("0"),
                     //Uso Exclusivo FEBRABAN / CNAB9179-AlfaBrancosG004
                     fbranco().length(9),

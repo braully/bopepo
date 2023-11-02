@@ -57,7 +57,7 @@ public class LayoutsBB {
 
         //TODO: Migrar para uma constante
         for (TagLayout chd : alld) {
-            chd.val("BANCO DO BRASIL S.A.");
+            chd.value("BANCO DO BRASIL S.A.");
         }
 
         //Layout
@@ -153,4 +153,10 @@ public class LayoutsBB {
     public static final TagLayout LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA
             = _LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA.cloneReadonly();
 
+    public static void main(String... args) {
+//        System.out.println(_LAYOUT_BB_CNAB240.toString());
+//        _LAYOUT_BB_CNAB240.
+        TagLayout cabecalho = _LAYOUT_BB_CNAB240.get(cabecalho());
+        System.out.println(cabecalho.toStringDetalhado());
+    }
 }
