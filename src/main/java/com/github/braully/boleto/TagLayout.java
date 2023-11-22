@@ -824,6 +824,25 @@ public class TagLayout implements Serializable {
             return field("nossoNumero").type(Number.class).filler(Fillers.ZERO_LEFT);
         }
 
+        /**
+         * TIPO DE COBRANÇA PARA COMANDO 72 NOTA 03: - 0 – Caso não haja
+         * alteração de tipo de cobrança - 1 – Simples - 2 – Vinculada - 4 –
+         * Descontada - 7 – Cobrança Simples Carteira 17 - 8 – Vendor
+         */
+        public static TagLayout ftipoCobrancaComando72() {
+            return field("tipoCobrancaComando72").length(1);
+        }
+
+        /**
+         * TIPO DE COBRANÇA: - 1 – Simples - 2 – Vinculada - 4 – Descontada - 7
+         * – Cobrança Simples Carteira 17 - 8 – Vendor
+         *
+         * @return
+         */
+        public static TagLayout ftipoCobranca() {
+            return field("tipoCobranca").length(1);
+        }
+
         public static TagLayout fsequencialRegistro() {
             return field("sequencialRegistro").length(5).type(Number.class).filler(Fillers.ZERO_LEFT);
         }
@@ -856,6 +875,21 @@ public class TagLayout implements Serializable {
          */
         public static TagLayout fcodigoMoeda() {
             return field("codigoMoeda").value("09").length(2);
+
+        }
+
+        public static TagLayout fvariacao() {
+            return field("variacao").filler(Fillers.ZERO_LEFT).length(3);
+
+        }
+
+        /**
+         * ftipoMoeda
+         *
+         * @return
+         */
+        public static TagLayout ftipoMoeda() {
+            return field("tipoMoeda").value("  ").length(2);
         }
 
         /**
@@ -993,6 +1027,10 @@ public class TagLayout implements Serializable {
             return field("sequencialArquivo").padding(Fillers.ZERO_LEFT);
         }
 
+        public static TagLayout fcomandoRemessaCobranca() {
+            return field("comandoRemessaCobranca");
+        }
+
         /**
          * Código Remessa / Retorno 1431431-NumG015 Código adotado pela FEBRABAN
          * para qualificar o envio ou devolução de arquivo entre a Empresa
@@ -1035,6 +1073,13 @@ public class TagLayout implements Serializable {
          */
         public static TagLayout fdataPagamento() {
             return fdata().nome("dataPgamento").filler(Fillers.ZERO_LEFT).value(0);
+        }
+
+        public static TagLayout fdataGeracaoCurta() {
+            return field("dataGeracao").type(Date.class)
+                    .format(new SimpleDateFormat("ddMMyy"))
+                    .length(6)
+                    .filler(Fillers.ZERO_LEFT).value(0);
         }
 
         public static TagLayout fdataGeracao() {

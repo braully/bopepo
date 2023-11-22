@@ -80,9 +80,9 @@ public class CLIRetorno implements Runnable {
 //                cont++;
             }
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(CLIRemessa.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CLIRemessaPagamento.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CLIRemessa.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CLIRemessaPagamento.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

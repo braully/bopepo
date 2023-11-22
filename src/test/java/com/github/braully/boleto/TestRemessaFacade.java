@@ -109,7 +109,7 @@ public class TestRemessaFacade {
         remessa.addNovoCabecalho()
                 .sequencialArquivo(1)
                 .dataGeracao(new Date()).setVal("horaGeracao", new Date())
-                .banco("0", "Banco").cedente("ACME S.A LTDA.", "1")
+                .cedente("ACME S.A LTDA.", "1")
                 .convenio("1", "1", "1", "1")
                 .carteira("00");
 
