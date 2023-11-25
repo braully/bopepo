@@ -1072,7 +1072,7 @@ public class TagLayout implements Serializable {
          * @return
          */
         public static TagLayout fdataPagamento() {
-            return fdata().nome("dataPgamento").filler(Fillers.ZERO_LEFT).value(0);
+            return fdata().nome("dataPagamento").filler(Fillers.ZERO_LEFT).value(0);
         }
 
         public static TagLayout fdataGeracaoCurta() {

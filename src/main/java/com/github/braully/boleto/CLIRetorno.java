@@ -68,17 +68,26 @@ public class CLIRetorno implements Runnable {
             retorno.parse(linhas);
 
             FileWriter writer = new FileWriter(out);
+            writer.append("{\"layout\": \"LAYOUT_BB_CNAB240_COBRANCA_RETORNO\", ");
+            writer.append("\"registros\": [");
 
-//            int cont = 1;
+            int cont = 0;
             for (RegistroArquivo reg : retorno.registros) {
 //                System.out.print("linha-" + cont + ": ");
 //                System.out.println(reg);
                 System.out.println(reg.toJson());
+                if (cont++ > 0) {
+                    writer.write(",");
+                }
                 writer.write(reg.toJson());
                 writer.write("\n");
-
 //                cont++;
             }
+            writer.append("]}");
+            writer.write("\n");
+            writer.flush();
+            writer.close();
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(CLIRemessaPagamento.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

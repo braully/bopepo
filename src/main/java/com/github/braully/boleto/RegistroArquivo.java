@@ -425,13 +425,18 @@ public class RegistroArquivo extends Record {
 //        sb.append(",\n fields=[");
         if (this.fields != null) {
             sb.append("\n");
+            int cont = 0;
             for (FixedField ff : this.fields) {
+//            for (int i = 0; i < this.fields.size(); i++) {
+//                FixedField ff = this.fields.get(i);
                 Object value = ff.getValue();
                 String name = ff.getName();
                 if (name != null && !name.trim().isEmpty()
                         && value != null && !value.toString().trim().isEmpty()) {
+                    if (cont++ > 0) {
+                        sb.append(",");
+                    }
                     sb.append("\t");
-
                     sb.append("\"");
                     sb.append(name);
                     sb.append("\"");
@@ -440,10 +445,8 @@ public class RegistroArquivo extends Record {
                     sb.append("\"");
                     sb.append(value);
                     sb.append("\"");
-                    sb.append(",");
                 }
             }
-
         }
         sb.append("}");
         return sb.toString();
