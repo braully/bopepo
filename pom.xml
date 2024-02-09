@@ -1,4 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
+<project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
@@ -37,7 +37,7 @@
         <developerConnection>scm:git:ssh://github.com:braully/bopepo.git</developerConnection>
         <url>http://github.com/braully/bopepo/tree/master</url>
     </scm>
-    
+
     <distributionManagement>
         <snapshotRepository>
             <id>ossrh</id>
@@ -49,13 +49,13 @@
             <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
-	
+
     <developers>
         <developer>
             <name>Braully Rocha da Silva</name>
             <email>braully@gmail.com</email>
         </developer>
-        <!--Original developers from project: JRimum Bopepo --> 
+        <!--Original developers from project: JRimum Bopepo -->
         <!--        <developer>
             <name>Gilmar P. S. L.</name>
             <email>gilmatryx@gmail.com</email>
@@ -70,14 +70,14 @@
         </developer>-->
     </developers>
 
-    
+
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <doclint>none</doclint>
     </properties>
-    
+
     <profiles>
         <profile>
             <!--https://central.sonatype.org/publish/publish-maven/-->
@@ -160,13 +160,13 @@
             <!--https://central.sonatype.org/publish/publish-maven/-->
             <id>deploy</id>
             <build>
-                <plugins>                   
+                <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-deploy-plugin</artifactId>
                         <version>2.8.1</version>
                     </plugin>
-            
+
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
@@ -183,7 +183,7 @@
         </profile>
     </profiles>
 
-    <build>	
+    <build>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
@@ -192,7 +192,7 @@
                 </excludes>
             </resource>
         </resources>
-		
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -273,8 +273,8 @@
         </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>1.9.5</version>
+            <artifactId>mockito-core</artifactId>
+            <version>4.11.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
