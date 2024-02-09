@@ -64,7 +64,7 @@ O artefato do maven central pode ser encontrado em:
 <dependency>
         <groupId>io.github.braully</groupId>
         <artifactId>bpp-cobranca</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
 </dependency>
 ```
 
@@ -90,6 +90,42 @@ public class ExemploBoletoSimples {
         boleto.carteira("1");
         boleto.numeroDocumento("1")
                 .nossoNumero("1234567890")
+                .valor(100.23).dataVencimento("01/01/2019");
+
+        boleto.gerarLinhaDigitavel();
+        BoletoViewer create = BoletoViewer.create(boleto);
+        create.getPdfAsFile("./target/teste.pdf");
+    }
+}
+```
+
+## Boleto Exemplo Real
+
+Exemplo de um boleto do Banco do brasil,
+convênio de cobrança 1234567 (7 posições), agência 8888-8, 
+carteira 17 (boleto registrado), 
+nosso número com 14 posições, 
+gerado pelo cedente no valor de R$ 100,23 e vencimento para 01/01/2019.:
+
+```java
+import com.github.braully.boleto.BoletoCobranca;
+import org.jrimum.bopepo.view.BoletoViewer;
+
+public class ExemploBoletoSimples {
+
+    public static void main(String... args) {
+        BoletoCobranca boleto = new BoletoCobranca();
+        boleto.sacado("Sacado da Silva Sauro").sacadoCpf("1");
+        boleto.banco("1") //Banco do Brasil
+            .agencia("8888-8")//Agência com digito
+            .conta("1234567")//Código do convênio
+            ;
+        boleto.cedente("Cedente da Silva Sauro").cedenteCnpj("1");
+        boleto.carteira("1");
+        boleto.numeroDocumento("1")//Número do documento (opcional)
+                //Nosso número com 14 posições verificar regra no manual do banco,
+                // precisa ser único
+                .nossoNumero("12345670000001")
                 .valor(100.23).dataVencimento("01/01/2019");
 
         boleto.gerarLinhaDigitavel();
