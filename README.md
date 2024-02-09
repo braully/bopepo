@@ -64,7 +64,7 @@ O artefato do maven central pode ser encontrado em:
 <dependency>
         <groupId>io.github.braully</groupId>
         <artifactId>bpp-cobranca</artifactId>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
 </dependency>
 ```
 
