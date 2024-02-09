@@ -261,8 +261,8 @@
         <!-- Test -->
         <dependency>
             <groupId>com.google.guava</groupId>
-            <artifactId>guava-jdk5</artifactId>
-            <version>14.0.1</version>
+            <artifactId>guava</artifactId>
+            <version>32.0.1-jre</version>
             <scope>test</scope>
         </dependency>
         <dependency>
