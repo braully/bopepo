@@ -13,12 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.braully.boleto;
+package cli;
 
+import com.github.braully.boleto.BoletoCobranca;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
-import java.io.File;
 import org.jrimum.bopepo.view.BoletoViewer;
 
 /**
@@ -69,11 +68,17 @@ public class CLI implements Runnable {
     @Option(names = {"-v", "--valor"}, description = "Valor", required = true)
     String valor;
 
+    @Option(names = {"-t", "--instrucao"}, description = "Instrução", required = false)
+    String instrucao;
+
     @Option(names = {"-m", "--data-vencimento"}, description = "Data Vencimento", required = true)
     String dataVencimento;
 
     @Option(names = {"-o", "--out"}, description = "Output file", required = true)
     String out;
+
+    @Option(names = {"-l", "--layout"}, description = "Banco")
+    String layout;
 
     @Override
     public void run() {
@@ -85,7 +90,9 @@ public class CLI implements Runnable {
         //Cedente
         boleto.cedente(cedente);
         boleto.cedenteCnpj(cedenteCnpj);
-//        boleto.cedenteEndereco(cedenteEndereco);
+        if (cedenteEndereco != null && !cedenteEndereco.isEmpty()) {
+            boleto.cedenteEndereco(cedenteEndereco);
+        }
 
         //Sacado
         boleto.sacado(sacado);
@@ -94,7 +101,13 @@ public class CLI implements Runnable {
         } else if (sacadoCpf != null) {
             boleto.sacadoCpf(sacadoCpf);
         }
-//        boleto.sacadoEndereco(sacadoEndereco);
+        if (sacadoEndereco != null && !sacado.isEmpty()) {
+            boleto.sacadoEndereco(sacadoEndereco);
+        }
+
+        if (instrucao != null && !instrucao.isEmpty()) {
+            boleto.instrucao(instrucao);
+        }
 
         //Boleto
         boleto.dataVencimento(dataVencimento);
@@ -102,7 +115,13 @@ public class CLI implements Runnable {
         boleto.numeroDocumento(numeroDocumento);
         boleto.valor(valor);
         boleto.gerarLinhaDigitavel();
-        BoletoViewer create = BoletoViewer.create(boleto);
+        BoletoViewer create = null;
+        if (layout != null && !layout.isEmpty()) {
+            create = new BoletoViewer(boleto, layout);
+        } else {
+            create = BoletoViewer.create(boleto);
+        }
+
         create.getPdfAsFile(out);
         System.out.println("Boleto gerado: " + out);
     }

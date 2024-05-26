@@ -13,8 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.braully.boleto;
+package cli;
 
+import com.github.braully.boleto.LayoutsBB;
+import com.github.braully.boleto.RegistroArquivo;
+import com.github.braully.boleto.RetornoArquivo;
+import com.github.braully.boleto.TagLayout;
 import java.io.BufferedReader;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
@@ -46,12 +50,15 @@ public class CLIRetorno implements Runnable {
     @Option(names = {"-o", "--output"}, description = "Arquivo de saida")
     String out;
 
+    @Option(names = {"-l", "--layout"}, description = "Layout de procesamento")
+    String layout;
+
     @Override
     public void run() {
         BufferedReader reader;
         try {
             if (in == null) {
-
+                in = "/home/strike/Workspace/workspace-nuvem/enbpar/banco/CBR - PRINCIPAL.ret";
             }
             if (out == null) {
                 out = in + ".json";
@@ -59,20 +66,32 @@ public class CLIRetorno implements Runnable {
             reader = new BufferedReader(new FileReader(in));
             List<String> linhas = new ArrayList<>();
             String linha = null;
-            RetornoArquivo retorno = new RetornoArquivo(LayoutsBB.LAYOUT_BB_CNAB240_COBRANCA_RETORNO);
-//            RetornoArquivo retorno = new RetornoArquivo(LayoutsFebraban.LAYOUT_FEBRABAN_CNAB240_COBRANCA_RETORNO);
-
+            String primeiraLinha = null;
             while ((linha = reader.readLine()) != null) {
                 linhas.add(linha);
+                if (primeiraLinha == null) {
+                    primeiraLinha = linha;
+                }
             }
+
+            TagLayout layoutPadrao = LayoutsBB.LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA;
+            if (primeiraLinha != null && primeiraLinha.length() == 400) {
+                layoutPadrao = LayoutsBB.LAYOUT_BB_CNAB400_COBRANCA_RETORNO;
+            }
+//            if (layout != null) {
+//                layoutPadrao = LayoutsBB.getLayout(layout);
+//            }
+            RetornoArquivo retorno = new RetornoArquivo(layoutPadrao);
+//            RetornoArquivo retorno = new RetornoArquivo(LayoutsFebraban.LAYOUT_FEBRABAN_CNAB240_COBRANCA_RETORNO);
+
             retorno.parse(linhas);
 
             FileWriter writer = new FileWriter(out);
-            writer.append("{\"layout\": \"LAYOUT_BB_CNAB240_COBRANCA_RETORNO\", ");
+            writer.append("{\"layout\": \"" + layout + "\", ");
             writer.append("\"registros\": [");
 
             int cont = 0;
-            for (RegistroArquivo reg : retorno.registros) {
+            for (RegistroArquivo reg : retorno.getRegistros()) {
 //                System.out.print("linha-" + cont + ": ");
 //                System.out.println(reg);
                 System.out.println(reg.toJson());

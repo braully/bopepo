@@ -111,6 +111,14 @@ public class ArquivoFacade {
     List<RegistroArquivo> registros = new ArrayList<>();
     List<String> linhas = new ArrayList<>();
 
+    public List<RegistroArquivo> getRegistros() {
+        return registros;
+    }
+
+    public int registrosCount() {
+        return registros.size();
+    }
+
     public ArquivoFacade add(RegistroArquivo reg) {
         registros.add(reg);
         return this;
