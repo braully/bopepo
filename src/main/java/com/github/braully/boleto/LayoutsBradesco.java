@@ -15,7 +15,6 @@
  */
 package com.github.braully.boleto;
 
-import com.github.braully.boleto.TagLayout;
 import static com.github.braully.boleto.CNAB.CNAB_400;
 import static com.github.braully.boleto.TagLayout.TagCreator.*;
 import java.text.SimpleDateFormat;
@@ -39,7 +38,7 @@ public class LayoutsBradesco {
                     fcodigoRegistro().length(1).value("0"),
                     fcodigoArquivo().length(1).value("1"),
                     fliteralRemessa().length(7).value("REMESSA"),
-                    fservico().length(2),
+                    fservico().length(2).val("01"),
                     fliteralServico().length(15).value("COBRANCA"),
                     fconvenio().length(20),
                     fcedenteNome().length(30),
@@ -67,8 +66,9 @@ public class LayoutsBradesco {
                     fbancoCodigo().length(3).value("237"),
                     field("campoMulta").length(1).value(0),
                     field("percentualMulta").length(4).filler(Fillers.ZERO_LEFT).value(0),
-                    fnossoNumero().length(11).filler(Fillers.ZERO_LEFT),
-                    field("digitoNossoNumero").length(1),
+                    //                    fnossoNumero().length(11).filler(Fillers.ZERO_LEFT),
+                    //                    field("digitoNossoNumero").length(1),
+                    fnossoNumero().length(12).filler(Fillers.ZERO_LEFT),
                     field("descontoBonificacaoDia").length(10).filler(Fillers.ZERO_LEFT).value(0),
                     field("codicaoEmissaoPapeladaCobranca").length(1).value(2),
                     field("identificacaoBoletoDebito").length(1).value("N"),
@@ -97,7 +97,8 @@ public class LayoutsBradesco {
                     fsacadoNome().length(40).filler(Fillers.WHITE_SPACE_RIGHT),
                     fendereco().length(40).filler(Fillers.WHITE_SPACE_RIGHT),
                     field("mensagem1").length(12).filler(Fillers.WHITE_SPACE_RIGHT).value(" "),
-                    field("sacadoCep").length(8),
+//                    field("sacadoCep").length(8),
+                    fcep().length(8),
                     field("mensagem2").length(60).filler(Fillers.WHITE_SPACE_RIGHT).value(" "),
                     fsequencialRegistro().length(6).filler(Fillers.ZERO_LEFT)
             ),
@@ -120,7 +121,7 @@ public class LayoutsBradesco {
                     fcodigoRegistro().value("0"),
                     fcodigoArquivo(),
                     fliteralRetorno().length(7),
-                    fservico().length(2),
+                    fservico().length(2).val("01"),
                     fliteralServico().length(15),
                     fconvenio().length(20),
                     fcedenteNome().length(30),
@@ -234,12 +235,6 @@ public class LayoutsBradesco {
 
     }
 
-    public static final TagLayout LAYOUT_BRADESCO_CNAB400_COBRANCA_REMESSA
-            = _LAYOUT_BRADESCO_CNAB400_COBRANCA_REMESSA.cloneReadonly();
-
-    public static final TagLayout LAYOUT_BRADESCO_CNAB400_COBRANCA_RETORNO = _LAYOUT_BRADESCO_CNAB400_COBRANCA_RETORNO
-            .cloneReadonly();
-
     private static final TagLayout _LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA = LayoutsFebraban._LAYOUT_FEBRABAN_CNAB240_PAGAMENTO_REMESSA
             .clone();
 
@@ -279,8 +274,8 @@ public class LayoutsBradesco {
         cabecalhoLote.get("versaoLayoutLote").value("045");
         cabecalhoLote.get("convenio").padding(Fillers.WHITE_SPACE_RIGHT);
 
-        //REMOVENDO - A forma de pagamento atual (filho indice 22) E incluindo com valor 01
-        cabecalhoLote.filhos.remove(22);
+//        //REMOVENDO - A forma de pagamento atual (filho indice 22) E incluindo com valor 01
+//        cabecalhoLote.filhos.remove(22);
         TagLayout cabecalhoLoteUF = cabecalhoLote.get("uf");
         cabecalhoLote.insertAfter(cabecalhoLoteUF, field("formaPagamento").value("01").length(2), fbranco().length(16));
 
@@ -306,5 +301,11 @@ public class LayoutsBradesco {
 
     public static final TagLayout LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA
             = _LAYOUT_BRADESCO_CNAB240_PAGAMENTO_REMESSA.cloneReadonly();
+
+    public static final TagLayout LAYOUT_BRADESCO_CNAB400_COBRANCA_REMESSA
+            = _LAYOUT_BRADESCO_CNAB400_COBRANCA_REMESSA.cloneReadonly();
+
+    public static final TagLayout LAYOUT_BRADESCO_CNAB400_COBRANCA_RETORNO = _LAYOUT_BRADESCO_CNAB400_COBRANCA_RETORNO
+            .cloneReadonly();
 
 }

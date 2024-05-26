@@ -27,7 +27,6 @@
  * Criado em: 17/01/2014 - 19:32:45 
  * 
  */
-
 package org.jrimum.bopepo.view;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
@@ -41,83 +40,89 @@ import org.jrimum.domkee.banco.EntidadeDeCobranca;
  * @author <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L.</a>
  */
 public class BoletoInfoCampoEndereco {
-	
-	public static String getTextoEnderecoLinha1(EntidadeDeCobranca pessoa){
-		if (isNotNull(pessoa)) {
-			return getTextoEnderecoLinha1(pessoa.getNextEndereco());
-		}
-		return EMPTY;
-	}
-	
-	public static String getTextoEnderecoLinha1(Endereco endereco){
-		
-		final StringBuilder texto = new StringBuilder(EMPTY);
-		
-		if (isNotNull(endereco)) {
-			
-			boolean temBairro = false;
-			boolean temLocalidade = false;
-			
-			if (isNotBlank(endereco.getBairro())) {
-				temBairro = true;
-				texto.append(endereco.getBairro());
-			}
-			
-			if (isNotBlank(endereco.getLocalidade())) {
-				temLocalidade = true;
-				if(temBairro){
-					texto.append(" - ");
-				}
-				texto.append(endereco.getLocalidade());
-			}
-			
-			if (isNotNull(endereco.getUF())) {
-				if(temBairro || temLocalidade){
-					texto.append(" / ");
-				}
-				texto.append(endereco.getUF().getSigla());
-			}
-		}
-		
-		return texto.toString();
-	}
-	
-	public static String getTextoEnderecoLinha2(EntidadeDeCobranca pessoa){
-		if (isNotNull(pessoa)) {
-			return getTextoEnderecoLinha2(pessoa.getNextEndereco());
-		}
-		return EMPTY;
-	}
 
-	public static String getTextoEnderecoLinha2(Endereco endereco){
+    public static String getTextoEnderecoLinha1(EntidadeDeCobranca pessoa) {
+        if (isNotNull(pessoa)) {
+            return getTextoEnderecoLinha1(pessoa.getNextEndereco());
+        }
+        return EMPTY;
+    }
 
-		final StringBuilder texto = new StringBuilder(EMPTY);
-		
-		if (isNotNull(endereco)) {
-			
-			if (isNotBlank(endereco.getLogradouro())) {
-				texto.append(endereco.getLogradouro());
-			}
+    public static String getTextoEnderecoLinha1(Endereco endereco) {
 
-			if (isNotBlank(endereco.getNumero())) {
-				texto.append(", n°: ")
-				.append(endereco.getNumero());
-			}
-			
-			if (isNotBlank(endereco.getComplemento())) {
-				texto.append(" / ")
-				.append(endereco.getComplemento());
-			}
+        final StringBuilder texto = new StringBuilder(EMPTY);
 
-			if (isNotNull(endereco.getCEP()) && isNotBlank(endereco.getCEP().getCep())) {
-				texto.append(" - ")
-				.append("CEP: ")
-				.append(endereco.getCEP().getCep());
-			}
+        if (isNotNull(endereco)) {
+            if (isNotNull(endereco.getEnderecoFormatado())) {
+                return endereco.getEnderecoFormatado();
+            }
 
-		}
-		
-		return texto.toString();
-	}
+            boolean temBairro = false;
+            boolean temLocalidade = false;
+
+            if (isNotBlank(endereco.getBairro())) {
+                temBairro = true;
+                texto.append(endereco.getBairro());
+            }
+
+            if (isNotBlank(endereco.getLocalidade())) {
+                temLocalidade = true;
+                if (temBairro) {
+                    texto.append(" - ");
+                }
+                texto.append(endereco.getLocalidade());
+            }
+
+            if (isNotNull(endereco.getUF())) {
+                if (temBairro || temLocalidade) {
+                    texto.append(" / ");
+                }
+                texto.append(endereco.getUF().getSigla());
+            }
+        }
+
+        return texto.toString();
+    }
+
+    public static String getTextoEnderecoLinha2(EntidadeDeCobranca pessoa) {
+        if (isNotNull(pessoa)) {
+            return getTextoEnderecoLinha2(pessoa.getNextEndereco());
+        }
+        return EMPTY;
+    }
+
+    public static String getTextoEnderecoLinha2(Endereco endereco) {
+
+        final StringBuilder texto = new StringBuilder(EMPTY);
+
+        if (isNotNull(endereco)) {
+            if (isNotNull(endereco.getEnderecoFormatadoComplemento())) {
+                return endereco.getEnderecoFormatadoComplemento();
+            }
+
+            if (isNotBlank(endereco.getLogradouro())) {
+                texto.append(endereco.getLogradouro());
+            }
+
+            if (isNotBlank(endereco.getNumero())) {
+                texto.append(", n°: ")
+                        .append(endereco.getNumero());
+            }
+
+            if (isNotBlank(endereco.getComplemento())) {
+                texto.append(" / ")
+                        .append(endereco.getComplemento());
+            }
+
+            if (isNotNull(endereco.getCEP()) && isNotBlank(endereco.getCEP().getCep())) {
+                texto.append(" - ")
+                        .append("CEP: ")
+                        .append(endereco.getCEP().getCep());
+            }
+
+        }
+
+        return texto.toString();
+    }
 
 }

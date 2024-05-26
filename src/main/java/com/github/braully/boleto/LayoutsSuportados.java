@@ -96,9 +96,9 @@ public class LayoutsSuportados {
 //        layoutsSuportadosTmp.add(LAYOUT_SICREDI_CNAB240);
 //        layoutsSuportadosTmp.add(LAYOUT_SICREDI_CNAB240_COBRANCA_REMESSA);
 //        layoutsSuportadosTmp.add(LAYOUT_SICREDI_CNAB240_COBRANCA_RETORNO);
-        layoutsSuportadosTmp.add(LayoutsBB.LAYOUT_BB_CNAB240);
-        layoutsSuportadosTmp.add(LayoutsBB.LAYOUT_BB_CNAB240_COBRANCA_REMESSA);
-        layoutsSuportadosTmp.add(LayoutsBB.LAYOUT_BB_CNAB240_COBRANCA_RETORNO);
+//        layoutsSuportadosTmp.add(LayoutsBB.LAYOUT_BB_CNAB240);
+//        layoutsSuportadosTmp.add(LayoutsBB.LAYOUT_BB_CNAB240_COBRANCA_REMESSA);
+//        layoutsSuportadosTmp.add(LayoutsBB.LAYOUT_BB_CNAB240_COBRANCA_RETORNO);
         layoutsSuportadosTmp.add(LayoutsBB.LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA);
         layoutsSuportadosTmp.add(LayoutsSantander.LAYOUT_SANTANDER_CNAB240);
         layoutsSuportadosTmp.add(LayoutsSantander.LAYOUT_SANTANDER_CNAB240_COBRANCA_REMESSA);

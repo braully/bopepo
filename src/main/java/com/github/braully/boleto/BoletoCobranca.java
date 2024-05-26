@@ -34,6 +34,7 @@ import org.jrimum.domkee.banco.TipoDeCobranca;
 import org.jrimum.domkee.banco.Titulo;
 import org.jrimum.domkee.pessoa.CNPJ;
 import org.jrimum.domkee.pessoa.CPF;
+import org.jrimum.domkee.pessoa.Endereco;
 import org.jrimum.texgit.Filler;
 import org.jrimum.utilix.DateUtil;
 
@@ -125,15 +126,33 @@ public class BoletoCobranca extends Boleto {
     }
 
 //    TODO: Implementar
-//    public Boleto sacadoEndereco(String endereco) {
-//        this.getSacado().addEndereco(endereco);
-//        return this;
-//    }
-//
-//    public BoletoCobranca cedenteEndereco(String endereco) {
-//        this.getCedente().addEndereco(endereco);
-//        return this;
-//    }
+    public Boleto sacadoEndereco(String strendereco) {
+        Endereco endereco = new Endereco();
+        endereco.setEnderecoFormatado(strendereco);
+        this.getSacado().addEndereco(endereco);
+        return this;
+    }
+
+    public BoletoCobranca cedenteEndereco(String strendereco) {
+        Endereco endereco = new Endereco();
+        endereco.setEnderecoFormatado(strendereco);
+        this.getCedente().addEndereco(endereco);
+        return this;
+    }
+
+    public BoletoCobranca instrucao(String instrucao) {
+        if (instrucao == null || instrucao.isEmpty()) {
+            return this;
+        }
+        if (instrucao.contains("\n")) {
+            String[] split = instrucao.split("\n");
+            this.setInstrucoes(split);
+        }
+        this.setInstrucao1(instrucao);
+//        this.setInstrucaoAoSacado(instrucao);
+        return this;
+    }
+
     public BoletoCobranca cedente(String nomeSacado) {
         this.getCedente().setNome(nomeSacado);
         return this;
@@ -293,7 +312,7 @@ public class BoletoCobranca extends Boleto {
         return Integer.parseInt(string);
     }
 
-    private Pair<String, String> quebraStringDV(String strNumero) {
+    public static Pair<String, String> quebraStringDV(String strNumero) {
         String numero = null;
         String dv = null;
         if (strNumero == null) {
@@ -355,4 +374,37 @@ public class BoletoCobranca extends Boleto {
         }
         return parametrosBancarios;
     }
+
+    private void setInstrucoes(String[] split) {
+        if (split == null || split.length == 0) {
+            return;
+        }
+        for (int i = 0; i <= Math.min(split.length, 7); i++) {
+            if (i == 0) {
+                this.setInstrucao1(split[i]);
+            }
+            if (i == 1) {
+                this.setInstrucao2(split[i]);
+            }
+            if (i == 2) {
+                this.setInstrucao3(split[i]);
+            }
+            if (i == 3) {
+                this.setInstrucao4(split[i]);
+            }
+            if (i == 4) {
+                this.setInstrucao5(split[i]);
+            }
+            if (i == 5) {
+                this.setInstrucao6(split[i]);
+            }
+            if (i == 6) {
+                this.setInstrucao7(split[i]);
+            }
+            if (i == 7) {
+                this.setInstrucao8(split[i]);
+            }
+        }
+    }
+
 }

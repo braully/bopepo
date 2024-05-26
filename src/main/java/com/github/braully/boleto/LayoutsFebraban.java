@@ -77,9 +77,9 @@ public class LayoutsFebraban {
                     //Densidade de gravação (BPI), do arquivo encaminhado. Domínio:1600 BPI ou 6250 BPI
                     field("densidadeArquivo").value(0).length(5).filler(Fillers.ZERO_LEFT),
                     //Para Uso Reservado do Banco17219120-AlfaG021
-                    fbranco().length(20),
+                    fbranco("reservadoEmpresa").length(20),
                     //Para Uso Reservado da Empresa19221120-AlfaG022
-                    fbranco().length(20),
+                    fbranco("reservadoFebraban").length(20),
                     //Uso Exclusivo FEBRABAN / CNAB21224029-AlfaBrancosG004
                     fbranco().length(29)
             ),
@@ -149,7 +149,7 @@ public class LayoutsFebraban {
                     //Uso Exclusivo da FEBRABAN/CNAB 17 17 1 - Alfa Brancos G004
                     fbranco().length(1),
                     ftipoInscricao().value("2"),
-                    fcedenteCnpj().length(15),
+                    fcedenteCnpj().length(14),
                     //ConvênioCódigo do Convênio no Banco335220-Alfa*G007
                     //Código adotado pelo Banco para identificar o Contrato entre este e a Empresa Cliente.
                     fconvenio().length(20),

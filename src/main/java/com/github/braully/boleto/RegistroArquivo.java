@@ -149,10 +149,10 @@ public class RegistroArquivo extends Record {
     //não pode ser marcado como String pois Strings são immmutable, o que faz com que se perca mudanças de sanitize
     public RegistroArquivo agencia(Object agencia) {
 
-        if (agencia != null && ((String) agencia).length() == 4) {
-            //caso o usuario não tenha informado o digito verificador, assumir que é 0
-            agencia = agencia + "-0";
-        }
+//        if (agencia != null && ((String) agencia).length() == 4) {
+//            //caso o usuario não tenha informado o digito verificador, assumir que é 0
+//            agencia = agencia + "-0";
+//        }
 
         return setValue(agencia);
     }

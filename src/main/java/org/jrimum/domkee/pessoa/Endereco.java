@@ -26,151 +26,170 @@
  * Criado em: 30/03/2008 - 19:07:43
  * 
  */
-
-
 package org.jrimum.domkee.pessoa;
 
 import org.jrimum.utilix.Objects;
 
-
 /**
  * <p>
- * Entidade que encapsula dados do endereço de uma pessoa, como também 
+ * Entidade que encapsula dados do endereço de uma pessoa, como também
  * facilidades na manipulação dos seus atributos.
  * </p>
  *
  * @author   <a href="http://gilmatryx.googlepages.com/">Gilmar P.S.L</a>
- * @author   Misael Barreto 
- * @author   Rômulo Augusto
- * @author   <a href="http://www.nordestefomento.com.br">Nordeste Fomento Mercantil</a>
+ * @author Misael Barreto
+ * @author Rômulo Augusto
+ * @author   <a href="http://www.nordestefomento.com.br">Nordeste Fomento
+ * Mercantil</a>
  * @author <a href="mailto:samuelvalerio@gmail.com">Samuel Valério</a>
- * 
- * @since   0.2
- * @version   0.2
+ *
+ * @since 0.2
+ * @version 0.2
  */
 public class Endereco {
 
-	/**
-	 * Nome da rua, avenida, etc.
-	 */
-	private String logradouro;
-	
-	/**
-	 * Número que identifica o lugar no logradouro (ex: número da casa).
-	 */
-	private String numero;
-	
-	/**
-	 * Informação adicional para identificar o estabelecimento na rua.
-	 */
-	private String complemento;
-	
-	/**
-	 * Cada uma das divisões de uma cidade ou povoação.
-	 */
-	private String bairro;
-	
-	/**
-	 * Cidade, município, etc.
-	 */
-	private String localidade;
-	
-	/**
-	 * @see CEP
-	 */
-	private CEP cep;
-	
-	/**
-	 * @see UnidadeFederativa
-	 */
-	private UnidadeFederativa uf;
-	
-	private String pais;
-		
-	public Endereco() {}
+    private String enderecoFormatado;
 
-	public String getBairro() {
-		return bairro;
-	}
+    private String enderecoFormatadoComplemento;
 
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
+    public String getEnderecoFormatado() {
+        return enderecoFormatado;
+    }
 
-	/**
-	 * @return the localidade
-	 */
-	public String getLocalidade() {
-		return localidade;
-	}
+    public void setEnderecoFormatado(String enderecoFormatado) {
+        this.enderecoFormatado = enderecoFormatado;
+    }
 
-	/**
-	 * @param localidade the localidade to set
-	 */
-	public void setLocalidade(String localidade) {
-		this.localidade = localidade;
-	}
+    public String getEnderecoFormatadoComplemento() {
+        return enderecoFormatadoComplemento;
+    }
 
-	public String getLogradouro() {
-		return logradouro;
-	}
+    public void setEnderecoFormatadoComplemento(String enderecoFormatadoComplemento) {
+        this.enderecoFormatadoComplemento = enderecoFormatadoComplemento;
+    }
 
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
+    /**
+     * Nome da rua, avenida, etc.
+     */
+    private String logradouro;
 
-	public String getNumero() {
-		return numero;
-	}
+    /**
+     * Número que identifica o lugar no logradouro (ex: número da casa).
+     */
+    private String numero;
 
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
+    /**
+     * Informação adicional para identificar o estabelecimento na rua.
+     */
+    private String complemento;
 
-	public UnidadeFederativa getUF() {
-		return uf;
-	}
+    /**
+     * Cada uma das divisões de uma cidade ou povoação.
+     */
+    private String bairro;
 
-	public void setUF(UnidadeFederativa uf) {
-		this.uf = uf;
-	}
+    /**
+     * Cidade, município, etc.
+     */
+    private String localidade;
 
-	public String getComplemento() {
-		return complemento;
-	}
+    /**
+     * @see CEP
+     */
+    private CEP cep;
 
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
+    /**
+     * @see UnidadeFederativa
+     */
+    private UnidadeFederativa uf;
 
-	public CEP getCEP() {
-		return cep;
-	}
+    private String pais;
 
-	public void setCep(CEP cep) {
-		this.cep = cep;
-	}
-	
-	public void setCep(String cep) {
-		setCep(new CEP(cep));
-	}
+    public Endereco() {
+    }
 
-	/**
-	 * @return the pais
-	 */
-	public String getPais() {
-		return pais;
-	}
+    public String getBairro() {
+        return bairro;
+    }
 
-	/**
-	 * @param pais the pais to set
-	 */
-	public void setPais(String pais) {
-		this.pais = pais;
-	}
-	
-	@Override
-	public String toString() {
-		return Objects.toString(this);
-	}
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    /**
+     * @return the localidade
+     */
+    public String getLocalidade() {
+        return localidade;
+    }
+
+    /**
+     * @param localidade the localidade to set
+     */
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    public UnidadeFederativa getUF() {
+        return uf;
+    }
+
+    public void setUF(UnidadeFederativa uf) {
+        this.uf = uf;
+    }
+
+    public String getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
+    }
+
+    public CEP getCEP() {
+        return cep;
+    }
+
+    public void setCep(CEP cep) {
+        this.cep = cep;
+    }
+
+    public void setCep(String cep) {
+        setCep(new CEP(cep));
+    }
+
+    /**
+     * @return the pais
+     */
+    public String getPais() {
+        return pais;
+    }
+
+    /**
+     * @param pais the pais to set
+     */
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    @Override
+    public String toString() {
+        return Objects.toString(this);
+    }
 }

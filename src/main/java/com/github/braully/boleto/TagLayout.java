@@ -263,6 +263,16 @@ public class TagLayout implements Serializable {
         }
 
         /**
+         * Na maioria das vezes o sacado ou o pagador é uma pessoa fisica, por
+         * tanto esse metodo de alias.
+         *
+         * @return
+         */
+        public static TagLayout fsacadoCpfCnpj() {
+            return field("sacadoCpfCnpj").length(14).padding(Fillers.ZERO_LEFT);
+        }
+
+        /**
          * ConvênioCódigo do Convênio no Banco335220-Alfa*G007. Código adotado
          * pelo Banco para identificar o Contrato entre este e a Empresa
          * Cliente.
@@ -925,6 +935,10 @@ public class TagLayout implements Serializable {
             return field("").filler(Fillers.ZERO_LEFT);
         }
 
+        public static TagLayout fzero(String desc) {
+            return field(desc).filler(Fillers.ZERO_LEFT);
+        }
+
         public static TagLayout fsegmento() {
             return field("segmento").length(1);
         }
@@ -946,6 +960,10 @@ public class TagLayout implements Serializable {
          */
         public static TagLayout fbranco() {
             return field("").filler(Fillers.WHITE_SPACE_LEFT);
+        }
+
+        public static TagLayout fbranco(String descricao) {
+            return field(descricao).filler(Fillers.WHITE_SPACE_LEFT);
         }
 
         /**
@@ -1056,6 +1074,14 @@ public class TagLayout implements Serializable {
             return field("data").filler(Fillers.ZERO_LEFT).length(8).format(new SimpleDateFormat("ddMMyyyy"));
         }
 
+        public static TagLayout fdataCurta(String nomecapo) {
+            return field(nomecapo).filler(Fillers.ZERO_LEFT).length(6).format(new SimpleDateFormat("ddMMyy"));
+        }
+
+        public static TagLayout fdataCurta() {
+            return fdataCurta("dataCurta");
+        }
+
         public static TagLayout fdataAcrescimo() {
             return fdata().nome("dataAcrescimo").filler(Fillers.ZERO_LEFT).value(0);
         }
@@ -1089,6 +1115,10 @@ public class TagLayout implements Serializable {
                     .filler(Fillers.ZERO_LEFT).value(0);
         }
 
+        public static TagLayout fdataOcorrenciaCurta() {
+            return field("dataOcorrencia").length(6).format(new SimpleDateFormat("ddMMyy"));
+        }
+
         public static TagLayout fdataOcorrencia() {
             return field("dataOcorrencia").length(8).format(new SimpleDateFormat("ddMMyyyy"));
         }
@@ -1099,6 +1129,10 @@ public class TagLayout implements Serializable {
 
         public static TagLayout fdataVencimento() {
             return field("dataVencimento").length(8).format(new SimpleDateFormat("ddMMyyyy"));
+        }
+
+        public static TagLayout fdataVencimentoCurta() {
+            return field("dataVencimento").length(6).format(new SimpleDateFormat("ddMMyy"));
         }
 
         public static TagLayout cabecalho(TagLayout... filhos) {
@@ -1474,16 +1508,16 @@ public class TagLayout implements Serializable {
     public String toStringDetalhado(int offset) {
         int cont = offset;
         StringBuilder sb = new StringBuilder();
-        sb.append(nome);
-        if (value != null) {
-            sb.append(": ").append(value);
-        }
         Integer length = length();
         if (length != null) {
             sb.append("[").append(cont).append("-").append(cont + length - 1).append("]");
             cont = cont + length;
         }
         sb.append("[").append(length).append("]");
+        sb.append(nome);
+        if (value != null) {
+            sb.append(": ").append(value);
+        }
 
         if (filhos != null && !filhos.isEmpty()) {
             sb.append("filhos: {");
@@ -1491,6 +1525,7 @@ public class TagLayout implements Serializable {
                 sb.append(filho.toStringDetalhado(cont));
                 sb.append("   ");
                 cont = cont + filho.length();
+                sb.append("\n   ");
 
             }
             sb.append("}");

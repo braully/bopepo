@@ -104,7 +104,9 @@ public class TestRemessaFacade {
 
     @Test
     public void testRemessaCobancaBBFebraban240V5SegmentoPQ() {
-        RemessaArquivo remessa = new RemessaArquivo(LayoutsBB.LAYOUT_BB_CNAB240_COBRANCA_REMESSA
+        RemessaArquivo remessa = new RemessaArquivo(
+                null
+        //LayoutsBB.LAYOUT_BB_CNAB240_COBRANCA_REMESSA
         );
         remessa.addNovoCabecalho()
                 .sequencialArquivo(1)
@@ -495,7 +497,7 @@ public class TestRemessaFacade {
                 .endereco("Rua XYZ", "123", "", "São Paulo", "12345-123", "SP");
         cabecalhoLote.operacao('R');
         cabecalhoLote.servico(1);
-        
+
         BigDecimal valorPagamento = new BigDecimal(5.82).multiply(new BigDecimal(100)).setScale(0, BigDecimal.ROUND_HALF_UP);
 
         if (remessa.isExigeNumeroDocumento()) {

@@ -392,12 +392,16 @@ public class Record extends BlockOfFields implements IRecord {
     @SuppressWarnings("unchecked")
     public <G> IRecord setValue(String fieldName, G value) {
 
-        IField<G> f = (IField<G>) getField(fieldName);
+        if (isNotBlank(fieldName)) {
+            if (!getFields().isEmpty()) {
+                for (FixedField ff : this.getFields()) {
+                    if (ff.getName().equals(fieldName)) {
+                        ff.setValue(value);
 
-        if (isNotNull(f)) {
-            f.setValue(value);
+                    }
+                }
+            }
         }
-
         return this;
     }
 
