@@ -69,7 +69,7 @@ public class LayoutsItau {
                     fsequencialRegistro().val("1").length(6)
             ),
             detalhe(
-                      fcodigoRegistro().length(1).value("1"),
+                    fcodigoRegistro().length(1).value("1"),
                     //     fzero().length(16),
                     ftipoInscricaoCedente().value("02").length(2),
                     fcedenteCnpj(),
@@ -225,7 +225,7 @@ public class LayoutsItau {
             ),
             //Registro Detalhe -Segmento P (Obrigatório -Remessa)
             detalheSegmentoP(
-                    fbancoCodigo(),
+                    fbancoCodigo().value("341"),
                     flote().value(1), // o mesmo do cabeçalho do lote
                     fcodigoRegistro().value("3"),
                     fsequencialRegistro(),
@@ -287,7 +287,7 @@ public class LayoutsItau {
             ),
             //Registro Detalhe -Segmento Q (Obrigatório -Remessa)
             detalheSegmentoQ(
-                    fbancoCodigo(),
+                    fbancoCodigo().value("341"),
                     flote().value(1), // o mesmo do cabeçalho do lote
                     fcodigoRegistro().value("3"),
                     fsequencialRegistro(),
@@ -336,7 +336,7 @@ public class LayoutsItau {
                         'R' = Arquivo Remessa
                         'T' = Arquivo Retorno
                      */
-                    foperacao(),
+                    foperacao().value("C"),
                     //Código adotado pela FEBRABAN para indicar o tipo de serviço / produto (processo) contido no arquivo / lote.
                     /*
                     TODO: Fazer um enum
@@ -375,9 +375,9 @@ public class LayoutsItau {
                             '90' = Pagamento Benefícios
                             '98' = Pagamentos Diversos                     
                      */
-                    fservico(),
+                    fservico().value("20"),
                     //Uso Exclusivo FEBRABAN/CNAB
-                    fbranco().length(2),
+                    fforma().length(2).value("45"),
                     //Nº da Versão do Layout do Lote
                     field("versaoLayoutLote").value("030").length(3),
                     //Uso Exclusivo da FEBRABAN/CNAB 17 17 1 - Alfa Brancos G004
@@ -450,6 +450,477 @@ public class LayoutsItau {
                     //Uso Exclusivo FEBRABAN/CNAB9179-AlfaBrancosG004
                     fbranco().length(9),
                     //Qtde. de LotesQuantidade de Lotes do Arquivo18236-NumG049
+                    field("totalLotes").padding(Fillers.ZERO_LEFT).length(6).value(1),
+                    //Qtde. de RegistrosQuantidade de Registros do Arquivo24296-NumG0
+                    fquantidadeRegistros().length(6).value(0),
+                    //Qtde. de Contas Concil.Qtde de Contas p/ Conc. (Lotes)30356-Num*G037
+                    /**
+                     * Número indicativo de lotes de Conciliação Bancária
+                     * enviados no arquivo. Somatória dos registros de tipo 1 e
+                     * Tipo de Operação = 'E'. Campo específico para o serviço
+                     * de Conciliação Bancária
+                     */
+                    //                    field("qtedContas").value(0).filler(Fillers.ZERO_LEFT).length(6),
+                    //Uso Exclusivo FEBRABAN/CNAB9179-AlfaBrancosG004
+                    fbranco().length(211)
+            )
+    );
+
+    static final TagLayout _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA
+            = _LAYOUT_ITAU_CNAB240.clone();
+
+    static final TagLayout _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO
+            = _LAYOUT_ITAU_CNAB240.clone();
+
+    static {
+        _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.get(layout())
+                .get(fservico()).withValue(CNABServico.COBRANCA_RETORNO);
+        _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.get(cabecalho()).get(fcodigoArquivo()).withValue('2');
+
+        _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(layout())
+                .get(fservico()).withValue(CNABServico.COBRANCA_REMESSA);
+        _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(cabecalho()).get(fcodigoArquivo()).withValue('1');
+
+    }
+
+    public static final TagLayout LAYOUT_ITAU_CNAB240
+            = _LAYOUT_ITAU_CNAB240.cloneReadonly();
+
+    public static final TagLayout LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA
+            = _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.cloneReadonly();
+
+    public static final TagLayout LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO
+            = _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.cloneReadonly();
+
+    public static final TagLayout LAYOUT_ITAU_CNAB400_COBRANCA_REMESSA = _LAYOUT_ITAU_CNAB400_REMESSA
+            .cloneReadonly();
+
+    public static final TagLayout _LAYOUT_ITAU_CNAB400_RETORNO = flatfile(
+            layout(nome("Layout ITAU CNAB400 Retorno"),
+                    cnab(CNAB_400),
+                    servico(CNABServico.COBRANCA_RETORNO),
+                    banco("341"),
+                    tag("url"),
+                    //     .withValue("https://..."),
+
+                    versao(
+                            "15")
+            ),
+            cabecalho(
+                    fcodigoRegistro().length(1).value("0"),
+                    fcodigoArquivo().length(1).value("2"),
+                    fliteralRemessa().length(7).value("RETORNO"),
+                    fservico().length(2).value("01"),
+                    fliteralServico().length(15).value("COBRANCA"),
+                    fagencia().length(4),
+                    fzero().length(2),
+                    fconta().length(5),
+                    //     fconvenio().length(6),
+                    fdac(),
+                    fbranco().length(8),
+                    fcedenteNome().length(30),
+                    fbancoCodigo().length(3).value("341"),
+                    fbancoNome().length(15).value("BANCO ITAUSA"),
+                    fdataGeracaoCurta(),
+                    field("densidadeArquivo").length(8),
+                    fsequencialArquivo().length(5),
+                    fdataCredito().length(6).format(new SimpleDateFormat("ddMMyy")),
+                    fbranco().length(275),
+                    //                    fsequencialArquivo().length(6),
+                    fsequencialRegistro().val("1").length(6)
+            ),
+            detalhe(
+                    fcodigoRegistro().length(1).value("1"),
+                    //     fzero().length(16),
+                    ftipoInscricaoCedente().value("02").length(2),
+                    fcedenteCnpj(),
+                    fagencia().length(4),
+                    fzero().length(2),
+                    fconta().length(5),
+                    fdac(),
+                    fbranco().length(8),
+                    fnumeroDocumento().length(25),
+                    fnossoNumero().length(8),
+                    fbranco().length(12),
+                    //Codigo da carteira, conferir isso
+                    fcarteira().length(3),
+                    fnossoNumero().length(8),
+                    field("dacNossoNumero").length(1),
+                    field("usoItau").length(13).filler(Fillers.WHITE_SPACE_RIGHT),
+                    fcodigoCarteira().value("E"),
+                    fcodigoOcorrencia().length(2).value("01"),
+                    //                    field("comandoRetorno").length(2).value("01"),                    
+                    fdataOcorrencia().format(new SimpleDateFormat("ddMMyy")).length(6),
+                    fnumeroDocumento().length(10),
+                    field("confirmacaoNossoNumero").length(8),
+                    fbranco().length(12),
+                    fdataVencimentoCurta(),
+                    fvalor().length(13).filler(Fillers.ZERO_LEFT),
+                    fbancoCodigo().length(3).value("341"),
+                    field("agenciaCobradora").length(5).value("00000"),
+                    //                    fbranco().length(1),
+                    fespecieTitulo().length(2).value("01"),
+                    fvalorTarifaCustas().length(13),
+                    fbranco().length(26),
+                    fvalorIOF().length(13).filler(Fillers.ZERO_LEFT).value(0),
+                    fvalorAbatimento().length(13).filler(Fillers.ZERO_LEFT).value(0),
+                    fvalorDesconto().length(13).filler(Fillers.ZERO_LEFT).value(0),
+                    fvalorLiquido().length(13).filler(Fillers.ZERO_LEFT).value(0),
+                    fvalorAcrescimo().length(13).filler(Fillers.ZERO_LEFT).value(0),
+                    fvalorOutrasReceitas().length(13).filler(Fillers.ZERO_LEFT).value(0),
+                    field("indicadorDDA").length(1),
+                    fbranco().length(2),
+                    fdataCredito().format(new SimpleDateFormat("ddMMyy")).length(6),
+                    field("codInstrucaoCancelada").length(4),
+                    fbranco().length(6),
+                    fzero().length(13),
+                    fsacadoNome().length(30).filler(Fillers.WHITE_SPACE_RIGHT),
+                    fbranco().length(23),
+                    focorrencias().length(8),
+                    fbranco().length(7),
+                    field("codigoLiquidaacao").length(2),
+                    fsequencialRegistro().length(6).filler(Fillers.ZERO_LEFT)
+            ),
+            rodape(
+                    fcodigoRegistro().length(1).value("9"),
+                    fbranco().length(393),
+                    fsequencialRegistro().length(6).filler(Fillers.ZERO_LEFT)
+            )
+    );
+
+    public static final TagLayout LAYOUT_ITAU_CNAB400_COBRANCA_RETORNO = _LAYOUT_ITAU_CNAB400_RETORNO
+            .cloneReadonly();
+
+    private static final TagLayout _LAYOUT_ITAU_PAGAMENTO = flatfile(
+            layout(nome("Layout SISPAG Itau"),
+                    cnab(CNAB_240),
+                    banco("341"),
+                    servico(null),
+                    tag("url").value("https://download.itau.com.br/bankline/SISPAG_CNAB.pdf"),
+                    versao("05")
+            ),
+            cabecalho(
+                    //Controle: Banco, lote e registro
+                    //Banco: Código do Banco na Compensação133-NumG001
+                    fbancoCodigo().value("341"),
+                    flote().valLen("0000"),
+                    fcodigoRegistro().value("0"),
+                    //Uso Exclusivo FEBRABAN / CNAB9179-AlfaBrancosG004
+                    fbranco().length(6),
+                    field("versaoLayoutArquivo").valLen("080"),
+                    ftipoInscricao().value("2"),
+                    fcedenteCnpj().length(14).filler(Fillers.ZERO_LEFT),
+                    fbranco().length(20),
+                    fagencia().length(5), fbranco().length(1),
+                    fconta().length(12), fbranco().length(1),
+                    fdac(), fcedenteNome().length(30),
+                    fbancoNome().length(30).value("BANCO ITAU SA"),
+                    fbranco().length(10),
+                    fcodigoArquivo().value(1),
+                    fdataGeracao(),
+                    field("horaGeracao").length(6).format(new SimpleDateFormat("hhmmss")),
+                    fzero().length(9),
+                    //Densidade de gravação (BPI), do arquivo encaminhado. Domínio:1600 BPI ou 6250 BPI
+                    field("densidadeArquivo").value(0).length(5).filler(Fillers.ZERO_LEFT),
+                    fbranco().length(69)
+            ),
+            cabecalhoLote(
+                    //Controle: Banco, lote e registro
+                    //Banco: Código do Banco na Compensação133-NumG001
+                    fbancoCodigo().value("341"),
+                    //Valor default para o primeiro lote, demais devem ser alterados
+                    flote().value(1),
+                    fcodigoRegistro().value("1"),
+                    //Código adotado pela FEBRABAN para identificar a transação que será realizada com os registros detalhe do lote.
+                    /* 
+                    Domínio:
+                        'C' = Lançamento a Crédito
+                        'D' = Lançamento a Débito
+                        'E' = Extrato para Conciliação
+                        'G' = Extrato para Gestão de Caixa
+                        'I' = Informações de Títulos Capturados do Próprio Banco
+                        'R' = Arquivo Remessa
+                        'T' = Arquivo Retorno
+                     */
+                    foperacao().val("C"),
+                    //Código adotado pela FEBRABAN para indicar o tipo de serviço / produto (processo) contido no arquivo / lote.
+                    /*
+                    TODO: Fazer um enum
+                     Domínio:
+                            '01' = Cobrança
+                            '03' = Boleto de Pagamento Eletrônico
+                            '04' = Conciliação Bancária
+                            '05' = Débitos
+                            '06' = Custódia de Cheques
+                            '07' = Gestão de Caixa
+                            '08' = Consulta/Informação Margem
+                            '09' = Averbação da Consignação/Retenção
+                            '10' = Pagamento Dividendos
+                            ‘11’ = Manutenção da Consignação
+                            ‘12’ = Consignação de Parcelas
+                            ‘13’ = Glosa da Consignação (INSS)
+                            ‘14’ = Consulta de Tributos a pagar
+                            '20' = Pagamento Fornecedor
+                            ‘22’ = Pagamento de Contas, Tributos e Impostos
+                            ‘23’ = Interoperabilidade entre Contas de Instituições de Pagamentos
+                            ‘25’ = Compror
+                            ‘26’ = Compror Rotativo
+                            '29' = Alegação do Pagador
+                            '30' = Pagamento Salários
+                            ‘32’ = Pagamento de honorários
+                            ‘33’ = Pagamento de bolsa auxílio
+                            ‘34’ = Pagamento de prebenda (remuneração a padres e sacerdotes)
+                            '40' = Vendor
+                            '41' = Vendor a Termo
+                            '50' = Pagamento Sinistros Segurados
+                            '60' = Pagamento Despesas Viajante em Trânsito
+                            '70' = Pagamento Autorizado
+                            '75' = Pagamento Credenciados
+                            ‘77’ = Pagamento de Remuneração
+                            '80' = Pagamento Representantes / Vendedores Autorizados
+                            '90' = Pagamento Benefícios
+                            '98' = Pagamentos Diversos                     
+                     */
+                    fservico().length(2).value(20),
+                    //Uso Exclusivo FEBRABAN/CNAB
+                    fforma().length(2).value(45),
+                    //Nº da Versão do Layout do Lote
+                    //                    .value("040") 040 para transferências e 030 para boletos
+                    field("versaoLayoutLote").length(3).value("040"),
+                    //Uso Exclusivo da FEBRABAN/CNAB 17 17 1 - Alfa Brancos G004
+                    fbranco().length(1),
+                    ftipoInscricao().value("2"),
+                    fcedenteCnpj().length(14),
+                    field("IdentificacaoNoExtratoFavorecido").length(4).value("    "),
+                    //ConvênioCódigo do Convênio no Banco335220-Alfa*G007
+                    //Código adotado pelo Banco para identificar o Contrato entre este e a Empresa Cliente.
+                    fbranco().length(16),
+                    //Agência Mantenedora da Conta 53 57 5-Num*G008
+                    //Dígito Verificador da Agência 58 58 1-Alfa*G009
+                    fagencia().length(5), fbranco().length(1),
+                    //Número da Conta Corrente5970 12-Num*G010
+                    //Dígito Verificador da Conta7171 1-Alfa*G011
+                    fconta().length(12), fbranco().length(1), //Conta com DV
+                    //Dígito Verificador da Ag/Conta72721-Alfa*G012
+                    //Dígito Verificador da Agência / Conta CorrenteCódigo  
+                    //adotado  pelo  Banco  responsável  pela  conta  corrente,
+                    //para  verificação  da autenticidade do par Código da Agência / Número da Conta Corrente.
+                    //Para os Bancos que se utilizam de duas posições para o Dígito Verificador 
+                    //do Número da Conta Corrente, preencher este campo com a 2ª posição deste dígito. 
+                    fdac(), //Conta com DV
+                    fcedenteNome().length(30),
+                    //Texto referente a mensagens que serão impressas nos documentos e/ou avisos a serem emitidos.
+                    //Informação 1: Genérica. Quando informada constará em todos os avisos e/ou
+                    //documentos originados dos detalhes desse lote. Informada no Header do Lote.
+                    field("finalidadeDoLote").length(30).filler(Fillers.WHITE_SPACE_LEFT),
+                    field("complementoHistoricoCC").length(10).filler(Fillers.WHITE_SPACE_LEFT),
+                    fendereco().length(30).value("RUA 1"),
+                    fnumero().value("1"),
+                    fcomplemento().value(" "),
+                    fcidade().length(20).value("SAO PAULO"),
+                    fcep().value("01153000"),
+                    fuf().value("SP"),
+                    fbranco().length(8),
+                    //Código das Ocorrências p/ Retorno 
+                    focorrencias()
+            ),
+            detalheSegmentoA(
+                    fbancoCodigo().length(3).value("341"),
+                    flote().value(1),
+                    fcodigoRegistro().length(1).value("3"),
+                    fsequencialRegistro().length(5),
+                    fsegmento().id(true).value("A"),
+                    field("tipoMovimento").length(3).filler(Fillers.ZERO_LEFT),
+                    /* Código Câmara Compensação 000 = CC | 018 = TED | 700 = DOC */
+                    fformaDeTransferencia().length(3)
+                            .filler(Fillers.ZERO_LEFT).value(9),
+                    //                    Quando se tratar de uma transferência via PIX (“Código de Compensação 009”), deve-se
+                    //tratar o campo CONTA CORRENTE DO FAVORECIDO da seguinte forma:
+                    ffavorecidoCodigoBanco().length(3),
+                    //                    ffavorecidoAgencia().length(6).filler(Fillers.ZERO_LEFT),
+                    ffavorecidoConta().length(20).filler(Fillers.ZERO_LEFT),
+                    //                    fbranco().length(1),
+                    ffavorecidoNome().length(30).filler(Fillers.WHITE_SPACE_RIGHT),
+                    // Número de Documento Cliente que identifica o pagto. ex: nota fiscal incrementar de 1 em 1
+                    fnumeroDocumento().length(20),
+                    //                    field("").length(14).filler(Fillers.WHITE_SPACE_RIGHT),
+                    fdataPagamento().length(8),
+                    fmoeda().length(3).value("REA"),
+                    field("codigoISPB").length(8).filler(Fillers.WHITE_SPACE_RIGHT),
+                    field("identificacaoPagamentoPix").length(2).value("04"),
+                    fzero().length(5),
+                    //                    fqtdeMoeda().value("000000000000000"),
+                    fvalor().length(15),
+                    field("nossoNumero").length(15).filler(Fillers.WHITE_SPACE_RIGHT),
+                    fbranco().length(5),
+                    field("dataRealEfetivacaoPagto").length(8).filler(Fillers.ZERO_LEFT),
+                    field("valorRealEfetivacaoPagto").length(15).filler(Fillers.WHITE_SPACE_RIGHT),
+                    field("finalidadeDetalhe").length(20).filler(Fillers.WHITE_SPACE_RIGHT),
+                    field("numeroDocumentoTED").length(6).filler(Fillers.ZERO_LEFT), // crédito em conta
+                    ffavorecidoCPFCNPJ().length(14),
+                    field("codigoFinalidadeDaTED").length(2).value("01"), // crédito em conta
+                    field("finalidadePagamento").length(5).value("00005"),//.value("  "), // finalidade pagamento alguns casos CC
+                    fbranco().length(5),
+                    field("avisoAoFavorecido").length(1).value("0"), // crédito em conta
+                    // Códigos das Ocorrências p/ Retorno
+                    focorrencias().length(10).filler(Fillers.WHITE_SPACE_RIGHT)
+            ),
+            detalheSegmentoB(fbancoCodigo().length(3).value("341"),
+                    flote().value(1),
+                    fcodigoRegistro().length(1).value("3"), fsequencialRegistro().length(5).value("#####"),
+                    fsegmento().id(true).value("B"),
+                    //                    fbranco().length(3),
+                    // Tipo Inscrição Favorecido | CPF = 1, CNPJ = 2
+                    //                    favorecidoTipoInscricao().length(1).value("#"),
+                    // Endereço do Favorecido - opcional
+                    //                    ffavorecidoCPFCNPJ().length(14).filler(Fillers.ZERO_LEFT),
+                    //                    fbranco().length(95),
+                    //                    fdata(), // Data do Vencimento
+                    //                    fvalor().length(15), // Valor do Documento
+                    field("tipoChave").length(2).value("03"),
+                    fbranco().length(1),
+                    favorecidoTipoInscricao().length(1),
+                    ffavorecidoCPFCNPJ().length(14).filler(Fillers.ZERO_LEFT), // Valor do Abatimento
+                    field("txid").length(30).filler(Fillers.WHITE_SPACE_RIGHT), // Valor do Desconto
+                    field("mensagemPix").length(65).filler(Fillers.WHITE_SPACE_RIGHT), // Valor da Mora
+                    field("chavePix").length(100).filler(Fillers.WHITE_SPACE_RIGHT), // Valor da Multa
+                    fbranco().length(3), // Código/Documento do Favorecido - Número interno sem tratamento para o banco
+                    focorrencias().length(10)// Exclusivo FEBRABAN / CNAB
+
+            ),
+            detalheSegmentoJ(
+                    //Controle: Banco, lote e registro
+                    //Banco: Código do Banco na Compensação133-NumG001
+                    fbancoCodigo().value("341"),
+                    //Número seqüencial para identificar univocamente um lote de serviço. Criado e
+                    //controlado pelo responsável pela geração magnética dos dados contidos no arquivo.
+                    //Preencher com '0001' para o primeiro lote do arquivo. Para os demais: número do lote
+                    //anterior acrescido de 1. O número não poderá ser repetido dentro do arquivo.
+                    //Se registro for Header do Arquivo preencher com '0000'
+                    //Se registro for Trailer do Arquivo preencher com '9999'
+                    flote().value(1),
+                    fcodigoRegistro().value("3"),
+                    fsequencialRegistro(),
+                    //Código adotado pela FEBRABAN para identificar o segmento do registro.
+                    fsegmento().id(true).value("J"),
+                    //Código adotado pela FEBRABAN, para identificar o tipo de movimentação enviada no arquivo.
+                    fmovimentoTipo().value(0),
+                    //Código da Instrução para Movimento
+                    //Código adotado pela FEBRABAN, para identificar a ação a ser realizada com o
+                    //lançamento enviado no arquivo. 
+                    fmovimentoCodigo().value("01"),//Padrão entrada de titulo
+                    //Código adotado pela FEBRABAN para identificar o Título.
+                    //Especificações do Código de Barras do Boleto de Pagamentode Cobrança -Ficha de Compensação
+                    fcodigoBarras().length(44),
+                    fsacadoNome().length(30),
+                    fdataVencimento(),
+                    fvalor().length(15),
+                    //Valor do Desconto + Abatimento
+                    //Valor de desconto (bonificação) sobre o valor nominal do documento, somado ao Valor
+                    //do abatimento concedido pelo Beneficiário, expresso em moeda corrente.
+                    fvalorDesconto().value(0).length(15),
+                    //Valor da Mora + Multa
+                    //Valor do juros de mora somado ao Valor da multa, expresso em moeda corrente
+                    fvalorAcrescimo().value(0).length(15),
+                    fdataPagamento(), fvalorPagamento().length(15),
+                    //Número de unidades do tipo de moeda identificada para cálculo do valor do documento. G041
+                    //                    fqtdeMoeda().value(1),
+                    fzero().length(15),
+                    //Referência Pagador Nº do Docto Atribuído pela Empresa 183 202 20 - Alfa G064
+                    fnumeroDocumento().length(20),
+                    //Nosso Número Nº do Docto Atribuído pelo Banco 203 222 20 - Alfa *G043
+                    //Número do Documento Atribuído pelo Banco (Nosso Número)
+                    //Número atribuído pelo Banco para identificar o lançamento, que será utilizado nas manutenções do mesmo. 
+                    fbranco().length(13),
+                    fnossoNumero().length(15),
+                    //G065 Código da Moeda
+                    //Código adotado pela FEBRABAN para identificar a moeda referenciada no Título
+                    //                    fcodigoMoeda(),
+                    //20.3J CNAB Uso Exclusivo FEBRABAN/CNAB 225 230 6 - Alfa Brancos G004
+                    //                    fbranco().length(6),
+                    //Código das Ocorrências para Retorno/Remessa
+                    //Código adotado pela FEBRABAN para identificar as ocorrências detectadas no
+                    //processamento.
+                    //Pode-se informar até 5 ocorrências simultaneamente, cada uma delas codificada com
+                    //dois dígitos, conforme relação abaixo.
+                    focorrencias()
+            ),
+            detalheSegmentoJ52(
+                    //Controle: Banco, lote e registro
+                    //Banco: Código do Banco na Compensação133-NumG001
+                    //Número seqüencial para identificar univocamente um lote de serviço. Criado e
+                    //controlado pelo responsável pela geração magnética dos dados contidos no arquivo.
+                    //Preencher com '0001' para o primeiro lote do arquivo. Para os demais: número do lote
+                    //anterior acrescido de 1. O número não poderá ser repetido dentro do arquivo.
+                    //Se registro for Header do Arquivo preencher com '0000'
+                    //Se registro for Trailer do Arquivo preencher com '9999'
+                    fbancoCodigo().value("341"), flote().value(1),
+                    fcodigoRegistro().value("3"),
+                    fsequencialRegistro(),
+                    //Código adotado pela FEBRABAN para identificar o segmento do registro.
+                    fsegmento().id(true).value("J"),
+                    //06.4.J52 CNAB Uso Exclusivo FEBRABAN/CNAB 15 15 1 - Alfa Brancos G004
+                    fbranco().length(1),
+                    //C004: Código de Movimento Remessa 
+                    //Código adotado pela FEBRABAN, para identificar o tipo de movimentação enviado nos
+                    //registros do arquivo de remessa.
+                    //Cada Banco definirá os campos a serem alterados para o código de movimento '31'
+                    fmovimentoCodigo().value("01"),
+                    //08.4.J52 Código Reg. Opcional Identificação Registro Opcional 18 19 2 - Num “52” G067
+                    fidOpcional().id(true).value("52"),
+                    //DADOS DO PAGADOR
+                    //Tipo de Inscrição: '0'  =  Isento / Não Informado
+                    //                   '1'  =  CPF
+                    //                   '2'  =  CGC / CNPJ
+                    //                   '3'  =  PIS / PASEP
+                    //                   '9'  =   Outros
+                    field("tipoInscricaoSacado").valLen("1"),
+                    fsacadoCpf().length(15),
+                    fsacadoNome().length(40),
+                    //DADOS DO BENEFICIARIO
+                    field("tipoInscricaoCedente").valLen("2"),
+                    fcedenteCnpj().length(15),
+                    fcedenteNome().length(40),
+                    //DADOS DO PAGADORR
+                    //Pagadorr - Dados sobre o Beneficiário responsável pela emissão do título original
+                    field("tipoInscricaoPagadorr").valLen("2"),
+                    field("pagadorrInscricao").length(15).filler(Fillers.ZERO_LEFT),
+                    field("pagadorr").length(40).filler(Fillers.WHITE_SPACE_LEFT),
+                    //Uso Exclusivo FEBRABAN/CNAB
+                    fbranco().length(53)
+            ),
+            rodapeLote(
+                    //Controle: Banco, lote e registro
+                    //Banco: Código do Banco na Compensação133-NumG001
+                    fbancoCodigo().value("341"),
+                    flote().value(1), // o mesmo do cabeçalho do lote
+                    fcodigoRegistro().value("5"),
+                    //04.5 CNAB Uso Exclusivo FEBRABAN/CNAB 9 17 9 - Alfa Brancos G004
+                    fbranco().length(9),
+                    //Quantidade de Registros do Lote 18 23 6 - Num *G057
+                    fquantidadeRegistros().length(6).value(0), fvalorTotalRegistros().length(18).value(0),
+                    //Qtde de Moeda Somatória de Quantidade de Moedas 42 59 13 5 Num G058
+                    //G058 Somatória de Quantidade de Moedas
+                    //Valor obtido pela somatória das quantidades de moeda dos registros de detalhe
+                    //(Registro = '3' / Código de Segmento = {'A' / 'J'}).
+                    //                    field("qtedMoedas").length(18).filler(Fillers.ZERO_LEFT).value(1),
+                    //08.5 Número Aviso Débito Número Aviso Débito 60 65 6 - Num G066
+                    //Número do Aviso de Débito
+                    //Número atribuído pelo Banco para identificar um Débito efetuado na Conta Corrente a
+                    //partir do(s) pagamento(s) efetivado(s), visando facilitar a Conciliação Bancária.
+                    fzero().length(18),
+                    //                    field("numAvisoDebito").length(6).filler(Fillers.ZERO_LEFT),
+                    fbranco().length(171),
+                    //Código das Ocorrências para Retorno/Remessa G0059
+                    focorrencias()
+            ),
+            rodape(
+                    //Controle: Banco, lote e registro
+                    //Banco: Código do Banco na Compensação133-NumG001
+                    fbancoCodigo().value("341"), flote().value("9999"), fcodigoRegistro().value("9"),
+                    //Uso Exclusivo FEBRABAN/CNAB9179-AlfaBrancosG004
+                    fbranco().length(9),
+                    //Qtde. de LotesQuantidade de Lotes do Arquivo18236-NumG049
                     field("qtdeLotes").padding(Fillers.ZERO_LEFT).length(6).value(1),
                     //Qtde. de RegistrosQuantidade de Registros do Arquivo24296-NumG0
                     fquantidadeRegistros().length(6).value(0),
@@ -465,108 +936,22 @@ public class LayoutsItau {
                     fbranco().length(205)
             )
     );
-    private static final TagLayout _LAYOUT_ITAU_PAGAMENTO = LayoutsFebraban.getLAYOUT_FEBRABAN_CNAB240_PAGAMENTO_REMESSA();
 
     static {
-        // personalizações Itau
-
-        String codigoBanco = "341";
-        String campoBancoNome = "bancoNome";
-        String campoBancoCodigo = "bancoCodigo";
-
-//        // Layout
-//        TagLayout layout = _LAYOUT_ITAU_CNAB240.get(layout());
-//        layout.get("nome").value("Layout Padrão Itau CNAB240");
-//        layout.get("banco").value(codigoBanco);
-//
-//        // Cabeçalho
-//        TagLayout cabecalho = _LAYOUT_ITAU_CNAB240.get(cabecalho());
-//        cabecalho.get(campoBancoNome).value("BANCO ITAU SA");
-//        cabecalho.get(campoBancoCodigo).value(codigoBanco);
-//
-//        cabecalho.get("versaoLayoutArquivo").value("080");
-//
-//        // cabecalhoLote
-//        TagLayout cabecalhoLote = _LAYOUT_ITAU_CNAB240.get(cabecalhoLote());
-//        cabecalhoLote.get(campoBancoCodigo).value(codigoBanco);
-//        cabecalhoLote.get("versaoLayoutLote").value("040");
-//
-//        // RodapeLote
-//        TagLayout rodapeLote = _LAYOUT_ITAU_CNAB240.get(rodapeLote());
-//        rodapeLote.get(campoBancoCodigo).value(codigoBanco);
-//
-//        // RodapeArquivo
-//        TagLayout rodapeArquivo = _LAYOUT_ITAU_CNAB240.get(rodape());
-//        rodapeArquivo.get(campoBancoCodigo).value(codigoBanco);
-//
-//        layout = _LAYOUT_ITAU_PAGAMENTO.get(layout());
-//        layout.get("banco").value(codigoBanco);
-//        layout.get("versao").value("80");
-//        layout.get("url").value("https://download.itau.com.br/bankline/SISPAG_CNAB.pdf");
-//
-//        // cabecalhoLote
-//        cabecalhoLote = _LAYOUT_ITAU_PAGAMENTO.get(cabecalhoLote());
-//        cabecalhoLote.get(campoBancoCodigo).value(codigoBanco);
-//        cabecalhoLote.get("versaoLayoutLote").value("040");
-//
-//        // RodapeLote
-//        rodapeLote = _LAYOUT_ITAU_PAGAMENTO.get(rodapeLote());
-//        rodapeLote.get(campoBancoCodigo).value(codigoBanco);
-//
-//        // RodapeArquivo
-//        rodapeArquivo = _LAYOUT_ITAU_PAGAMENTO.get(rodape());
-//        rodapeArquivo.get(campoBancoCodigo).value(codigoBanco);
-//
-//        // SegmentoA
-//        TagLayout segmentoA = _LAYOUT_ITAU_PAGAMENTO.get(detalheSegmentoA());
-//        segmentoA.get(campoBancoCodigo).value(codigoBanco);
-//
-//        // SegmentoB
-//        TagLayout segmentoB = _LAYOUT_ITAU_PAGAMENTO.get(detalheSegmentoB());
-//        segmentoB.get(campoBancoCodigo).value(codigoBanco);
-    }
-
-    static final TagLayout _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA
-            = _LAYOUT_ITAU_CNAB240.clone();
-
-    static final TagLayout _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO
-            = _LAYOUT_ITAU_CNAB240.clone();
-
-    static final TagLayout _LAYOUT_ITAU_CNAB240_PAGAMENTO
-            = _LAYOUT_ITAU_PAGAMENTO;
-
-    static {
-        _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.get(layout())
-                .get(fservico()).withValue(CNABServico.COBRANCA_RETORNO);
-        _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.get(cabecalho()).get(fcodigoArquivo()).withValue('2');
-
-        _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(layout())
-                .get(fservico()).withValue(CNABServico.COBRANCA_REMESSA);
-        _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(cabecalho()).get(fcodigoArquivo()).withValue('1');
-
         _LAYOUT_ITAU_PAGAMENTO.get(layout()).get(fservico()).withValue(CNABServico.PAGAMENTO_FORNECEDOR_REMESSA);
         _LAYOUT_ITAU_PAGAMENTO.get(cabecalho()).get(fcodigoArquivo()).withValue('1');
 
     }
 
-    public static final TagLayout LAYOUT_ITAU_CNAB240
-            = _LAYOUT_ITAU_CNAB240.cloneReadonly();
-
-    public static final TagLayout LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA
-            = _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.cloneReadonly();
-
-    public static final TagLayout LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO
-            = _LAYOUT_ITAU_CNAB240_COBRANCA_RETORNO.cloneReadonly();
+    static final TagLayout _LAYOUT_ITAU_CNAB240_PAGAMENTO
+            = _LAYOUT_ITAU_PAGAMENTO;
 
     public static final TagLayout LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA
             = _LAYOUT_ITAU_CNAB240_PAGAMENTO.cloneReadonly();
 
-    public static final TagLayout LAYOUT_ITAU_CNAB400_COBRANCA_REMESSA = _LAYOUT_ITAU_CNAB400_REMESSA
-            .cloneReadonly();
-
     public static void main(String... args) {
 //        TagLayout cabecalho = LAYOUT_ITAU_CNAB400_COBRANCA_REMESSA.get(cabecalho());
-        TagLayout cabecalho = LAYOUT_ITAU_CNAB400_COBRANCA_REMESSA.get(detalhe());
+//        TagLayout cabecalho = LAYOUT_ITAU_CNAB400_COBRANCA_REMESSA.get(detalhe());
         // System.out.println(_LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.toString());
         // _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.
 //        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(cabecalho());
@@ -579,6 +964,14 @@ public class LayoutsItau {
 //        TagLayout cabecalho = _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA_PAGAMENTO_REMESSA.get(detalheSegmentoA());
 //        TagLayout cabecalho = _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA_PAGAMENTO_REMESSA.get(detalheSegmentoB());
 //        TagLayout cabecalho = _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA_PAGAMENTO_REMESSA.get(rodapeLote());
+//        TagLayout cabecalho = LAYOUT_ITAU_CNAB400_COBRANCA_RETORNO.get(cabecalho());
+//        TagLayout cabecalho = LAYOUT_ITAU_CNAB400_COBRANCA_RETORNO.get(detalhe());
+//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(cabecalhoLote());
+//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoA());
+//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoJ());
+//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(rodapeLote());
+//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(rodape());
+        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoB());
         System.out.println(cabecalho.toStringDetalhado());
     }
 
