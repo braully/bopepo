@@ -889,6 +889,43 @@ public class LayoutsItau {
                     //Uso Exclusivo FEBRABAN/CNAB
                     fbranco().length(53)
             ),
+        // CÓDIGO DO BANCOCÓDIGO BANCO NA COMPENSAÇÃO001 0039(03)341
+        // CÓDIGO DO LOTELOTE DE SERVIÇO004 0079(04)NOTA 3
+        // TIPO DE REGISTROREGISTRO DETALHE DE LOTE008 0089(01)3
+        // NÚMERO DO REGISTRONo SEQUENCIAL REGISTRO NO LOTE009 0139(05)NOTA 9
+        // SEGMENTOCÓDIGO SEGMENTO REG. DETALHE014 014X(01)O
+        // TIPO DE MOVIMENTOTIPO DE MOVIMENTO015 0179(03)NOTA 10
+        // CÓDIGO DE BARRASCÓDIGO DE BARRAS018 065X(48)NOTA 18
+        // NOMENOME DA CONCESSIONÁRIA / CONTRIBUINTE066 095X(30)DATA VENCTODATA DO VENCIMENTO (NOMINAL)096 1039(08)DDMMAAAA
+        // MOEDATIPO DE MOEDA104 106X(03)REA
+        // QUANTIDADE MOEDAQUANTIDADE DE MOEDA107 1219(07)V9(08) NOTA 19
+        // VALOR A PAGARVALOR PREVISTO DO PAGAMENTO122 1369(13)V9(02)DATA PAGAMENTODATA DO PAGAMENTO137 1449(08)VALOR PAGOVALOR DE EFETIVAÇÃO DO PAGAMENTO145 1599(13)V9(02)BRANCOSCOMPLEMENTO DE REGISTRO160 162X(03)NOTA FISCALNÚMERO DA NOTA FISCAL163 1719(09)BRANCOSCOMPLEMENTO DE REGISTRO172 174X(03)SEU NÚMERONo DOCTO ATRIBUÍDO PELA EMPRESA175 194X(20)
+        // DDMMAAAA
+        // NOTA 33
+        // BRANCOSCOMPLEMENTO DE REGISTRO195 215X(21)(*)NOSSO NÚMERONÚMERO ATRIBUÍDO PELO BANCO216 230X(15)NOTA 12
+        // (*)OCORRÊNCIASCÓDIGO DE OCORRÊNCIAS P/ RETORNO231 240X(10)NOTA 8
+            detalheSegmentoO(
+                    fbancoCodigo().value("341"), flote().value(1),
+                    fcodigoRegistro().value("3"),
+                    fsequencialRegistro(),
+                    fsegmento().id(true).value("O"),
+                    fbranco().length(1),
+                    fmovimentoCodigo().value("01"),
+                    fcodigoBarras().length(48),
+                    ffavorecidoNome(),
+                        fdataVencimento(),
+                        fmoeda(),
+                        fqtdeMoeda(),
+                        fdataPagamento(),
+                        fvalorPagamento(),
+                        fbranco().length(3),
+                        field("numeroNotaFiscal").length(9).value(0).filler(Fillers.ZERO_LEFT),
+                        fbranco().length(3),
+                        fnumeroDocumento().length(20),
+                        fbranco().length(21),
+                        fnossoNumero().length(15),
+                        focorrencias().length(10)
+            ),
             rodapeLote(
                     //Controle: Banco, lote e registro
                     //Banco: Código do Banco na Compensação133-NumG001

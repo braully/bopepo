@@ -87,6 +87,10 @@ public class RemessaArquivo extends ArquivoFacade {
         return addNovoDetalhe("P");
     }
 
+    public TituloArquivo addNovoDetalheSegmentoO() {
+        return addNovoDetalhe("O");
+    }
+
     public TituloArquivo addNovoDetalheSegmentoQ() {
         return addNovoDetalhe("Q");
     }
@@ -130,7 +134,8 @@ public class RemessaArquivo extends ArquivoFacade {
     public RegistroArquivo novoRegistro(String tipoRegistro) {
         TagLayout layoutRegistro = template.get(tipoRegistro);
         if (layoutRegistro == null) {
-            throw new IllegalArgumentException("Não existe registro do tipo " + tipoRegistro + " no layout " + template);
+            throw new IllegalArgumentException(
+                    "Não existe registro do tipo " + tipoRegistro + " no layout " + template);
         }
         return new RegistroArquivo(layoutRegistro);
     }
