@@ -16,26 +16,21 @@
 package cli;
 
 import com.github.braully.boleto.LayoutsBB;
+import com.github.braully.boleto.LayoutsItau;
 import com.github.braully.boleto.RegistroArquivo;
 import com.github.braully.boleto.RetornoArquivo;
 import com.github.braully.boleto.TagLayout;
 import java.io.BufferedReader;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
-import picocli.CommandLine.Parameters;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.jrimum.bopepo.view.BoletoViewer;
 
 /**
  *
@@ -76,7 +71,11 @@ public class CLIRetorno implements Runnable {
 
             TagLayout layoutPadrao = LayoutsBB.LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA;
             if (primeiraLinha != null && primeiraLinha.length() == 400) {
-                layoutPadrao = LayoutsBB.LAYOUT_BB_CNAB400_COBRANCA_RETORNO;
+                if (primeiraLinha.contains("BANCO ITAU")) {
+                    layoutPadrao = LayoutsItau.LAYOUT_ITAU_CNAB400_COBRANCA_RETORNO;
+                } else {
+                    layoutPadrao = LayoutsBB.LAYOUT_BB_CNAB400_COBRANCA_RETORNO;
+                }
             }
 //            if (layout != null) {
 //                layoutPadrao = LayoutsBB.getLayout(layout);

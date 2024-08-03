@@ -15,8 +15,10 @@
  */
 package cli;
 
+import com.github.braully.boleto.CabecalhoArquivo;
 import com.github.braully.boleto.LayoutsBB;
 import com.github.braully.boleto.LayoutsBradesco;
+import com.github.braully.boleto.LayoutsItau;
 import com.github.braully.boleto.RemessaArquivo;
 import com.github.braully.boleto.TagLayout;
 import com.github.braully.boleto.TituloArquivo;
@@ -25,6 +27,9 @@ import java.io.FileNotFoundException;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import java.io.FileWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,11 +57,16 @@ public class CLIRemessaPagamento implements Runnable {
     @Option(names = {"-l", "--layout"}, description = "Banco")
     String layout;
 
+    String[] args;
+
     @Override
     public void run() {
 
         if (in == null) {
-            in = "/tmp/11.json";
+            in = "/home/strike/Workspace/norli/tmp.json";
+        }
+        if (banco == null) {
+            banco = "341";
         }
         if (out == null) {
             out = in + ".txt";
@@ -88,14 +98,46 @@ public class CLIRemessaPagamento implements Runnable {
                 padrao = LayoutsBradesco.LAYOUT_BRADESCO_CNAB400_COBRANCA_REMESSA;
             }
 
+            if (banco != null && banco.equals("341")) {
+                padrao = LayoutsItau.LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA;
+                var cliRemessaPagamentoItau = new CLIRemessaPagamentoItau();
+                cliRemessaPagamentoItau.banco = banco;
+                cliRemessaPagamentoItau.in = in;
+                cliRemessaPagamentoItau.out = out;
+                cliRemessaPagamentoItau.args = args;
+                cliRemessaPagamentoItau.layout = layout;
+            }
+
             RemessaArquivo remessa = new RemessaArquivo(padrao);
 
             // REMESSSA DE BOLETO
-            remessa.addNovoCabecalho()
+            CabecalhoArquivo cabecalhoArquivo = (CabecalhoArquivo) remessa.addNovoCabecalho()
                     .sequencialArquivo(remjson.getInt("sequencial"))
                     .numeroRemessa(remjson.getInt("numero"))
-                    .dataGeracao(dataGeracao).setVal("horaGeracao", dataGeracao)
-                    //                    .banco("0", "Banco")
+                    .dataGeracao(dataGeracao).cedente(cedentejson.getString("nome_razao_social"),
+                    cedentejson.getString("cpf_cnpj")).setVal("horaGeracao", dataGeracao); //                    .banco("0", "Banco")
+
+            cabecalhoArquivo.carteira(conveniojson.getString("carteira"))
+                    .variacao(conveniojson.getString("variacao"));
+            cabecalhoArquivo.convenio(conveniojson.getString("codigo_convenio"),
+                    contaconjson.getString("agencia"),
+                    getContaComDv(contaconjson),
+                    contaconjson.getString("dac"));
+
+            if (banco != null && banco.equals("341")) {
+                cabecalhoArquivo.carteira(conveniojson.getString("carteira"))
+                        .variacao(conveniojson.getString("variacao"));
+                cabecalhoArquivo.convenio(conveniojson.getString("codigo_convenio"),
+                        contaconjson.getString("agencia"),
+                        contaconjson.getString("conta"),
+                        contaconjson.getString("dac"));
+            }
+
+            CabecalhoArquivo cabecalho = remessa.addNovoCabecalhoLote();
+            //                    .operacao("R")//Operação de remessa
+            cabecalho.operacao("C")//Operação de remessa
+                    //                    .servico(remjson.getInt("tipo"))
+                    //Cobrança=1 olhar melhor no manual febraban
                     .cedente(cedentejson.getString("nome_razao_social"),
                             cedentejson.getString("cpf_cnpj"))
                     .convenio(conveniojson.getString("codigo_convenio"),
@@ -105,26 +147,25 @@ public class CLIRemessaPagamento implements Runnable {
                     .carteira(conveniojson.getString("carteira"))
                     .variacao(conveniojson.getString("variacao"));
 
-            remessa.addNovoCabecalhoLote()
-                    //                    .operacao("R")//Operação de remessa
-                    .operacao("C")//Operação de remessa
-                    //                    .servico(remjson.getInt("tipo"))
-                    //Cobrança=1 olhar melhor no manual febraban
-                    .forma(1)//Crédito em Conta Corrente
-                    .cedente(cedentejson.getString("nome_razao_social"),
-                            cedentejson.getString("cpf_cnpj"))
-                    .convenio(conveniojson.getString("codigo_convenio"),
-                            contaconjson.getString("agencia"),
-                            getContaComDv(contaconjson),
-                            contaconjson.getString("dac"))
-                    .carteira(conveniojson.getString("carteira"))
-                    .variacao(conveniojson.getString("variacao"));
+            if (banco.equals("001")) {
+                cabecalho.forma(1);//Crédito em Conta Corrente
+            }
+
+            if (banco != null && banco.equals("341")) {
+                cabecalho.carteira(conveniojson.getString("carteira"))
+                        .variacao(conveniojson.getString("variacao"));
+                cabecalho.convenio(conveniojson.getString("codigo_convenio"),
+                        contaconjson.getString("agencia"),
+                        contaconjson.getString("conta"),
+                        contaconjson.getString("dac"));
+            }
 
             int cont = 1;
             int total = 0;
 
 //            if (!remjson.isNull("transferencias")) {
-            JSONArray transferenciasjson = remjson.getJSONArray("transferencias");
+            JSONArray transferenciasjson = remjson.getJSONArray("transferencias_outros_bancos");
+//            JSONArray transferenciasjson = remjson.getJSONArray("transferencias");
             if (transferenciasjson != null) {
                 for (int i = 0; i < transferenciasjson.length(); i++) {
                     JSONObject transjson = transferenciasjson.getJSONObject(i);
@@ -137,22 +178,35 @@ public class CLIRemessaPagamento implements Runnable {
 
                     TituloArquivo detalheSegmentoA = remessa.addNovoDetalheSegmentoA();
                     JSONObject jsonObject = fornecedorjson.getJSONObject("conta");
-//                    detalheSegmentoA.numeroDocumento(transjson.getString("id"))
-                    detalheSegmentoA.numeroDocumento("0")
+                    detalheSegmentoA.numeroDocumento(transjson.get("id"));
+                    detalheSegmentoA
                             //                          /* Código Câmara Compensação 003 = CC | 018 = TED | 700 = DOC */
-                            .formaDeTransferencia("018")
+                            //                            .formaDeTransferencia("018") //TED BB
+                            .formaDeTransferencia("009")//PIX ITAU
                             .favorecidoCodigoBanco(jsonObject.getString("banco"))
                             .favorecidoAgencia(jsonObject.getString("agencia"))
                             .favorecidoConta(getContaComDv(jsonObject))
                             //                            .numeroDocumento(transjson.get("numero_documento"))
                             //testando sanitize remover acentos e transformar em maiusculo
                             .favorecidoNome(fornecedorjson.get("nome_razao_social"))
-                            .dataPagamento(new Date())
+                            //                            .dataPagamento(new Date())
+                            //                            .dataPagamento(new Date())
                             .valor(valor)
                             .sequencialRegistro(cont);
 
+                    String strdataVencimento = transjson.getString("data_vencimento");
+                    System.out.println("data vencimento: " + strdataVencimento);
+                    Date dataVencimento = parseDataAAAA_MM_DD(strdataVencimento);
+                    System.out.println("data vencimento parsed: " + dataVencimento);
+
+                    detalheSegmentoA.dataPagamento(dataVencimento);
+
+                    detalheSegmentoA.favorecidoCPFCNPJ(
+                            somenteNumeros(fornecedorjson.get("cpf_cnpj"))
+                    );
                     cont++;
 
+//                    if (banco.equals("001")) {
                     TituloArquivo segmentoB = remessa.addNovoDetalheSegmentoB();
                     segmentoB.numeroDocumento(1)
                             //                            .valor(transjson.get("valor_total"))
@@ -165,9 +219,13 @@ public class CLIRemessaPagamento implements Runnable {
                         segmentoB.favorecidoTipoInscricao("1");
 
                     }
-                    segmentoB.favorecidoCPFCNPJ(fornecedorjson.get("cpf_cnpj"));
-
+                    String somenteNumerosCpfCnpj = somenteNumeros(fornecedorjson.get("cpf_cnpj"));
+                    segmentoB.favorecidoCPFCNPJ(somenteNumerosCpfCnpj);
+//                    segmentoB.setValue("chavePix", somenteNumerosCpfCnpj);
+                    segmentoB.setVal("chavePix", "70ca7164-930c-492d-99e3-58bc81e6a8ab");
+                    segmentoB.setVal("tipoChave", "04");
                     cont++;
+//                    }
                 }
             }
 //            }
@@ -307,11 +365,13 @@ public class CLIRemessaPagamento implements Runnable {
         // By implementing Runnable or Callable, parsing, error handling and handling
         // user
         // requests for usage help or version help can be done with one line of code.
-        int exitCode = new CommandLine(new CLIRemessaPagamento()).execute(args);
+        CLIRemessaPagamento cliRemessaPagamento = new CLIRemessaPagamento();
+        cliRemessaPagamento.args = args;
+        int exitCode = new CommandLine(cliRemessaPagamento).execute(args);
         System.exit(exitCode);
     }
 
-    String getContaComDv(JSONObject contaconjson) {
+    public String getContaComDv(JSONObject contaconjson) {
         StringBuilder sb = new StringBuilder();
         String conta = contaconjson.getString("conta");
         sb.append(conta);
@@ -322,7 +382,14 @@ public class CLIRemessaPagamento implements Runnable {
         return sb.toString();
     }
 
-    public String somenteNumeros(String valorstr) {
+    public String somenteNumeros(Object obj) {
+        String valorstr = obj.toString();
         return valorstr.replaceAll("\\D+", "");
+    }
+
+    protected DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+    public Date parseDataAAAA_MM_DD(String strdataVencimento) throws ParseException {
+        return df.parse(strdataVencimento);
     }
 }

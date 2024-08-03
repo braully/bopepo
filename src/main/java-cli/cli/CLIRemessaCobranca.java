@@ -29,6 +29,7 @@ import java.io.FileNotFoundException;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,11 +57,13 @@ public class CLIRemessaCobranca implements Runnable {
     @Option(names = {"-l", "--layout"}, description = "Banco")
     String layout;
 
+    SimpleDateFormat formatY_M_D = new SimpleDateFormat("yyyy-MM-dd");
+
     @Override
     public void run() {
 
         if (in == null) {
-            in = "/tmp/1.json";
+            in = "/tmp/3.json";
             banco = "341";
         }
         if (out == null) {
@@ -139,11 +142,16 @@ public class CLIRemessaCobranca implements Runnable {
                     JSONObject boletojson = boletosjson.getJSONObject(i);
                     JSONObject sacadojson = boletojson.getJSONObject("sacado");
                     TituloArquivo datalhe = remessa.addNovoDetalhe();
-
+                    String strDataVencimento = boletojson.getString("data_vencimento");
+                    Date dataVencimento = new Date();
+                    if (strDataVencimento != null) {
+                        Date parse = formatY_M_D.parse(strDataVencimento);
+                        dataVencimento = parse;
+                    }
                     System.out.printf("Numero documento %s ", boletojson.get("numero_documento"));
                     datalhe.valor(somenteNumeros(boletojson.getString("valor")))
                             //                                .valorDesconto(0).valorAcrescimo(0)//opcionais
-                            .dataVencimento(new Date());
+                            .dataVencimento(dataVencimento);
                     datalhe.dataGeracao(new Date());
                     datalhe.numeroDocumento(boletojson.get("numero_documento"))
                             .nossoNumero(boletojson.get("nosso_numero"));

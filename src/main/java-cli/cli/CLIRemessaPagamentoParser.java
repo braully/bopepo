@@ -121,7 +121,13 @@ public class CLIRemessaPagamentoParser implements Runnable {
         BufferedReader reader;
         try {
             if (in == null) {
-                in = "/home/strike/Downloads/REM1 (6).txt";
+                in = "/home/strike/REM1SISPAGPROD.txt";
+//                in = "/home/strike/REM3SISPAG.txt";
+//                in = "/home/strike/Downloads/REM1PAG.txt";
+//                in = "/home/strike/Eseye/CN07064A.RET";
+//                in = "/home/strike/Downloads/CN23054A.RET";
+//                in = "/home/strike/REM2PROD.txt";
+//                in = "/home/strike/REMT.txt";
             }
             if (out == null) {
                 out = in + ".json";
@@ -129,10 +135,11 @@ public class CLIRemessaPagamentoParser implements Runnable {
             reader = new BufferedReader(new FileReader(in));
             List<String> linhas = new ArrayList<>();
             String linha = null;
-            RetornoArquivo retorno = new RetornoArquivo(LayoutsItau.LAYOUT_ITAU_CNAB400_COBRANCA_REMESSA);
+//            RetornoArquivo retorno = new RetornoArquivo(LayoutsItau.LAYOUT_ITAU_CNAB400_COBRANCA_RETORNO);
+            RetornoArquivo retorno = new RetornoArquivo(LayoutsItau.LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA);
+//            RetornoArquivo retorno = new RetornoArquivo(LayoutsItau.LAYOUT_ITAU_CNAB400_COBRANCA_REMESSA);
 //            RetornoArquivo retorno = new RetornoArquivo(LayoutsBB.LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA);
 //            RetornoArquivo retorno = new RetornoArquivo(LayoutsFebraban.LAYOUT_FEBRABAN_CNAB240_COBRANCA_RETORNO);
-
             while ((linha = reader.readLine()) != null) {
                 linhas.add(linha);
             }
