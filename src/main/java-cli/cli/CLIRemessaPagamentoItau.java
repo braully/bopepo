@@ -20,6 +20,7 @@ import com.github.braully.boleto.LayoutsBB;
 import com.github.braully.boleto.LayoutsBradesco;
 import com.github.braully.boleto.LayoutsItau;
 import com.github.braully.boleto.RemessaArquivo;
+import com.github.braully.boleto.RodapeArquivo;
 import com.github.braully.boleto.TagLayout;
 import com.github.braully.boleto.TituloArquivo;
 import java.io.FileInputStream;
@@ -38,21 +39,21 @@ import org.json.JSONTokener;
 /**
  *
  * @author Braully Rocha da Silva Reference:
- * https://stackoverflow.com/questions/62799744/two-exclusive-optiongroup-with-apache-commons-cli
+ *         https://stackoverflow.com/questions/62799744/two-exclusive-optiongroup-with-apache-commons-cli
  */
 public class CLIRemessaPagamentoItau extends CLIRemessaPagamento implements Runnable {
 
-    @Option(names = {"-i", "--file-in"}, description = "Arquivo de entrada")
+    @Option(names = { "-i", "--file-in" }, description = "Arquivo de entrada")
     String in;
 
-    @Option(names = {"-o", "--output"}, description = "Arquivo de saida")
+    @Option(names = { "-o", "--output" }, description = "Arquivo de saida")
     String out;
 
     // Futuro
-    @Option(names = {"-b", "--banco"}, description = "Banco")
+    @Option(names = { "-b", "--banco" }, description = "Banco")
     String banco;
 
-    @Option(names = {"-l", "--layout"}, description = "Banco")
+    @Option(names = { "-l", "--layout" }, description = "Banco")
     String layout;
 
     int loteAtual = 1;
@@ -70,6 +71,10 @@ public class CLIRemessaPagamentoItau extends CLIRemessaPagamento implements Runn
     String conta;
 
     RemessaArquivo remessa = null;
+
+    private TituloArquivo addNovoDetalheSegmentoJ;
+
+    private TituloArquivo addNovoDetalheSegmentoJ52;
 
     @Override
     public void run() {
@@ -110,15 +115,7 @@ public class CLIRemessaPagamentoItau extends CLIRemessaPagamento implements Runn
             variacao = conveniojson.getString("variacao");
             conta = contaconjson.getString("conta");
 
-            TagLayout padrao = LayoutsBB.LAYOUT_BB_CNAB240_PAGAMENTO_REMESSA;
-
-            if (banco != null && banco.equals("237")) {
-                padrao = LayoutsBradesco.LAYOUT_BRADESCO_CNAB400_COBRANCA_REMESSA;
-            }
-
-            if (banco != null && banco.equals("341")) {
-                padrao = LayoutsItau.LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA;
-            }
+            TagLayout padrao = LayoutsItau.LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA;
 
             remessa = new RemessaArquivo(padrao);
 
@@ -127,7 +124,7 @@ public class CLIRemessaPagamentoItau extends CLIRemessaPagamento implements Runn
                     .sequencialArquivo(remjson.getInt("sequencial"))
                     .numeroRemessa(remjson.getInt("numero"))
                     .dataGeracao(dataGeracao).cedente(cedentejson.getString("nome_razao_social"),
-                    cedentejson.getString("cpf_cnpj"))
+                            cedentejson.getString("cpf_cnpj"))
                     .setVal("horaGeracao", dataGeracao); // .banco("0", "Banco")
 
             cabecalhoArquivo.carteira(conveniojson.getString("carteira"))
@@ -219,33 +216,20 @@ public class CLIRemessaPagamentoItau extends CLIRemessaPagamento implements Runn
         System.exit(exitCode);
     }
 
+    private CabecalhoArquivo addCabecalhoLote() {
+        CabecalhoArquivo cabecalho = remessa.addNovoCabecalhoLote();
+        cabecalho.cedente(cedenteRazaoSocial,
+                cedenteCnpj);
+        cabecalho.convenio(convenio,
+                agencia,
+                conta,
+                dac);
+        return cabecalho;
+    }
+
     private void gerarLoteTransferenciasPix(JSONArray transferenciasPix) throws ParseException {
         CabecalhoArquivo cabecalho = remessa.addNovoCabecalhoLote();
-        //                    .operacao("R")//Operação de remessa
-        cabecalho.operacao("C")//Operação de remessa
-                //                    .servico(remjson.getInt("tipo"))
-                //Cobrança=1 olhar melhor no manual febraban
-                .cedente(cedenteRazaoSocial,
-                        cedenteCnpj)
-                .convenio(convenio,
-                        agencia,
-                        contaComDv,
-                        dac)
-                .carteira(carteira)
-                .variacao(variacao);
-
-        if (banco.equals("001")) {
-            cabecalho.forma(1);//Crédito em Conta Corrente
-        }
-
-        if (banco != null && banco.equals("341")) {
-            cabecalho.carteira(carteira)
-                    .variacao(variacao);
-            cabecalho.convenio(convenio,
-                    agencia,
-                    conta,
-                    dac);
-        }
+        cabecalho.operacao("C");
 
         int cont = 1;
         int total = 0;
@@ -265,17 +249,16 @@ public class CLIRemessaPagamentoItau extends CLIRemessaPagamento implements Runn
             JSONObject jsonObject = fornecedorjson.getJSONObject("conta");
             detalheSegmentoA.numeroDocumento(transjson.get("id"));
             detalheSegmentoA
-                    //                          /* Código Câmara Compensação 003 = CC | 018 = TED | 700 = DOC */
-                    //                            .formaDeTransferencia("018") //TED BB
-                    .formaDeTransferencia("009")//PIX ITAU
+                    // /* Código Câmara Compensação 003 = CC | 018 = TED | 700 = DOC */
+                    .formaDeTransferencia("009")// PIX ITAU
                     .favorecidoCodigoBanco(jsonObject.getString("banco"))
                     .favorecidoAgencia(jsonObject.getString("agencia"))
                     .favorecidoConta(getContaComDv(jsonObject))
-                    //                            .numeroDocumento(transjson.get("numero_documento"))
-                    //testando sanitize remover acentos e transformar em maiusculo
+                    // .numeroDocumento(transjson.get("numero_documento"))
+                    // testando sanitize remover acentos e transformar em maiusculo
                     .favorecidoNome(fornecedorjson.get("nome_razao_social"))
-                    //                            .dataPagamento(new Date())
-                    //                            .dataPagamento(new Date())
+                    // .dataPagamento(new Date())
+                    // .dataPagamento(new Date())
                     .valor(valor)
                     .sequencialRegistro(cont);
 
@@ -287,16 +270,15 @@ public class CLIRemessaPagamentoItau extends CLIRemessaPagamento implements Runn
             detalheSegmentoA.dataPagamento(dataVencimento);
 
             detalheSegmentoA.favorecidoCPFCNPJ(
-                    somenteNumeros(fornecedorjson.get("cpf_cnpj"))
-            );
+                    somenteNumeros(fornecedorjson.get("cpf_cnpj")));
             cont++;
 
-//                    if (banco.equals("001")) {
+            // if (banco.equals("001")) {
             TituloArquivo segmentoB = remessa.addNovoDetalheSegmentoB();
             segmentoB.numeroDocumento(1)
-                    //                            .valor(transjson.get("valor_total"))
+                    // .valor(transjson.get("valor_total"))
                     .sequencialRegistro(cont)
-                    //                            .setValue("data", new Date())
+                    // .setValue("data", new Date())
                     .setValue("lote", 1);
             if (fornecedorjson.getString("tipo_pessoa").equals("PJ")) {
                 segmentoB.favorecidoTipoInscricao("2");
@@ -306,26 +288,34 @@ public class CLIRemessaPagamentoItau extends CLIRemessaPagamento implements Runn
             }
             String somenteNumerosCpfCnpj = somenteNumeros(fornecedorjson.get("cpf_cnpj"));
             segmentoB.favorecidoCPFCNPJ(somenteNumerosCpfCnpj);
-//                    segmentoB.setValue("chavePix", somenteNumerosCpfCnpj);
+            // segmentoB.setValue("chavePix", somenteNumerosCpfCnpj);
 
-//            "fornecedor_conta_bancaria": {
-//                "id": 2,
-//                "pessoa_banco": 7,
-//                "pix": "43913162000123",
-//                "conta_contabil": 7,
-//                "tipo_pix": "03"
-//            },
-            segmentoB.setVal("chavePix", "70ca7164-930c-492d-99e3-58bc81e6a8ab");
-            segmentoB.setVal("tipoChave", "04");
+            // "fornecedor_conta_bancaria": {
+            // "id": 2,
+            // "pessoa_banco": 7,
+            // "pix": "43913162000123",
+            // "conta_contabil": 7,
+            // "tipo_pix": "03"
+            // },
+            JSONObject contaFornecedor = transjson.getJSONObject("fornecedor_conta_bancaria");
+
+            segmentoB.setVal("chavePix", contaFornecedor.getString("pix"));
+            segmentoB.setVal("tipoChave", contaFornecedor.getString("tipo_pix"));
             cont++;
 
-//                    }
+            // }
         }
 
-//            }
+        // }
+
+        RodapeArquivo rodapeLote = addNovoRodapeLote();
+        rodapeLote.valorTotalRegistros(total);
+
+    }
+
+    private RodapeArquivo addNovoRodapeLote() {
         remessa.addNovoRodapeLote()
                 .quantidadeRegistros(remessa.registrosCount() - 1)
-                .valorTotalRegistros(total)
                 .cedente(cedenteRazaoSocial,
                         cedenteCnpj)
                 .convenio(convenio,
@@ -337,14 +327,30 @@ public class CLIRemessaPagamentoItau extends CLIRemessaPagamento implements Runn
     }
 
     private void gerarLoteTransferencias(JSONArray transferencias) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from
+                                                                       // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     private void gerarLotePagamentoBoletos(JSONArray transferencias) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        CabecalhoArquivo cabecalhoLote = addCabecalhoLote();
+
+        for (int i = 0; i < transferencias.length(); i++) {
+            JSONObject transjson = transferencias.getJSONObject(i);
+            TituloArquivo segmentoJ = remessa.addNovoDetalheSegmentoJ();
+            TituloArquivo segmentoJ52 = remessa.addNovoDetalheSegmentoJ52();
+        }
+
+        RodapeArquivo rodapeLote = addNovoRodapeLote();
     }
 
     private void gerarLotePagamentoConcessionaria(JSONArray transferencias) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        CabecalhoArquivo cabecalhoLote = addCabecalhoLote();
+
+        for (int i = 0; i < transferencias.length(); i++) {
+            JSONObject transjson = transferencias.getJSONObject(i);
+            TituloArquivo segmentoJ = remessa.addNovoDetalheSegmentoQ()
+        }
+
+        RodapeArquivo rodapeLote = addNovoRodapeLote();
     }
 }
