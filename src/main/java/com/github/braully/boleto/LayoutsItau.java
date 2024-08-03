@@ -789,28 +789,13 @@ public class LayoutsItau {
 
             ),
             detalheSegmentoJ(
-                    //Controle: Banco, lote e registro
-                    //Banco: Código do Banco na Compensação133-NumG001
                     fbancoCodigo().value("341"),
-                    //Número seqüencial para identificar univocamente um lote de serviço. Criado e
-                    //controlado pelo responsável pela geração magnética dos dados contidos no arquivo.
-                    //Preencher com '0001' para o primeiro lote do arquivo. Para os demais: número do lote
-                    //anterior acrescido de 1. O número não poderá ser repetido dentro do arquivo.
-                    //Se registro for Header do Arquivo preencher com '0000'
-                    //Se registro for Trailer do Arquivo preencher com '9999'
                     flote().value(1),
                     fcodigoRegistro().value("3"),
                     fsequencialRegistro(),
-                    //Código adotado pela FEBRABAN para identificar o segmento do registro.
                     fsegmento().id(true).value("J"),
-                    //Código adotado pela FEBRABAN, para identificar o tipo de movimentação enviada no arquivo.
                     fmovimentoTipo().value(0),
-                    //Código da Instrução para Movimento
-                    //Código adotado pela FEBRABAN, para identificar a ação a ser realizada com o
-                    //lançamento enviado no arquivo. 
-                    fmovimentoCodigo().value("01"),//Padrão entrada de titulo
-                    //Código adotado pela FEBRABAN para identificar o Título.
-                    //Especificações do Código de Barras do Boleto de Pagamentode Cobrança -Ficha de Compensação
+                    fmovimentoCodigo().value("01"),//Padrão entrada de 
                     fcodigoBarras().length(44),
                     fsacadoNome().length(30),
                     fdataVencimento(),
