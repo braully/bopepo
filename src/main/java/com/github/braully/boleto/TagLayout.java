@@ -178,6 +178,22 @@ public class TagLayout implements Serializable {
             return field("codigoBarras").padding(Fillers.ZERO_LEFT);
         }
 
+        public static TagLayout fdigitoVerificador() {
+            return field("digitoVerificador").padding(Fillers.ZERO_LEFT).length(1);
+        }
+
+        public static TagLayout ffatorVencimento() {
+            return field("fatorVencimento").padding(Fillers.ZERO_LEFT).length(4);
+        }
+
+        public static TagLayout fcampoLivre() {
+            return field("fcampoLivre").padding(Fillers.ZERO_LEFT).length(25);
+        }
+
+        public static TagLayout fvalorBoleto() {
+            return field("valorBoleto").padding(Fillers.ZERO_LEFT).length(10);
+        }
+
         /**
          * Alias para facilitar o campo de acesso ao campo do nome do sacado
          *
@@ -262,6 +278,10 @@ public class TagLayout implements Serializable {
             return field("sacadoCpf").length(14).padding(Fillers.ZERO_LEFT);
         }
 
+        public static TagLayout ftipoInscricaoSacado() {
+            return field("tipoInscricaoSacado").length(1).padding(Fillers.ZERO_LEFT);
+        }
+
         /**
          * Na maioria das vezes o sacado ou o pagador é uma pessoa fisica, por
          * tanto esse metodo de alias.
@@ -269,7 +289,7 @@ public class TagLayout implements Serializable {
          * @return
          */
         public static TagLayout fsacadoCpfCnpj() {
-            return field("sacadoCpfCnpj").length(14).padding(Fillers.ZERO_LEFT);
+            return field("sacadoCpfCnpj").apenasDigitos(true).length(14).padding(Fillers.ZERO_LEFT);
         }
 
         /**
@@ -321,6 +341,18 @@ public class TagLayout implements Serializable {
          */
         public static TagLayout fcedenteCnpj() {
             return field("cedenteCnpj").padding(Fillers.ZERO_LEFT).length(14).apenasDigitos(true);
+        }
+
+        public static TagLayout ftipoInscricaoSacador() {
+            return field("tipoInscricaoSacador").padding(Fillers.ZERO_LEFT).length(1);
+        }
+
+        public static TagLayout fsacadorCnpj() {
+            return field("sacadorCnpj").padding(Fillers.ZERO_LEFT).length(14).apenasDigitos(true);
+        }
+
+        public static TagLayout fsacadorNome() {
+            return field("sacador").truncate(true).padding(Fillers.WHITE_SPACE_RIGHT).length(30);
         }
 
         public static TagLayout fcedenteNome() {

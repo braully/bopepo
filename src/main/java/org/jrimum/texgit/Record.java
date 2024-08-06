@@ -28,6 +28,7 @@
  */
 package org.jrimum.texgit;
 
+import com.github.braully.boleto.TagLayout;
 import static java.lang.String.format;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
@@ -401,6 +402,14 @@ public class Record extends BlockOfFields implements IRecord {
                     }
                 }
             }
+        }
+        return this;
+    }
+
+    @SuppressWarnings("unchecked")
+    public <G> IRecord setValue(TagLayout field, G value) {
+        if (field != null) {
+            setValue(field.getNome(), value);
         }
         return this;
     }

@@ -10,3 +10,4 @@
 /src/test/java/com/github/braully/boleto/TestBoletoFacadeExemplos.java
 /.idea/
 /sh/settings-private.xml
+# /src/main/java/cli

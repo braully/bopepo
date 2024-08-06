@@ -796,9 +796,16 @@ public class LayoutsItau {
                     fsegmento().id(true).value("J"),
                     fmovimentoTipo().value(0),
                     fmovimentoCodigo().value("01"),//Padrão entrada de 
-                    fcodigoBarras().length(44),
+                    //                    fcodigoBarras().length(44),
+                    ffavorecidoCodigoBanco().length(3),
+                    fmoeda().length(1),
+                    fdigitoVerificador().length(1),
+                    ffatorVencimento().length(4),
+                    fvalorBoleto().length(10),
+                    fcampoLivre().length(25),
                     fsacadoNome().length(30),
                     fdataVencimento(),
+                    //                    fdataPagamento(),
                     fvalor().length(15),
                     //Valor do Desconto + Abatimento
                     //Valor de desconto (bonificação) sobre o valor nominal do documento, somado ao Valor
@@ -850,7 +857,7 @@ public class LayoutsItau {
                     //Código adotado pela FEBRABAN, para identificar o tipo de movimentação enviado nos
                     //registros do arquivo de remessa.
                     //Cada Banco definirá os campos a serem alterados para o código de movimento '31'
-                    fmovimentoCodigo().value("01"),
+                    fmovimentoCodigo().value(0),
                     //08.4.J52 Código Reg. Opcional Identificação Registro Opcional 18 19 2 - Num “52” G067
                     fidOpcional().id(true).value("52"),
                     //DADOS DO PAGADOR
@@ -859,36 +866,40 @@ public class LayoutsItau {
                     //                   '2'  =  CGC / CNPJ
                     //                   '3'  =  PIS / PASEP
                     //                   '9'  =   Outros
-                    field("tipoInscricaoSacado").valLen("1"),
-                    fsacadoCpf().length(15),
+                    // Os campos Tipo e Número de Inscrição do Cedente (posições 076 a 091) são de preenchimento obrigatório,
+                    //caso não informados o agendamento do pagamento será rejeitado (ocorrência “BI” – Para inconsistências
+                    //específicas do J52 que são os dados do cedente e sacado). Também será motivo de rejeição nos casos do
+                    //Tipo de Inscrição não corresponder com o Número de Inscrição apresentado.
+                    ftipoInscricaoSacado().valLen("2"),
+                    fsacadoCpfCnpj().length(15),
                     fsacadoNome().length(40),
                     //DADOS DO BENEFICIARIO
-                    field("tipoInscricaoCedente").valLen("2"),
+                    ftipoInscricaoCedente().valLen("2"),
                     fcedenteCnpj().length(15),
                     fcedenteNome().length(40),
                     //DADOS DO PAGADORR
                     //Pagadorr - Dados sobre o Beneficiário responsável pela emissão do título original
-                    field("tipoInscricaoPagadorr").valLen("2"),
-                    field("pagadorrInscricao").length(15).filler(Fillers.ZERO_LEFT),
-                    field("pagadorr").length(40).filler(Fillers.WHITE_SPACE_LEFT),
+                    ftipoInscricaoSacador().valLen("0"),
+                    fsacadorCnpj().length(15).filler(Fillers.ZERO_LEFT).value("0"),
+                    fsacadorNome().length(40).filler(Fillers.WHITE_SPACE_LEFT).value("0"),
                     //Uso Exclusivo FEBRABAN/CNAB
                     fbranco().length(53)
             ),
-        // CÓDIGO DO BANCOCÓDIGO BANCO NA COMPENSAÇÃO001 0039(03)341
-        // CÓDIGO DO LOTELOTE DE SERVIÇO004 0079(04)NOTA 3
-        // TIPO DE REGISTROREGISTRO DETALHE DE LOTE008 0089(01)3
-        // NÚMERO DO REGISTRONo SEQUENCIAL REGISTRO NO LOTE009 0139(05)NOTA 9
-        // SEGMENTOCÓDIGO SEGMENTO REG. DETALHE014 014X(01)O
-        // TIPO DE MOVIMENTOTIPO DE MOVIMENTO015 0179(03)NOTA 10
-        // CÓDIGO DE BARRASCÓDIGO DE BARRAS018 065X(48)NOTA 18
-        // NOMENOME DA CONCESSIONÁRIA / CONTRIBUINTE066 095X(30)DATA VENCTODATA DO VENCIMENTO (NOMINAL)096 1039(08)DDMMAAAA
-        // MOEDATIPO DE MOEDA104 106X(03)REA
-        // QUANTIDADE MOEDAQUANTIDADE DE MOEDA107 1219(07)V9(08) NOTA 19
-        // VALOR A PAGARVALOR PREVISTO DO PAGAMENTO122 1369(13)V9(02)DATA PAGAMENTODATA DO PAGAMENTO137 1449(08)VALOR PAGOVALOR DE EFETIVAÇÃO DO PAGAMENTO145 1599(13)V9(02)BRANCOSCOMPLEMENTO DE REGISTRO160 162X(03)NOTA FISCALNÚMERO DA NOTA FISCAL163 1719(09)BRANCOSCOMPLEMENTO DE REGISTRO172 174X(03)SEU NÚMERONo DOCTO ATRIBUÍDO PELA EMPRESA175 194X(20)
-        // DDMMAAAA
-        // NOTA 33
-        // BRANCOSCOMPLEMENTO DE REGISTRO195 215X(21)(*)NOSSO NÚMERONÚMERO ATRIBUÍDO PELO BANCO216 230X(15)NOTA 12
-        // (*)OCORRÊNCIASCÓDIGO DE OCORRÊNCIAS P/ RETORNO231 240X(10)NOTA 8
+            // CÓDIGO DO BANCOCÓDIGO BANCO NA COMPENSAÇÃO001 0039(03)341
+            // CÓDIGO DO LOTELOTE DE SERVIÇO004 0079(04)NOTA 3
+            // TIPO DE REGISTROREGISTRO DETALHE DE LOTE008 0089(01)3
+            // NÚMERO DO REGISTRONo SEQUENCIAL REGISTRO NO LOTE009 0139(05)NOTA 9
+            // SEGMENTOCÓDIGO SEGMENTO REG. DETALHE014 014X(01)O
+            // TIPO DE MOVIMENTOTIPO DE MOVIMENTO015 0179(03)NOTA 10
+            // CÓDIGO DE BARRASCÓDIGO DE BARRAS018 065X(48)NOTA 18
+            // NOMENOME DA CONCESSIONÁRIA / CONTRIBUINTE066 095X(30)DATA VENCTODATA DO VENCIMENTO (NOMINAL)096 1039(08)DDMMAAAA
+            // MOEDATIPO DE MOEDA104 106X(03)REA
+            // QUANTIDADE MOEDAQUANTIDADE DE MOEDA107 1219(07)V9(08) NOTA 19
+            // VALOR A PAGARVALOR PREVISTO DO PAGAMENTO122 1369(13)V9(02)DATA PAGAMENTODATA DO PAGAMENTO137 1449(08)VALOR PAGOVALOR DE EFETIVAÇÃO DO PAGAMENTO145 1599(13)V9(02)BRANCOSCOMPLEMENTO DE REGISTRO160 162X(03)NOTA FISCALNÚMERO DA NOTA FISCAL163 1719(09)BRANCOSCOMPLEMENTO DE REGISTRO172 174X(03)SEU NÚMERONo DOCTO ATRIBUÍDO PELA EMPRESA175 194X(20)
+            // DDMMAAAA
+            // NOTA 33
+            // BRANCOSCOMPLEMENTO DE REGISTRO195 215X(21)(*)NOSSO NÚMERONÚMERO ATRIBUÍDO PELO BANCO216 230X(15)NOTA 12
+            // (*)OCORRÊNCIASCÓDIGO DE OCORRÊNCIAS P/ RETORNO231 240X(10)NOTA 8
             detalheSegmentoO(
                     fbancoCodigo().value("341"), flote().value(1),
                     fcodigoRegistro().value("3"),
@@ -898,18 +909,18 @@ public class LayoutsItau {
                     fmovimentoCodigo().value("01"),
                     fcodigoBarras().length(48),
                     ffavorecidoNome(),
-                        fdataVencimento(),
-                        fmoeda(),
-                        fqtdeMoeda(),
-                        fdataPagamento(),
-                        fvalorPagamento(),
-                        fbranco().length(3),
-                        field("numeroNotaFiscal").length(9).value(0).filler(Fillers.ZERO_LEFT),
-                        fbranco().length(3),
-                        fnumeroDocumento().length(20),
-                        fbranco().length(21),
-                        fnossoNumero().length(15),
-                        focorrencias().length(10)
+                    fdataVencimento(),
+                    fmoeda(),
+                    fqtdeMoeda(),
+                    fdataPagamento(),
+                    fvalorPagamento(),
+                    fbranco().length(3),
+                    field("numeroNotaFiscal").length(9).value(0).filler(Fillers.ZERO_LEFT),
+                    fbranco().length(3),
+                    fnumeroDocumento().length(20),
+                    fbranco().length(21),
+                    fnossoNumero().length(15),
+                    focorrencias().length(10)
             ),
             rodapeLote(
                     //Controle: Banco, lote e registro
@@ -972,28 +983,7 @@ public class LayoutsItau {
             = _LAYOUT_ITAU_CNAB240_PAGAMENTO.cloneReadonly();
 
     public static void main(String... args) {
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB400_COBRANCA_REMESSA.get(cabecalho());
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB400_COBRANCA_REMESSA.get(detalhe());
-        // System.out.println(_LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.toString());
-        // _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(cabecalho());
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(cabecalhoLote());detalheSegmentoP
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(detalheSegmentoP());
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA.get(detalhe());
-//        TagLayout cabecalho = _LAYOUT_BB_CNAB400_RETORNO.get(detalhe());
-//        TagLayout cabecalho = _LAYOUT_BB_CNAB400_RETORNO.get(rodape());
-//        TagLayout cabecalho = _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA_PAGAMENTO_REMESSA.get(cabecalho());
-//        TagLayout cabecalho = _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA_PAGAMENTO_REMESSA.get(detalheSegmentoA());
-//        TagLayout cabecalho = _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA_PAGAMENTO_REMESSA.get(detalheSegmentoB());
-//        TagLayout cabecalho = _LAYOUT_ITAU_CNAB240_COBRANCA_REMESSA_PAGAMENTO_REMESSA.get(rodapeLote());
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB400_COBRANCA_RETORNO.get(cabecalho());
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB400_COBRANCA_RETORNO.get(detalhe());
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(cabecalhoLote());
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoA());
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoJ());
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(rodapeLote());
-//        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(rodape());
-        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoB());
+        TagLayout cabecalho = LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA.get(detalheSegmentoJ52());
         System.out.println(cabecalho.toStringDetalhado());
     }
 

@@ -25,7 +25,6 @@ import com.github.braully.boleto.TituloArquivo;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import picocli.CommandLine;
-import picocli.CommandLine.Option;
 import java.io.FileWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -42,22 +41,22 @@ import org.json.JSONTokener;
  * @author Braully Rocha da Silva Reference:
  * https://stackoverflow.com/questions/62799744/two-exclusive-optiongroup-with-apache-commons-cli
  */
-public class CLIRemessaPagamento implements Runnable {
+public class CLIRemessaPagamento extends CLIRemessaPagamentoAbs implements Runnable {
 
-    @Option(names = {"-i", "--file-in"}, description = "Arquivo de entrada")
-    String in;
+    @CommandLine.Option(names = {"-i", "--file-in"}, description = "Arquivo de entrada")
+    public String in;
 
-    @Option(names = {"-o", "--output"}, description = "Arquivo de saida")
-    String out;
+    @CommandLine.Option(names = {"-o", "--output"}, description = "Arquivo de saida")
+    public String out;
 
     //Futuro
-    @Option(names = {"-b", "--banco"}, description = "Banco")
-    String banco;
+    @CommandLine.Option(names = {"-b", "--banco"}, description = "Banco")
+    public String banco;
 
-    @Option(names = {"-l", "--layout"}, description = "Banco")
-    String layout;
+    @CommandLine.Option(names = {"-l", "--layout"}, description = "Banco")
+    public String layout;
 
-    String[] args;
+    public String[] args;
 
     @Override
     public void run() {
@@ -100,12 +99,15 @@ public class CLIRemessaPagamento implements Runnable {
 
             if (banco != null && banco.equals("341")) {
                 padrao = LayoutsItau.LAYOUT_ITAU_CNAB240_PAGAMENTO_REMESSA;
-                var cliRemessaPagamentoItau = new CLIRemessaPagamentoItau();
+                CLIRemessaPagamentoItau cliRemessaPagamentoItau = new CLIRemessaPagamentoItau();
                 cliRemessaPagamentoItau.banco = banco;
                 cliRemessaPagamentoItau.in = in;
                 cliRemessaPagamentoItau.out = out;
-                cliRemessaPagamentoItau.args = args;
                 cliRemessaPagamentoItau.layout = layout;
+                cliRemessaPagamentoItau.args = args;
+                cliRemessaPagamentoItau.run();
+//                return cliRemessaPagamentoItau.main(args);
+                return;
             }
 
             RemessaArquivo remessa = new RemessaArquivo(padrao);
