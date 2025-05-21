@@ -30,10 +30,9 @@ package org.jrimum.bopepo;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.jrimum.domkee.pessoa.CNPJ;
 import org.jrimum.domkee.banco.Banco;
 import org.jrimum.domkee.banco.CodigoDeCompensacaoBACEN;
+import org.jrimum.domkee.pessoa.CNPJ;
 
 /**
  * <p>
@@ -193,6 +192,14 @@ public enum BancosSuportados {
      */
     CAIXA_ECONOMICA_FEDERAL("104", "00360305000104", "CAIXA ECONOMICA FEDERAL", "Caixa Econômica Federal"),
     /**
+     * Tipo enumerado que representa o <strong>Unicred</strong>, código de
+     * compensação <strong>136</strong> <a
+     * href="https://www.unicred.com.br/">site</a>.
+     *
+     * @since 0.2
+     */
+    UNICRED("136", "00315557000111", "Unicred Do Brasil", "Instituicao Financeira Cooperativa"),
+    /**
      * Tipo enumerado que representa o Banco <strong>Bradesco</strong>, código
      * de compensação <strong>237</strong> 
      * <a href="http://www.bradesco.com.br">site</a>.
@@ -286,7 +293,7 @@ public enum BancosSuportados {
      * @since 0.2
      */
     BANCOOB("756", "02038232000164", "BANCO COOPERATIVO DO BRASIL S.A. - BANCOOB", "Banco Comercial Cooperativo");
-
+    
     /**
      * Singleton <code>Map</code> para pesquisa por bancos suportados no
      * componente.
@@ -318,6 +325,7 @@ public enum BancosSuportados {
         suportados.put(CITIBANK.codigoDeCompensacaoBACEN, CITIBANK);
         suportados.put(BANCO_DE_BRASILIA.codigoDeCompensacaoBACEN, BANCO_DE_BRASILIA);
         suportados.put(CECRED.codigoDeCompensacaoBACEN, CECRED);
+        suportados.put(UNICRED.codigoDeCompensacaoBACEN, UNICRED);
     }
 
     /**

@@ -30,17 +30,16 @@ package org.jrimum.bopepo.campolivre;
 
 import static java.lang.String.format;
 import static java.math.BigDecimal.ZERO;
-import static org.jrimum.domkee.banco.Banco.isCodigoDeCompensacaoOK;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.jrimum.bopepo.BancosSuportados;
+import static org.jrimum.domkee.banco.Banco.isCodigoDeCompensacaoOK;
 import org.jrimum.domkee.banco.ParametroBancario;
 import org.jrimum.domkee.banco.Titulo;
 import org.jrimum.texgit.BlockOfFields;
+import org.jrimum.texgit.IFixedField;
 import org.jrimum.utilix.Objects;
 import org.jrimum.utilix.Strings;
-import org.jrimum.texgit.IFixedField;
 
 /**
  * <p>
@@ -234,6 +233,8 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
                         return AbstractCLBancoDeBrasilia.create(titulo);
                     case CECRED:
                         return AbstractCLCecred.create(titulo);
+                    case UNICRED:
+                        return AbstractCLUnicred.create(titulo);
 
                     default:
                         /*
