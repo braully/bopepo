@@ -75,6 +75,8 @@ import org.jrimum.utilix.Strings;
  * Colaborador com o Banco Citibank (756).
  * @author <a href="mailto:contato@douglasramiro.com.br">Douglas Ramiro</a> -
  * Colaborador com o Banco de Brasília (070).
+ * @author <a href="https://github.com/alessandrobrunolima">Alessandro Bruno Lima</a> -
+ * Colaborador com o Banco Daycoval (707).
  *
  * @since 0.2
  *
@@ -235,6 +237,8 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
                         return AbstractCLCecred.create(titulo);
                     case UNICRED:
                         return AbstractCLUnicred.create(titulo);
+                    case BANCO_DAYCOVAL:
+                        return AbstractCLBancoDaycoval.create(titulo);
 
                     default:
                         /*
