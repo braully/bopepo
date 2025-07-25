@@ -286,6 +286,14 @@ public enum BancosSuportados {
      */
     BANCO_RURAL("453", "58160789000128", "BANCO RURAL S.A.", "Banco Múltiplo"),
     /**
+     * Tipo enumerado que representa o <strong>Banco Daycoval</strong>, código de
+     * compensação <strong>707</strong> <a
+     * href="https://www.daycoval.com.br/">site</a>.
+     *
+     * @since 0.2
+     */
+    BANCO_DAYCOVAL("707", "62232889000190", "BANCO DAYCOVAL S.A.", "Banco Múltiplo"),
+    /**
      * Tipo enumerado que representa o <strong>Bancoob</strong>, código de
      * compensação <strong>756</strong> <a
      * href="http://www.bancoob.com.br/">site</a>.
@@ -294,6 +302,7 @@ public enum BancosSuportados {
      */
     BANCOOB("756", "02038232000164", "BANCO COOPERATIVO DO BRASIL S.A. - BANCOOB", "Banco Comercial Cooperativo");
     
+
     /**
      * Singleton <code>Map</code> para pesquisa por bancos suportados no
      * componente.
@@ -326,6 +335,7 @@ public enum BancosSuportados {
         suportados.put(BANCO_DE_BRASILIA.codigoDeCompensacaoBACEN, BANCO_DE_BRASILIA);
         suportados.put(CECRED.codigoDeCompensacaoBACEN, CECRED);
         suportados.put(UNICRED.codigoDeCompensacaoBACEN, UNICRED);
+        suportados.put(BANCO_DAYCOVAL.codigoDeCompensacaoBACEN, BANCO_DAYCOVAL);
     }
 
     /**
