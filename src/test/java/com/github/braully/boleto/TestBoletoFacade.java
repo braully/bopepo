@@ -20,8 +20,8 @@ import org.junit.Test;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
- *
  * @author braully
  */
 public class TestBoletoFacade {
@@ -29,9 +29,9 @@ public class TestBoletoFacade {
     @Test
     public void testBoletoSimples() {
         BoletoCobranca boletoFacade = new BoletoCobranca();
-        boletoFacade.sacado("Sacado da Silva Sauro").sacadoCpf("1");
+        boletoFacade.sacado("Sacado da Silva Sauro").sacadoCpf("7068093868");
         boletoFacade.banco("1").agencia("1").conta("1");
-        boletoFacade.cedente("Cedente da Silva Sauro").cedenteCnpj("1");
+        boletoFacade.cedente("Cedente da Silva Sauro").cedenteCnpj("60746948000112");
         //boletoFacade.covenio("1");
         boletoFacade.carteira("1");
         boletoFacade.numeroDocumento("1")
@@ -48,9 +48,9 @@ public class TestBoletoFacade {
     @Test
     public void testBoletoSicredi() {
         BoletoCobranca boletoFacade = new BoletoCobranca();
-        boletoFacade.sacado("Sacado da Silva Sauro").sacadoCpf("1");
+        boletoFacade.sacado("Sacado da Silva Sauro").sacadoCpf("07068093868");
         boletoFacade.banco("748").agencia("1").conta("1").carteira("1");
-        boletoFacade.cedente("Cedente da Silva Sauro").cedenteCnpj("1");
+        boletoFacade.cedente("Cedente da Silva Sauro").cedenteCnpj("60746948000112");
         //boletoFacade.covenio("1");
         boletoFacade.carteira("1");
         boletoFacade.numeroDocumento("1")
@@ -72,9 +72,9 @@ public class TestBoletoFacade {
     public void testBoletoBancoBradesco() {
         BoletoCobranca boletoFacade = new BoletoCobranca();
         boletoFacade.sacado("Teste da silva Sauro")
-                .sacadoCpf("1");
+                .sacadoCpf("07068093868");
         boletoFacade.banco("237").agencia("4534-9").conta("188-999");
-        boletoFacade.cedente("Cedente da Silva Sauro").cedenteCnpj("1");
+        boletoFacade.cedente("Cedente da Silva Sauro").cedenteCnpj("60746948000112");
         boletoFacade.carteira("1");
         boletoFacade.numeroDocumento("1")
                 .nossoNumero("12345678901")
@@ -104,9 +104,9 @@ public class TestBoletoFacade {
     @Test
     public void testBoletoBancoCaixa() {
         BoletoCobranca boletoFacade = new BoletoCobranca();
-        boletoFacade.sacado("Sacado da Silva Sauro").sacadoCpf("1");
+        boletoFacade.sacado("Sacado da Silva Sauro").sacadoCpf("07068093868");
         boletoFacade.banco("104").agencia("1").conta("1");
-        boletoFacade.cedente("Cedente da Silva Sauro").cedenteCnpj("1");
+        boletoFacade.cedente("Cedente da Silva Sauro").cedenteCnpj("22.413.806/0001-44");
         //boletoFacade.covenio("1");
         boletoFacade.carteira("1");
         boletoFacade.numeroDocumento("1")
@@ -123,9 +123,9 @@ public class TestBoletoFacade {
     @Test
     public void testBoletoBancoItau() {
         BoletoCobranca boletoFacade = new BoletoCobranca();
-        boletoFacade.sacado("Sacado da Silva Sauro").sacadoCpf("1");
+        boletoFacade.sacado("Sacado da Silva Sauro").sacadoCpf("07068093868");
         boletoFacade.banco("341").agencia("1").conta("1");
-        boletoFacade.cedente("Cedente da Silva Sauro").cedenteCnpj("1");
+        boletoFacade.cedente("Cedente da Silva Sauro").cedenteCnpj("Y9.T2X.T5C/0001-37");
         //boletoFacade.covenio("1");
         boletoFacade.carteira("1");
         boletoFacade.numeroDocumento("1")

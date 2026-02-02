@@ -1,6 +1,6 @@
 /*
  * Copyright 2008 JRimum Project
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at http://www.apache.org/licenses/LICENSE-2.0 Unless required by
@@ -8,13 +8,13 @@
  * License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
  * OF ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
- * 
+ *
  * Created at: 30/03/2008 - 19:03:20
- * 
+ *
  * ================================================================================
- * 
+ *
  * Direitos autorais 2008 JRimum Project
- * 
+ *
  * Licenciado sob a Licença Apache, Versão 2.0 ("LICENÇA"); você não pode usar
  * esse arquivo exceto em conformidade com a esta LICENÇA. Você pode obter uma
  * cópia desta LICENÇA em http://www.apache.org/licenses/LICENSE-2.0 A menos que
@@ -22,21 +22,20 @@
  * esta LICENÇA se dará “COMO ESTÁ”, SEM GARANTIAS OU CONDIÇÕES DE QUALQUER
  * TIPO, sejam expressas ou tácitas. Veja a LICENÇA para a redação específica a
  * reger permissões e limitações sob esta LICENÇA.
- * 
+ *
  * Criado em: 30/03/2008 - 19:03:20
- * 
+ *
  */
 package org.jrimum.domkee.pessoa;
-
-import static org.apache.commons.lang3.StringUtils.EMPTY;
-import static org.jrimum.utilix.Strings.fillWithZeroLeft;
 
 import org.jrimum.utilix.Exceptions;
 import org.jrimum.vallia.AbstractCPRFValidator;
 import org.jrimum.vallia.AbstractCPRFValidator.TipoDeCPRF;
 
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+import static org.jrimum.utilix.Strings.fillWithZeroLeft;
+
 /**
- *
  * <p>
  * Classe que representa um
  * <a href="http://www.receita.fazenda.gov.br/Principal/Cadastros.htm">Cadastro
@@ -53,14 +52,12 @@ import org.jrimum.vallia.AbstractCPRFValidator.TipoDeCPRF;
  * Jurídica é o CNPJ</a>.
  * </p>
  *
- *
  * @author <a href="http://gilmatryx.googlepages.com">Gilmar P.S.L.</a>
  * @author <a href="mailto:misaelbarreto@gmail.com">Misael Barreto</a>
  * @author <a href="mailto:romulomail@gmail.com">Rômulo Augusto</a>
- *
+ * @author <a href="mailto:roda7x@gmail.com">Rodrigo Carvalho</a>
+ * @version 0.3
  * @since 0.2
- *
- * @version 0.2
  */
 public abstract class AbstractCPRF implements CPRF {
 
@@ -72,7 +69,7 @@ public abstract class AbstractCPRF implements CPRF {
     /**
      *
      */
-    private Long codigo;
+    private String codigo;
 
     /**
      *
@@ -99,7 +96,7 @@ public abstract class AbstractCPRF implements CPRF {
      * {@linkplain TipoDeCPRF}.
      *
      * @param cadastroDePessoa não formatado
-     * @param tipoDeCadastro tipo
+     * @param tipoDeCadastro   tipo
      * @return AbstractCPRF (CPF ou CNPJ)
      * @throws IllegalArgumentException
      */
@@ -136,10 +133,10 @@ public abstract class AbstractCPRF implements CPRF {
      * Cria um {@linkplain CPRF} através de uma string formatada ou não.
      *
      * @param cadastroDePessoa - identificador do cadastro de pessoa formatado
-     * ou não.
+     *                         ou não.
      * @return uma instância de AbstractCPRF.
      * @throws IllegalArgumentException - caso o parâmetro não esteja em um
-     * formatador válido de cadastro de pessoa.
+     *                                  formatador válido de cadastro de pessoa.
      */
     @SuppressWarnings("unchecked")
     public static <C extends AbstractCPRF> C create(String cadastroDePessoa)
@@ -191,12 +188,12 @@ public abstract class AbstractCPRF implements CPRF {
         this.codigoFormatado = codigoFormatado;
     }
 
-    protected void setCodigo(Long codigo) {
+    protected void setCodigo(String codigo) {
 
         this.codigo = codigo;
     }
 
-    public Long getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
@@ -214,12 +211,12 @@ public abstract class AbstractCPRF implements CPRF {
         return codigoFormatado;
     }
 
-    public Long getRaiz() {
+    public String getRaiz() {
 
         if (isFisica()) {
-            return Long.valueOf(codigoFormatado.split("-")[0].replaceAll("\\.", EMPTY));
+            return codigoFormatado.split("-")[0].replaceAll("\\.", EMPTY);
         } else {
-            return Long.valueOf(codigoFormatado.split("/")[0].replaceAll("\\.", EMPTY));
+            return codigoFormatado.split("/")[0].replaceAll("\\.", EMPTY);
         }
     }
 
