@@ -59,12 +59,22 @@ $ ./sh/compile.sh
 
 ## Artefato do Maven Central
 
-O artefato do maven central pode ser encontrado em:
+O ultimo artefato estavel está no maven central pode ser encontrado em:
 ```xml
 <dependency>
         <groupId>io.github.braully</groupId>
         <artifactId>bpp-cobranca</artifactId>
         <version>1.0.5</version>
+</dependency>
+```
+
+O ultimo artefato com as ultimas mudanças mas ainda em evolução
+
+```xml
+<dependency>
+        <groupId>io.github.braully</groupId>
+        <artifactId>bpp-cobranca</artifactId>
+        <version>2.0.0-alpha</version>
 </dependency>
 ```
 
