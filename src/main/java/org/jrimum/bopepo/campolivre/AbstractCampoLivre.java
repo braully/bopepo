@@ -239,6 +239,8 @@ abstract class AbstractCampoLivre extends BlockOfFields implements CampoLivre {
                         return AbstractCLUnicred.create(titulo);
                     case BANCO_DAYCOVAL:
                         return AbstractCLBancoDaycoval.create(titulo);
+                    case BANCO_SOFISA:
+                        return AbstractCLBancoSofisa.create(titulo);
 
                     default:
                         /*
