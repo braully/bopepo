@@ -294,6 +294,14 @@ public enum BancosSuportados {
      */
     BANCO_DAYCOVAL("707", "62232889000190", "BANCO DAYCOVAL S.A.", "Banco Múltiplo"),
     /**
+     * Tipo enumerado que representa o <strong>Banco Sofisa</strong>, código de
+     * compensação <strong>637</strong> <a
+     * href="https://www.sofisa.com.br/">site</a>.
+     *
+     * @since 0.2
+     */
+    BANCO_SOFISA("637", "60889128000180", "BANCO SOFISA S.A.", "Banco Múltiplo"),
+    /**
      * Tipo enumerado que representa o <strong>Bancoob</strong>, código de
      * compensação <strong>756</strong> <a
      * href="http://www.bancoob.com.br/">site</a>.
@@ -336,6 +344,7 @@ public enum BancosSuportados {
         suportados.put(CECRED.codigoDeCompensacaoBACEN, CECRED);
         suportados.put(UNICRED.codigoDeCompensacaoBACEN, UNICRED);
         suportados.put(BANCO_DAYCOVAL.codigoDeCompensacaoBACEN, BANCO_DAYCOVAL);
+        suportados.put(BANCO_SOFISA.codigoDeCompensacaoBACEN, BANCO_SOFISA);
     }
 
     /**
