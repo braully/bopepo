@@ -74,7 +74,7 @@ O ultimo artefato com as ultimas mudanças mas ainda em evolução
 <dependency>
         <groupId>io.github.braully</groupId>
         <artifactId>bpp-cobranca</artifactId>
-        <version>2.0.0-alpha</version>
+        <version>2.0.1</version>
 </dependency>
 ```
 
