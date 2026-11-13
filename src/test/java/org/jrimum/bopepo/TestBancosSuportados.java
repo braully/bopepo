@@ -76,5 +76,6 @@ public class TestBancosSuportados{
 		assertEquals(BancosSuportados.CITIBANK.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "745");
 		assertEquals(BancosSuportados.BANCO_DE_BRASILIA.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "070");
 		assertEquals(BancosSuportados.BANCO_DAYCOVAL.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "707");
+		assertEquals(BancosSuportados.BANCO_SOFISA.create().getCodigoDeCompensacaoBACEN().getCodigoFormatado(), "637");
 	}
 }
